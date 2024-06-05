@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.main {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 300px;
+    border: solid 1px;
+    margin: 0 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px #7f4f24;
+    color: #538392;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.mt-auto {
+    margin-top: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+}
+
+.apply-button {
+    display: inline-block;
+    padding: .75rem 1.25rem;
+    border-radius: 10rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: medium;
+    letter-spacing: .15rem;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+    background-color: black; /* Change this color to your desired background color */
+}
+
+.apply-button:hover {
+    background-color:black; /* Change this color to your desired hover background color */
+}
