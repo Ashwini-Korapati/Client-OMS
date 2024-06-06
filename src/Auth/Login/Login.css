@@ -1,4 +1,4 @@
-/* Add a prefix "login-" to all class names to avoid conflicts */
+
 .login-container * {
     margin: 0;
     padding: 0;

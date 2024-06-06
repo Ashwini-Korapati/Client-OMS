@@ -6,7 +6,7 @@
   }
   
   .header-container {
-    background-color: #007bff42;
+    background-color: #d5bdaf;
     /* height: 100vh; */
     display: flex;
     flex-direction: column;
@@ -26,8 +26,8 @@
     position: fixed;
     top: 20px;
     right: 100px;
-    justify-content: center; /* Ensure navbar contents are centered */
-    z-index: 10; /* Ensure navbar is above other content */
+    justify-content: center; 
+    z-index: 10; 
   }
   
   nav ul {
@@ -40,6 +40,8 @@
   }
   
   nav ul li {
+    scroll-behavior: smooth;
+    scroll-behavior: auto;
     text-decoration: none;
 
     list-style: none;
@@ -55,13 +57,13 @@
   
   nav ul li:hover {
     color: #fff;
-    background-color: #75a47f;
+    background-color: rgb(16, 16, 73);
     border-radius: 90px;
-    padding: 8px 38px; /* Increased padding for hover state */
+    padding: 8px 38px; 
   }
   
 
-  /* Responsive styles */
+  /* Responsive style */
   @media (max-width: 1200px) {
     nav {
         width: 70%;

@@ -1,11 +1,17 @@
+/* src/career/Career.css */
 .career-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 0;
+    margin: 0;  
+    margin-top: 200px;
+    height: 100vh;
 }
 
 .d-flex {
     display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
 }
 
 .flex-column {
@@ -13,11 +19,11 @@
 }
 
 .main {
+    margin-top: 90px;
     padding: 10px;
     display: flex;
     flex-direction: column;
-    /* height: 100%; */
-    width: 300px;
+    width: 100%;
     border: solid 1px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -25,7 +31,6 @@
 .main:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 20px #7f4f24;
-    color: #538392;
 }
 
 .details {
@@ -52,13 +57,13 @@
     transition: all .3s;
     position: relative;
     overflow: hidden;
-    background-color: #007bff; /* Button background color */
+    background-color: rgb(16, 16, 73); 
 }
 
 .apply-button:hover {
-    background-color: #0056b3; /* Button hover background color */
+    background-color: #383886;
 }
 
 .gap-col {
-    margin: 0 5px; /* Adjust the margin as needed */
+    padding: 10px; 
 }

@@ -4,7 +4,7 @@
   align-items: center;
   gap: 40px;
   margin-left: 60px;
-  height: 80vh;
+  height: 100vh;
   padding: 40px;
 }
 
@@ -25,10 +25,10 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   width: 50%;
-  background-color: #75a47f58;
+  background-color: #d5bdaf;
   padding: 20px;
-  border-top-left-radius: 160px;
-  border-bottom-right-radius: 160px;
+  border-top-left-radius: 120px;
+  border-bottom-right-radius: 120px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .contact-card:hover{
@@ -77,6 +77,8 @@
 }
 
 .form-row input {
+  border-color: #333;
+  margin: solid 3px;
   flex: 1;
   padding: 10px;
   border: 1px solid #ccc;
@@ -121,8 +123,8 @@
 }
 
 .contact-form button:hover {
+  background-color: rgba(16, 16, 73, 0.747);
   font-weight: bold;
-  background-color: rgba(0, 0, 255, 0.397);
   color: white;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
 }

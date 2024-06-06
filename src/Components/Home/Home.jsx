@@ -11,36 +11,35 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-    }, 3000); 
+    }, 3000);
 
     return () => clearInterval(interval);
-  }, []); 
+  }, []);
 
-  const nextImage = () => {
-    setCurrentImage((currentImage + 1) % images.length);
-  };
+  // const nextImage = () => {
+  //   setCurrentImage((currentImage + 1) % images.length);
+  // };
 
-  const prevImage = () => {
-    setCurrentImage((currentImage - 1 + images.length) % images.length);
-  };
+  // const prevImage = () => {
+  //   setCurrentImage((currentImage - 1 + images.length) % images.length);
+  // };
 
   return (
     <div>
-    <div className="navbar-container">
-      <div className="navbar-content">
-        <h1 className="navbar-h1">Transforming Potential <br /> into Excellence</h1>
-        <p className="paragraph">
-          Your Comprehensive Solution for Cloud Services and <br />Infrastructure Management.<br />
-        </p>
-        <button className="button">Learn More</button>
+      <div className="navbar-container">
+        <div className="navbar-content">
+          <h1 className="navbar-h1">Transforming Potential <br /> into Excellence</h1>
+          <p className="paragraph">
+            Your Comprehensive Solution for Cloud Services and <br />Infrastructure Management.<br />
+          </p>
+          <button className="button">Learn More</button>
+        </div>
+        <div className="image-slider">
+          <button className="nav-button prev"></button>
+          <img src={images[currentImage]} alt={`Image ${currentImage + 1}`} className="slider-image" />
+          <button className="nav-button next" ></button>
+        </div>
       </div>
-      <div className="image-slider">
-        <button className="nav-button" onClick={prevImage}>❮</button>
-        <img src={images[currentImage]} alt={`Image ${currentImage + 1}`} className="slider-image" />
-        <button className="nav-button" onClick={nextImage}>❯</button>
-      </div>
-    </div>
-    
     </div>
   );
 };

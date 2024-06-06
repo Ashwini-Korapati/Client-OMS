@@ -1,0 +1,139 @@
+.about-container * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+  }
+ 
+  .about-section {
+    width: 100%;
+    min-height: 100vh;
+  }
+ 
+  .about-container {
+    width: 80%;
+    margin: auto;
+    padding-top: 100px;
+    display: flex;
+    justify-content: space-between;
+  }
+ 
+  .about-content-section {
+    width: 55%;
+  }
+ 
+  .about-image-section {
+    width: 40%;
+  }
+ 
+  .about-image-section img {
+    width: 100%;
+  }
+ 
+  .about-title {
+    text-transform: uppercase;
+    font-size: 28px;
+  }
+ 
+  .about-para-content h3 {
+    margin-top: 20px;
+    font-size: 21px;
+  }
+ 
+  .about-para-content p {
+    margin-top: 10px;
+    font-family: sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+ 
+  .about-button {
+    margin-top: 30px;
+  }
+ 
+  .about-button a {
+    background-color: black;
+    padding: 12px 40px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 25px;
+    letter-spacing: 1.5px;
+  }
+ 
+  .about-button a:hover {
+    background-color: white;
+    color: #000;
+  }
+ 
+  .image-container {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    margin-top: -180px; 
+  }
+ 
+  .image-line {
+    display: flex;
+    animation: scroll 20s linear infinite;
+  }
+ 
+  .image-line img {
+    max-width: 140px; 
+    max-height: 100px;
+    margin: 0 30px; 
+  }
+ 
+  @keyframes scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+ 
+  @media screen and (max-width: 768px) {
+    .about-container {
+      width: 90%;
+      max-width: 1200px;
+      padding: 50px;
+      flex-direction: column;
+      align-items: center;
+    }
+ 
+    .about-content-section {
+      width: 100%;
+      text-align: center;
+    }
+ 
+    .about-image-section {
+      width: 100%;
+    }
+ 
+    .about-title {
+      font-size: 19px;
+    }
+ 
+    .about-button {
+      text-align: center;
+    }
+ 
+    .about-button a {
+      padding: 9px 30px;
+    }
+ 
+    .image-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+ 
+    .image-line {
+      display: block;
+    }
+ 
+    .image-line img {
+      margin: 10px 0;
+    }
+  }
+ 
