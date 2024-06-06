@@ -28,7 +28,7 @@ const Home = () => {
     <div>
     <div className="navbar-container">
       <div className="navbar-content">
-        <h1 className="h1">Transforming Potential <br /> into Excellence</h1>
+        <h1 className="navbar-h1">Transforming Potential <br /> into Excellence</h1>
         <p className="paragraph">
           Your Comprehensive Solution for Cloud Services and <br />Infrastructure Management.<br />
         </p>

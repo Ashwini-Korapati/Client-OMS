@@ -4,15 +4,15 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import '../career/Career.css'
+import '../career/Career.css';
 import { FaLocationDot } from "react-icons/fa6";
 import { MdWorkHistory } from "react-icons/md";
 
 function Career() {
   return (
-    <Container className="container">
-      <Row className="gy-8">
-        <Col md={3}>
+    <Container className="caree-container">
+      <Row className="d-flex flex-nowrap">
+        <Col md={3} className="gap-col">
           <Card className="main">
             <Card.Body className="details d-flex flex-column">
               <Card.Title className="headline">FULLSTACK Developer</Card.Title>
@@ -29,7 +29,7 @@ function Career() {
             </Card.Body>
           </Card>
         </Col>
-        <Col md={3}>
+        <Col md={3} className="gap-col">
           <Card className="main">
             <Card.Body className="details d-flex flex-column">
               <Card.Title className="headline">Frontend Developer</Card.Title>
@@ -46,7 +46,7 @@ function Career() {
             </Card.Body>
           </Card>
         </Col>
-        <Col md={3}>
+        <Col md={3} className="gap-col">
           <Card className="main">
             <Card.Body className="details d-flex flex-column">
               <Card.Title className="headline">Java Developer</Card.Title>
@@ -63,7 +63,7 @@ function Career() {
             </Card.Body>
           </Card>
         </Col>
-        <Col md={3}>
+        <Col md={3} className="gap-col">
           <Card className="main">
             <Card.Body className="details d-flex flex-column">
               <Card.Title className="headline">Backend Developer</Card.Title>

@@ -3,8 +3,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  /* background-color: #007bff42; */
-  height: 100vh;
+  background-color: #007bff42;
+  height: 80vh;
 }
 
 .navbar-content {
@@ -13,14 +13,18 @@
   margin-left: 50px;
 }
 
-.h1 {
-  font-size: 50px;
+.navbar-h1 {
+  /* background-color: aqua; */
+  margin-top: 90px;
+  font-size: 70px;
   font-weight: 600;
-  /* background-image: blue; */
-  /* color: transparent; */
-  color: rgb(15, 15, 54);
-  background-clip: text;
+  background-size: 250px;
+  background-repeat: repeat;
+  color: transparent;
   -webkit-background-clip: text;
+  background-clip: text;
+  background-color: rgb(15, 15, 54);
+
 }
 
 .paragraph {
@@ -80,7 +84,7 @@
 
 
 .image-slider {
-  margin-bottom: 150px;
+  margin-top: 90px;
   display: flex;
   align-items: center;
 }
