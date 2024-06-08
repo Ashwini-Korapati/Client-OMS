@@ -6,6 +6,7 @@ import Career from '../career/Career';
 import { NavLink } from 'react-router-dom';
 import About from '../About/About';
 import Blogs from '../Blogs/Blogs';
+import Footer from '../Footer/Footer';
 
 const Header = () => {
   const homeRef = useRef(null);
@@ -63,6 +64,9 @@ const Header = () => {
       <div ref={contactRef}>
         <Contact />
       </div>
+      <div>
+        <Footer/>
+        </div>
     </div>
   );
 };

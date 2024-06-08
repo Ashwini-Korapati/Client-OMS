@@ -1,0 +1,155 @@
+.forget-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.forget-card {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  max-width: 900px;
+  height: 80%;
+  max-height: 600px;
+  background-color: #d5bdaf81;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .forget-card {
+    flex-direction: row;
+  }
+}
+
+.forget-image-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.forget-image-container img {
+  width: 100%;
+  height: auto; 
+  max-height: 100%; 
+  object-fit: cover;
+}
+
+.form1-container {
+  background-color: #d5bdaf;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.formcont1 {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+
+}
+
+.formcont1 h2 {
+  font-size: 1.5rem;
+  text-align: left; 
+  margin-bottom: 10px; 
+  margin-left: 5px; 
+}
+
+.foregt-p {
+  font-size: medium;
+  text-align: left; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+
+
+.input-group label {
+  margin-bottom: 10px;
+  display: block;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.submit-button {
+  width: 100%; /* Ensure button width matches form width */
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(15, 15, 54);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  background-color: rgba(15, 15, 54, 0.74);
+}
+
+.Forget-password {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+.back-link1 {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.875rem;
+  color: black;
+}
+
+.back-link {
+  text-align: center;
+  align-items: center;
+  margin-top: 20px;
+  font-size: medium;
+  color: black;
+}
+
+.back-link:hover {
+  color: rgba(15, 15, 54, 0.74);
+}
+
+@media (max-width: 768px) {
+  .forget-card {
+    flex-direction: column;
+  }
+  
+  .form1-container {
+    padding: 20px;
+  }
+  
+  .formcont1 {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .overlay-text {
+    font-size: 1rem;
+    bottom: 10%;
+    left: 5%;
+  }
+
+  .formcont1 h2 {
+    font-size: 1rem;
+  }
+}
