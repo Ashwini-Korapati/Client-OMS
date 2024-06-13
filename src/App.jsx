@@ -1,27 +1,64 @@
-import Header from '../src/Landingpage/Components/Header/Header'
-import {BrowserRouter,Route,Routes} from 'react-router-dom'
+// App.jsx
+import React, { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from '../src/Landingpage/Auth/Login/Login'
-import Forget from '../src/Landingpage/Auth/ForgetPassword/Forget'
-import ResetPassword from '../src/Landingpage/Auth/ResetPassword/ResetPassword'
-// import Login from './Auth/Login/Login'
+import Header from '../src/Landingpage/Components/Header/Header';
+import Login from '../src/Landingpage/Auth/Login/Login';
+import Forget from '../src/Landingpage/Auth/ForgetPassword/Forget';
+import ResetPassword from '../src/Landingpage/Auth/ResetPassword/ResetPassword';
+import Dashboard from './HRModule/Components/Dashboard/Dashboard';
+import HRHome from './HRModule/Components/Pages/HRHome/HRHome';
+import EMPManagement from '../src/HRModule/Components/Pages/EMPManagement/EMPmanagement'
+import Payroll from './HRModule/Components/Pages/Payroll/Payroll'
 
 const App = () => {
+  const [employees, setEmployees] = useState([]);
+  const [leaves, setLeaves] = useState([]);
+
+  const addEmployee = (employee) => {
+    setEmployees([...employees, employee]);
+  };
+
+  const deleteEmployee = (index) => {
+    const newEmployees = employees.filter((_, i) => i !== index);
+    setEmployees(newEmployees);
+  };
+
+  const editEmployee = (index, updatedEmployee) => {
+    const newEmployees = employees.map((employee, i) => (i === index ? updatedEmployee : employee));
+    setEmployees(newEmployees);
+  };
+
+  const addLeave = (leave) => {
+    setLeaves([...leaves, leave]);
+  };
+
+  const updateLeaveStatus = (index, status) => {
+    const newLeaves = leaves.map((leave, i) => (i === index ? { ...leave, status } : leave));
+    setLeaves(newLeaves);
+  };
+
   return (
     <div>
-            <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Header/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/forget" element={<Forget/>}/>
-        <Route path="/resetpassword" element={<ResetPassword/>}/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Header />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/forget" element={<Forget />} />
+          <Route path="/resetpassword" element={<ResetPassword />} />
+          
+          {/* HR Module */}
+          <Route path="/hr-dashboard/*" element={<Dashboard />}>
+            <Route path="hr-home" element={<HRHome />} />
+            <Route path="EMP-managment" element={<EMPManagement />} />
+            <Route path="Payroll" element={<Payroll />} />
 
-
-
-      </Routes>
+            
+          </Route>
+        </Routes>
       </BrowserRouter>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

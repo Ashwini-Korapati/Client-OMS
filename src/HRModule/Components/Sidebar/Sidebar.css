@@ -1,0 +1,39 @@
+.custom-menu {
+  background-color: white;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+ 
+ 
+.custom-menu .ant-menu-item,
+.custom-menu .ant-menu-submenu-title {
+  font-size: 18px;
+  /* margin-top: 20px; */
+}
+ 
+.custom-menu .ant-menu-item-icon,
+.custom-menu .ant-menu-submenu-title .ant-menu-item-icon {
+  font-size: 20px;
+}
+ 
+.custom-menu .ant-menu-item,
+.custom-menu .ant-menu-submenu-title {
+  margin-top: 20px;
+}
+ 
+.custom-menu .ant-menu-item:not(:last-child),
+.custom-menu .ant-menu-submenu-title:not(:last-child) {
+  margin-bottom: 5px;
+}
+ 
+.sidebar.collapsed {
+  width: 80px;
+  transition: width 0.2s;
+}
+ 
+.sidebar {
+  width: 300px;
+  transition: width 0.2s;
+  height: 100vh;
+  font-size: 20px;
+}

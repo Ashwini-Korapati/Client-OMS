@@ -132,7 +132,10 @@ function Login() {
             </div>
           </div>
           <a href="/forget" className='forget'>Forget Password?</a>
+          <NavLink to='/hr-dashboard/hr-home'>
           <button>Sign In</button>
+          </NavLink>
+          
         </form>
       </div>
       <div className="login-toggle-container">
@@ -145,7 +148,8 @@ function Login() {
           <div className="login-toggle-panel login-toggle-right">
             <img className="login-image" src={png1} alt="Form" />
             <p>New here? Start by logging in</p>
-            <button className="login-hidden" onClick={toggleForm}>Sign Up</button>
+            <button className="login-hidden" >Sign Up</button>
+            {/* onClick={toggleForm} */}
           </div>
         </div>
       </div>

@@ -1,0 +1,77 @@
+.hr-container {
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.hr-d-flex {
+    display: flex;
+}
+
+.hr-flex-wrap {
+    flex-wrap: wrap;
+}
+
+.hr-flex-column {
+    flex-direction: column;
+}
+
+.hr-main {
+    margin-top: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: solid 1px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hr-main:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px #913a3a;
+}
+
+.hr-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.hr-mt-auto {
+    margin-top: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+}
+
+.hr-apply-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem; 
+    color: #fff;
+    text-transform: uppercase;
+    font-size: medium;
+    letter-spacing: 0.1rem; 
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    /* background-color: #008CBA; */
+    width: auto; 
+    align-self: flex-end;
+}
+
+.hr-apply-button:hover {
+    background-color: #008CBA;
+}
+
+.hr-gap-col {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.card-body .hr-apply-button:hover {
+    background-color: #007cb59d;
+}

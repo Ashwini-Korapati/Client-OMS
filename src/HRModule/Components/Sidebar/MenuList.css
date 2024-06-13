@@ -1,0 +1,25 @@
+.menu-bar {
+    background: #d5bdaf;
+    border-right: none;
+ 
+  }
+ 
+  .menu-bar .ant-menu-item, .menu-bar .ant-menu-submenu-title {
+    height: 48px;
+    line-height: 48px;
+    color: #fff !important;
+    font-size: 10px;
+    margin: 14px;
+  }
+ 
+  .menu-bar .ant-menu-item:hover, .menu-bar .ant-menu-submenu-title:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: #fff !important;
+   
+  }
+ 
+  .menu-bar .ant-menu-item-selected {
+    background: rgba(255, 255, 255, 0.3) !important;
+    color: #fff !important;
+  }
+ 

@@ -1,0 +1,38 @@
+.hrm-header {
+    height: 60px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+   
+  .header-right {
+    margin-right: 60px;
+    display: flex;
+    gap: 20px;
+  }
+   
+  .header-icon {
+    width: 50px;
+    margin-top: 10px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+   
+  .hrm-logo {
+    height: 100px;
+    padding: 20px;
+    margin: 5px;
+    width: 11 0px;
+  }
+   
+  .profile-logo{
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+
+
+
+  }
