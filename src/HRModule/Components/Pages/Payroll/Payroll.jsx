@@ -55,10 +55,10 @@ const EmployeeForm = () => {
       </div>
       <div className="form-section">
         <h3>Reports</h3>
-        <div className="payroll-buttons">
-          <button className="report-button">Payroll Reports</button>
-          <button className="report-button">Benefits Reports</button>
-          <button className="report-button">Tax Reports</button>
+        <div className="payroll-save-buttons">
+          <button className="report-save-button">Payroll Reports</button>
+          <button className="report-save-button">Benefits Reports</button>
+          <button className="report-save-button">Tax Reports</button>
         </div>
       </div>
     </div>

@@ -1,0 +1,47 @@
+body {
+    background-color: #f0f2f5;
+  }
+ 
+  .ant-layout-content {
+    background: #fff;
+    padding: 24px;
+    margin: 0;
+    min-height: 280px;
+  }
+ 
+  .ant-card {
+    border-radius: 8px;
+    margin-bottom: 24px;
+  }
+ 
+  .ant-card-head {
+    background-color: #fafafa;
+    border-bottom: 1px solid #f0f0f0;
+  }
+ 
+  .ant-card-body {
+    padding: 16px;
+  }
+ 
+  .ant-select {
+    margin-bottom: 16px;
+  }
+ 
+
+  .Second-container{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
+    width: max-content;
+    /* margin-top: 20px; */
+    background-color: whitesmoke;
+  }
+
+  .Row-c{
+    margin-top: 60px;
+  }
+
+  .Emp-table{
+    
+  }

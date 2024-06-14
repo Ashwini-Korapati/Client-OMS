@@ -1,59 +1,57 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
-import AddEmployeeform from '../HRHome/AddEmployeeform'
+import { useState } from 'react';
 import '../HRHome/HRCards.css'
+// import emp from '..'
+// import clients from '../../../../Assets/clientshr.png'
+// import project from '../../../../Assets/projects.png'
+import { Modal } from "react-bootstrap";
+import AddEmployeeform from '../HRHome/AddEmployeeform'
 
-function HRCards() {
+
+
+const Perfcards = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+
   return (
-    <>
-      <div>
-        <Container className="hr-container">
-          <Row>
-            <Col className="hr-gap-col">
-              <Card className="hr-main">
-                <Card.Body className="hr-details">
-                  <Card.Title className="hr-headline">Attendance</Card.Title>
-                  <Card.Text>25</Card.Text>
-                  <Button className="hr-apply-button">View more</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col className="hr-gap-col">
-              <Card className="hr-main">
-                <Card.Body className="hr-details">
-                  <Card.Title className="hr-headline">Leave Report</Card.Title>
-                  <Card.Text>30</Card.Text>
-                  <Button className="hr-apply-button">View more</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col className="hr-gap-col">
-              <Card className="hr-main">
-                <Card.Body className="hr-details">
-                  <Card.Title className="hr-headline">Add Employee</Card.Title>
-                  <Card.Text>50</Card.Text>
-                  <Button className="hr-apply-button" onClick={handleShow}>Add Employee</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-
-        <Modal show={show} onHide={handleClose} size="lg">
-        
-         
-          <Modal.Body>
-            <AddEmployeeform />
-          </Modal.Body>
-        </Modal>
+    <div className="HR-dashboard">
+      <div className="HR-card">
+        <div className="HR-content">
+          <h2>Attendance</h2>
+          <p>13 </p>
+                    <button className='view-btn'>View more</button>
+        </div>
+      
       </div>
-    </>
-  );
-}
+      <div className="HR-card">
+        <div className="HR-content">
+          <h2>Leave Metrics</h2>
+          <p>10</p>
+          <button className='view-btn'>View more</button>
+        </div>
+       
+      </div>
+      <div className="HR-card">
+        <div className="HR-content">
+          <h2>Add Employee</h2>
+          <p> 12</p>
 
-export default HRCards;
+          <button className='view-btn' onClick={handleShow}>Add Employee</button>
+
+        </div>
+       
+      </div>
+
+
+<Modal show={show} onHide={handleClose} size="lg">
+        <Modal.Body>
+          <AddEmployeeform />
+        </Modal.Body>
+      </Modal>
+    </div>
+  );
+};
+
+export default Perfcards;

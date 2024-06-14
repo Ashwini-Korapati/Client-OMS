@@ -1,0 +1,26 @@
+.ant-table-thead > tr > th {
+  background-color: #fafafa;
+}
+ 
+.ant-table-thead > tr > th:hover {
+  background-color: #e6f7ff;
+}
+ 
+.ant-tag-green {
+  background-color: #f6ffed;
+  border-color: #b7eb8f;
+  color: #52c41a;
+}
+ 
+.ant-tag-volcano {
+  background-color: #fff2e8;
+  border-color: #ffbb96;
+  color: #fa541c;
+}
+ 
+
+
+/* .table-container{
+height: fit-content;
+min-height: 120vh;
+} */

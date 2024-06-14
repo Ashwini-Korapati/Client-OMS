@@ -35,9 +35,9 @@ const Home = () => {
           <button className="button">Learn More</button>
         </div>
         <div className="image-slider">
-          <button className="nav-button prev"></button>
+          {/* <button className="nav-button prev"></button> */}
           <img src={images[currentImage]} alt={`Image ${currentImage + 1}`} className="slider-image" />
-          <button className="nav-button next" ></button>
+          {/* <button className="nav-button next" ></button>   */}
         </div>
       </div>
     </div>

@@ -1,24 +1,23 @@
-/* src/career/Career.css */
-.career-container {
+.career-container-custom {
     padding: 0;
     margin: 0;  
     margin-top: 200px;
     height: 100vh;
 }
 
-.d-flex {
+.c-d-flex-custom {
     display: flex;
 }
 
-.flex-wrap {
+.c-flex-wrap-custom {
     flex-wrap: wrap;
 }
 
-.flex-column {
+.c-flex-column-custom {
     flex-direction: column;
 }
 
-.main {
+.career-main-custom {
     margin-left: 200px;
     margin-top: 90px;
     padding: 10px;
@@ -29,25 +28,25 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.main:hover {
+.career-main-custom:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 20px #7f4f24;
 }
 
-.details {
+.c-details-custom {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
 
-.mt-auto {
+.career-mt-auto-custom {
     margin-top: auto;
     display: flex;
     align-items: flex-end;
     justify-content: end;
 }
 
-.apply-button {
+.career-apply-button-custom {
     display: inline-block;
     padding: .75rem 1.25rem;
     border-radius: 10rem;
@@ -61,10 +60,10 @@
     background-color: rgb(16, 16, 73); 
 }
 
-.apply-button:hover {
+.career-apply-button-custom:hover {
     background-color: #383886;
 }
 
-.gap-col {
+.gap-col-custom {
     padding: 10px; 
 }

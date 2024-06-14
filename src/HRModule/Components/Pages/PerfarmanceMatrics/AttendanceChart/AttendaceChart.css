@@ -1,0 +1,22 @@
+.ant-card {
+    border-radius: 8px;
+    margin-bottom: 24px;
+  }
+ 
+  .ant-card-head {
+    background-color: #fafafa;
+    border-bottom: 1px solid #f0f0f0;
+  }
+ 
+  .ant-card-body {
+    padding: 16px;
+  }
+ 
+  .ant-select {
+    margin-bottom: 16px;
+  }
+
+  .Attendance{
+    background-color: whitesmoke;
+    padding: 20px;
+  }

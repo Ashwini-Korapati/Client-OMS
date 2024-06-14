@@ -84,7 +84,7 @@
   background-color: #45a049;
 }
 
-.report-button {
+.report-save-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,11 +99,11 @@
   text-align: center;
 }
 
-.report-button:hover {
+.report-save-button:hover {
   background-color: #007cb59d;
 }
 
-.payroll-buttons {
+.payroll-save-buttons {
   display: flex;
   justify-content: space-between;
   gap: 10px;
