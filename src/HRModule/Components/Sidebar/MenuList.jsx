@@ -31,32 +31,35 @@ const MenuList = [
   },
   {
     key: '4',
+    path:'/hr-dashboard/attendance',
     icon: <FormOutlined style={iconStyle} />,
     label: 'Attendance',
   },
   {
     key: '5',
+    path:'/hr-dashboard/perfarmance',
     icon: <BsGraphUpArrow style={iconStyle} />,
-    label: 'Perfarmance Matrics',
+    label: 'Performance Metrics',
   },
-  
   {
-    key: 'sub1',
-    label: 'Leave Metrics',
+    key: 's',
+    label: 'Leave',
     icon: <CalendarOutlined style={iconStyle} />,
     children: [
       {
-        key: '5',
-        label: 'Option 5',
+        key: '6',
+        path:'/hr-dashboard/leavemetrics',
+        label: 'Leave Metrics',
       },
       {
-        key: '6',
+        key: '8',
         label: 'Option 6',
       },
     ],
   },
   {
-    key: 'sub2',
+    key: '9',
+    path:'/hr-dashboard/settings',
     label: 'Settings',
     icon: <SettingOutlined style={iconStyle} />,
   },

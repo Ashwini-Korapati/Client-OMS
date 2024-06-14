@@ -1,4 +1,3 @@
-// App.jsx
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,8 +7,12 @@ import Forget from '../src/Landingpage/Auth/ForgetPassword/Forget';
 import ResetPassword from '../src/Landingpage/Auth/ResetPassword/ResetPassword';
 import Dashboard from './HRModule/Components/Dashboard/Dashboard';
 import HRHome from './HRModule/Components/Pages/HRHome/HRHome';
-import EMPManagement from '../src/HRModule/Components/Pages/EMPManagement/EMPmanagement'
-import Payroll from './HRModule/Components/Pages/Payroll/Payroll'
+import EMPManagement from '../src/HRModule/Components/Pages/EMPManagement/EMPmanagement';
+import Payroll from './HRModule/Components/Pages/Payroll/Payroll';
+import Attendance from './HRModule/Components/Pages/Attendance/Attendance';
+import PerfarmanceMatrics from './HRModule/Components/Pages/PerfarmanceMatrics/PerfarmanceMatrics';
+import LeaveMetrics from './HRModule/Components/Pages/Leave/LeaveMetrics';
+import Settings from './HRModule/Components/Pages/Settings/Settings';
 
 const App = () => {
   const [employees, setEmployees] = useState([]);
@@ -52,8 +55,10 @@ const App = () => {
             <Route path="hr-home" element={<HRHome />} />
             <Route path="EMP-managment" element={<EMPManagement />} />
             <Route path="Payroll" element={<Payroll />} />
-
-            
+            <Route path="attendance" element={<Attendance />} />
+            <Route path="perfarmance" element={<PerfarmanceMatrics />} />
+            <Route path="leavemetrics" element={<LeaveMetrics />} />
+            <Route path="settings" element={<Settings />} />
           </Route>
         </Routes>
       </BrowserRouter>
