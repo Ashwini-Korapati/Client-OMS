@@ -7,12 +7,14 @@ import Forget from '../src/Landingpage/Auth/ForgetPassword/Forget';
 import ResetPassword from '../src/Landingpage/Auth/ResetPassword/ResetPassword';
 import Dashboard from './HRModule/Components/Dashboard/Dashboard';
 import HRHome from './HRModule/Components/Pages/HRHome/HRHome';
-import EMPManagement from '../src/HRModule/Components/Pages/EMPManagement/EMPmanagement';
+import Viewemployee from './HRModule/Components/Pages/Viewemployee/Viewemployee' 
 import Payroll from './HRModule/Components/Pages/Payroll/Payroll';
 import Attendance from './HRModule/Components/Pages/Attendance/Attendance';
 import PerfarmanceMatrics from './HRModule/Components/Pages/PerfarmanceMatrics/PerfarmanceMatrics';
 import LeaveMetrics from './HRModule/Components/Pages/Leave/LeaveMetrics';
 import Settings from './HRModule/Components/Pages/Settings/Settings';
+import Profile from './HRModule/Components/Pages/Profile/Profile'
+import Addemployee from './HRModule/Components/Pages/Addemployee/Addemployee';
 
 const App = () => {
   const [employees, setEmployees] = useState([]);
@@ -53,13 +55,17 @@ const App = () => {
           {/* HR Module */}
           <Route path="/hr-dashboard/*" element={<Dashboard />}>
             <Route path="hr-home" element={<HRHome />} />
-            <Route path="EMP-managment" element={<EMPManagement />} />
             <Route path="Payroll" element={<Payroll />} />
             <Route path="attendance" element={<Attendance />} />
             <Route path="perfarmance" element={<PerfarmanceMatrics />} />
             <Route path="leavemetrics" element={<LeaveMetrics />} />
             <Route path="settings" element={<Settings />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="edit-employee" element={<Addemployee />} />
+
           </Route>
+          <Route path="view-employee" element={<Viewemployee />} />
+
         </Routes>
       </BrowserRouter>
     </div>

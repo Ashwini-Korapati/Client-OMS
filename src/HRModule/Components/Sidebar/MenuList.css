@@ -1,4 +1,4 @@
-.menu-bar {
+/* .menu-bar {
     background: #d5bdaf;
     border-right: none;
  
@@ -22,4 +22,24 @@
     background: rgba(255, 255, 255, 0.3) !important;
     color: #fff !important;
   }
+  */
+
+  .custom-menu .ant-menu-item,
+.custom-menu .ant-menu-submenu-title {
+  font-size: 20px;
+}
  
+.custom-menu .ant-menu-item-selected {
+  background-color: #1890ff;
+  color: #fff;
+}
+ 
+/* styles.css */
+.menu-item-text {
+  font-size: 18px; 
+}
+ /* MenuList.css */
+
+.menu-item {
+  margin-bottom: 10px; 
+}

@@ -1,41 +1,27 @@
-import React from 'react';
-import { BarChart } from '@mui/x-charts/BarChart';
-import { axisClasses } from '@mui/x-charts/ChartsAxis';
-import { Card } from 'antd';
-import '../PerfamanceChart/PerfamanceChart.css'
+import * as React from 'react';
+import { PieChart } from '@mui/x-charts/PieChart';
  
-const performanceData = [
-  { name: 'Alice Johnson', performance: 85 },
-  { name: 'Bob Smith', performance: 78 },
-  { name: 'Charlie Brown', performance: 82 },
-  { name: 'Diana Prince', performance: 79 },
-  { name: 'Ethan Hunt', performance: 74 },
-  { name: 'Fiona Gallagher', performance: 78 },
-  { name: 'George Martin', performance: 76 },
-  { name: 'Hannah Baker', performance: 74 },
+const data = [
+  { id: 0, value: 60, label: 'Full-time' },    
+  { id: 1, value: 25, label: 'Part-time' },    
+  { id: 2, value: 15, label: 'Interns' },      
 ];
  
-const chartSetting = {
-  yAxis: [{ label: 'Performance (%)' }],
-  series: [{ dataKey: 'performance', label: 'Employee Performance' }],
-  height: 300,
-  sx: {
-    [`& .${axisClasses.directionY} .${axisClasses.label}`]: {
-      transform: 'translateX(-10px)',
-    },
-  },
-};
- 
-const PerformanceChart = () => (
-<Card title="Employee Performance Chart" bordered={false}>
-<div className="chart-container">
-<BarChart
-        dataset={performanceData}
-        xAxis={[{ scaleType: 'band', dataKey: 'name' }]}
-        {...chartSetting}
+const EmployeeTypePieChart = () => {
+  return (
+    <div className='pie-chart-container' style={{ width: '100%', height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <PieChart
+        series={[
+          {
+            data,
+            highlightScope: { faded: 'global', highlighted: 'item' },
+            faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
+          },
+        ]}
+        height={300}  
       />
-</div>
-</Card>
-);
+    </div>
+  );
+}
  
-export default PerformanceChart;
+export default EmployeeTypePieChart;

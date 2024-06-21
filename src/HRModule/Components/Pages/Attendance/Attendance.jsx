@@ -1,22 +1,65 @@
 import React, { useState, useRef } from "react";
-import '../Attendance/Attendance.css'
+import '../Attendance/Attendance.css';
 import { Button } from "react-bootstrap";
 
 const LeaveMetrics = () => {
-  const [workType, setWorkType] = useState("");
+  const [formData, setFormData] = useState({
+    shiftTimings: '',
+    workType: '',
+    message: '',
+  });
   const [showCamera, setShowCamera] = useState(false);
   const [photo, setPhoto] = useState(null);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
 
-  const handleWorkTypeChange = (event) => {
-    setWorkType(event.target.value);
-    if (event.target.value === "workFromHome") {
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+
+    if (name === 'workType' && value === 'workFromHome') {
       setShowCamera(true);
       startCamera();
-    } else {
+    } else if (name === 'workType') {
       setShowCamera(false);
       stopCamera();
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // Validate inputs
+    if (!formData.shiftTimings || !formData.workType || !formData.message) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    if (formData.workType === 'workFromHome' && !photo) {
+      alert('Please capture a selfie.');
+      return;
+    }
+
+    
+    const dataToSend = {
+      ...formData,
+      photo
+    };
+
+  
+    try {
+      const response = await fetch('YOUR_BACKEND_ENDPOINT', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataToSend)
+      });
+      const data = await response.json();
+      console.log('Success:', data);
+    } catch (error) {
+      console.error('Error:', error);
     }
   };
 
@@ -50,7 +93,7 @@ const LeaveMetrics = () => {
   return (
     <div className="containerStyle1">
       <div className="cont1">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-header1">
             <h1>Attendance Form</h1>
           </div>
@@ -58,7 +101,12 @@ const LeaveMetrics = () => {
           <div className="row">
             <div className="input-box">
               <label>Shift Timings</label>
-              <select required>
+              <select
+                name="shiftTimings"
+                value={formData.shiftTimings}
+                onChange={handleChange}
+                required
+              >
                 <option value="">Select Shift Timings</option>
                 <option value="9to5">9am to 5pm</option>
                 <option value="5to1">5pm to 1am</option>
@@ -68,27 +116,27 @@ const LeaveMetrics = () => {
 
             <div className="input-box">
               <label>Type of work</label>
-              <select value={workType} onChange={handleWorkTypeChange} required>
+              <select
+                name="workType"
+                value={formData.workType}
+                onChange={handleChange}
+                required
+              >
                 <option value="">Select Type of Work</option>
                 <option value="office">Work from Office</option>
                 <option value="workFromHome">Work from Home</option>
               </select>
             </div>
-
-            <div className="input-box">
-              <label>Start Date</label>
-              <input type="date" required />
-            </div>
-
-            <div className="input-box">
-              <label>End Date</label>
-              <input type="date" required />
-            </div>
           </div>
 
           <div className="input-box">
-            <label>Reason for Leave</label>
-            <textarea rows="4" required></textarea>
+            <label>Message</label>
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              rows="4"
+            />
           </div>
 
           {showCamera && (
@@ -106,7 +154,7 @@ const LeaveMetrics = () => {
             </div>
           )}
 
-          <Button className="hr-add-button1">Submit</Button>
+          <Button type="submit" className="hr-add-button1">Submit</Button>
         </form>
       </div>
     </div>

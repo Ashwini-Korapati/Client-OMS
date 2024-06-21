@@ -1,0 +1,110 @@
+.table-container {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table-container th {
+  background-color: #f2f2f2;
+}
+
+.table-container td {
+  vertical-align: middle;
+}
+
+.export-btn {
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.export-btn:hover {
+  background-color: #45a049;
+}
+
+.action-btn {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.action-btn svg {
+  margin-right: 0;
+}
+
+.action-btn:focus,
+.action-btn:active {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.action-btn-save {
+  color: blue;
+}
+
+.action-btn-edit {
+  color: green;
+}
+
+.action-btn-cancel {
+  color: red;
+}
+
+.action-btn-delete {
+  color: red;
+}
+
+button.action-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+  box-shadow: none;
+}
+
+button.action-btn:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+button.action-btn svg {
+  margin: 0;
+  padding: 0;
+  display: inline;
+  vertical-align: middle;
+}
+
+button.action-btn svg path {
+  fill: currentColor;
+}
+
+.emp-back-btn{
+  background-color: blue;
+  color: white;
+  padding: 10px;
+}
