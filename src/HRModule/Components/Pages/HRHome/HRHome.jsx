@@ -9,8 +9,9 @@ const HRHome = () => {
     <div className='HRHome-first'>
     <div className='HRHome-blog-cards'>
       <h1>Welcome User.!</h1>
-      <HRCards/>
     </div>
+    <HRCards/>
+
     <div className='HRHome-graph-calender'>
       <Graph className/>
       <Calender/>

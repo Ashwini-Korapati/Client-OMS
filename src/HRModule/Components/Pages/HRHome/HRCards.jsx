@@ -1,57 +1,41 @@
-import { useState } from 'react';
-import '../HRHome/HRCards.css'
-// import emp from '..'
-// import clients from '../../../../Assets/clientshr.png'
-// import project from '../../../../Assets/projects.png'
-import { Modal } from "react-bootstrap";
-import AddEmployeeform from '../HRHome/AddEmployeeform'
+import React from 'react';
+import './HRCards.css';
+import attendancepic from '../../../Assets/attendancepic.png';
+import leaves from '../../../Assets/leavespic.avif';
+import totalemp from '../../../Assets/totalemp.png';
 
-
-
-const Perfcards = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-
+const HRCards = () => {
   return (
-    <div className="HR-dashboard">
-      <div className="HR-card">
-        <div className="HR-content">
-          <h2>Attendance</h2>
-          <p>13 </p>
-                    <button className='view-btn'>View more</button>
+    <div className="hrc-dashboard">
+      <div className="hrc-card">
+        <div className="hrc-content">
+          <h2>150</h2>
+          <h5>Attendance</h5>
         </div>
-      
-      </div>
-      <div className="HR-card">
-        <div className="HR-content">
-          <h2>Leave Metrics</h2>
-          <p>10</p>
-          <button className='view-btn'>View more</button>
+        <div className="hrc-icon">
+          <img src={attendancepic} alt="Attendance" />
         </div>
-       
       </div>
-      <div className="HR-card">
-        <div className="HR-content">
-          <h2>Add Employee</h2>
-          <p> 12</p>
-
-          <button className='view-btn' onClick={handleShow}>Add Employee</button>
-
+      <div className="hrc-card">
+        <div className="hrc-content">
+          <h2>17</h2>
+          <h5>Leaves To Approve</h5>
         </div>
-       
+        <div className="hrc-icon">
+          <img src={leaves} alt="Leaves To Approve" />
+        </div>
       </div>
-
-
-<Modal show={show} onHide={handleClose} size="lg">
-        <Modal.Body>
-          <AddEmployeeform />
-        </Modal.Body>
-      </Modal>
+      <div className="hrc-card">
+        <div className="hrc-content">
+          <h2>12</h2>
+          <h5>Total Employees</h5>
+        </div>
+        <div className="hrc-icon">
+          <img src={totalemp} alt="Total Employee" />
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Perfcards;
+export default HRCards;

@@ -236,14 +236,27 @@ form button:hover {
   display: flex;
   align-items: center;
 }
+.profile-image-container {
+  position: relative;
+  margin-right: 20px;
+}
 
 .profile-logo {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 20px;
 }
+
+.profile-image-actions {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 
 .employee-info {
   margin-bottom: 20px;

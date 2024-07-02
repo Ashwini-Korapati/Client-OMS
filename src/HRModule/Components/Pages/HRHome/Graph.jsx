@@ -18,8 +18,8 @@ const Graph = () => {
               ],
             },
           ]}
-          width={700}
-          height={200}
+          width={900}
+          height={300}
         />
       </div>
       <div>

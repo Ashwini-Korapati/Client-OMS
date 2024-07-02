@@ -77,6 +77,7 @@ import {
   CalendarOutlined,
   HomeOutlined,
   FormOutlined,
+  ClockCircleOutlined,
 } from '@ant-design/icons';
 import { BsGraphUpArrow } from "react-icons/bs";
 import './MenuList.css'; // Import the CSS file
@@ -104,12 +105,12 @@ const MenuList = [
     children: [
       {
         key: '3',
-        path:'/hr-dashboard/edit-employee',
+        path:'/hr-dashboard/add-employee',
         label: <span className="menu-item-text">Add Employee</span>,
       },
       {
         key: '4',
-        path:'/view-employee',
+        path:'view-employee',
         label: <span className="menu-item-text">View Employee</span>,
       },
     ],
@@ -140,20 +141,20 @@ const MenuList = [
     children: [
       {
         key: '9',
-        path:'/hr-dashboard/leavemetrics',
+        path:'/hr-dashboard/apply-leave',
         label: <span className="menu-item-text">Leave</span>,
       },
       {
         key: '10',
-        label: <span className="menu-item-text">Leave Metrics</span>,
+        path:'/hr-dashboard/leave-report',
+        label: <span className="menu-item-text">Leave Report</span>,
       },
     ],
   },
   {
-    key: '11',
-    path:'/hr-dashboard/settings',
-    label: <span className="menu-item-text">Settings</span>,
-    icon: <SettingOutlined style={iconStyle} />,
+    label: <span className="menu-item-text">Checkout</span>,
+    icon: <ClockCircleOutlined    />,
+    className: 'checkout-menu-item',
   },
 ];
  

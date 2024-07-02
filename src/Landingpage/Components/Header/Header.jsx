@@ -34,7 +34,7 @@ const Header = () => {
               <li onClick={() => scrollToSection(aboutRef)}>About</li>
               <li onClick={() => scrollToSection(careerRef)}>Career</li>
              
-              <li onClick={() => scrollToSection(blogRef)}>Blog</li>
+              <li onClick={() => scrollToSection(blogRef)}>Services</li>
               <li onClick={() => scrollToSection(contactRef)}>Contact</li>
 
 

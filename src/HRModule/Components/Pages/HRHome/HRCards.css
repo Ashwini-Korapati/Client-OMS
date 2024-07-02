@@ -1,62 +1,44 @@
-.HR-dashboard {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 50px;
-    padding: 60px;
-    /* background-color: #f0f0f0; */
-  }
-  
-  .HR-card {
-    width: 370px;
-    border: 1px solid gray;
-    display: flex;
-    padding: 40px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .HR-card:hover{
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px #913a3a;
+.hrc-dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 150px;
+  padding: 60px;
+  background-color: whitesmoke;
 }
-  
-  .HR-icon {
-    margin-left: 20px;
-  }
-  
-  .HR-icon img {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .HR-content h2 {
-    margin: 0;
-    font-size: 2em;
-  }
-  
-  .HR-content p {
-    margin: 0;
-    color: #777;
-  }
-  
 
-  .view-btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    padding: 10px;
-    background-color: #008CBA;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-    text-align: center;
-  }
+.hrc-card {
+  border: 1px solid gray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-  /* .view-btn:hover {
-    background-color: #008bbace;
-  } */
-  
+.hrc-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px #913a3a;
+}
+
+.hrc-icon {
+  margin-left: 20px;
+}
+
+.hrc-icon img {
+  width: 100px;
+  height: 100px;
+}
+
+.hrc-content h2 {
+  margin: 0px;
+  padding: 10px;
+  font-size: 2em;
+}
+
+/* .hrc-content p {
+  margin: 0;
+  color: #777;
+} */

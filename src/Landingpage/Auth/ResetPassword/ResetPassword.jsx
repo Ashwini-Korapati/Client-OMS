@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Forgetimg from '../../images/sav3.png';
+import { useDispatch, useSelector } from 'react-redux';
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
+import { resetPassword, clearAuthError } from '../../Redux/Actions/userActions';
+import { toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
 import './ResetPassword.css';
 
 const initialState = {
@@ -11,10 +15,13 @@ const initialState = {
 };
 
 const ResetPassword = () => {
-  const [formData, setFormData] = useState(initialState);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('Weak');
+  const [password, setPassword] = useState('');
+  const [confirm_password, setConfirmPassword] = useState('');
+  const dispatch = useDispatch();
+  const { isAuthenticated, error } = useSelector(state => state.authState);
   const navigate = useNavigate();
-  const { password } = formData;
+  const { token } = useParams();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -33,10 +40,10 @@ const ResetPassword = () => {
 
     let strength =
       verifiedList.length === 5
-        ? "Strong"
+        ? 'Strong'
         : verifiedList.length > 2
-        ? "Medium"
-        : "Weak";
+        ? 'Medium'
+        : 'Weak';
 
     setMessage(strength);
   };
@@ -45,31 +52,36 @@ const ResetPassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    if (name === "password") {
-      handlePassword(value);
-    }
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3030/reset-password', { password })
-      .then(result => {
-        if (result.data === 'Success') {
-          setMessage("Password Changed Successfully");
-          alert("Password changed successfully");
-          navigate('/');
-        } else {
-          setMessage('Error changing password');
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        setMessage("Error changing password");
-      });
+    const formData = new FormData();
+    formData.append('password', password);
+    formData.append('confirmPassword', confirm_password);
+
+    dispatch(resetPassword(formData, token)); // axios.post('http://localhost:3030/reset-password', { password })
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      // toast('Password Reset Success!', {
+      //   type: 'success',
+      //   position: toast.POSITION.BOTTOM_CENTER,
+      // });
+      navigate('/login');
+      return;
+    }
+    if (error) {
+      // toast(error, {
+      //   position: toast.POSITION.BOTTOM_CENTER,
+      //   type: 'error',
+      //   onOpen: () => {
+        console.log(error)
+
+          dispatch(clearAuthError());
+        }
+      
+      return;
+ } ,[isAuthenticated, error, dispatch, navigate]);
 
   return (
     <div className="forget-container">
@@ -87,14 +99,17 @@ const ResetPassword = () => {
             </ul>
             <form className="form" onSubmit={handleSubmit}>
               <div className="input-group">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Enter the Password</label>
                 <div className="password-input">
                   <input
                     type={showPassword ? 'text' : 'password'}
                     id="password"
                     name="password"
                     value={password}
-                    onChange={handleChange}
+                    onChange={e => {
+                      setPassword(e.target.value);
+                      handlePassword(e.target.value);
+                    }}
                   />
                   <button
                     type="button"
@@ -108,13 +123,32 @@ const ResetPassword = () => {
                   <span>Your Password is {message}</span>
                 </div>
               </div>
+              <div className="input-group">
+                <label htmlFor="confirmPassword">Re-enter your Password</label>
+                <div className="password-input">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    value={confirm_password}
+                    onChange={e => setConfirmPassword(e.target.value)}
+                  />
+                  <button
+                    type="button"
+                    className="password-toggle"
+                    onClick={togglePassword}
+                  >
+                    {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
+                  </button>
+                </div>
+              </div>
               <div className='Forget-password'>
                 <button type="submit" className="submit-button">
                   Submit
                 </button>
               </div>
               <p className="back-link1">
-                Back to{" "}
+                Back to{' '}
                 <NavLink to="/login" className="back-link">
                   Signin
                 </NavLink>
@@ -125,6 +159,6 @@ const ResetPassword = () => {
       </div>
     </div>
   );
-}
+};
 
 export default ResetPassword;

@@ -103,14 +103,14 @@
   transform: translateX(100%);
 }
 
-.login-sign-up {
+.login-guest-login {
   left: 0;
   width: 50%;
   opacity: 0;
   z-index: 1;
 }
 
-.login-container.login-active .login-sign-up {
+.login-container.login-active .login-guest-login {
   transform: translateX(100%);
   opacity: 1;
   z-index: 5;
@@ -236,7 +236,7 @@
   padding-right: 40px;
 }
 
-.password-toggle-icon {
+.login-toggle-icon {
   margin-top: -9px;
   position: absolute;
   right: 10px;

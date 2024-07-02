@@ -43,3 +43,8 @@
 .menu-item {
   margin-bottom: 10px; 
 }
+
+.checkout-menu-item{
+  background-color: white;
+  color: wheat;
+}

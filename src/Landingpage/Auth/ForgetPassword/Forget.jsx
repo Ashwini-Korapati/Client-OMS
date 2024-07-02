@@ -1,32 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import Forgetimg from '../../images/sav3.png';
+import Forgetimg from '../../images/sav3.png';  
 import './Forget.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { forgotPassword, clearAuthError } from '../../Redux/Actions/userActions';
 
 const Forget = () => {
-  const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
-  axios.defaults.withCredentials = true;
+  const dispatch = useDispatch();
+
+  const { error, message } = useSelector(state => state.authState);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3030/forget', { email })
-      .then(result => {
-        if (result.data === 'Success') {
-          setMessage("Reset Link Sent Successfully");
-          alert("Link sent successfully");
-          navigate('/');
-        } else {
-          setMessage('Invalid Email');
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        setMessage("Error sending mail");
-      });
-  }
+    dispatch(forgotPassword(email));
+  };
+
+  useEffect(() => {
+    if (message) {
+      console.log(message);
+      // navigate("/resetpassword:token");
+    }
+    if (error) {
+      dispatch(clearAuthError());
+      console.log(error);
+    }
+  }, [message, error, dispatch, navigate]);
 
   return (
     <div className="forget-container">
@@ -36,9 +36,7 @@ const Forget = () => {
         </div>
         <div className="form1-container">
           <div className="formcont1">
-            <h2 className="">
-              Forget Password?
-            </h2>
+            <h2>Forget Password?</h2>
             <p className='foregt-p'>No Worries, We'll send you reset instructions</p>
             <form className="form" onSubmit={handleSubmit}>
               <div className="input-group">
@@ -71,6 +69,6 @@ const Forget = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Forget;

@@ -1,4 +1,4 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,7 +12,7 @@
     justify-content: center;
     align-items: center;
     /* background-size: cover; */
-    background-position: center;
+    /* background-position: center;
   }
   
   .addemp {
@@ -92,9 +92,9 @@
     backdrop-filter: blur(30px);
     box-shadow: 0 0 10px rgba(255, 255, 255, .1);
     color: #010101;
-    border-radius: 10px;
+    border-radius: 10px; */ 
     /* padding: 30px 80px; */
-    padding: 40px;
+    /* padding: 40px;
     margin: 20px;
   }
   
@@ -109,4 +109,4 @@
     color: #000;
     font-size: 20px;
     margin-bottom: 10px;
-  }
+  } */

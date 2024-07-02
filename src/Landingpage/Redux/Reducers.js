@@ -1,5 +1,5 @@
 
-import { FETCH_JOBS } from '../Redux/Actions'
+import { FETCH_JOBS } from '../Redux/reducers/jobReducer'
 
 const initialState = {
   jobs: []

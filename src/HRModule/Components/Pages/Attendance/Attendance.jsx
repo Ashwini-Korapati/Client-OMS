@@ -1,63 +1,60 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import '../Attendance/Attendance.css';
 import { Button } from "react-bootstrap";
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { setShiftTime, setLocation, setMessegebox, setPhoto, clearPhoto } from  '../../../Redux/Reducers/AttendanceReducers'
 
-const LeaveMetrics = () => {
-  const [formData, setFormData] = useState({
-    shiftTimings: '',
-    workType: '',
-    message: '',
-  });
-  const [showCamera, setShowCamera] = useState(false);
-  const [photo, setPhoto] = useState(null);
+const Attendance = () => {
+  const dispatch = useDispatch();
+  const { shift_time, location, messegebox, showCamera, photo } = useSelector((state) => state.form);
+
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-
-    if (name === 'workType' && value === 'workFromHome') {
-      setShowCamera(true);
-      startCamera();
-    } else if (name === 'workType') {
-      setShowCamera(false);
-      stopCamera();
+    switch (name) {
+      case 'shift_time':
+        dispatch(setShiftTime(value));
+        break;
+      case 'location':
+        dispatch(setLocation(value));
+        if (value === 'workFromHome') {
+          startCamera();
+        } else {
+          stopCamera();
+        }
+        break;
+      case 'messegebox':
+        dispatch(setMessegebox(value));
+        break;
+      default:
+        break;
     }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Validate inputs
-    if (!formData.shiftTimings || !formData.workType || !formData.message) {
+    if (!shift_time || !location || !messegebox) {
       alert('Please fill in all required fields.');
       return;
     }
-    if (formData.workType === 'workFromHome' && !photo) {
+    if (location === 'workFromHome' && !photo) {
       alert('Please capture a selfie.');
       return;
     }
 
-    
     const dataToSend = {
-      ...formData,
-      photo
+      shift_time,
+      location,
+      messegebox,
+      photo,
     };
 
-  
     try {
-      const response = await fetch('YOUR_BACKEND_ENDPOINT', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dataToSend)
-      });
-      const data = await response.json();
-      console.log('Success:', data);
+      const response = await axios.post('http://localhost:8000/api/v1//employee/attendence/check_in', dataToSend);
+      console.log('Success:', response.data);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -85,9 +82,8 @@ const LeaveMetrics = () => {
     const context = canvasRef.current.getContext("2d");
     context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height);
     const imageData = canvasRef.current.toDataURL("image/png");
-    setPhoto(imageData);
+    dispatch(setPhoto(imageData));
     stopCamera();
-    setShowCamera(false);
   };
 
   return (
@@ -102,8 +98,8 @@ const LeaveMetrics = () => {
             <div className="input-box">
               <label>Shift Timings</label>
               <select
-                name="shiftTimings"
-                value={formData.shiftTimings}
+                name="shift_time"
+                value={shift_time}
                 onChange={handleChange}
                 required
               >
@@ -117,8 +113,8 @@ const LeaveMetrics = () => {
             <div className="input-box">
               <label>Type of work</label>
               <select
-                name="workType"
-                value={formData.workType}
+                name="location"
+                value={location}
                 onChange={handleChange}
                 required
               >
@@ -130,10 +126,10 @@ const LeaveMetrics = () => {
           </div>
 
           <div className="input-box">
-            <label>Message</label>
+            <label>Message Box</label>
             <textarea
-              name="message"
-              value={formData.message}
+              name="messegebox"
+              value={messegebox}
               onChange={handleChange}
               rows="4"
             />
@@ -161,4 +157,4 @@ const LeaveMetrics = () => {
   );
 };
 
-export default LeaveMetrics;
+export default Attendance;

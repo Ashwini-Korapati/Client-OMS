@@ -16,32 +16,14 @@ import Settings from './HRModule/Components/Pages/Settings/Settings';
 import Profile from './HRModule/Components/Pages/Profile/Profile'
 import Addemployee from './HRModule/Components/Pages/Addemployee/Addemployee';
 
+import Register1 from './Landingpage/Auth/Register/Register1';
+import EmployeeDashboard from './EmployeeModule/EmployeeDashboard/EmployeeDashboard';
+import AdminDashboard from './AdminModule/AdminDashboard';
+import UserDashboard from './UserModule/UserDashboard/UserDashboard';
+import LeaveReport from './HRModule/Components/Pages/LeaveReport/LeaveReport';
+
 const App = () => {
-  const [employees, setEmployees] = useState([]);
-  const [leaves, setLeaves] = useState([]);
-
-  const addEmployee = (employee) => {
-    setEmployees([...employees, employee]);
-  };
-
-  const deleteEmployee = (index) => {
-    const newEmployees = employees.filter((_, i) => i !== index);
-    setEmployees(newEmployees);
-  };
-
-  const editEmployee = (index, updatedEmployee) => {
-    const newEmployees = employees.map((employee, i) => (i === index ? updatedEmployee : employee));
-    setEmployees(newEmployees);
-  };
-
-  const addLeave = (leave) => {
-    setLeaves([...leaves, leave]);
-  };
-
-  const updateLeaveStatus = (index, status) => {
-    const newLeaves = leaves.map((leave, i) => (i === index ? { ...leave, status } : leave));
-    setLeaves(newLeaves);
-  };
+ 
 
   return (
     <div>
@@ -50,7 +32,10 @@ const App = () => {
           <Route path="/" element={<Header />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forget" element={<Forget />} />
-          <Route path="/resetpassword" element={<ResetPassword />} />
+          <Route path="/password/reset/:token" element={<ResetPassword />} />
+          {/* <Route path="/register" element={<Register />} /> */}
+          <Route path="/registerr" element={<Register1 />} />
+
           
           {/* HR Module */}
           <Route path="/hr-dashboard/*" element={<Dashboard />}>
@@ -58,16 +43,27 @@ const App = () => {
             <Route path="Payroll" element={<Payroll />} />
             <Route path="attendance" element={<Attendance />} />
             <Route path="perfarmance" element={<PerfarmanceMatrics />} />
-            <Route path="leavemetrics" element={<LeaveMetrics />} />
+            <Route path="leave-report" element={<LeaveReport />} />
+            <Route path="apply-leave" element={<LeaveMetrics />} />
             <Route path="settings" element={<Settings />} />
             <Route path="profile" element={<Profile />} />
-            <Route path="edit-employee" element={<Addemployee />} />
+            <Route path="add-employee" element={<Addemployee />} />
+            <Route path="view-employee" element={<Viewemployee />} />
+
 
           </Route>
-          <Route path="view-employee" element={<Viewemployee />} />
+          <Route path="/user-dashboard" element={<UserDashboard />}/>
+
+          <Route path='/admin-dashboard' element={<AdminDashboard/>}/>
+
+      
+<Route path='/employee-dashboard' element={<EmployeeDashboard/>}/>
 
         </Routes>
-      </BrowserRouter>
+      
+       
+
+     </BrowserRouter>
     </div>
   );
 };
