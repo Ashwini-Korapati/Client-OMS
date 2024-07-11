@@ -1,41 +1,62 @@
 import React from 'react';
-import './HRCards.css';
-import attendancepic from '../../../Assets/attendancepic.png';
-import leaves from '../../../Assets/leavespic.avif';
-import totalemp from '../../../Assets/totalemp.png';
+import { useSelector } from 'react-redux';
+import '../HRHome/HRCards.css';
+import emp from '../../../Assets/cardsperfamnace.jpg';
+import clients from '../../../Assets/clientshr.png';
+import project from '../../../Assets/projects.png';
+import { selectTotalEmployees, } from '../../../Redux/Reducers/hrCardsSlice'
 
-const HRCards = () => {
+const Perfcards = () => {
+  const totalEmployees = useSelector(selectTotalEmployees);
+  // const totalClients = useSelector(selectTotalClients);
+  // const totalProjects = useSelector(selectTotalProjects);
+  // const activeProjects = useSelector(selectActiveProjects);
+
   return (
-    <div className="hrc-dashboard">
-      <div className="hrc-card">
-        <div className="hrc-content">
-          <h2>150</h2>
-          <h5>Attendance</h5>
+    <div className="perfamnce-dashboard">
+      <div className="p-card">
+        <div className="p-content">
+          <h2>{totalEmployees}</h2>
+          <p>Total Employees</p>
         </div>
-        <div className="hrc-icon">
-          <img src={attendancepic} alt="Attendance" />
-        </div>
-      </div>
-      <div className="hrc-card">
-        <div className="hrc-content">
-          <h2>17</h2>
-          <h5>Leaves To Approve</h5>
-        </div>
-        <div className="hrc-icon">
-          <img src={leaves} alt="Leaves To Approve" />
+        <div className="p-icon">
+          <img src={emp} alt="Total Employees" />
         </div>
       </div>
-      <div className="hrc-card">
-        <div className="hrc-content">
-          <h2>12</h2>
-          <h5>Total Employees</h5>
+
+      <div className="p-card">
+        <div className="p-content">
+          {/* <h2>{totalProjects}</h2> */}
+          <h2>40</h2>
+          <p>Today Attendance</p>
         </div>
-        <div className="hrc-icon">
-          <img src={totalemp} alt="Total Employee" />
+        <div className="p-icon">
+          <img src={project} alt="Total Projects" />
+        </div>
+      </div>
+      <div className="p-card">
+        <div className="p-content">
+          {/* <h2>{totalClients}</h2> */}
+          <h2>100</h2>
+          <p>Total Clients</p>
+        </div>
+        <div className="p-icon">
+          <img src={clients} alt="Total Clients" />
+        </div>
+      </div>
+   
+      <div className="p-card">
+        <div className="p-content">
+          {/* <h2>{activeProjects}</h2> */}
+          <h2>50</h2>
+          <p>Active Projects</p>
+        </div>
+        <div className="p-icon">
+          <img src={project} alt="Active Projects" />
         </div>
       </div>
     </div>
   );
 };
 
-export default HRCards;
+export default Perfcards;

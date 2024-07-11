@@ -5,52 +5,19 @@ import Forgetimg from '../../images/sav3.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
 import { resetPassword, clearAuthError } from '../../Redux/Actions/userActions';
-import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import './ResetPassword.css';
 
-const initialState = {
-  name: '',
-  password: '',
-};
-
 const ResetPassword = () => {
-  const [message, setMessage] = useState('Weak');
   const [password, setPassword] = useState('');
   const [confirm_password, setConfirmPassword] = useState('');
+  const [passwordStrength, setPasswordStrength] = useState('Weak'); // State for password strength
   const dispatch = useDispatch();
   const { isAuthenticated, error } = useSelector(state => state.authState);
   const navigate = useNavigate();
   const { token } = useParams();
-
   const [showPassword, setShowPassword] = useState(false);
-
   axios.defaults.withCredentials = true;
-
-  const handlePassword = (passwordValue) => {
-    const StrengthChecks = {
-      length: passwordValue.length >= 8,
-      hasUpperCase: /[A-Z]+/.test(passwordValue),
-      hasLowerCase: /[a-z]+/.test(passwordValue),
-      hasDigit: /[0-9]+/.test(passwordValue),
-      hasSpecialChar: /[^A-Za-z0-9]+/.test(passwordValue),
-    };
-
-    let verifiedList = Object.values(StrengthChecks).filter((value) => value);
-
-    let strength =
-      verifiedList.length === 5
-        ? 'Strong'
-        : verifiedList.length > 2
-        ? 'Medium'
-        : 'Weak';
-
-    setMessage(strength);
-  };
-
-  const togglePassword = () => {
-    setShowPassword(!showPassword);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,30 +25,38 @@ const ResetPassword = () => {
     formData.append('password', password);
     formData.append('confirmPassword', confirm_password);
 
-    dispatch(resetPassword(formData, token)); // axios.post('http://localhost:3030/reset-password', { password })
+    dispatch(resetPassword(formData, token));
   };
 
   useEffect(() => {
     if (isAuthenticated) {
-      // toast('Password Reset Success!', {
-      //   type: 'success',
-      //   position: toast.POSITION.BOTTOM_CENTER,
-      // });
       navigate('/login');
-      return;
     }
     if (error) {
-      // toast(error, {
-      //   position: toast.POSITION.BOTTOM_CENTER,
-      //   type: 'error',
-      //   onOpen: () => {
-        console.log(error)
+      console.log(error);
+      dispatch(clearAuthError());
+    }
+  }, [isAuthenticated, error, dispatch, navigate]);
 
-          dispatch(clearAuthError());
-        }
-      
-      return;
- } ,[isAuthenticated, error, dispatch, navigate]);
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+    setPasswordStrength(checkPasswordStrength(newPassword));
+  };
+
+  const checkPasswordStrength = (password) => {
+    if (password.length >= 8) {
+      return 'Strong';
+    } else if (password.length >= 6) {
+      return 'Medium';
+    } else {
+      return 'Weak';
+    }
+  };
 
   return (
     <div className="forget-container">
@@ -106,10 +81,7 @@ const ResetPassword = () => {
                     id="password"
                     name="password"
                     value={password}
-                    onChange={e => {
-                      setPassword(e.target.value);
-                      handlePassword(e.target.value);
-                    }}
+                    onChange={handlePasswordChange}
                   />
                   <button
                     type="button"
@@ -119,9 +91,9 @@ const ResetPassword = () => {
                     {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
                   </button>
                 </div>
-                <div className="password-strength">
-                  <span>Your Password is {message}</span>
-                </div>
+                <small className={`password-strength ${passwordStrength.toLowerCase()}`}>
+                  {passwordStrength}
+                </small>
               </div>
               <div className="input-group">
                 <label htmlFor="confirmPassword">Re-enter your Password</label>

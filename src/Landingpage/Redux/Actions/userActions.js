@@ -325,6 +325,25 @@ export const clearAuthError = () => (dispatch) => {
 //     }
 // };
 
+// export const register = (userData) => async (dispatch) => {
+//     try {
+//         dispatch(registerRequest());
+//         const config = {
+//             headers: {
+//                 'Content-Type': 'multipart/form-data'
+//             }
+//         };
+//         console.log('Sending request with data:', userData);
+//         const { data } = await axios.post(`http://localhost:8000/api/v1/register`, userData, config);
+//         console.log('Response data:', data);
+//         dispatch(registerSuccess(data));
+//     } catch (error) {
+//         console.error('Error response:', error.response);
+//         dispatch(registerFail(error.response.data.message));
+//     }
+// };
+
+
 export const register = (userData) => async (dispatch) => {
     try {
         dispatch(registerRequest());
@@ -333,6 +352,7 @@ export const register = (userData) => async (dispatch) => {
                 'Content-Type': 'multipart/form-data'
             }
         };
+
         console.log('Sending request with data:', userData);
         const { data } = await axios.post(`http://localhost:8000/api/v1/register`, userData, config);
         console.log('Response data:', data);
@@ -342,8 +362,6 @@ export const register = (userData) => async (dispatch) => {
         dispatch(registerFail(error.response.data.message));
     }
 };
-
-
 
 
 export const loadUser = () => async (dispatch) => {

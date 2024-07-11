@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
+
+
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
@@ -22,7 +24,7 @@ const authSlice = createSlice({
             return {
                 loading: false,
                 isAuthenticateduser: true,
-                // isAuthenticatedemployee: false,
+              
                 user: action.payload.user
             }
         },
@@ -44,6 +46,7 @@ const authSlice = createSlice({
         emploginSuccess(state, action){
             return {
                 loading: false,
+                isAuthenticated:true,
                 isAuthenticatedemployee: true,
                 emp: action.payload.emp
             }
@@ -51,6 +54,7 @@ const authSlice = createSlice({
         isAuthenticatedAdmin(state, action){
                 return {
                     loading: false,
+                    isAuthenticated:true,
                     isAuthenticatedAdmin: true,
                     user: action.payload.user
                 }
@@ -112,6 +116,7 @@ const authSlice = createSlice({
             return {
                 loading: false,
                 isAuthenticated: false,
+                
             }
         },
         logoutFail(state, action){

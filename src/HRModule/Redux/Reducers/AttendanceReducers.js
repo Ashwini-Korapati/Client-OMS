@@ -1,45 +1,78 @@
-import { createSlice } from '@reduxjs/toolkit';
-
-const initialState = {
-    form: {
-      shift_time: '',
-      location: '',
-      messegebox: '',
-      photo: null,
-      showCamera: false,
-    },
-  };
-  
-
-const AttendanceSlice = createSlice({
-  name: 'form',
-  initialState,
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+ 
+ 
+export const checkIn = createAsyncThunk(
+  'attendance/checkIn',
+  async (formData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post('http://localhost:8000/api/v1/employee/attendence/check_in', formData);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+ 
+// Async thunk for check-out
+export const checkOut = createAsyncThunk(
+  'attendance/checkOut',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.post('http://localhost:8000/api/v1/employee/attendence/check_out');
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+ 
+const attendanceSlice = createSlice({
+  name: 'attendance',
+  initialState: {
+    shiftTime: '',
+    workType: '',
+    checkInTime: null,
+    checkOutTime: null,
+    totalHours: 0,
+    selfie: '',
+    status: 'idle',
+    error: null,
+    success: false,
+  },
   reducers: {
     setShiftTime: (state, action) => {
-      state.shift_time = action.payload;
+      state.shiftTime = action.payload;
     },
-    setLocation: (state, action) => {
-      state.location = action.payload;
-      if (action.payload === 'workFromHome') {
-        state.showCamera = true;
-      } else {
-        state.showCamera = false;
-        state.photo = null; 
-      }
+    setWorkType: (state, action) => {
+      state.workType = action.payload;
     },
-    setMessegebox: (state, action) => {
-      state.messegebox = action.payload;
+    setSelfie: (state, action) => {
+      state.selfie = action.payload;
     },
-    setPhoto: (state, action) => {
-      state.photo = action.payload;
-      state.showCamera = false;
-    },
-    clearPhoto: (state) => {
-      state.photo = null;
-      state.showCamera = false;
-    }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(checkIn.fulfilled, (state, action) => {
+        state.checkInTime = action.payload.check_in;
+        state.success = true;
+      })
+      .addCase(checkOut.fulfilled, (state, action) => {
+        state.checkOutTime = action.payload.check_out;
+        state.totalHours = action.payload.total_hours;
+        state.success = true;
+      })
+      .addCase(checkIn.rejected, (state, action) => {
+        state.error = action.payload;
+        state.success = false;
+      })
+      .addCase(checkOut.rejected, (state, action) => {
+        state.error = action.payload;
+        state.success = false;
+      });
   },
 });
-
-export const { setShiftTime, setLocation, setMessegebox, setPhoto, clearPhoto } = AttendanceSlice.actions;
-export default AttendanceSlice.reducer;
+ 
+export const { setShiftTime, setWorkType, setSelfie } = attendanceSlice.actions;
+ 
+export default attendanceSlice.reducer;

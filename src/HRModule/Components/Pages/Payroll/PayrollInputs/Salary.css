@@ -1,0 +1,36 @@
+.payroll-dashboard {
+    height: 100vh;
+    padding: 20px;
+    background-color: #f0f2f5;
+  }
+ 
+  .header {
+    background-color: #fff;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px #f0f1f2;
+  }
+ 
+  .content {
+    padding: 20px;
+  }
+ 
+  .components-card {
+    background-color: #fff;
+  }
+ 
+  .details-card {
+    background-color: #fff;
+  }
+ 
+  .ant-card {
+    margin-bottom: 10px;
+  }
+ 
+  .ant-card-inner {
+    border: 1px solid #f0f0f0;
+  }
+ 
+  .ant-typography {
+    margin-bottom: 0;
+  }

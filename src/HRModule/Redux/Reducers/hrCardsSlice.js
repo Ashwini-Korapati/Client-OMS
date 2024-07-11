@@ -25,3 +25,9 @@
 // export const { updateAttendance, updateLeavesToApprove, updateTotalEmployees } = hrCardsSlice.actions;
 
 // export default hrCardsSlice.reducer;
+
+
+export const selectTotalEmployees = state => state.employees.employees.totalEmployees;
+// export const selectTotalClients = state => state.clients.count; 
+// export const selectTotalProjects = state => state.projects.count; 
+// export const selectActiveProjects = state => state.projects.active; 

@@ -1,4 +1,4 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -81,4 +81,87 @@
     border: none;
     width: 100%;
     max-width: 200px;
+  } */
+
+
+  .leave-application-form {
+    width: 900px;
+    margin: auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+   
+  .leave-heading {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+   
+  .leave-balance{
+    padding-left: 250px;
+  }
+   
+   
+  .apply-to-row,
+  .cc-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+   
+  .profile-icon,
+  .plus-icon {
+    font-size: 45px;
+    margin-right: 8px;
+  }
+   
+  .plus-icon {
+    cursor: pointer;
+    color: black;
+  }
+   
+  .ant-btn-link {
+    padding: 0;
+    margin-left: 8px;
+  }
+   
+  .ant-form-item {
+    margin-bottom: 16px;
+  }
+   
+  .ant-form-item-label > label {
+    font-weight: bold;
+  }
+   
+  .ant-select,
+  .ant-picker,
+  .ant-input,
+  .ant-btn {
+    width: 100%;
+  }
+   
+  .ant-input-search {
+    width: 200px;
+  }
+   
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+  }
+   
+  .form-row .ant-form-item {
+    flex: 0 0 48%;
+  }
+   
+  .ant-btn {
+    width: auto; /* Adjust as needed */
+  }
+   
+  .ant-upload-select {
+    width: 100%;
+  }
+   
+  .ant-upload-list {
+    display: none;
   }

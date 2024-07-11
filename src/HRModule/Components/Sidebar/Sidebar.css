@@ -1,4 +1,4 @@
-.sidebar {
+/* .sidebar {
   width: 290px;
   transition: width 0.8s;
 }
@@ -41,7 +41,7 @@
 
 .ant-menu-inline .ant-menu-item, 
 .ant-menu-inline .ant-menu-submenu-title {
-  margin-bottom: 20px; /* Adjust the margin bottom between items */
+  margin-bottom: 20px; 
 }
 
 .ant-menu-inline .ant-menu-item a, 
@@ -77,4 +77,121 @@
   border: 1px solid #f6f6f6;
   background-color: #fff;
   box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.1);
+} */
+
+
+.sidebar {
+  width: 400px;
+  background: #d5bdaf;
+  color: black;
+  padding: 10px;
+  font-family: 'Arial', sans-serif;
+  transition: width 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden; 
+}
+ 
+.sidebar.closed {
+  width: 60px;
+}
+ 
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+ 
+.sidebar-title {
+  font-size: 20px;
+  font-weight: bold;
+  display: inline-block;
+  transition: opacity 0.3s ease-in-out; 
+}
+ 
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s, opacity 0.3s ease-in-out; 
+}
+ 
+ 
+ul {
+  list-style: none; 
+  padding: 0;
+  margin: 0;
+}
+.menu-item:hover {
+  background: white;
+}
+ 
+ 
+.sidebar.closed .menu-item .icon {
+  margin-left: auto; 
+  margin-right: auto; 
+}
+ 
+.menu-item .icon {
+  margin-right: 10px;
+  font-size: 20px;
+  transition: margin-right 0.3s ease-in-out; 
+}
+ 
+.menu-item .label {
+  font-weight: bold;
+  margin-left: 5px;
+  display: inline-block;
+  transition: opacity 0.3s ease-in-out; 
+}
+ 
+.arrow {
+  margin-left: auto;
+  transition: transform 0.3s;
+}
+ 
+.arrow.open {
+  transform: rotate(90deg);
+}
+ 
+.submenu {
+  padding-left: 20px;
+  transition: opacity 0.3s ease-in-out; 
+}
+ 
+.submenu .menu-item {
+  padding: 8px;
+}
+ 
+.menu-item-text {
+  display: inline-block;
+}
+ 
+.toggle-btn {
+  background-color: transparent;
+  color: black;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+ 
+.toggle-btn:hover {
+  background-color: #d5bdaf;
+  border-radius: 50%;
+}
+ 
+.toggle-btn:focus {
+  outline: none;
+}
+ 
+.sidebar.closed .sidebar-title,
+.sidebar.closed .menu-item .label,
+.sidebar.closed .submenu {
+  opacity: 0;
+}
+ 
+.sidebar.closed .menu-item .icon {
+  margin-right: 0;
 }

@@ -1,147 +1,389 @@
-import React, { useState } from "react";
-import axios from "axios";
+// import React from "react";
+// import { useNavigate } from "react-router-dom";
+// import { useDispatch, useSelector } from "react-redux";
+// import axios from "axios";
+// import { Form, Input, Button, Select, Upload, DatePicker } from "antd";
+// import { UploadOutlined } from "@ant-design/icons";
+// import {
+//   setField,
+//   setFile,
+//   resetForm,
+//   addEmployee,
+// } from "../../../Redux/Actions/Addempactions";
+// import "./Addemployee.css";
+// import { Navigate } from "react-router-dom";
+
+// const { Option } = Select;
+
+// const AddEmployeeForm = () => {
+//   const dispatch = useDispatch();
+//   const formData = useSelector((state) => state.addemployee);
+
+//   const handleInputChange = (name, value) => {
+//     dispatch(setField({ name, value }));
+//   };
+
+//   const handleFileChange = (name, file) => {
+//     dispatch(setFile({ name, file }));
+//   };
+
+//   const handleSubmit = () => {
+//     // Dispatch the addEmployee action which is async and handled by Redux thunk
+//     dispatch(addEmployee(formData));
+//     console.log(formData);
+//     // alert("formdata sent successfully")
+//     Navigate('hr-dashboard/hr-home')
+//   };
+
+//   return (
+//     <div className="containerStyle">
+//       <div className="cont">
+//         <Form onFinish={handleSubmit} layout="vertical">
+//           <div className="form-header">
+//             <h1>New Employee Initiation</h1>
+//           </div>
+//           <div className="row">
+//             <div className="col-half">
+//               <Form.Item
+//                 label="Date of Joining"
+//                 name="dateOfJoining"
+//                 rules={[{ required: true }]}
+//               >
+//                 <DatePicker
+//                   onChange={(date, dateString) =>
+//                     handleInputChange("dateOfJoining", dateString)
+//                   }
+//                 />
+//               </Form.Item>
+//               <Form.Item
+//                 label="Employee Type"
+//                 name="employeeType"
+//                 rules={[{ required: true }]}
+//               >
+//                 <Select
+//                   onChange={(value) => handleInputChange("employeeType", value)}
+//                 >
+//                   <Option value="">Select Type of Work</Option>
+//                   <Option value="Full time employee">Full time employee</Option>
+//                   <Option value="Intern">Intern</Option>
+//                 </Select>
+//               </Form.Item>
+//               <Form.Item label="ID" name="emp_id" rules={[{ required: true }]}>
+//                 <Input
+//                   onChange={(e) => handleInputChange("emp_id", e.target.value)}
+//                 />
+//               </Form.Item>
+//             </div>
+//             <div className="col-half">
+//               <Form.Item
+//                 label="Designation"
+//                 name="designation"
+//                 rules={[{ required: true }]}
+//               >
+//                 <Input
+//                   onChange={(e) =>
+//                     handleInputChange("designation", e.target.value)
+//                   }
+//                 />
+//               </Form.Item>
+//               <Form.Item
+//                 label="Reports to"
+//                 name="reporting_to"
+//                 rules={[{ required: true }]}
+//               >
+//                 <Input
+//                   onChange={(e) =>
+//                     handleInputChange("reporting_to", e.target.value)
+//                   }
+//                 />
+//               </Form.Item>
+//               <Form.Item label="Role" name="role" rules={[{ required: true }]}>
+//                 <Select onChange={(value) => handleInputChange("role", value)}>
+//                   <Option value="">Select Role</Option>
+//                   <Option value="Admin">admin</Option>
+//                   <Option value="HR">hr</Option>
+//                   <Option value="Employee">employee</Option>
+//                 </Select>
+//               </Form.Item>
+//             </div>
+//           </div>
+//           <div className="form-header">
+//             <h2>Personal Details</h2>
+//           </div>
+//           <div className="row">
+//             <div className="col-half">
+//               <Form.Item
+//                 label="Name"
+//                 name="firstName"
+//                 rules={[{ required: true }]}
+//               >
+//                 <Input
+//                   onChange={(e) =>
+//                     handleInputChange("firstName", e.target.value)
+//                   }
+//                 />
+//               </Form.Item>
+//               <Form.Item
+//                 label="lastName"
+//                 name="lastName"
+//                 rules={[{ required: true }]}
+//               >
+//                 <Input
+//                   onChange={(e) =>
+//                     handleInputChange("lastName", e.target.value)
+//                   }
+//                 />
+//               </Form.Item>
+//               <Form.Item
+//                 label="Contact"
+//                 name="phoneNumber"
+//                 rules={[{ required: true }]}
+//               >
+//                 <Input
+//                   onChange={(e) =>
+//                     handleInputChange("phoneNumber", e.target.value)
+//                   }
+//                 />
+//               </Form.Item>
+//               <Form.Item label="Aadhar No" name="aadharNo" rules={[{ required: true }]}>
+//                 <Input onChange={(e) => handleInputChange("aadharNo", e.target.value)} />
+//               </Form.Item>
+
+//               <Form.Item
+//                 label="Default Password"
+//                 name="password"
+//                 rules={[{ required: true }]}
+//               >
+//                 <Input
+//                   onChange={(e) =>
+//                     handleInputChange("password", e.target.value)
+//                   }
+//                 />
+//               </Form.Item>
+//               <Form.Item label="IFSC Code" name="ifscCode" rules={[{ required: true }]}>
+//                 <Input onChange={(e) => handleInputChange("ifscCode", e.target.value)} />
+//               </Form.Item>
+//               <Form.Item
+//                 label="Address"
+//                 name="address"
+//                 rules={[{ required: true }]}
+//               >
+//                 <Input
+//                   onChange={(e) => handleInputChange("address", e.target.value)}
+//                 />
+//               </Form.Item>
+//               <Form.Item
+//                 label="Zip Code"
+//                 name="zipCode"
+//                 rules={[{ required: true }]}
+//               >
+//                 <Input
+//                   onChange={(e) => handleInputChange("zipCode", e.target.value)}
+//                 />
+//               </Form.Item>
+//               <Form.Item label="Profile Picture" name="avatar">
+//                 <Upload
+//                   beforeUpload={(file) => {
+//                     handleFileChange("avatar", file);
+//                     return false;
+//                   }}
+//                 >
+//                   <Button icon={<UploadOutlined />}>Upload</Button>
+//                 </Upload>
+//               </Form.Item>
+//             </div>
+//             <div className="col-half">
+//               <Form.Item
+//                 label="Email"
+//                 name="email"
+//                 rules={[{ required: true, type: "email" }]}
+//               >
+//                 <Input
+//                   onChange={(e) => handleInputChange("email", e.target.value)}
+//                 />
+//               </Form.Item>
+//               <Form.Item
+//                 label="Gender"
+//                 name="gender"
+//                 rules={[{ required: true }]}
+//               >
+//                 <Select
+//                   onChange={(value) => handleInputChange("gender", value)}
+//                 >
+//                   <Option value="">Select Gender</Option>
+//                   <Option value="male">Male</Option>
+//                   <Option value="female">Female</Option>
+//                   <Option value="other">Other</Option>
+//                 </Select>
+//               </Form.Item>
+//               <Form.Item
+//                 label="Account No"
+//                 name="accountNo"
+//                 rules={[{ required: true }]}
+//               >
+//                 <Input
+//                   onChange={(e) =>
+//                     handleInputChange("accountNo", e.target.value)
+//                   }
+//                 />
+//               </Form.Item>
+//               <Form.Item
+//                 label="Pan No"
+//                 name="panNo"
+//                 rules={[{ required: true }]}
+//               >
+//                 <Input
+//                   onChange={(e) => handleInputChange("panNo", e.target.value)}
+//                 />
+//               </Form.Item>
+//               <Form.Item label="City" name="city" rules={[{ required: true }]}>
+//                 <Input
+//                   onChange={(e) => handleInputChange("city", e.target.value)}
+//                 />
+//               </Form.Item>
+//               <Form.Item
+//                 label="State"
+//                 name="state"
+//                 rules={[{ required: true }]}
+//               >
+//                 <Input
+//                   onChange={(e) => handleInputChange("state", e.target.value)}
+//                 />
+//               </Form.Item>
+//               <Form.Item
+//                 label="Graduation Certificate"
+//                 name="graduationCertificate"
+//               >
+//                 <Upload
+//                   beforeUpload={(file) => {
+//                     handleFileChange("graduationCertificate", file);
+//                     return false;
+//                   }}
+//                 >
+//                   <Button icon={<UploadOutlined />}>Upload</Button>
+//                 </Upload>
+//               </Form.Item>
+//             </div>
+//           </div>
+//           <Button type="primary" htmlType="submit" className="hr-add-button">
+//             Add
+//           </Button>
+//         </Form>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default AddEmployeeForm;
+
+
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Form, Input, Button, Select, Upload, DatePicker } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
+import {
+  setField,
+  setFile,
+  resetForm,
+  addEmployee,
+} from "../../../Redux/Actions/Addempactions";
 import "./Addemployee.css";
-import { Button } from "react-bootstrap";
-import { AiTwotoneCloseCircle } from "react-icons/ai";
 
-const AddEmployeeform = () => {
-  const [formData, setFormData] = useState({
-    dateOfJoining: "",
-    employeeType: "",
-    id: "",
-    designation: "",
-    reportsTo: "",
-    role: "",
-    name: "",
-    contact: "",
-    aadharNo: "",
-    ifscCode: "",
-    address: "",
-    zipCode: "",
-    profilePicture: null,
-    email: "",
-    gender: "",
-    accountNo: "",
-    panNo: "",
-    city: "",
-    state: "",
-    graduationCertificate: null,
-  });
+const { Option } = Select;
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+const AddEmployeeForm = () => {
+  const [form] = Form.useForm();
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); // Corrected the hook usage
+  const formData = useSelector((state) => state.addemployee);
+
+  const handleInputChange = (name, value) => {
+    dispatch(setField({ name, value }));
   };
 
-  const handleFileChange = (event) => {
-    const { name, files } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: files[0],
-    }));
+  const handleFileChange = (name, file) => {
+    dispatch(setFile({ name, file }));
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const formDataToSend = new FormData();
-    for (const key in formData) {
-      formDataToSend.append(key, formData[key]);
-    }
-
-    try {
-      // const response = await axios.post("http://192.168.10.63:8000/api/v1/admin/addEmployee", formDataToSend, {
-      const response = await axios.post("http://localhost:8000/api/v1/admin/addEmployee", formDataToSend, {
-        // headers: {
-        //   "Content-Type": "multipart/form-data",
-        // },
-      });
-      console.log("Employee added successfully:", response.data);
-    } catch (error) {
-      console.error("Error adding employee:", error);
-    }
+  const handleSubmit = () => {
+    // Dispatch the addEmployee action which is async and handled by Redux thunk
+    dispatch(addEmployee(formData)).then(() => {
+      form.resetFields(); // Reset the form fields
+      // navigate("hr-dashboard/hr-home"); // Corrected the navigation function call
+    });
   };
 
   return (
     <div className="containerStyle">
       <div className="cont">
-        <form onSubmit={handleSubmit}>
+        <Form form={form} onFinish={handleSubmit} layout="vertical">
           <div className="form-header">
             <h1>New Employee Initiation</h1>
           </div>
           <div className="row">
             <div className="col-half">
-              <div className="input-box">
-                <label>Date of Joining</label>
-                <input
-                  type="text"
-                  name="dateOfJoining"
-                  value={formData.dateOfJoining}
-                  onChange={handleInputChange}
-                  required
+              <Form.Item
+                label="Date of Joining"
+                name="dateOfJoining"
+                rules={[{ required: true }]}
+              >
+                <DatePicker
+                  onChange={(date, dateString) =>
+                    handleInputChange("dateOfJoining", dateString)
+                  }
                 />
-              </div>
-              <div className="input-box">
-                <label>Employee Type</label>
-                <select
-                  name="employeeType"
-                  value={formData.employeeType}
-                  onChange={handleInputChange}
-                  required
+              </Form.Item>
+              <Form.Item
+                label="Employee Type"
+                name="employeeType"
+                rules={[{ required: true }]}
+              >
+                <Select
+                  onChange={(value) => handleInputChange("employeeType", value)}
                 >
-                  <option value="">Select Type of Work</option>
-                  <option value="Full time employee">Full time employee</option>
-                  <option value="Intern">Intern</option>
-                </select>
-              </div>
-              <div className="input-box">
-                <label>ID</label>
-                <input
-                  type="text"
-                  name="id"
-                  value={formData.id}
-                  onChange={handleInputChange}
-                  required
+                  <Option value="">Select Type of Work</Option>
+                  <Option value="Full time employee">Full time employee</Option>
+                  <Option value="Intern">Intern</Option>
+                </Select>
+              </Form.Item>
+              <Form.Item label="ID" name="emp_id" rules={[{ required: true }]}>
+                <Input
+                  onChange={(e) => handleInputChange("emp_id", e.target.value)}
                 />
-              </div>
+              </Form.Item>
             </div>
             <div className="col-half">
-              <div className="input-box">
-                <label>Designation</label>
-                <input
-                  type="text"
-                  name="designation"
-                  value={formData.designation}
-                  onChange={handleInputChange}
-                  required
+              <Form.Item
+                label="Designation"
+                name="designation"
+                rules={[{ required: true }]}
+              >
+                <Input
+                  onChange={(e) =>
+                    handleInputChange("designation", e.target.value)
+                  }
                 />
-              </div>
-              <div className="input-box">
-                <label>Reports to</label>
-                <input
-                  type="text"
-                  name="reportsTo"
-                  value={formData.reportsTo}
-                  onChange={handleInputChange}
-                  required
+              </Form.Item>
+              <Form.Item
+                label="Reports to"
+                name="reporting_to"
+                rules={[{ required: true }]}
+              >
+                <Input
+                  onChange={(e) =>
+                    handleInputChange("reporting_to", e.target.value)
+                  }
                 />
-              </div>
-              <div className="input-box">
-                <label>Role</label>
-                <select
-                  name="role"
-                  value={formData.role}
-                  onChange={handleInputChange}
-                  required
-                >
-                  <option value="">Select Role</option>
-                  <option value="Admin">Admin</option>
-                  <option value="HR">HR</option>
-                  <option value="Employee">Employee</option>
-                </select>
-              </div>
+              </Form.Item>
+              <Form.Item label="Role" name="role" rules={[{ required: true }]}>
+                <Select onChange={(value) => handleInputChange("role", value)}>
+                  <Option value="">Select Role</Option>
+                  <Option value="admin">Admin</Option>
+                  <Option value="hr">Hr</Option>
+                  <Option value="Employee">Employee</Option>
+                </Select>
+              </Form.Item>
             </div>
           </div>
           <div className="form-header">
@@ -149,159 +391,166 @@ const AddEmployeeform = () => {
           </div>
           <div className="row">
             <div className="col-half">
-              <div className="input-box">
-                <label>Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
+              <Form.Item
+                label="Name"
+                name="firstName"
+                rules={[{ required: true }]}
+              >
+                <Input
+                  onChange={(e) =>
+                    handleInputChange("firstName", e.target.value)
+                  }
                 />
-              </div>
-              <div className="input-box">
-                <label>Contact</label>
-                <input
-                  type="text"
-                  name="contact"
-                  value={formData.contact}
-                  onChange={handleInputChange}
-                  required
+              </Form.Item>
+              <Form.Item
+                label="Last Name"
+                name="lastName"
+                rules={[{ required: true }]}
+              >
+                <Input
+                  onChange={(e) =>
+                    handleInputChange("lastName", e.target.value)
+                  }
                 />
-              </div>
-              <div className="input-box">
-                <label>Aadhar No</label>
-                <input
-                  type="text"
-                  name="aadharNo"
-                  value={formData.aadharNo}
-                  onChange={handleInputChange}
-                  required
+              </Form.Item>
+              <Form.Item
+                label="Contact"
+                name="phoneNumber"
+                rules={[{ required: true }]}
+              >
+                <Input
+                  onChange={(e) =>
+                    handleInputChange("phoneNumber", e.target.value)
+                  }
                 />
-              </div>
-              <div className="input-box">
-                <label>IFSC Code</label>
-                <input
-                  type="text"
-                  name="ifscCode"
-                  value={formData.ifscCode}
-                  onChange={handleInputChange}
-                  required
+              </Form.Item>
+              <Form.Item label="Aadhar No" name="aadharNo" rules={[{ required: true }]}>
+                <Input onChange={(e) => handleInputChange("aadharNo", e.target.value)} />
+              </Form.Item>
+
+              <Form.Item
+                label="Default Password"
+                name="password"
+                rules={[{ required: true }]}
+              >
+                <Input
+                  onChange={(e) =>
+                    handleInputChange("password", e.target.value)
+                  }
                 />
-              </div>
-              <div className="input-box">
-                <label>Address</label>
-                <input
-                  type="text"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleInputChange}
-                  required
+              </Form.Item>
+              <Form.Item label="IFSC Code" name="ifscCode" rules={[{ required: true }]}>
+                <Input onChange={(e) => handleInputChange("ifscCode", e.target.value)} />
+              </Form.Item>
+              <Form.Item
+                label="Address"
+                name="address"
+                rules={[{ required: true }]}
+              >
+                <Input
+                  onChange={(e) => handleInputChange("address", e.target.value)}
                 />
-              </div>
-              <div className="input-box">
-                <label>Zip code</label>
-                <input
-                  type="text"
-                  name="zipCode"
-                  value={formData.zipCode}
-                  onChange={handleInputChange}
-                  required
+              </Form.Item>
+              <Form.Item
+                label="Zip Code"
+                name="zipCode"
+                rules={[{ required: true }]}
+              >
+                <Input
+                  onChange={(e) => handleInputChange("zipCode", e.target.value)}
                 />
-              </div>
-              <div className="input-box">
-                <label>Profile Picture</label>
-                <input
-                  type="file"
-                  name="profilePicture"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                  className="file-input"
-                />
-              </div>
+              </Form.Item>
+              <Form.Item label="Profile Picture" name="avatar">
+                <Upload
+                  beforeUpload={(file) => {
+                    handleFileChange("avatar", file);
+                    return false;
+                  }}
+                >
+                  <Button icon={<UploadOutlined />}>Upload</Button>
+                </Upload>
+              </Form.Item>
             </div>
             <div className="col-half">
-              <div className="input-box">
-                <label>Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
+              <Form.Item
+                label="Email"
+                name="email"
+                rules={[{ required: true, type: "email" }]}
+              >
+                <Input
+                  onChange={(e) => handleInputChange("email", e.target.value)}
                 />
-              </div>
-              <div className="input-box">
-                <label>Gender</label>
-                <select
-                  name="gender"
-                  value={formData.gender}
-                  onChange={handleInputChange}
-                  required
+              </Form.Item>
+              <Form.Item
+                label="Gender"
+                name="gender"
+                rules={[{ required: true }]}
+              >
+                <Select
+                  onChange={(value) => handleInputChange("gender", value)}
                 >
-                  <option value="">Select Gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div className="input-box">
-                <label>Account No</label>
-                <input
-                  type="text"
-                  name="accountNo"
-                  value={formData.accountNo}
-                  onChange={handleInputChange}
-                  required
+                  <Option value="">Select Gender</Option>
+                  <Option value="male">Male</Option>
+                  <Option value="female">Female</Option>
+                  <Option value="other">Other</Option>
+                </Select>
+              </Form.Item>
+              <Form.Item
+                label="Account No"
+                name="accountNo"
+                rules={[{ required: true }]}
+              >
+                <Input
+                  onChange={(e) =>
+                    handleInputChange("accountNo", e.target.value)
+                  }
                 />
-              </div>
-              <div className="input-box">
-                <label>Pan No</label>
-                <input
-                  type="text"
-                  name="panNo"
-                  value={formData.panNo}
-                  onChange={handleInputChange}
-                  required
+              </Form.Item>
+              <Form.Item
+                label="Pan No"
+                name="panNo"
+                rules={[{ required: true }]}
+              >
+                <Input
+                  onChange={(e) => handleInputChange("panNo", e.target.value)}
                 />
-              </div>
-              <div className="input-box">
-                <label>City</label>
-                <input
-                  type="text"
-                  name="city"
-                  value={formData.city}
-                  onChange={handleInputChange}
-                  required
+              </Form.Item>
+              <Form.Item label="City" name="city" rules={[{ required: true }]}>
+                <Input
+                  onChange={(e) => handleInputChange("city", e.target.value)}
                 />
-              </div>
-              <div className="input-box">
-                <label>State</label>
-                <input
-                  type="text"
-                  name="state"
-                  value={formData.state}
-                  onChange={handleInputChange}
-                  required
+              </Form.Item>
+              <Form.Item
+                label="State"
+                name="state"
+                rules={[{ required: true }]}
+              >
+                <Input
+                  onChange={(e) => handleInputChange("state", e.target.value)}
                 />
-              </div>
-              <div className="input-box">
-                <label>Graduation Certificate</label>
-                <input
-                  type="file"
-                  name="graduationCertificate"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                  className="file-input"
-                />
-              </div>
+              </Form.Item>
+              <Form.Item
+                label="Graduation Certificate"
+                name="graduationCertificate"
+              >
+                <Upload
+                  beforeUpload={(file) => {
+                    handleFileChange("graduationCertificate", file);
+                    return false;
+                  }}
+                >
+                  <Button icon={<UploadOutlined />}>Upload</Button>
+                </Upload>
+              </Form.Item>
             </div>
           </div>
-          <Button type="submit" className="hr-add-button">Add</Button>
-        </form>
+          <Button type="primary" htmlType="submit" className="hr-add-button">
+            Add
+          </Button>
+        </Form>
       </div>
     </div>
   );
 };
 
-export default AddEmployeeform;
+export default AddEmployeeForm;

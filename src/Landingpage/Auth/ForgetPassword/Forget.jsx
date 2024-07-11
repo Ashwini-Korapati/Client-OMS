@@ -4,6 +4,7 @@ import Forgetimg from '../../images/sav3.png';
 import './Forget.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { forgotPassword, clearAuthError } from '../../Redux/Actions/userActions';
+import { ToastContainer,toast } from 'react-toastify';
 
 const Forget = () => {
   const [email, setEmail] = useState("");
@@ -17,16 +18,31 @@ const Forget = () => {
     dispatch(forgotPassword(email));
   };
 
+  // useEffect(() => {
+  //   if (message) {
+  //     console.log(message);
+  //     // navigate("/resetpassword:token");
+  //   }
+  //   if (error) {
+  //     dispatch(clearAuthError());
+  //     console.log(error);
+  //   }
+  // }, [message, error, dispatch, navigate]);
+
   useEffect(() => {
     if (message) {
-      console.log(message);
-      // navigate("/resetpassword:token");
+            console.log(message);
+        // navigate('/login');
     }
     if (error) {
-      dispatch(clearAuthError());
-      console.log(error);
+        toast(error, {
+          
+            position: "top-center",
+            type: 'error',
+            onOpen: () => { dispatch(clearAuthError()) }
+        });
     }
-  }, [message, error, dispatch, navigate]);
+}, [error, error, dispatch, navigate]);
 
   return (
     <div className="forget-container">
@@ -63,6 +79,7 @@ const Forget = () => {
                   Signin
                 </NavLink>
               </p>
+              <ToastContainer/>
             </form>
           </div>
         </div>

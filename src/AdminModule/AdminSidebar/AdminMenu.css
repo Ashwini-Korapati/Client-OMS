@@ -1,0 +1,24 @@
+.custom-menu .ant-menu-item,
+.custom-menu .ant-menu-submenu-title {
+  font-size: 20px;
+}
+ 
+.custom-menu .ant-menu-item-selected {
+  background-color: #1890ff;
+  color: #fff;
+}
+ 
+/* styles.css */
+.menu-item-text {
+  font-size: 18px;
+}
+ /* MenuList.css */
+ 
+.menu-item {
+  margin-bottom: 10px;
+}
+ 
+.checkout-menu-item{
+  background-color: white;
+  color: wheat;
+}

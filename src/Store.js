@@ -10,9 +10,16 @@ import userReducer from '../../OMS-client/src/Landingpage/Redux/slices/userSlice
 import { createStore,  applyMiddleware } from 'redux';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { employeeAddReducer } from './Landingpage/Redux/reducers/employeeReducer';
+// import { employeeAddReducer } from './Landingpage/Redux/reducers/employeeReducer';
 import attendanceReducer from './HRModule/Redux/Reducers/AttendanceReducers'
 import LeaveReportslice from './HRModule/Redux/Reducers/LeaveReportSlice'
+import profileReducer from './HRModule/Redux/Reducers/ProfileSlice'
+import adminReducer from "./Landingpage/Redux/slices/adminSlice";
+import addEmployeeReducer from "./HRModule/Redux/Reducers/Addemployeereducers"
+import employeesReducer from './HRModule/Redux/Slices/ViewempSlice'
+import LeaveFormSlice from "./HRModule/Redux/Slices/LeaveFormSlice";
+import leaveCalendarReducer from './HRModule/Redux/Slices/leaveCalendarSlice'
+// import jobReducer from './Landingpage/Redux/Reducers'
 // import hrCardsReducer from './HRModule/Redux/Reducers/hrCardsSlice'
 
 
@@ -20,15 +27,26 @@ import LeaveReportslice from './HRModule/Redux/Reducers/LeaveReportSlice'
 const reducer = combineReducers({
     // productsState: productsReducer,
     // productState: productReducer ,
+    
     authState: authReducer,
+    profile: profileReducer,
+    admin:adminReducer,
+    // jobs:jobReducer,
     
     // cartState: cartReducer,
     // orderState: orderReducer,
     userState: userReducer,
-    employeeAdd: employeeAddReducer,
-    form: attendanceReducer,
+    // employeeAdd: employeeAddReducer,
+    attendance: attendanceReducer,
     leavereport:LeaveReportslice,
+    addemployee: addEmployeeReducer,
+    employees: employeesReducer,
+    leaveform: LeaveFormSlice,
+    leaveCalendar: leaveCalendarReducer,
+
+
     // hrCards: hrCardsReducer,
+
 
 
 })

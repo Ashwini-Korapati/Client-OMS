@@ -1,0 +1,104 @@
+.calendar-container {
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* To contain the background image */
+    background-image: url('../../../Assets/leavecalednar.png'); /* Replace with your image path */
+    background-size: 250px 250px; /* Adjust the size as needed */
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-color: #F7F7F7;
+    
+}
+
+.year-select {
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 900px;
+    width: 200px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.holiday-h1 {
+    justify-content: start;
+    align-items: self-start;
+}
+
+.h-card-grid {
+    background-color: #F7F7F7;
+
+    margin-top: 70px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Adjust min-width as needed */
+    gap: 30px;
+    width: 100%;
+}
+
+.h-card {
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 4px;
+    padding: 40px;
+    text-align: left;
+    background: #fff;
+    width: 400px;
+    height: 450px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.h-card:hover{
+    transform: scale(1.00);
+    box-shadow: 0 3px 5px #913a3a;
+}
+
+.h-card h3 {
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.holiday {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    margin: 8px 0;
+    padding: 8px;
+    border-bottom: 2px solid #e8e8e8; 
+}
+
+.holiday-date, .holiday-day, .holiday-name {
+    flex: 1;
+    text-align: center;
+}
+
+.holiday-date {
+    font-size: 20px;
+    font-weight: bold;
+    color: inherit; /* Ensures the date inherits color from parent, removing any specific color styling */
+}
+
+.holiday-name {
+    font-size: 20px;
+}
+
+.holiday-day {
+    font-size: 20px;
+    color: #999;
+}
+
+.no-holidays {
+    text-align: center;
+    color: #999;
+    font-size: 16px;
+    margin: 8px 0;
+    padding: 8px;
+    width: 100%;
+}
+
+

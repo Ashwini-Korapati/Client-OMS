@@ -1,231 +1,140 @@
-/* .table-container {
-  margin: 20px;
-  font-family: Arial, sans-serif;
-}
-
-.table-container table {
+.table-container {
   width: 100%;
-  border-collapse: collapse;
+  padding: 40px;
+  box-sizing: border-box;
+  overflow-x: auto;
 }
 
-.table-container th,
-.table-container td {
-  width: max-content;
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-}
-
-.table-container th {
-  background-color: #f2f2f2;
-}
-
-.table-container td {
-  vertical-align: middle;
-}
-
+.back-btn,
 .export-btn {
   margin-bottom: 10px;
   padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.export-btn:hover {
-  background-color: #45a049;
-}
-
-.emp-table-icons {
-  margin: 0 5px;
-  padding: 5px 10px;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  display: inline-flex;
-  align-items: center;
-  background: none;
-  outline: none;
-  box-shadow: none;
-  border: none;
-}
-
-.emp-table-iconssvg {
-  margin-right: 0;
-}
-
-.emp-table-icons:focus,
-.emp-table-icons:active {
-  outline: none;
-  box-shadow: none;
-  border: none;
-}
-
-.action-btn-save {
-  color: blue;
-}
-
-.action-btn-edit {
-  color: green;
-}
-
-.action-btn-cancel {
-  color: red;
-}
-
-.action-btn-delete {
-  color: red;
-}
-
-button.action-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  outline: none;
-  box-shadow: none;
-}
-
-button.action-btn:focus {
-  outline: none;
-  box-shadow: none;
-  border: none;
-}
-
-button.action-btn svg {
-  margin: 0;
-  padding: 0;
-  display: inline;
-  vertical-align: middle;
-}
-
-button.action-btn svg path {
-  fill: currentColor;
-}
-
-.back-btn{
-  background-color: blue;
-  color: white;
-  padding: 10px;
-  margin-top: 30px;
-  top: 40px;
-}
-
-
-.document {
-  position: relative;
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-top: 10px;
-  background: #f9f9f9;
-}
-
-.close-btn {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  cursor: pointer;
-} */
-
-
-.table-container {
-  padding: 40px;
-}
-
-.back-btn {
-  display: inline-block;
-  margin-bottom: 20px;
-  padding: 10px 20px;
   background-color: #007bff;
   color: white;
-  text-decoration: none;
-  border-radius: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.export-btn {
-  display: inline-block;
-  margin-bottom: 20px;
-  margin-left: 20px;
-  padding: 10px 20px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.back-btn:hover,
+.export-btn:hover {
+  background-color: #0056b3;
 }
 
 .employee-table {
-  width: 100%;
+  width: 50%;
   border-collapse: collapse;
+  margin-bottom: 20px;
+  table-layout: fixed; 
 }
 
 .employee-table th,
 .employee-table td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 10px;
   text-align: left;
 }
 
 .employee-table th {
-  background-color: #f2f2f2;
+  /* background-color: red; */
   font-weight: bold;
+  width: 300px; /* This sets the width but might be overridden by content */
 }
 
-.employee-table .wide-column {
-  width: 200px; 
+.employee-table td {
+  width: 300px; /* Ensure data cells have the same width as headers */
 }
 
-.employee-table .extra-wide-column {
-  width: 300px; 
+.extra-wide-column {
+  width: 200px; /* Specific width for extra wide columns */
 }
 
-button {
-  margin: 0 5px;
+.wide-column {
+  /* width: 150px;  */
 }
 
-input[type="file"] {
-  display: block;
-  margin-top: 10px;
+.profile-photo {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
-span {
-  margin-left: 10px;
-}
-
-.emp-table-icons {
-  margin: 0 5px;
-  padding: 5px 10px;
+.save-btn,
+.cancel-btn,
+.edit-btn,
+.delete-btn {
+  padding: 5px;
+  margin-right: 5px;
   border: none;
+  background-color: transparent;
   cursor: pointer;
-  font-size: 14px;
-  display: inline-flex;
-  align-items: center;
-  background: none;
-  outline: none;
-  box-shadow: none;
-  border: none;
 }
 
-.emp-table-icons:focus,
-.emp-table-icons:active {
-  outline: none;
-  box-shadow: none;
-  border: none;
-}
-
-.action-btn-save {
+.save-btn {
   color: blue;
 }
 
-.action-btn-edit {
+.cancel-btn {
+  color: red;
+}
+
+.edit-btn {
   color: green;
 }
 
-.action-btn-cancel {
+.delete-btn {
   color: red;
 }
 
-.action-btn-delete {
-  color: red;
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 10px 20px;
+  background-color: gray;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.heading-design{
+  display: flex;
+  gap: 10px;
+}
+
+.search-filter{
+  width: 250px; /* Adjust width as needed */
+  padding: 8px 12px; /* Padding for better appearance */
+  font-size: 16px; /* Font size for text input */
+  border: 1px solid #ccc; /* Border to define the input field */
+  border-radius: 4px; /* Rounded corners for aesthetics */
+}
+
+/* Optional: Style the placeholder text */
+.search-bar::placeholder {
+  color: #999; /* Placeholder text color */
+}
+
+/* Optional: Style the search icon if using one */
+.search-icon {
+  position: absolute; /* Position the icon relative to the input */
+  top: 50%; /* Align icon vertically */
+  right: 10px; /* Align icon to the right */
+  transform: translateY(-50%); /* Adjust vertical alignment */
+  cursor: pointer; /* Change cursor to pointer on hover */
 }

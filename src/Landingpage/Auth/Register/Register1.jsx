@@ -1,154 +1,164 @@
-import {useEffect, useState} from 'react';
-import {useDispatch, useSelector } from 'react-redux'
-import { register , clearAuthError } from '../../Redux/Actions/userActions';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { register, clearAuthError } from '../../Redux/Actions/userActions';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import "./Register.css";
-// import img from "../../../HRModule/Assets/avatar.png"
+import { FiEdit } from "react-icons/fi";
+import { LuUpload } from 'react-icons/lu';
 
 export default function Register1() {
     const [userData, setUserData] = useState({
         name: "",
         email: "",
         password: "",
-        confirm_password:"" 
+        confirm_password: "",
+        avatar: null,
     });
-    const [avatar, setAvatar] = useState("");
-    // const [avatarPreview, setAvatarPreview] = useState("../../../HRModule/Assets/avatar.png");
-    const [avatarPreview, setAvatarPreview] = useState("images/avatar.png");
+    const [isImageSelected, setIsImageSelected] = useState(false);
+    const [passwordStrength, setPasswordStrength] = useState('Weak'); 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { loading, error, isAuthenticateduser } = useSelector(state => state.authState)
+    const { loading, error, isAuthenticateduser } = useSelector(state => state.authState);
 
-    const onChange = (e) => {
-        if(e.target.name === 'avatar') {
-           const reader = new FileReader();
-           reader.onload = () => {
-                if(reader.readyState === 2) {
-                    setAvatarPreview(reader.result);
-                    setAvatar(e.target.files[0])
-                }
-           }
+    const handleInputChange = (e) => {
+        setUserData({ ...userData, [e.target.name]: e.target.value });
+    };
 
+    const handleFileChange = (e) => {
+        setUserData({ ...userData, avatar: e.target.files[0] });
+        setIsImageSelected(true);
+    };
 
-           reader.readAsDataURL(e.target.files[0])
-        }else{
-            setUserData({...userData, [e.target.name]:e.target.value })
-        }
-    }
+    const handleUploadClick = () => {
+        document.getElementById('customFile').click();
+    };
 
-    // console.log(userData)
-    const submitHandler= (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        
         const formData = new FormData();
-        formData.append('name', userData.name)
-        formData.append('email', userData.email)
-        formData.append('password', userData.password)
-        formData.append('confirm_password', userData.confirm_password)
-        formData.append('avatar', avatar);
-        console.log(formData)
-        dispatch(register(formData))
-    }
+        formData.append('name', userData.name);
+        formData.append('email', userData.email);
+        formData.append('password', userData.password);
+        formData.append('confirm_password', userData.confirm_password);
+        formData.append('avatar', userData.avatar);
+        dispatch(register(formData));
+    };
 
-    useEffect(()=>{
-        if(isAuthenticateduser) {
-            navigate('/login');
-            return
+    // Function to check password strength
+    const checkPasswordStrength = (password) => {
+        if (password.length >= 8) {
+            setPasswordStrength('Strong');
+        } else if (password.length >= 6) {
+            setPasswordStrength('Medium');
+        } else {
+            setPasswordStrength('Weak');
         }
-        if(error)  {
+    };
+
+    useEffect(() => {
+        if (isAuthenticateduser) {
+            navigate('/login');
+        }
+        if (error) {
             toast(error, {
                 position: "top-center",
                 type: 'error',
-                onOpen: ()=> { dispatch(clearAuthError) }
-            })
-            return
+                onOpen: () => { dispatch(clearAuthError()) }
+            });
         }
-    },[error, isAuthenticateduser, dispatch, navigate])
+    }, [error, isAuthenticateduser, dispatch, navigate]);
 
     return (
         <div className="register-container">
             <div className="register-form-container">
-            <form onSubmit={submitHandler} className="register-form-container" encType='multipart/form-data'>
-                <h1 className="mb-3">Register</h1>
+                <form onSubmit={handleSubmit} encType='multipart/form-data'>
+                    <h1 className="mb-3">Register</h1>
 
-            <div className="form-group">
-                <label htmlFor="email_field">Name</label>
-                <input name='name' onChange={onChange} type="name" id="name_field" className="form-control" />
-            </div>
-
-                <div className="form-group">
-                <label htmlFor="email_field">Email</label>
-                <input
-                    type="email"
-                    id="email_field"
-                    name='email' 
-                    onChange={onChange}
-                    className="form-control"
-                  
-                />
-                </div>
-    
-                <div className="form-group">
-                <label htmlFor="password_field">Password</label>
-                <input
-                    name='password' 
-                    onChange={onChange}
-                    type="password"
-                    id="password_field"
-                    className="form-control"
-                  
-                />
-                </div>
-                <div className="form-group">
-                <label htmlFor="confirm_password_field">confirm Password</label>
-                <input
-                    name='confirm_password' 
-                    onChange={onChange}
-                    type="password"
-                    id="confirm_password_field"
-                    className="form-control"
-                  
-                />
-                </div>
-
-                <div className='form-group'>
-                <label htmlFor='avatar_upload'>Avatar</label>
-                <div className='d-flex align-items-center'>
-                    <div>
-                        <figure className='avatar mr-3 item-rtl w-50'>
-                            <img
-                                src={avatarPreview}
-                                className='rounded-circle'
-                                alt='Avatar'
-                            />
-                        </figure>
+                    <div className="form-group">
+                        <label htmlFor="name_field">Name</label>
+                        <input
+                            name='name'
+                            onChange={handleInputChange}
+                            type="text"
+                            id="name_field"
+                            className="form-control"
+                        />
                     </div>
-                    <div className='custom-file'>
+
+                    <div className="form-group">
+                        <label htmlFor="email_field">Email</label>
+                        <input
+                            type="email"
+                            id="email_field"
+                            name='email'
+                            onChange={handleInputChange}
+                            className="form-control"
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="password_field">Password</label>
+                        <input
+                            name='password'
+                            onChange={(e) => {
+                                handleInputChange(e);
+                                checkPasswordStrength(e.target.value);
+                            }}
+                            type="password"
+                            id="password_field"
+                            className="form-control"
+                        />
+                        <small className={`password-strength ${passwordStrength.toLowerCase()}`}>
+                            {passwordStrength}
+                        </small>
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="confirm_password_field">Confirm Password</label>
+                        <input
+                            name='confirm_password'
+                            onChange={handleInputChange}
+                            type="password"
+                            id="confirm_password_field"
+                            className="form-control"
+                        />
+                    </div>
+
+                    <div className='form-group'>
+                        <div className='upload-icon' onClick={handleUploadClick}>
+                            {isImageSelected ? <FiEdit /> : <LuUpload />}
+                        </div>
                         <input
                             type='file'
                             name='avatar'
-                            onChange={onChange}
+                            onChange={handleFileChange}
                             className='custom-file-input'
+                            style={{ display: "none" }}
                             id='customFile'
                         />
-                        <label className='custom-file-label' htmlFor='customFile'>
-                            Choose Avatar
-                        </label>
+                        {userData.avatar && (
+                            <div className='avatar'>
+                                <img
+                                    src={URL.createObjectURL(userData.avatar)}
+                                    alt='Avatar Preview'
+                                />
+                            </div>
+                        )}
                     </div>
-                </div>
-            </div>
-    
-                <button
-                id="register_button"
-                type="submit"
-                className="register-btn"
-                // disabled={loading}
-                >
-                REGISTER
-                </button>
-            </form>
+
+                    <button
+                        id="register_button"
+                        type="submit"
+                        className="register-btn"
+                        // disabled={loading}
+                    >
+                        REGISTER
+                    </button>
+                    <a href="/login" className="href-register">Already have an account? Log In Here</a>
+                </form>
             </div>
         </div>
-    )
+    );
 }
+

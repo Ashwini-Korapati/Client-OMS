@@ -1,0 +1,69 @@
+.sidebar {
+    width: 290px;
+    transition: width 0.8s;
+  }
+  .sidebar.active {
+    width: 92px;
+    transition: width 0.8s;
+  }
+  .custom-menu {
+    background-color: #d5bdaf;
+    height: 100vh;
+  }
+  .menu-btn {
+    align-self: flex-start;
+    margin-bottom: 16px;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #757575;
+    border: 2px solid #f6f6f6;
+    background-color: white;
+    transition: transform 0.3s;
+  }
+  .menu-btn:hover i {
+    color: white;
+  }
+  .menu-btn i {
+    transition: transform 0.3s;
+  }
+  .ant-menu-inline .ant-menu-item, 
+  .ant-menu-inline .ant-menu-submenu-title {
+    margin-bottom: 20px; /* Adjust the margin bottom between items */
+  }
+  .ant-menu-inline .ant-menu-item a, 
+  .ant-menu-inline .ant-menu-submenu-title a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    font-weight: 300;
+    color: black;
+    text-decoration: none;
+    padding: 12px 8px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .menu .sub-menu {
+    display: none;
+    margin-left: 20px;
+    padding-left: 20px;
+    padding-top: 5px;
+    border-left: 1px solid #f6f6f6;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .sidebar.active .menu .sub-menu {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: 200px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: 1px solid #f6f6f6;
+    background-color: #fff;
+    box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.1);
+  }

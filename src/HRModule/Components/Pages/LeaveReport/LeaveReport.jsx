@@ -1,73 +1,196 @@
-import React from 'react';
-import { Table, Select } from 'antd';
-import './LeaveReport.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { setMonth, setEmployee } from '../../../Redux/Reducers/LeaveReportSlice';
+// import React, { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { fetchLeaveData, setMonth, setEmployee } from '../../../Redux/Reducers/LeaveReportSlice';
+// import './LeaveReport.css';
 
-const { Option } = Select;
+// const LeaveReport = () => {
+//   const dispatch = useDispatch();
+//   const { leaveData, selectedMonth, selectedEmployee, loading, error } = useSelector((state) => state.leavereport);
+
+//   useEffect(() => {
+//     dispatch(fetchLeaveData());
+//   }, [dispatch]);
+
+//   const handleMonthChange = (event) => {
+//     dispatch(setMonth(event.target.value));
+//   };
+
+//   const handleEmployeeChange = (event) => {
+//     dispatch(setEmployee(event.target.value));
+//   };
+
+//   return (
+//     <div className="leave-report-container">
+//       <div className="leave-report-filters">
+//         <select value={selectedMonth} onChange={handleMonthChange} style={{ width: 150, marginRight: 10 }}>
+//           <option value=""><em>Select Month</em></option>
+//           <option value="01/2024">January</option>
+//           <option value="02/2024">February</option>
+//           <option value="03/2024">March</option>
+//           <option value="04/2024">April</option>
+//           <option value="05/2024">May</option>
+//           <option value="06/2024">June</option>
+//           <option value="07/2024">July</option>
+//           <option value="08/2024">August</option>
+//           <option value="09/2024">September</option>
+//           <option value="10/2024">October</option>
+//           <option value="11/2024">November</option>
+//           <option value="12/2024">December</option>
+//         </select>
+//         {/* <select value={selectedEmployee} onChange={handleEmployeeChange} style={{ width: 200 }}>
+//           <option value=""><em>Select Employee</em></option>
+//           {[...new Set(leaveData.map((item) => item.emp_name))].map((name, index) => (
+//             <option key={index} value={name}>{name}</option>
+//           ))}
+//         </select> */}
+//       </div>
+//       {loading && <div>Loading...</div>}
+//       {error && <div className="error-message">Error: {error}</div>}
+//       <table className="leave-report-table">
+//         <thead>
+//           <tr>
+//           <th>Leave_ID</th>
+//             <th>EmpID</th>
+//             <th>Name</th>
+//             <th>Designation</th>
+//             <th>Type</th>
+//             <th>Start Date</th>
+//             <th>End Date</th>
+//             <th>Days</th>
+//             <th>Reason</th>
+//             <th>Status</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {leaveData.length > 0 ? (
+//             leaveData.map((item) => (
+//               <tr key={item.id}>
+//               <td>{item.id}</td>
+//                 <td>{item.emp_id}</td>
+//                 <td>{item.emp_name}</td>
+//                 <td>{item.designation}</td>
+//                 <td>{item.leave_type}</td>
+//                 <td>{new Date(item.start_date).toLocaleDateString()}</td>
+//                 <td>{new Date(item.end_date).toLocaleDateString()}</td>
+//                 <td>{item.total_days}</td>
+//                 <td>{item.reason}</td>
+//                 <td>{item.status || 'Pending'}</td>
+//               </tr>
+//             ))
+//           ) : (
+//             <tr>
+//               <td colSpan="9" className="no-data-message">No data available</td>
+//             </tr>
+//           )}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// };
+
+// export default LeaveReport;
+
+
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchLeaveData, setMonth, setEmployee, updateLeaveStatus } from '../../../Redux/Reducers/LeaveReportSlice';
+import './LeaveReport.css';
 
 const LeaveReport = () => {
   const dispatch = useDispatch();
-  const { leaveData = [], selectedMonth = '', selectedEmployee = '' } = useSelector((state) => state.leave || {});
+  const { leaveData, selectedMonth, selectedEmployee, loading, error } = useSelector((state) => state.leavereport);
 
-  const handleMonthChange = (value) => {
-    dispatch(setMonth(value));
+  useEffect(() => {
+    dispatch(fetchLeaveData());
+  }, [dispatch]);
+
+  const handleMonthChange = (event) => {
+    dispatch(setMonth(event.target.value));
   };
 
-  const handleEmployeeChange = (value) => {
-    dispatch(setEmployee(value));
+  const handleEmployeeChange = (event) => {
+    dispatch(setEmployee(event.target.value));
   };
 
-  const columns = [
-    { title: 'EmpID', dataIndex: 'empID', key: 'empID', width: 100 },
-    { title: 'Name', dataIndex: 'name', key: 'name', width: 150 },
-    { title: 'Type', dataIndex: 'type', key: 'type', width: 150 },
-    { title: 'Date', dataIndex: 'date', key: 'date', width: 150 },
-    { title: 'Days', dataIndex: 'days', key: 'days', width: 100 },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-      width: 150,
-      render: (text) => (
-        <span className={`leave-report-status ${text.toLowerCase()}`}>{text}</span>
-      ),
-    },
-  ];
+  const handleStatusChange = (leaveId, status) => {
+    dispatch(updateLeaveStatus({ leaveId, status }));
+  };
 
   return (
-    <>
-      <div style={{ marginBottom: 16 }}>
-        <Select value={selectedMonth} onChange={handleMonthChange} style={{ width: 150, marginRight: 10 }}>
-          <Option value=""><em>Select Month</em></Option>
-          <Option value="01/2024">January</Option>
-          <Option value="02/2024">February</Option>
-          <Option value="03/2024">March</Option>
-          <Option value="04/2024">April</Option>
-          <Option value="05/2024">May</Option>
-          <Option value="06/2024">June</Option>
-          <Option value="07/2024">July</Option>
-          <Option value="08/2024">August</Option>
-          <Option value="09/2024">September</Option>
-          <Option value="10/2024">October</Option>
-          <Option value="11/2024">November</Option>
-          <Option value="12/2024">December</Option>
-        </Select>
-        <Select value={selectedEmployee} onChange={handleEmployeeChange} style={{ width: 200 }}>
-          <Option value=""><em>Select Employee</em></Option>
-          {leaveData.map((item) => (
-            <Option key={item.id} value={item.name}>{item.name}</Option>
-          ))}
-        </Select>
+    <div className="leave-report-container">
+      <div className="leave-report-filters">
+        <select value={selectedMonth} onChange={handleMonthChange} style={{ width: 150, marginRight: 10 }}>
+          <option value=""><em>Select Month</em></option>
+          <option value="01/2024">January</option>
+          <option value="02/2024">February</option>
+          <option value="03/2024">March</option>
+          <option value="04/2024">April</option>
+          <option value="05/2024">May</option>
+          <option value="06/2024">June</option>
+          <option value="07/2024">July</option>
+          <option value="08/2024">August</option>
+          <option value="09/2024">September</option>
+          <option value="10/2024">October</option>
+          <option value="11/2024">November</option>
+          <option value="12/2024">December</option>
+        </select>
+       
       </div>
-      <Table
-        columns={columns}
-        dataSource={leaveData}
-        pagination={{ pageSize: 5 }}
-        rowClassName={(record, index) => (index % 2 === 0 ? 'even-row' : 'odd-row')}
-      />
-    </>
+      {loading && <div>Loading...</div>}
+      {error && <div className="error-message">Error: {error}</div>}
+      <table className="leave-report-table">
+        <thead>
+          <tr>
+            <th>Leave_ID</th>
+            <th>EmpID</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Days</th>
+            <th>Reason</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {leaveData.length > 0 ? (
+            leaveData.map((item) => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.emp_id}</td>
+                <td>{item.emp_name}</td>
+                <td>{item.designation}</td>
+                <td>{item.leave_type}</td>
+                <td>{new Date(item.start_date).toLocaleDateString()}</td>
+                <td>{new Date(item.end_date).toLocaleDateString()}</td>
+                <td>{item.total_days}</td>
+                <td>{item.reason}</td>
+                <td>
+                  <select
+                    value={item.status}
+                    className='status--select'
+                    onChange={(e) => handleStatusChange(item.id, e.target.value)}
+                    style={{ color: item.status === 'rejected' ? 'Red' : item.status === 'approved' ? 'green' : 'blue' }}
+                  >
+                    <option 
+                    value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                  </select>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="10" className="no-data-message">No data available</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
 export default LeaveReport;
+

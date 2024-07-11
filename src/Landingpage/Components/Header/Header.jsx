@@ -32,7 +32,7 @@ const Header = () => {
             <ul>
               <li onClick={() => scrollToSection(homeRef)}>Home</li>
               <li onClick={() => scrollToSection(aboutRef)}>About</li>
-              <li onClick={() => scrollToSection(careerRef)}>Career</li>
+              {/* <li onClick={() => scrollToSection(careerRef)}>Career</li> */}
              
               <li onClick={() => scrollToSection(blogRef)}>Services</li>
               <li onClick={() => scrollToSection(contactRef)}>Contact</li>
