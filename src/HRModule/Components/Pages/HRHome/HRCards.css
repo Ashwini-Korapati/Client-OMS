@@ -1,48 +1,3 @@
-/* .hrc-dashboard {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 150px;
-  padding: 60px;
-  background-color: whitesmoke;
-}
-
-.hrc-card {
-  border: 1px solid gray;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hrc-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px #913a3a;
-}
-
-.hrc-icon {
-  margin-left: 20px;
-}
-
-.hrc-icon img {
-  width: 100px;
-  height: 100px;
-}
-
-.hrc-content h2 {
-  margin: 0px;
-  padding: 10px;
-  font-size: 2em;
-}
-
-/* .hrc-content p {
-  margin: 0;
-  color: #777;
-} */
-
 
 .card-perfamnce-dashboard {
   
@@ -50,17 +5,14 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     padding: 60px;
-    /* background-color: #f0f0f0; */
   }
   
   .p-card {
     
-    /* border: 1px solid gray; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 40px;
-    /* background-color: #fff; */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;

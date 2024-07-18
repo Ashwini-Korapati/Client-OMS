@@ -1,15 +1,4 @@
-// import React from 'react'
-// import Perfcards from '../PerfarmanceMatrics/PerfamanceCards/Perfcards'
 
-// const PerfarmanceMatrics = () => {
-//   return (
-//     <div>
-//         <Perfcards/>
-//     </div>
-//   )
-// }
-
-// export default PerfarmanceMatrics
 
 
 import React from 'react';

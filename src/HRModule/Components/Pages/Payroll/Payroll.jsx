@@ -23,7 +23,6 @@ const EmployeeForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Send formData to backend
     fetch("YOUR_BACKEND_ENDPOINT", {
       method: "POST",
       headers: {
@@ -33,7 +32,6 @@ const EmployeeForm = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Handle response data
         console.log("Success:", data);
       })
       .catch((error) => {

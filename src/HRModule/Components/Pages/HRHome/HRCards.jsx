@@ -8,9 +8,7 @@ import { selectTotalEmployees, } from '../../../Redux/Reducers/hrCardsSlice'
 
 const Perfcards = () => {
   const totalEmployees = useSelector(selectTotalEmployees);
-  // const totalClients = useSelector(selectTotalClients);
-  // const totalProjects = useSelector(selectTotalProjects);
-  // const activeProjects = useSelector(selectActiveProjects);
+
 
   return (
     <div className="card-perfamnce-dashboard">

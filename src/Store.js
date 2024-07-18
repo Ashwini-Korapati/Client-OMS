@@ -20,6 +20,7 @@ import employeesReducer from './HRModule/Redux/Slices/ViewempSlice'
 import LeaveFormSlice from "./HRModule/Redux/Slices/LeaveFormSlice";
 import leaveCalendarReducer from './HRModule/Redux/Slices/leaveCalendarSlice'
 import empleaveCalendarSlice from './EmployeeModule/Redux/EmpholidaycalenderSlice'
+import changepasswordReducer from './HRModule/Redux/Reducers/changepasswordReducer'
 // import jobReducer from './Landingpage/Redux/Reducers'
 // import hrCardsReducer from './HRModule/Redux/Reducers/hrCardsSlice'
 
@@ -65,6 +66,7 @@ const reducer = combineReducers({
   leaveform: LeaveFormSlice,
   leaveCalendar: leaveCalendarReducer,
   leaveCalendaremp: empleaveCalendarSlice,
+  changepasswordState: changepasswordReducer,
 });
 
 const initialState = {};

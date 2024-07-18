@@ -1,0 +1,23 @@
+.loan-repayment-container {
+    width: 800px;
+    margin: 20px;
+    border: 1px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+  }
+ 
+  .repayment-form-row {
+    margin-bottom: 16px;
+  }
+ 
+  .repayment-input {
+    width: 100%;
+  }
+ 
+  .repayment-form-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+  }
+ 

@@ -1,5 +1,4 @@
 
- 
 
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,11 +8,11 @@ import {
   setSelfie,
   checkIn,
   checkOut,
-} from '../../../Redux/Reducers/AttendanceReducers'
+} from '../../../Redux/Reducers/AttendanceReducers';
 import PropTypes from "prop-types";
 import "./Attendance.css";
 import touchscreen from "../../../Assets/facial-recognition.png";
-import rightCornerImage from '../../../Assets/atd.png'
+import rightCornerImage from '../../../Assets/atd.png';
 
 const AttendanceForm = ({ className = "" }) => {
   const dispatch = useDispatch();
@@ -94,9 +93,6 @@ const AttendanceForm = ({ className = "" }) => {
 
   return (
     <div className={`attendance-form-container ${className}`}>
-              {/* <img src={rightCornerImage} alt="Right Corner" className="right-corner-image" />  */}
-
-      {/* <img src={back} alt="" className="background-image" /> */}
       <h1 className="heading-a">Attendance</h1>
       <div className="main-container-attendance">
         <div className="time-container">
@@ -184,24 +180,24 @@ const AttendanceForm = ({ className = "" }) => {
                   </button>
 
                   <div className="work-hours">
-              {checkInTime && (
-                <div className="check-in-time">
-                  Check-in Time: {new Date(checkInTime).toLocaleTimeString()}
-                </div>
-              )}
-              <br />
-              {checkOutTime && (
-                <div>
-                  Check-out Time: {new Date(checkOutTime).toLocaleTimeString()}
-                </div>
-              )}
-              <br />
-              {totalHours > 0 && (
-                <div>
-                  Total Hours Worked: {totalHours} hours
-                </div>
-              )}
-            </div>
+                    {checkInTime && (
+                      <div className="check-in-time">
+                        Check-in Time: {new Date(checkInTime).toLocaleTimeString()}
+                      </div>
+                    )}
+                    <br />
+                    {checkOutTime && (
+                      <div>
+                        Check-out Time: {new Date(checkOutTime).toLocaleTimeString()}
+                      </div>
+                    )}
+                    <br />
+                    {totalHours !== null && (
+                      <div>
+                        Total Hours Worked: {totalHours} hours
+                      </div>
+                    )}
+                  </div>
                 </div>
               </form>
             </div>

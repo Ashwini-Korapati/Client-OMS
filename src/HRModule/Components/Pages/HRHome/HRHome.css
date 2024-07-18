@@ -1,21 +1,19 @@
-.HRHome-first {
-    /* Add your styles here */
-  }
+
   
   .HRHome-blog-cards {
     height: max-content;
     padding: 20px;
     border-radius: 20px;
     display: flex;
-    align-items: center; /* Center items vertically */
+    align-items: center; 
   }
   
   .hr-logo {
-    position: fixed; /* Position the logo absolutely */
+    position: fixed; 
     top: 55px;
-  left: 290px; /* Distance from the left of the screen */
-  width: 80px; /* Adjust the width as needed */
-  height: 80px; /* Adjust the height as needed */
+  left: 290px; 
+  width: 80px; 
+  height: 80px; 
   }
   
   .HRHome-blog-cards h1 {
@@ -25,7 +23,7 @@
   }
   
   .emp-name {
-    margin-left: 5px; /* Add some space between "Welcome" and the name if needed */
+    margin-left: 5px; 
   }
   
   .HRHome-graph-calender {
@@ -37,5 +35,4 @@
     border-radius: 20px;
   }
   
-  /* Adjust other styles as needed */
   

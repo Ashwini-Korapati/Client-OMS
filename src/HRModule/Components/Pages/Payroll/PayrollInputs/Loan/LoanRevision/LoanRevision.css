@@ -1,0 +1,38 @@
+.loan-revision-container {
+    width: 800px;
+    margin: 20px auto;
+    border: 1px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fff;
+  }
+ 
+  .revision-form-row {
+    margin-bottom: 16px;
+  }
+ 
+  .revision-input {
+    width: 100%;
+  }
+ .loan-form-buttons-revision{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+ }
+ 
+ .loan-form-buttons-revision button {
+    margin: 0 10px;
+  }
+.back-to-salary-button-revision{
+    background-color: #f0f0f0;
+    border-color: #d9d9d9;
+    color: #000;
+}
+ 
+.save-button-revision{
+    background-color: #1890ff;
+    border-color: #1890ff;
+    color: #fff;
+}
+ 

@@ -69,7 +69,13 @@ const AppHeader = () => {
           Settings
         </NavLink>
       </Menu.Item>
-      <Menu.Item key="3" onClick={logoutHandler}>
+
+      <Menu.Item key="3">
+        <NavLink to="/hr-dashboard/changepassword">
+          Change password
+        </NavLink>
+      </Menu.Item>
+      <Menu.Item key="4" onClick={logoutHandler}>
         Logout
       </Menu.Item>
     </Menu>

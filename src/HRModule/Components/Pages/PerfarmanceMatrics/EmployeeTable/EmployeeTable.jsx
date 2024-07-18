@@ -10,8 +10,7 @@ const employeeData = [
   { key: '4', name: 'Diana Prince', position: 'QA Engineer', performance: 79, status: 'Completed' },
   { key: '5', name: 'Ethan Hunt', position: 'DevOps Engineer', performance: 74, status: 'In Progress' },
   { key: '6', name: 'Fiona Gallagher', position: 'Business Analyst', performance: 78, status: 'Completed' },
-  // { key: '7', name: 'George Martin', position: 'Frontend Developer', performance: 76, status: 'In Progress' },
-  // { key: '8', name: 'Hannah Baker', position: 'Backend Developer', performance: 74, status: 'Completed' },
+
 ];
  
 const EmployeeTable = () => {

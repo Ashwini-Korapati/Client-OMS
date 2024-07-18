@@ -22,7 +22,6 @@ const LeaveReport = () => {
   };
 
   const handleStatusChange = async (leaveId, status) => {
-    // Optimistically update the local state
     const updatedLeaveData = leaveData.map(item => 
       item.id === leaveId ? { ...item, status } : item
     );
@@ -32,10 +31,8 @@ const LeaveReport = () => {
       payload: updatedLeaveData,
     });
 
-    // Dispatch the actual update action
     await dispatch(updateLeaveStatus({ leaveId, status }));
 
-    // Optionally, re-fetch the leave data to ensure consistency with the backend
     dispatch(fetchLeaveData());
   };
 
@@ -57,7 +54,6 @@ const LeaveReport = () => {
           <option value="11/2024">November</option>
           <option value="12/2024">December</option>
         </select>
-        {/* Add employee dropdown if needed */}
       </div>
       {loading && <div>Loading...</div>}
       {error && <div className="error-message">Error: {error}</div>}

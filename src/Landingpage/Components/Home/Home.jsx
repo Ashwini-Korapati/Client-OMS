@@ -16,13 +16,7 @@ const Home = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // const nextImage = () => {
-  //   setCurrentImage((currentImage + 1) % images.length);
-  // };
 
-  // const prevImage = () => {
-  //   setCurrentImage((currentImage - 1 + images.length) % images.length);
-  // };
 
   return (
     <div>

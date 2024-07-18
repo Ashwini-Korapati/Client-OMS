@@ -1,4 +1,3 @@
-// src/HRModule/Redux/Actions/AddEmployeeActions.js
  
 import axios from 'axios';
 import {

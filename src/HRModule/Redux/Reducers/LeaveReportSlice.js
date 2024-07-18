@@ -17,8 +17,8 @@ export const fetchLeaveData = createAsyncThunk('leave/fetchLeaveData', async (_,
         Accept: 'application/json',
       },
     });
-    console.log('API Response:', response.data); // Log API response
-    return response.data.leaveRequests; // Adjusted to match the structure of the response
+    console.log('API Response:', response.data); 
+    return response.data.leaveRequests; 
   } catch (error) {
     console.error('Error fetching leave data:', error.response || error.message);
     return rejectWithValue(error.response ? error.response.data : error.message);
@@ -35,7 +35,7 @@ export const updateLeaveStatus = createAsyncThunk(
           Accept: 'application/json',
         },
       });
-      console.log('Updated leave status:', response.data); // Log updated status response
+      console.log('Updated leave status:', response.data); 
       return { leaveId, status };
     } catch (error) {
       console.error('Error updating leave status:', error.response || error.message);
@@ -69,7 +69,7 @@ const leaveReportSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchLeaveData.fulfilled, (state, action) => {
-        console.log('Fetched leave data:', action.payload); // Log fetched data
+        console.log('Fetched leave data:', action.payload); 
         state.leaveData = action.payload;
         state.loading = false;
       })
@@ -78,8 +78,8 @@ const leaveReportSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(updateLeaveStatus.fulfilled, (state, action) => {
-        console.log('Updated leave status:', action.payload); // Log updated status
-        state.loading = false; // Assuming you might want to reset loading state
+        console.log('Updated leave status:', action.payload); 
+        state.loading = false;
       })
       .addCase(updateLeaveStatus.rejected, (state, action) => {
         console.error('Error updating leave status:', action.payload);

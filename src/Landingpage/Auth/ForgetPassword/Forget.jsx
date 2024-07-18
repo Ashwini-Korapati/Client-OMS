@@ -18,16 +18,7 @@ const Forget = () => {
     dispatch(forgotPassword(email));
   };
 
-  // useEffect(() => {
-  //   if (message) {
-  //     console.log(message);
-  //     // navigate("/resetpassword:token");
-  //   }
-  //   if (error) {
-  //     dispatch(clearAuthError());
-  //     console.log(error);
-  //   }
-  // }, [message, error, dispatch, navigate]);
+ 
 
   useEffect(() => {
     if (message) {

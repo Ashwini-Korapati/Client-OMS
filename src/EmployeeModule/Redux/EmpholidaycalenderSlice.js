@@ -1,112 +1,14 @@
-// // import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
-// // // Fetch the token from where it is stored (e.g., localStorage)
-// // const token = localStorage.getItem('authToken');
-
-// // export const fetchHolidays = createAsyncThunk('leaveCalendar/fetchHolidays', async () => {
-// //   const response = await fetch('http://localhost:8000/api/v1/employees/holidays', {
-// //     method: 'GET', // Explicitly specify the GET method
-// //     headers: {
-// //       'Authorization': `Bearer ${token}`, // Include the Bearer token in the request headers
-// //       'Content-Type': 'application/json',
-// //     },
-// //       // body: JSON.stringify(response),
-// //          credentials: 'include'
-// //   });
-// //   if (!response.ok) {
-// //     throw new Error('Failed to fetch holidays');
-// //   }
-// //   const data = await response.json();
-// //   return data.holidays; // Ensure this matches your backend response
-// // });
-
-// // const empleaveCalendarSlice = createSlice({
-// //   name: 'leaveCalendar',
-// //   initialState: {
-// //     holidays: [], // Initialize as an empty array
-// //     loading: false,
-// //     error: null,
-// //   },
-// //   reducers: {},
-// //   extraReducers: (builder) => {
-// //     builder
-// //       .addCase(fetchHolidays.pending, (state) => {
-// //         state.loading = true;
-// //       })
-// //       .addCase(fetchHolidays.fulfilled, (state, action) => {
-// //         state.loading = false;
-// //         state.holidays = action.payload; // Assuming action.payload is an array of holidays
-// //       })
-// //       .addCase(fetchHolidays.rejected, (state, action) => {
-// //         state.loading = false;
-// //         state.error = action.error.message; // Handle error as needed
-// //       });
-// //   },
-// // });
-
-// // export const selectHolidays = (state) => state.empleaveCalendar.holidays || []; // Ensure holidays is an empty array if undefined
-
-// // export default empleaveCalendarSlice.reducer;
-// import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
-// // Fetch the token from where it is stored (e.g., localStorage)
-// const token = localStorage.getItem('authToken');
-
-// export const fetchHolidays = createAsyncThunk('leaveCalendar/fetchHolidays', async () => {
-//   const response = await fetch('http://localhost:8000/api/v1/employees/holidays', {
-//     method: 'GET', // Explicitly specify the GET method
-//     headers: {
-//       'Authorization': `Bearer ${token}`, // Include the Bearer token in the request headers
-//       'Content-Type': 'application/json',
-//     },
-//     credentials: 'include'
-//   });
-//   if (!response.ok) {
-//     throw new Error('Failed to fetch holidays');
-//   }
-//   const data = await response.json();
-//   return data.holidays; // Ensure this matches your backend response
-// });
-
-// const empleaveCalendarSlice = createSlice({
-//   name: 'leaveCalendar',
-//   initialState: {
-//     holidays: [], // Initialize as an empty array
-//     loading: false,
-//     error: null,
-//   },
-//   reducers: {},
-//   extraReducers: (builder) => {
-//     builder
-//       .addCase(fetchHolidays.pending, (state) => {
-//         state.loading = true;
-//       })
-//       .addCase(fetchHolidays.fulfilled, (state, action) => {
-//         state.loading = false;
-//         state.holidays = action.payload || []; // Ensure holidays is an array
-//       })
-//       .addCase(fetchHolidays.rejected, (state, action) => {
-//         state.loading = false;
-//         state.error = action.error.message; // Handle error as needed
-//       });
-//   },
-// });
-
-// export const selectHolidays = (state) => state.leaveCalendar.holidays || []; // Ensure holidays is an empty array if undefined
-
-// export default empleaveCalendarSlice.reducer;
 
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// Fetch the token from where it is stored (e.g., localStorage)
 const token = localStorage.getItem('authToken');
 
 export const fetchHolidays = createAsyncThunk('leaveCalendar/fetchHolidays', async () => {
   const response = await fetch('http://localhost:8000/api/v1/employees/holidays', {
-    method: 'GET', // Explicitly specify the GET method
+    method: 'GET', 
     headers: {
-      'Authorization': `Bearer ${token}`, // Include the Bearer token in the request headers
+      'Authorization': `Bearer ${token}`, 
       'Content-Type': 'application/json',
     },
     credentials: 'include'
@@ -115,13 +17,13 @@ export const fetchHolidays = createAsyncThunk('leaveCalendar/fetchHolidays', asy
     throw new Error('Failed to fetch holidays');
   }
   const data = await response.json();
-  return data.holidays; // Ensure this matches your backend response
+  return data.holidays; 
 });
 
 const empleaveCalendarSlice = createSlice({
   name: 'leaveCalendar',
   initialState: {
-    holidays: [], // Initialize as an empty array
+    holidays: [], 
     loading: false,
     error: null,
   },
@@ -133,15 +35,15 @@ const empleaveCalendarSlice = createSlice({
       })
       .addCase(fetchHolidays.fulfilled, (state, action) => {
         state.loading = false;
-        state.holidays = action.payload || []; // Ensure holidays is an array
+        state.holidays = action.payload || []; 
       })
       .addCase(fetchHolidays.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message; // Handle error as needed
+        state.error = action.error.message; 
       });
   },
 });
 
-export const selectHolidays = (state) => state.leaveCalendaremp.holidays || []; // Ensure holidays is an empty array if undefined
+export const selectHolidays = (state) => state.leaveCalendaremp.holidays || []; 
 
 export default empleaveCalendarSlice.reducer;

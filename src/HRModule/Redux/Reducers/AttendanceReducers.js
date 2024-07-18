@@ -59,7 +59,7 @@ const attendanceSlice = createSlice({
       })
       .addCase(checkOut.fulfilled, (state, action) => {
         state.checkOutTime = action.payload.check_out;
-        state.totalHours = action.payload.total_hours;
+        state.totalHours = action.payload.total_hours; // Ensure this line is correct
         state.success = true;
       })
       .addCase(checkIn.rejected, (state, action) => {
@@ -70,7 +70,8 @@ const attendanceSlice = createSlice({
         state.error = action.payload;
         state.success = false;
       });
-  },
+  }
+  
 });
  
 export const { setShiftTime, setWorkType, setSelfie } = attendanceSlice.actions;

@@ -24,7 +24,7 @@
   background-color: #d5bdafb7;
   width: 50%;
   padding: 60px;
-  height: 80vh;
+  height: 90vh;
   /* background: rgba(0, 0, 0, 0.5); */
   border-radius: 10px;
   position: relative;
@@ -42,11 +42,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); */
   border-radius: 5px;
-  /* border: 1px solid #ccc; */
   padding: 60px;
-  /* background: rgba(255, 255, 255, 0.1); */
 }
 
 .date-time-shift-inner {
@@ -65,7 +62,6 @@
   align-items: center;
   width: 100%;
   
-  /* margin-top: 100px; */
 }
 
 .capture-button {
@@ -135,14 +131,13 @@
   margin-top: 30px;
 }
 
-/* New CSS for the right corner image */
 .right-corner-image {
   position: absolute;
   top: 10px;
   right: 220px;
-  width: 300px; /* Adjust the size as needed */
+  width: 300px; 
   height: auto;
-  border-radius: 20px; /* Add this if you want rounded corners */
-  transform: rotate(25deg); /* Rotate the image to make it cross-positioned */
+  border-radius: 20px; 
+  transform: rotate(25deg); 
 
 }

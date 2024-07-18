@@ -1,88 +1,3 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  .containerStyle1 {
-    font-family: 'Courier New', Courier, monospace;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f2f5;
-  }
-  
-  .cont1 {
-    background: white;
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 30px;
-    margin: 20px;
-    width: 90%;
-    max-width: 600px;
-  }
-  
-  .form-header1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .col-half {
-    flex: 0 0 48%;
-  }
-  
-  .input-box {
-    position: relative;
-    width: 100%;
-    margin: 10px 0;
-  }
-  
-  .input-box label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .input-box input,
-  .input-box select,
-  .input-box textarea {
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .input-box textarea {
-    resize: vertical;
-  }
-  
-  .hr-add-button1 {
-    display: block;
-    margin: 20px auto;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: medium;
-    letter-spacing: 0.1rem;
-    transition: all 0.3s;
-    background-color: #008CBA;
-    border: none;
-    width: 100%;
-    max-width: 200px;
-  } */
-
 
   .leave-application-form {
     width: 900px;
@@ -155,7 +70,7 @@
   }
    
   .ant-btn {
-    width: auto; /* Adjust as needed */
+    width: auto; 
   }
    
   .ant-upload-select {

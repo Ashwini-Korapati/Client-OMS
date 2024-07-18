@@ -1,6 +1,6 @@
 import React from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
-import '../HRHome/HRHome.css'; // Assuming HRHome.css contains the styles for Graph-calender and graph
+import '../HRHome/HRHome.css';
 import Calender from '../HRHome/Calender';
 
 const Graph = () => {

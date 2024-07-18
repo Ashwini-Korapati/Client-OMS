@@ -8,7 +8,7 @@ const initialState = {
   session2: '',
   teamLeaderEmail: '',
   hrEmail: [],
-  contact_list: '', // Ensure this field is in the initial state
+  contact_list: '', 
 };
 
 export const submitLeaveForm = createAsyncThunk(
