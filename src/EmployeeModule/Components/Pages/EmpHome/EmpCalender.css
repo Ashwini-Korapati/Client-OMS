@@ -1,0 +1,88 @@
+
+.holiday-list-container {
+  /* max-width: 900px; */
+  /* margin: 10px auto; */
+  /* padding: 10px; */
+  margin-top: 50px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: rgba(163, 144, 144, 0.26); /* 50% transparent color */
+  backdrop-filter: blur(60px); /* Apply blur effect */
+  font-family: Arial, sans-serif;
+  margin-right: 240px;
+}
+
+.holiday-list-header {
+  gap: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.holiday-list-title {
+  text-align: left;
+  margin-bottom: 10px;
+  font-size: 26px;
+  color: #333;
+}
+
+.arrow-icon {
+  /* background-color: red; */
+  cursor: pointer;
+  color: #000000;
+  width: 30px;
+  height: 60px;
+}
+
+/* .holiday-list {
+  margin-top: 10px;
+} */
+
+.holiday-card {
+  display: flex;
+  width: 460px;
+  border-bottom: 1px solid #ddd;
+  box-sizing: border-box; /* Ensures padding and border are included in the width */
+}
+
+.holiday-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: red;
+}
+
+.holiday-day {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.holiday-weekday {
+  color: green;
+  font-size: 14px;
+  /* color: #888; */
+}
+
+.holiday-details {
+  flex-grow: 1;
+  padding-left: 10px;
+}
+
+.holiday-name {
+  font-size: 14px;
+  color: #333;
+  margin-left: 30px;
+}
+
+.holiday-apply {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.holiday-apply:hover {
+  text-decoration: underline;
+}

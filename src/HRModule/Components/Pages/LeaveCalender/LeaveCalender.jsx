@@ -1,8 +1,11 @@
+
+
+
 import React, { useState, useEffect } from 'react';
 import { Select, Spin, Alert } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchHolidays, selectHolidays } from '../../../Redux/Slices/leaveCalendarSlice';
-import '../LeaveCalender/LeaveCalender.css';
+import { fetchHolidays, selectHolidays } from '../../../../HRModule/Redux/Slices/leaveCalendarSlice';
+import '../LeaveCalender/LeaveCalender.css'
 
 const { Option } = Select;
 
@@ -23,51 +26,50 @@ const LeaveCalendar = () => {
 
   const holidaysByYear = holidays.filter(holiday => new Date(holiday.date).getFullYear() === year);
 
-  const holidaysByMonth = holidaysByYear.reduce((acc, holiday) => {
-    const month = new Date(holiday.date).toLocaleString('en-us', { month: 'long' });
-    if (!acc[month]) {
-      acc[month] = [];
-    }
-    acc[month].push(holiday);
+  const months = Array.from({ length: 12 }, (_, i) => new Date(0, i).toLocaleString('en-us', { month: 'long' }));
+
+  const holidaysByMonth = months.reduce((acc, month) => {
+    acc[month] = holidaysByYear.filter(holiday => new Date(holiday.date).toLocaleString('en-us', { month: 'long' }) === month);
     return acc;
   }, {});
 
   return (
     <div className="calendar-container">
-      <div className="calendar-image"></div>
+      <div className="holiday-calendar-image"></div>
       <h2 className='holiday-h2'>Holiday Calendar</h2>
-      <Select
-        className="year-select"
-        value={year}
-        onChange={handleYearChange}
-      >
-        <Option value={2025}>2025</Option>
-        <Option value={2023}>2023</Option>
-        <Option value={2024}>2024</Option>
-      </Select>
+      <div className='holiday-year'>
+        <Select
+          className='holiday-year-select'
+          value={year}
+          onChange={handleYearChange}
+        >
+          <Option value={2025}>2025</Option>
+          <Option value={2023}>2023</Option>
+          <Option value={2024}>2024</Option>
+        </Select>
+      </div>
       {loading ? (
         <Spin size="large" />
       ) : error ? (
         <Alert message="Error" description={error} type="error" showIcon />
       ) : (
         <div className="h-card-grid">
-          {Object.keys(holidaysByMonth).length > 0 ? Object.keys(holidaysByMonth).map((month) => (
+          {months.map((month) => (
             <div key={month} className="h-card">
               <h3>{month} {year}</h3>
-              {holidaysByMonth[month].map((holiday) => (
-                <div key={holiday.date} className="holiday">
-                  <div className="holiday-date">{new Date(holiday.date).getDate()}
-                    <div className="holiday-day">{new Date(holiday.date).toLocaleString('en-us', { weekday: 'short' })}</div>
+              {holidaysByMonth[month].length > 0 ? (
+                holidaysByMonth[month].map((holiday) => (
+                  <div key={holiday.date} className="emp-holiday">
+                    <div className="hr-holiday-date">{new Date(holiday.date).getDate()}</div>
+                    <div className="hr-holiday-day">{new Date(holiday.date).toLocaleString('en-us', { weekday: 'short' })}</div>
+                    <div className="hr-holiday-name">{holiday.name}</div>
                   </div>
-                  <div className="holiday-details">
-                    <div className="holiday-name">{holiday.name}</div>
-                  </div>
-                </div>
-              ))}s
+                ))
+              ) : (
+                <div className="hr-no-holidays">No Holidays for {month}</div>
+              )}
             </div>
-          )) : (
-            <div className="no-holidays">No Holidays for {year}</div>
-          )}
+          ))}
         </div>
       )}
     </div>

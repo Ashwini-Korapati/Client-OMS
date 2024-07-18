@@ -393,7 +393,7 @@ export const logout = () => async (dispatch) => {
     }
 };
 
-export const updateProfile = (userData) => async (dispatch) => {    
+export const updateProfile = (formData) => async (dispatch) => {    
     try {
         dispatch(updateProfileRequest());
         const config = {
@@ -401,7 +401,7 @@ export const updateProfile = (userData) => async (dispatch) => {
                 'Content-type': 'multipart/form-data'
             }
         };
-        const { data } = await axios.put(`/api/v1/update`, userData, config);
+        const { data } = await axios.put(`http://localhost:8000/api/v1/employee/update/myprofile`, formData, config);
         dispatch(updateProfileSuccess(data));
     } catch (error) {
         dispatch(updateProfileFail(error.response.data.message));

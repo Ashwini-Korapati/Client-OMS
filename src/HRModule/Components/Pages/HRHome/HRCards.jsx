@@ -13,7 +13,7 @@ const Perfcards = () => {
   // const activeProjects = useSelector(selectActiveProjects);
 
   return (
-    <div className="perfamnce-dashboard">
+    <div className="card-perfamnce-dashboard">
       <div className="p-card">
         <div className="p-content">
           <h2>{totalEmployees}</h2>

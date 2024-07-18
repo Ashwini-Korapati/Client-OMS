@@ -1,9 +1,9 @@
 .sidebar {
-    width: 290px;
+    width: 250px;
     transition: width 0.8s;
   }
   .sidebar.active {
-    width: 92px;
+    width: 100px;
     transition: width 0.8s;
   }
   .custom-menu {

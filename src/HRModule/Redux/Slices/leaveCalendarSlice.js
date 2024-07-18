@@ -4,7 +4,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const token = localStorage.getItem('authToken');
 
 export const fetchHolidays = createAsyncThunk('leaveCalendar/fetchHolidays', async () => {
-  const response = await fetch('http://localhost:8000/api/v1//hr/holidays', {
+  const response = await fetch('http://localhost:8000/api/v1/hr/holidays', {
     method: 'GET', // Explicitly specify the GET method
     headers: {
       'Authorization': `Bearer ${token}`, // Include the Bearer token in the request headers

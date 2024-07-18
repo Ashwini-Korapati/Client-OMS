@@ -19,37 +19,53 @@ import addEmployeeReducer from "./HRModule/Redux/Reducers/Addemployeereducers"
 import employeesReducer from './HRModule/Redux/Slices/ViewempSlice'
 import LeaveFormSlice from "./HRModule/Redux/Slices/LeaveFormSlice";
 import leaveCalendarReducer from './HRModule/Redux/Slices/leaveCalendarSlice'
+import empleaveCalendarSlice from './EmployeeModule/Redux/EmpholidaycalenderSlice'
 // import jobReducer from './Landingpage/Redux/Reducers'
 // import hrCardsReducer from './HRModule/Redux/Reducers/hrCardsSlice'
 
 
 
+// const reducer = combineReducers({
+//     // productsState: productsReducer,
+//     // productState: productReducer ,
+    
+//     authState: authReducer,
+//     profile: profileReducer,
+//     admin:adminReducer,
+//     // jobs:jobReducer,
+    
+//     // cartState: cartReducer,
+//     // orderState: orderReducer,
+//     userState: userReducer,
+//     // employeeAdd: employeeAddReducer,
+//     attendance: attendanceReducer,
+//     leavereport:LeaveReportslice,
+//     addemployee: addEmployeeReducer,
+//     employees: employeesReducer,
+//     leaveform: LeaveFormSlice,
+//     leaveCalendar: leaveCalendarReducer,
+//     leaveCalendaremp: empleaveCalendarSlice
+
+
+//     // hrCards: hrCardsReducer,
+
+
+
+// })
+
 const reducer = combineReducers({
-    // productsState: productsReducer,
-    // productState: productReducer ,
-    
-    authState: authReducer,
-    profile: profileReducer,
-    admin:adminReducer,
-    // jobs:jobReducer,
-    
-    // cartState: cartReducer,
-    // orderState: orderReducer,
-    userState: userReducer,
-    // employeeAdd: employeeAddReducer,
-    attendance: attendanceReducer,
-    leavereport:LeaveReportslice,
-    addemployee: addEmployeeReducer,
-    employees: employeesReducer,
-    leaveform: LeaveFormSlice,
-    leaveCalendar: leaveCalendarReducer,
-
-
-    // hrCards: hrCardsReducer,
-
-
-
-})
+  authState: authReducer,
+  profile: profileReducer,
+  admin: adminReducer,
+  userState: userReducer,
+  attendance: attendanceReducer,
+  leavereport: LeaveReportslice,
+  addemployee: addEmployeeReducer,
+  employees: employeesReducer,
+  leaveform: LeaveFormSlice,
+  leaveCalendar: leaveCalendarReducer,
+  leaveCalendaremp: empleaveCalendarSlice,
+});
 
 const initialState = {};
 const middleware = [thunk];

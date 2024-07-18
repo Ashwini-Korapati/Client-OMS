@@ -1,3 +1,6 @@
+
+ 
+
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -9,19 +12,19 @@ import {
 } from '../../../Redux/Reducers/AttendanceReducers'
 import PropTypes from "prop-types";
 import "./Attendance.css";
-import touchscreen from "../../../Assets/bio1.jpg";
-// import back from "../../../Assets/atte.jpg";
- 
+import touchscreen from "../../../Assets/facial-recognition.png";
+import rightCornerImage from '../../../Assets/atd.png'
+
 const AttendanceForm = ({ className = "" }) => {
   const dispatch = useDispatch();
-  const { checkInTime, checkOutTime, totalHours, selfie, success } =useSelector((state) => state.attendance);
+  const { checkInTime, checkOutTime, totalHours, selfie, success } = useSelector((state) => state.attendance);
   const [shiftTime, setShiftTimeState] = useState("");
   const [location, setLocation] = useState("");
   const [isCheckedIn, setIsCheckedIn] = useState(false);
   const [isCheckedOut, setIsCheckedOut] = useState(false);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
- 
+
   const startCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -30,7 +33,7 @@ const AttendanceForm = ({ className = "" }) => {
       console.error("Error accessing the camera", err);
     }
   };
- 
+
   const stopCamera = () => {
     const stream = videoRef.current?.srcObject;
     if (stream) {
@@ -39,7 +42,7 @@ const AttendanceForm = ({ className = "" }) => {
       videoRef.current.srcObject = null;
     }
   };
- 
+
   const capturePhoto = () => {
     const context = canvasRef.current.getContext("2d");
     context.drawImage(
@@ -53,7 +56,7 @@ const AttendanceForm = ({ className = "" }) => {
     dispatch(setSelfie(imageData));
     stopCamera();
   };
- 
+
   const handleCheckIn = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -65,11 +68,11 @@ const AttendanceForm = ({ className = "" }) => {
     }
     dispatch(checkIn(formData));
   };
- 
+
   const handleCheckOut = () => {
     dispatch(checkOut());
   };
- 
+
   useEffect(() => {
     if (location === "workFromHome") {
       startCamera();
@@ -77,7 +80,7 @@ const AttendanceForm = ({ className = "" }) => {
       stopCamera();
     }
   }, [location]);
- 
+
   useEffect(() => {
     if (success && checkInTime) {
       setIsCheckedIn(true);
@@ -88,9 +91,11 @@ const AttendanceForm = ({ className = "" }) => {
       setIsCheckedOut(true);
     }
   }, [success, checkInTime, checkOutTime]);
- 
+
   return (
     <div className={`attendance-form-container ${className}`}>
+              {/* <img src={rightCornerImage} alt="Right Corner" className="right-corner-image" />  */}
+
       {/* <img src={back} alt="" className="background-image" /> */}
       <h1 className="heading-a">Attendance</h1>
       <div className="main-container-attendance">
@@ -177,10 +182,8 @@ const AttendanceForm = ({ className = "" }) => {
                   >
                     Check Out
                   </button>
-                </div>
-              </form>
-            </div>
-            <div className="work-hours">
+
+                  <div className="work-hours">
               {checkInTime && (
                 <div className="check-in-time">
                   Check-in Time: {new Date(checkInTime).toLocaleTimeString()}
@@ -199,19 +202,23 @@ const AttendanceForm = ({ className = "" }) => {
                 </div>
               )}
             </div>
+                </div>
+              </form>
+            </div>
+          
           </div>
         </div>
       </div>
     </div>
   );
 };
- 
+
 AttendanceForm.propTypes = {
   className: PropTypes.string,
 };
- 
+
 export default AttendanceForm;
- 
+
 function dataURItoBlob(dataURI, format = "image/png") {
   const byteString = atob(dataURI.split(',')[1]);
   const mimeString = format;
@@ -222,4 +229,3 @@ function dataURItoBlob(dataURI, format = "image/png") {
   }
   return new Blob([buffer], { type: mimeString });
 }
- 

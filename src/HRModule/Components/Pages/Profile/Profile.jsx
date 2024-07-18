@@ -1,16 +1,16 @@
 
-import React, { useState } from "react";
+
+
+import React, { useState, useEffect } from "react";
 import { FaTrash, FaUpload } from "react-icons/fa";
 import avatar from "../../../Assets/avatar.png";
 import "./Profile.css";
-import {useSelector} from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
+import { getProfile, updateProfile } from "../../../Redux/Reducers/ProfileSlice";
 
 const EmployeeProfile = () => {
-  const { emp }  = useSelector(state => state.profile.emp);
- console.log(emp)
- 
-  
-
+  const dispatch = useDispatch();
+  const { emp, loading } = useSelector(state => state.profile.emp);
   const [currentStep, setCurrentStep] = useState("PersonalData");
   const [formData, setFormData] = useState({
     dateOfJoining: '',
@@ -20,14 +20,14 @@ const EmployeeProfile = () => {
     reporting_to: '',
     role: '',
     firstName: '',
-    lastName:'',
-    password:'',
+    lastName: '',
+    password: '',
     phoneNumber: '',
     aadharNo: '',
-    ifscCode: '',
+    ifsc: '',
     address: '',
     zipCode: '',
-    avatar: null,
+    avatar: "",
     email: '',
     gender: '',
     accountNo: '',
@@ -35,13 +35,36 @@ const EmployeeProfile = () => {
     city: '',
     state: '',
   });
- 
   const [profileImage, setProfileImage] = useState(avatar);
+
+  useEffect(() => {
+    dispatch(getProfile());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (emp) {
+      setFormData(emp);
+      setProfileImage(emp.avatar || avatar);
+    }
+  }, [emp]);
 
   const handlePersonalInfoSubmit = (e) => {
     e.preventDefault();
-    console.log("Personal info updated:", formData);
-  
+    const formData = new FormData();
+    formData.append('firstName', formData.firstName);
+    formData.append('lastName', formData.lastName);
+    formData.append('phoneNumber', formData.phoneNumber);
+    formData.append('panNo', formData.panNo);
+    formData.append('aadharNo', formData.aadharNo);
+    formData.append('address', formData.address);
+    formData.append('city', formData.city);
+    formData.append('state', formData.state);
+    formData.append('zipCode', formData.zipCode);
+    if (profileImage !== avatar) {
+      formData.append('avatar', profileImage);
+    }
+
+    dispatch(updateProfile(formData));
   };
 
   const handleInputChange = (e) => {
@@ -62,13 +85,16 @@ const EmployeeProfile = () => {
       reader.readAsDataURL(file);
     }
   };
-  
 
   const handleDeleteImage = () => {
     setProfileImage(avatar);
   };
 
   const renderStep = () => {
+    if (!emp) {
+      return <div>Loading...</div>;
+    }
+
     switch (currentStep) {
       case "PersonalData":
         return (
@@ -90,7 +116,6 @@ const EmployeeProfile = () => {
                 />
               </label>
               <br />
-              <br />
               <label>
                 Last Name:
                 <input
@@ -101,38 +126,43 @@ const EmployeeProfile = () => {
                 />
               </label>
               <br />
-            
-              <br />
               {/* <button type="submit">Update Personal Info</button> */}
             </form>
           </div>
         );
-    
+
       case "BankingDetails":
         return (
           <div>
             <h2>Banking Details</h2>
             <form>
-              <br />
               <label>
                 Account Number:
-                <input type="text" value={emp.accountNumber} readOnly />
+                <input type="text" value={emp.accountNo} readOnly />
               </label>
               <br />
               <label>
                 IFSC Code:
-                <input type="text" value={emp.ifscCode} readOnly />
+                <input type="text" value={emp.ifsc} readOnly />
               </label>
               <br />
             </form>
           </div>
         );
-    
+
       default:
         return <div>Select a step</div>;
     }
   };
-  // console.log(emp.avatar)
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!emp) {
+    return <div>Employee data not available</div>;
+  }
+
   return (
     <div className="employee-profile">
       <div className="employee-header">
@@ -149,8 +179,8 @@ const EmployeeProfile = () => {
                 </button>
               )}
             </div>
-          
-            <img className="profile-logo " src={emp.avatar ?? avatar} alt="Profile" />
+
+            <img className="profile-logo" src={profileImage} alt="Profile" />
             <input
               id="profileImageInput"
               type="file"
@@ -161,23 +191,13 @@ const EmployeeProfile = () => {
           </div>
           <div>
             <h1>Employee Profile</h1>
-            <p> <strong>Name</strong> {emp.FirstName}</p>
+            <p><strong>Name:</strong> {emp.FirstName}</p>
             <div className="employee-info">
               <div className="employee-profile-card">
-                <p>
-                  <strong>Employee ID:</strong> {emp.id}
-                </p>
-                <p>
-                  <strong>Designation:</strong> {emp.designation}
-                </p>
-          
-                <p>
-                  <strong>Email:</strong> {emp.email}
-                </p>
-           
-                <p>
-                  <strong>Reports To:</strong> {emp.reporting_to}
-                </p>
+                <p><strong>Employee ID:</strong> {emp.id}</p>
+                <p><strong>Designation:</strong> {emp.designation}</p>
+                <p><strong>Email:</strong> {emp.email}</p>
+                <p><strong>Reports To:</strong> {emp.reporting_to}</p>
               </div>
             </div>
           </div>
@@ -191,14 +211,13 @@ const EmployeeProfile = () => {
         >
           Personal Data
         </button>
-     
+
         <button
           className={currentStep === "BankingDetails" ? "active" : ""}
           onClick={() => setCurrentStep("BankingDetails")}
         >
           Banking Details
         </button>
-        
       </div>
 
       <div className="step-content">{renderStep()}</div>

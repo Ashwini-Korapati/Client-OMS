@@ -5,10 +5,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
-  text-shadow: 1px 1px 2px black;
+  color: black;
+  /* text-shadow: 1px 1px 2px black; */
 }
- 
+
 .background-image {
   position: absolute;
   top: 0;
@@ -19,37 +19,44 @@
   z-index: -1;
   opacity: 0.7;
 }
- 
+
 .main-container-attendance {
-  width: 60%;
-  padding: 40px;
-  background: rgba(0, 0, 0, 0.5);
+  background-color: #d5bdafb7;
+  width: 50%;
+  padding: 60px;
+  height: 80vh;
+  /* background: rgba(0, 0, 0, 0.5); */
   border-radius: 10px;
+  position: relative;
+  margin-left: 60px;
 }
- 
+
 .heading-a {
   margin-bottom: 20px;
   text-align: center;
 }
- 
+
 .time-container {
+  margin-left: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  justify-content: center;
+  /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); */
   border-radius: 5px;
-  border: 1px solid #ccc;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.1);
+  /* border: 1px solid #ccc; */
+  padding: 60px;
+  /* background: rgba(255, 255, 255, 0.1); */
 }
- 
+
 .date-time-shift-inner {
   display: flex;
   justify-content: space-between;
   width: 100%;
   margin-bottom: 20px;
+  margin-right: 40px;
 }
- 
+
 .date-time-shift-items,
 .work-hours,
 .submit-container {
@@ -57,14 +64,15 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  
   /* margin-top: 100px; */
 }
- 
+
 .capture-button {
   padding: 10px 20px;
   font-size: 16px;
   background-color: #007bff;
-  color: #fff;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -72,7 +80,7 @@
   margin-top: 10px;
   width: 200px;
 }
- 
+
 .group-button {
   padding: 10px 20px;
   background-color: #007bff;
@@ -83,18 +91,18 @@
   margin-top: 15px;
   width: 200px;
 }
- 
+
 .group-button:hover {
   background-color: #8f6eff;
 }
- 
+
 .captured-selfie,
 .video-container video {
   border-radius: 50%;
   /* margin-bottom: 10px; */
   margin-top: 10px;
 }
- 
+
 .shift-time-select,
 .work-type-select {
   padding: 8px;
@@ -102,28 +110,39 @@
   width: 100%;
   border-radius: 5px;
 }
- 
+
 .video-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
 }
- 
+
 .touchscreen-icon {
+  margin-top: 80px;
   width: 200px;
   height: 200px;
   border-radius: 50%;
   background-color: whitesmoke;
   margin-bottom: 20px;
 }
- 
- 
- 
-.form11{
+
+.form11 {
   margin-left: 70px;
 }
- 
-.work-hours{
+
+.work-hours {
   margin-top: 30px;
+}
+
+/* New CSS for the right corner image */
+.right-corner-image {
+  position: absolute;
+  top: 10px;
+  right: 220px;
+  width: 300px; /* Adjust the size as needed */
+  height: auto;
+  border-radius: 20px; /* Add this if you want rounded corners */
+  transform: rotate(25deg); /* Rotate the image to make it cross-positioned */
+
 }

@@ -131,7 +131,7 @@ const Login = () => {
             <button className="login-hidden" onClick={toggleForm}>Login as Guest</button>
           </div>
         </div>
-        <ToastContainer/>s
+        <ToastContainer/>
       </div>
     </div>
   );

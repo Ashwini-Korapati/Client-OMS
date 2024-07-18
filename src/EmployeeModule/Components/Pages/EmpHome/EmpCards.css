@@ -1,0 +1,59 @@
+.emp-card-perfamnce-dashboard {
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 40px;
+  justify-content: start;
+  padding: 20px;
+  /* background-color: #f4f4f4; */
+
+}
+
+.emp-p-card {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  align-items: center;
+  width: 350px;
+  height: 140px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid rgba(128, 128, 128, 0.438);
+}
+
+.emp-p-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px #913a3a;
+}
+
+.emp-p-icon {
+  margin-left: 120px;
+}
+
+.emp-p-icon img {
+  width: 50px;
+  height: 40px;
+}
+
+.emp-p-content h4 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.emp-p-content p {
+  font-size: small;
+  margin: 0;
+  color: black;
+}
+
+
+.apply-leave{
+  background-color: #007bff;
+  color: white;
+  width: 60px;
+  height: 30px;
+  padding: 2px;
+  margin-top: 10px;
+}

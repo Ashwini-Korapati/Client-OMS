@@ -112,15 +112,21 @@ import Settings from './HRModule/Components/Pages/Settings/Settings';
 import Profile from './HRModule/Components/Pages/Profile/Profile';
 import Addemployee from './HRModule/Components/Pages/Addemployee/Addemployee';
 import Register1 from './Landingpage/Auth/Register/Register1';
-import EmployeeDashboard from './EmployeeModule/EmployeeDashboard/EmployeeDashboard';
+import EmployeeDashboard from './EmployeeModule/Components/EmployeeDashboard/EmployeeDashboard'
 import AdminDashboard from './AdminModule/AdminDashboard';
 import UserDashboard from './UserModule/UserDashboard/UserDashboard';
 import LeaveReport from './HRModule/Components/Pages/LeaveReport/LeaveReport';
 import AdminHome from './AdminModule/AdminHome/AdminHome';
-import EmpHome from './EmployeeModule/EmpHome/EmpHome';
 import Salary from './HRModule/Components/Pages/Payroll/PayrollInputs/Salary';
 import LeaveCalender from './HRModule/Components/Pages/LeaveCalender/LeaveCalender';
 import ProtectedRoute from './route/ProtectedRoute';
+
+//employee routes->
+import EmpHome from './EmployeeModule/Components/Pages/EmpHome/EmpHome'
+import EmpProfile from './EmployeeModule/Components/Pages/EmpProfile/EmpProfile'
+// import EmpAttendance from './EmployeeModule/Components/Pages/EmpAttendance/EmpAttendance'
+import EmpApplyLeave from './EmployeeModule/Components/Pages/EmpLeave/EmpApplyLeave';
+import Empholidaycalendar from './EmployeeModule/Components/Pages/Empholidaycalendar/Empholidaycalendar'
 
 const App = () => {
   return (
@@ -152,12 +158,18 @@ const App = () => {
 
           {/* Admin Module */}
           <Route path="/admin-dashboard/*" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}>
-            <Route path="adminhome" element={<AdminHome />} />
+            <Route path="adminhome" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
+
           </Route>
 
           {/* Employee Module */}
           <Route path="/emp-dashboard/*" element={<ProtectedRoute><EmployeeDashboard /></ProtectedRoute>}>
-            <Route path="emphome" element={<EmpHome />} />
+            <Route path="emphome" element={<ProtectedRoute><EmpHome /></ProtectedRoute>} />
+            <Route path="profile" element={<ProtectedRoute><EmpProfile /></ProtectedRoute>} />
+            <Route path="leave-calender" element={<ProtectedRoute><Empholidaycalendar/></ProtectedRoute>}/>
+            <Route path='leave-apply' element={<ProtectedRoute><EmpApplyLeave/></ProtectedRoute>}/>
+
+
           </Route>
 
           {/* User Module */}
