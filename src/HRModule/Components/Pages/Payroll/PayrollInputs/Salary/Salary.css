@@ -1,36 +1,68 @@
-.payroll-dashboard {
-    height: 100vh;
-    padding: 20px;
-    background-color: #f0f2f5;
-  }
- 
-  .header {
-    background-color: #fff;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px #f0f1f2;
-  }
- 
-  .content {
-    padding: 20px;
-  }
- 
-  .components-card {
-    background-color: #fff;
-  }
- 
-  .details-card {
-    background-color: #fff;
-  }
- 
-  .ant-card {
-    margin-bottom: 10px;
-  }
- 
-  .ant-card-inner {
-    border: 1px solid #f0f0f0;
-  }
- 
-  .ant-typography {
-    margin-bottom: 0;
-  }
+.salary-dashboard {
+  height: 100vh;
+  padding: 20px;
+  background-color: #f0f2f5;
+}
+
+.salary-header {
+  background-color: #fff;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px #f0f1f2;
+}
+
+.salary-content {
+  padding: 20px;
+  height: calc(100vh - 100px); 
+  overflow: hidden;
+}
+
+.salary-components-card {
+  background-color: #fff;
+  max-height: 70vh; 
+  overflow-y: auto;
+}
+
+.salary-details-card {
+  background-color: #fff;
+}
+
+.employee-workdays-container {
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+
+.common-child {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.common-child:last-child {
+  border-bottom: none;
+}
+
+.ant-card {
+  margin-bottom: 10px;
+}
+
+.ant-card-inner {
+  border: 1px solid #f0f0f0;
+}
+
+.ant-typography {
+  margin-bottom: 0;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.salary-amount {
+  margin-left: auto;
+  padding-left: 20px;
+}

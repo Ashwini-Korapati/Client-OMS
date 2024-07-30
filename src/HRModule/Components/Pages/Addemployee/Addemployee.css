@@ -1,7 +1,6 @@
-
+/* 
 .containerStyle {
   padding: 20px;
-  /* background-color: #f7f7f7; */
   display: flex;
   justify-content: center;
 }
@@ -78,4 +77,147 @@
   color: red;
   font-weight: bold;
   margin-bottom: 15px;
+} */
+
+.main-addemployee{}
+.main-add{
+  margin-top: 100px;
 }
+
+.checkbox-add{
+  gap: 20px;
+  margin-right: 400px;
+}
+
+
+
+.custom-form {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.form-item {
+  flex: 1;
+  margin-right: 16px;
+}
+
+.form-item:last-child {
+  margin-right: 0;
+}
+
+.ant-form-item-label > label {
+  font-weight: 800;
+}
+
+.ant-form-item {
+  margin-bottom: 12px;
+}
+
+
+.editicon {
+  margin-right: 600px;
+}
+
+.ant-input,
+.ant-picker {
+  width: 100%;
+  height: 40px;
+}
+.ant-select-selector{
+  width: 100%;
+}
+
+.ant-form-item-explain-error {
+  color: #ff4d4f;
+}
+
+.main-dot-strength{
+  /* position: fixed; */
+  /* margin-top: 30px; */
+}
+
+
+.custom-checkbox{
+  display: flex;
+  flex-direction: row;
+}
+
+.custom-checkbox-group .ant-checkbox-wrapper {
+  margin-right: 8px; 
+}
+
+.custom-checkbox-group .ant-checkbox-wrapper:last-child {
+  margin-right: 0; 
+}
+
+
+.form-row-buttons{
+  background-color: #1890ff;
+  color: white;
+  width: 100px;
+  height: 40px;
+}
+.form-row-buttons1{
+  display: flex;
+  flex-direction: row;
+  gap: 200px;
+}
+
+.add-button{
+  width: 90px;
+  height: 30px;  background-color: #1890ff;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+
+}
+
+.trash-icon{
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+  cursor: pointer;
+  color: red;
+}
+.employee-position{
+ 
+  margin-left: 100px;
+}
+
+.add-emp-head{
+  position: relative;
+}
+
+/* Addemployee.css */
+.popup-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-form {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+

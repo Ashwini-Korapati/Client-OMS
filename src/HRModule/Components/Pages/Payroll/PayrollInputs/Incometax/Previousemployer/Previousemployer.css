@@ -1,0 +1,28 @@
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+ 
+.tax-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+ 
+.tax-table th, .tax-table td {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    text-align: right;
+}
+ 
+.tax-table th {
+    background-color: #d4b5b5;
+    text-align: left;
+    color: #333;
+    font-weight: normal;
+}
+ 
+.tax-table td:first-child, .tax-table th:first-child {
+    text-align: left;
+}

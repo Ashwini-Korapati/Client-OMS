@@ -30,11 +30,16 @@ const ResetPassword = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/login');
+      toast.success('Password has been reset successfully!', {
+        position: "top-center",
+        onClose: () => navigate('/login')
+      });
     }
     if (error) {
-      console.log(error);
-      dispatch(clearAuthError());
+      toast.error(error, {
+        position: "top-center",
+        onOpen: () => dispatch(clearAuthError())
+      });
     }
   }, [isAuthenticated, error, dispatch, navigate]);
 

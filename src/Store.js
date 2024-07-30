@@ -15,7 +15,8 @@ import attendanceReducer from './HRModule/Redux/Reducers/AttendanceReducers'
 import LeaveReportslice from './HRModule/Redux/Reducers/LeaveReportSlice'
 import profileReducer from './HRModule/Redux/Reducers/ProfileSlice'
 import adminReducer from "./Landingpage/Redux/slices/adminSlice";
-import addEmployeeReducer from "./HRModule/Redux/Reducers/Addemployeereducers"
+// import addEmployeeReducer from "./HRModule/Redux/Reducers/Addemployeereducers"
+import employeeReducer from './HRModule/Redux/Slices/NewAddemployee'
 import employeesReducer from './HRModule/Redux/Slices/ViewempSlice'
 import LeaveFormSlice from "./HRModule/Redux/Slices/LeaveFormSlice";
 import leaveCalendarReducer from './HRModule/Redux/Slices/leaveCalendarSlice'
@@ -61,7 +62,8 @@ const reducer = combineReducers({
   userState: userReducer,
   attendance: attendanceReducer,
   leavereport: LeaveReportslice,
-  addemployee: addEmployeeReducer,
+  // addemployee: addEmployeeReducer,
+  addemployee: employeeReducer,
   employees: employeesReducer,
   leaveform: LeaveFormSlice,
   leaveCalendar: leaveCalendarReducer,

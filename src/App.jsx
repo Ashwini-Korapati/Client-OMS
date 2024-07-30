@@ -27,6 +27,8 @@ import AdminHome from './AdminModule/AdminHome/AdminHome';
 import Salary from './HRModule/Components/Pages/Payroll/PayrollInputs/Salary/Salary';
 import LeaveCalender from './HRModule/Components/Pages/LeaveCalender/LeaveCalender';
 import ProtectedRoute from './route/ProtectedRoute';
+import Updatesalary from './HRModule/Components/Pages/Payroll/PayrollInputs/Salary/Updatesalary/Updatesalary'
+// import Updatesalary from './HRModule/Components/Pages/Payroll/PayrollInputs/Salary/Updatesalary'
 
 //employee routes->
 import EmpHome from './EmployeeModule/Components/Pages/EmpHome/EmpHome'
@@ -36,7 +38,8 @@ import EmpApplyLeave from './EmployeeModule/Components/Pages/EmpLeave/EmpApplyLe
 import Empholidaycalendar from './EmployeeModule/Components/Pages/Empholidaycalendar/Empholidaycalendar'
 import ChangePassword from './HRModule/Components/Pages/ChangePassword/ChangePassword'
 import Loan from './HRModule/Components/Pages/Payroll/PayrollInputs/Loan/Loan';
-
+import Income from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Income/Income';
+import Incometabs from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Incometabs/Incometabs'
 const App = () => {
   return (
     <div>
@@ -65,6 +68,12 @@ const App = () => {
             <Route path='loan' element={<ProtectedRoute><Loan/></ProtectedRoute>}/>
             <Route path="salary" element={<ProtectedRoute><Salary /></ProtectedRoute>} />
             <Route path='changepassword' element={<ProtectedRoute><ChangePassword/></ProtectedRoute>}/>
+            <Route path='updatesalary' element={<ProtectedRoute><Updatesalary/></ProtectedRoute>}/>
+            {/* <Route path='updatesalary' element={<ProtectedRoute><Updatesalary/></ProtectedRoute>}/> */}
+
+          
+            <Route path='income' element={<ProtectedRoute><Income/></ProtectedRoute>}/>
+            <Route path='income-tax' element={<ProtectedRoute><Incometabs/></ProtectedRoute>}/>
           </Route>
 
           {/* Admin Module */}

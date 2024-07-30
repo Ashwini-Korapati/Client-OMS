@@ -74,41 +74,45 @@ const MenuList = [
             path:'/hr-dashboard/salary-revisions',
             label: <span className="menu-item-text">Salary Revisions</span>,
           },
-         
+          {
+            key: '12',
+            path:'/hr-dashboard/income-tax',
+            label: <span className="menu-item-text">Income-Tax</span>,
+          },
         ]
       },
       {
-        key: '12',
+        key: '13',
         path:'/hr-dashboard/process',
         icon: <BsPersonBoundingBox style={iconStyle} />,
         label: <span className="menu-item-text">Process</span>,
       },
       {
-        key: '13',
+        key: '14',
         path:'/hr-dashboard/verify',
         icon: <BsCheckCircle style={iconStyle} />,
         label: <span className="menu-item-text">Verify</span>,
       },
       {
-        key: '14',
+        key: '15',
         path:'/hr-dashboard/payout',
         icon: <BsXCircle style={iconStyle} />,
         label: <span className="menu-item-text">Payout</span>,
       },
       {
-        key: '15',
+        key: '16',
         path:'/hr-dashboard/published-info',
         icon: <BsEnvelopeOpenFill style={iconStyle} />,
         label: <span className="menu-item-text">Published Info</span>,
       },
       {
-        key: '16',
+        key: '17',
         path:'/hr-dashboard/admin-payroll',
         icon: <BsPersonCheckFill style={iconStyle} />,
         label: <span className="menu-item-text">Admin</span>,
       },
       {
-        key: '17',
+        key: '18',
         path:'/hr-dashboard/setup',
         icon: <BsGearFill style={iconStyle} />,
         label: <span className="menu-item-text">Setup</span>,
@@ -116,7 +120,7 @@ const MenuList = [
     ]
   },
   {
-    key: '18',
+    key: '19',
     path:'/hr-dashboard/attendance',
     icon: <FaClipboardList style={iconStyle} />,
     label: <span className="menu-item-text">Attendance</span>,

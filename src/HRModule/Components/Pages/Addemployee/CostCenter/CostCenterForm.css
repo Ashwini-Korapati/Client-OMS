@@ -1,0 +1,151 @@
+.cost-center-form {
+    font-family: Arial, sans-serif;
+  }
+  
+  .cost-center-form h2 {
+    color: #999;
+  }
+  
+  .cost-center-form table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+  }
+  
+  .cost-center-form th,
+  .cost-center-form td {
+    padding: 0.5rem;
+    text-align: left;
+  }
+  
+  .cost-center-form th {
+    background-color: #f1f1f1;
+  }
+  
+  .cost-center-form input[type="text"] {
+    width: calc(100% - 1rem);
+    padding: 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .cost-center-form input[type="checkbox"] {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  
+  .form-buttons {
+    display: flex;
+    gap: 80px;
+    justify-content: space-between;
+  }
+  
+  
+  
+ 
+  
+
+
+
+  /* location css */
+  .location-form {
+    font-family: Arial, sans-serif;
+}
+
+.location-form table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+.location-form th,
+.location-form td {
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.location-form th {
+    background-color: #f1f1f1;
+}
+
+.location-form input[type="text"] {
+    width: calc(100% - 1rem);
+    padding: 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.trash-icon {
+    color: #d9534f; /* Red color for trash icon */
+    cursor: pointer;
+}
+
+
+
+/* department css */
+.department-form {
+  font-family: Arial, sans-serif;
+}
+
+.department-form table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.department-form th,
+.department-form td {
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.department-form th {
+  background-color: #f1f1f1;
+}
+
+.department-form input[type="text"] {
+  width: calc(100% - 1rem);
+  padding: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.trash-icon {
+  color: #d9534f; /* Red color for trash icon */
+  cursor: pointer;
+}
+
+/* company css */
+.company-form {
+  font-family: Arial, sans-serif;
+}
+
+.company-form table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.company-form th,
+.company-form td {
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.company-form th {
+  background-color: #f1f1f1;
+}
+
+.company-form input[type="text"] {
+  width: calc(100% - 1rem);
+  padding: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.trash-icon {
+  color: #d9534f; /* Red color for trash icon */
+  cursor: pointer;
+}
+

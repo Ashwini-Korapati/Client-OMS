@@ -26,7 +26,7 @@ const HRHome = () => {
       </div>
       <HRCards />
       <div className='HRHome-graph-calender'>
-        <Graph />
+        {/* <Graph /> */}
         <Calender />
       </div>
     </div>

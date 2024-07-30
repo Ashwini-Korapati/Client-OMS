@@ -11,7 +11,7 @@ const { Option } = Select;
 
 const LeaveCalendar = () => {
   const dispatch = useDispatch();
-  const holidays = useSelector(selectHolidays) || []; // Ensure holidays is an empty array if undefined
+  const holidays = useSelector(selectHolidays) || []; 
   const loading = useSelector((state) => state.leaveCalendar.loading);
   const error = useSelector((state) => state.leaveCalendar.error);
   const [year, setYear] = useState(2024);

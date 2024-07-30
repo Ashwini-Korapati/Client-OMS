@@ -22,18 +22,18 @@ const Forget = () => {
 
   useEffect(() => {
     if (message) {
-            console.log(message);
-        // navigate('/login');
+      toast.success(message, {
+        position: "top-center",
+        onClose: () => navigate('/login'),
+      });
     }
     if (error) {
-        toast(error, {
-          
-            position: "top-center",
-            type: 'error',
-            onOpen: () => { dispatch(clearAuthError()) }
-        });
+      toast.error(error, {
+        position: "top-center",
+        onOpen: () => dispatch(clearAuthError())
+      });
     }
-}, [error, error, dispatch, navigate]);
+  }, [message, error, dispatch, navigate]);
 
   return (
     <div className="forget-container">

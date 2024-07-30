@@ -59,7 +59,7 @@ const attendanceSlice = createSlice({
       })
       .addCase(checkOut.fulfilled, (state, action) => {
         state.checkOutTime = action.payload.check_out;
-        state.totalHours = action.payload.total_hours; // Ensure this line is correct
+        state.totalHours = action.payload.total_hours; 
         state.success = true;
       })
       .addCase(checkIn.rejected, (state, action) => {
