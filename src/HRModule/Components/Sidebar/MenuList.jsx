@@ -91,11 +91,16 @@ const MenuList = [
             path:'/hr-dashboard/salaryrevisions',
             label: <span className="menu-item-text">Salary Revisions</span>,
           },
+          {
+            key: '12',
+            path:'/hr-dashboard/income-tax',
+            label: <span className="menu-item-text">Income-Tax</span>,
+          },
          
         ]
       },
       {
-        key: '12',
+        key: '41',
         path:'/hr-dashboard/process',
         icon: <BsPersonBoundingBox style={iconStyle} />,
         label: <span className="menu-item-text">Process</span>,

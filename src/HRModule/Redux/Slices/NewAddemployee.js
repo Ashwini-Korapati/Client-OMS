@@ -7,13 +7,16 @@ export const addEmployeeAsync = createAsyncThunk(
   'employees/addEmployee',
   async (employeeData, thunkAPI) => {
     try {
-      const response = await fetch("http://localhost:8000/api/v1/hr/addEmployee", {
+      const response = await fetch("http://localhost:8000/api/v1/hr/addEmployee"
+        , {
+        
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(employeeData),
         credentials: 'include'
+        
       });
  
       if (!response.ok) {

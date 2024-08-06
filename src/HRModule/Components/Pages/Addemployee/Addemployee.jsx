@@ -1115,6 +1115,7 @@ const AddEmployee = () => {
       const response = await dispatch(addEmployeeAsync(formData)).unwrap();
       console.log('API Response:', response); 
       form.resetFields();
+      toast.success('Employee added successfully.');
     } catch (error) {
       console.error('Error adding employee:', error.message || error);
     }
@@ -1542,7 +1543,7 @@ const AddEmployee = () => {
              <Form.Item
                 label="Payment Type"
                 className="form-item"
-                name="paymentType"
+                name="paymentMode"
                 rules={[{ message: 'Please select payment type' }]}
               >
                 <Select onChange={handlePaymentTypeChange} placeholder="---Select Payment Type---">
