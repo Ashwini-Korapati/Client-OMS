@@ -22,7 +22,7 @@ const HRHome = () => {
       <div className='EmpHome-blog-cards'>
         <EmpCards />
         <div className='image-container-emp'>
-        <img src={logo} alt="Logo" className="emp-home-logo" />
+        {/* <img src={logo} alt="Logo" className="emp-home-logo" /> */}
 
       </div>
       </div>

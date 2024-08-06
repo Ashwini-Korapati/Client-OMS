@@ -421,7 +421,9 @@ const AttendanceForm = ({ className = "" }) => {
                 </div>
               </form>
             </div>
-            <div className="work-hours">
+       
+          </div>
+          <div className="work-hours">
               {checkInTime && (
                 <div className="check-in-time">
                   Check-in Time: {new Date(checkInTime).toLocaleTimeString()}
@@ -440,7 +442,6 @@ const AttendanceForm = ({ className = "" }) => {
                 </div>
               )}
             </div>
-          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,42 @@
+.my-approvers-container {
+    width: 100%;
+    margin: auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .my-approvers-section {
+    margin-bottom: 30px;
+  }
+
+  .approvers-mainheading{
+    margin-bottom: 25 px;
+  }
+  
+  .my-approvers-section h2 {
+    background-color: #e0f7fa;
+    padding: 10px;
+    margin: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-size: 20px;
+  }
+  
+  .my-approvers-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .my-approvers-table th, .my-approvers-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .my-approvers-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .my-approvers-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  

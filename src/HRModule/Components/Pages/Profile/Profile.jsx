@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProfile, updateProfile } from "../../../Redux/Reducers/ProfileSlice";
 
 const EmployeeProfile = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { emp, loading } = useSelector(state => state.profile.emp);
   const [currentStep, setCurrentStep] = useState("PersonalData");
   const [formData, setFormData] = useState({
@@ -37,16 +37,16 @@ const EmployeeProfile = () => {
   });
   const [profileImage, setProfileImage] = useState(avatar);
 
-  useEffect(() => {
-    dispatch(getProfile());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getProfile());
+  // }, [dispatch]);
 
-  useEffect(() => {
-    if (emp) {
-      setFormData(emp);
-      setProfileImage(emp.avatar || avatar);
-    }
-  }, [emp]);
+  // useEffect(() => {
+  //   if (emp) {
+  //     setFormData(emp);
+  //     setProfileImage(emp.avatar || avatar);
+  //   }
+  // }, [emp]);
 
   const handlePersonalInfoSubmit = (e) => {
     e.preventDefault();

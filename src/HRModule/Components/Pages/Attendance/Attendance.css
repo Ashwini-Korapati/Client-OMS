@@ -129,6 +129,7 @@
 
 .work-hours {
   margin-top: 30px;
+  display: flex;
 }
 
 .right-corner-image {

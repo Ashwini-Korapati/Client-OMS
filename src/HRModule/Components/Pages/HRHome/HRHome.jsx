@@ -21,7 +21,9 @@ const HRHome = () => {
       <div className='HRHome-blog-cards'>
         {/* <img src={logo} alt="Logo" className="hr-logo" /> */}
         <h1>
-          Welcome <span className="emp-name">{emp.name}..!</span>
+          {/* Welcome <span className="emp-name">{emp.name}..!</span> */}
+          Welcome <span className="emp-name">user..!</span>
+
         </h1>
       </div>
       <HRCards />

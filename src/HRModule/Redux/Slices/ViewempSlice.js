@@ -111,7 +111,7 @@ export const fetchEmployees = () => async dispatch => {
     dispatch(fetchEmployeesSuccess(response.data));
   } catch (error) {
     dispatch(fetchEmployeesFailure(error.message));
-    toast.error('Failed to fetch employees.');
+    // toast.error('Failed to fetch employees.');
   }
 };
 

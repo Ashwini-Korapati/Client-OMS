@@ -1,5 +1,5 @@
 
-import React from 'react';
+import  { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer } from 'react-toastify';
@@ -28,6 +28,8 @@ import Salary from './HRModule/Components/Pages/Payroll/PayrollInputs/Salary/Sal
 import LeaveCalender from './HRModule/Components/Pages/LeaveCalender/LeaveCalender';
 import ProtectedRoute from './route/ProtectedRoute';
 import Updatesalary from './HRModule/Components/Pages/Payroll/PayrollInputs/Salary/Updatesalary/Updatesalary'
+import TimeSheet from './HRModule/Components/Pages/TimeManagement/TimeSheet/TimeSheet'
+import TimeReport from './HRModule/Components/Pages/TimeManagement/TimeReport/TimeReport'
 // import Updatesalary from './HRModule/Components/Pages/Payroll/PayrollInputs/Salary/Updatesalary'
 
 //employee routes->
@@ -40,7 +42,32 @@ import ChangePassword from './HRModule/Components/Pages/ChangePassword/ChangePas
 import Loan from './HRModule/Components/Pages/Payroll/PayrollInputs/Loan/Loan';
 import Income from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Income/Income';
 import Incometabs from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Incometabs/Incometabs'
+import MyApprovers from './HRModule/Components/Pages/TimeManagement/MyApprovers/MyApprovers'
+// import { getProfile } from './Landingpage/'
+import { getProfile } from './HRModule/Redux/Reducers/ProfileSlice';
+
+import store from "./Store"
+import { useDispatch } from 'react-redux';
+import EmpLopDays from './HRModule/Components/Pages/Payroll/PayrollInputs/EmpLopDays/EmpLopDays';
+import Exemptions from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Exemptions/Exemptions';
+import Perquisite from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Perquisite/Perquisite';
+import Deductions from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Deductions/Deductions';
+import Otherincome from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Otherincome/Otherincome';
+import Houseproperty from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Houseproperty/Houseproperty';
+import Regime from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Regime/Regime';
+import Result from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Result/Result';
+
+
+// const result = await dispatch(getProfile())
+
 const App = () => {
+
+  const dispatch=useDispatch()
+
+
+  useEffect(()=>{
+    dispatch(getProfile())
+  },[])
   return (
     <div>
       <BrowserRouter>
@@ -67,13 +94,25 @@ const App = () => {
             <Route path="view-employee" element={<ProtectedRoute><Viewemployee /></ProtectedRoute>} />
             <Route path='loan' element={<ProtectedRoute><Loan/></ProtectedRoute>}/>
             <Route path="salary" element={<ProtectedRoute><Salary /></ProtectedRoute>} />
+            <Route path="emp-lopdays" element={<ProtectedRoute><EmpLopDays/></ProtectedRoute>}/>
             <Route path='changepassword' element={<ProtectedRoute><ChangePassword/></ProtectedRoute>}/>
             <Route path='updatesalary' element={<ProtectedRoute><Updatesalary/></ProtectedRoute>}/>
+            <Route path='time-sheet' element={<ProtectedRoute><TimeSheet/></ProtectedRoute>}/>
+            <Route path='time-report/:dateRange' element={<ProtectedRoute><TimeReport/></ProtectedRoute>}/>
+            <Route path='myapprovers' element={<ProtectedRoute><MyApprovers/></ProtectedRoute>}/>
+
             {/* <Route path='updatesalary' element={<ProtectedRoute><Updatesalary/></ProtectedRoute>}/> */}
 
           
             <Route path='income' element={<ProtectedRoute><Income/></ProtectedRoute>}/>
             <Route path='income-tax' element={<ProtectedRoute><Incometabs/></ProtectedRoute>}/>
+            <Route path='exemptions' element={<ProtectedRoute><Exemptions/></ProtectedRoute>}/>
+            <Route path='perquisite' element={<ProtectedRoute><Perquisite/></ProtectedRoute>}/>
+            <Route path='deductions' element={<ProtectedRoute><Deductions/></ProtectedRoute>}/>
+            <Route path='otheroncome' element={<ProtectedRoute><Otherincome/></ProtectedRoute>}/>
+            <Route path='houseproperty' element={<ProtectedRoute><Houseproperty/></ProtectedRoute>}/>
+            <Route path='regime' element={<ProtectedRoute><Regime/></ProtectedRoute>}/>
+            <Route path='result' element={<ProtectedRoute><Result/></ProtectedRoute>}/>
           </Route>
 
           {/* Admin Module */}

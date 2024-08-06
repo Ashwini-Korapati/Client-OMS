@@ -1,13 +1,24 @@
-
-
 import React from 'react';
 import {
   FaHome, FaUser, FaDollarSign, FaClipboardList, FaChartLine, FaCalendarAlt
 } from 'react-icons/fa';
 import { BsFillPersonPlusFill, BsPeopleFill, BsFileEarmarkText, BsInfoCircle, BsCashStack, BsPersonBoundingBox, BsCheckCircle, BsXCircle, BsEnvelopeOpenFill, BsPersonCheckFill, BsArrowRightCircle, BsGearFill } from "react-icons/bs";
 import { SlCalender } from "react-icons/sl";
+import {fetchEmployees} from './../../Redux/Slices/SalarySlice'
+import { useDispatch } from 'react-redux';
  
 const iconStyle = { fontSize: '20px' };
+ 
+ 
+const handleClick = async () => {
+  const dispatch = useDispatch()
+  const result = await dispatch(fetchEmployees()).unwrap();
+  if (result) {
+   
+    // dispatch(resetSuccess());
+  }
+  console.log(user.avatar)
+};
  
 const MenuList = [
   {
@@ -46,6 +57,12 @@ const MenuList = [
         path:'/hr-dashboard/main',
         icon: <BsFileEarmarkText style={iconStyle} />,
         label: <span className="menu-item-text">Main</span>,
+        children: [
+          {
+            key: '24',
+            path:'/hr-dashboard/overview',
+            label:  <span className="menu-item-text">overview</span>,
+          },]
       },
       {
         key: '7',
@@ -62,7 +79,7 @@ const MenuList = [
           {
             key: '9',
             path:'/hr-dashboard/salary',
-            label: <span className="menu-item-text">Salary</span>,
+            label: <span className="menu-item-text" >Salary</span>,
           },
           {
             key: '10',
@@ -71,48 +88,44 @@ const MenuList = [
           },
           {
             key: '11',
-            path:'/hr-dashboard/salary-revisions',
+            path:'/hr-dashboard/salaryrevisions',
             label: <span className="menu-item-text">Salary Revisions</span>,
           },
-          {
-            key: '12',
-            path:'/hr-dashboard/income-tax',
-            label: <span className="menu-item-text">Income-Tax</span>,
-          },
+         
         ]
       },
       {
-        key: '13',
+        key: '12',
         path:'/hr-dashboard/process',
         icon: <BsPersonBoundingBox style={iconStyle} />,
         label: <span className="menu-item-text">Process</span>,
       },
       {
-        key: '14',
+        key: '13',
         path:'/hr-dashboard/verify',
         icon: <BsCheckCircle style={iconStyle} />,
         label: <span className="menu-item-text">Verify</span>,
       },
       {
-        key: '15',
+        key: '14',
         path:'/hr-dashboard/payout',
         icon: <BsXCircle style={iconStyle} />,
         label: <span className="menu-item-text">Payout</span>,
       },
       {
-        key: '16',
+        key: '15',
         path:'/hr-dashboard/published-info',
         icon: <BsEnvelopeOpenFill style={iconStyle} />,
         label: <span className="menu-item-text">Published Info</span>,
       },
       {
-        key: '17',
+        key: '16',
         path:'/hr-dashboard/admin-payroll',
         icon: <BsPersonCheckFill style={iconStyle} />,
         label: <span className="menu-item-text">Admin</span>,
       },
       {
-        key: '18',
+        key: '17',
         path:'/hr-dashboard/setup',
         icon: <BsGearFill style={iconStyle} />,
         label: <span className="menu-item-text">Setup</span>,
@@ -120,10 +133,35 @@ const MenuList = [
     ]
   },
   {
-    key: '19',
+    key: '18',
     path:'/hr-dashboard/attendance',
     icon: <FaClipboardList style={iconStyle} />,
     label: <span className="menu-item-text">Attendance</span>,
+  },
+  {
+    key: '18',
+    icon: <FaClipboardList style={iconStyle} />,
+    label: <span className="menu-item-text">Time Management</span>,
+    children: [
+      {
+        key: '30',
+        path:'/hr-dashboard/time-sheet',
+        icon: <BsArrowRightCircle style={iconStyle} />,
+        label: <span className="menu-item-text">Time sheet Summmary</span>,
+      },
+      {
+        key: '28',
+        path:'/hr-dashboard/time-report',
+        icon: <BsArrowRightCircle style={iconStyle} />,
+        label: <span className="menu-item-text">Time report Summmary</span>,
+      },
+      {
+        key: '31',
+        path:'/hr-dashboard/myapprovers',
+        icon: <BsArrowRightCircle style={iconStyle} />,
+        label: <span className="menu-item-text">My Approver</span>,
+      },
+    ]
   },
   // {
   //   key: '19',

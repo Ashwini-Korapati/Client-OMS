@@ -41,45 +41,40 @@
     color: #777;
   }
    */
-
-
-
-
    .card-layout {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 20px;
-    background-color: #f0f0f0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px; /* Reduced gap */
+    padding: 10px; /* Reduced padding */
   }
   
-  .card {
-    background-color: white;
+  .hr-home-card {
+    background-color: #f0f0f0;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* Reduced padding */
     text-align: center;
     transition: transform 0.2s;
+    min-width: 80px; /* Minimal width */
+    min-height: 300px; /* Adjusted height */
+    cursor: pointer;
   }
   
-  .card:hover {
-    transform: translateY(-10px);
+  .hr-home-card:hover {
+    transform: translateY(-5px); /* Slightly reduced transform effect */
   }
   
-  .card h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
+  .hr-home-card h3 {
+    font-size: 22px; /* Adjusted font size */
+    margin-bottom: 60px; /* Adjusted margin */
   }
   
-  .card .card .icon {
-    height: 100px;
-    margin-bottom: 10px;
-    background-color: #e0e0e0;
-    border-radius: 4px;
+  .hr-home-icon {
+    width: 130px; /* Set width */
+    height: 130px; /* Set height */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    color: #666;
+    margin: 0 auto; /* Center the icon */
   }
   

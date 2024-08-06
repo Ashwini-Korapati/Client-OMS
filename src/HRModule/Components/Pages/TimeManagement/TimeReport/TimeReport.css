@@ -1,0 +1,108 @@
+/* .time-report {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    margin-bottom: 20px;
+  }
+  
+  .header-info p {
+    margin: 0;
+    font-size: 18px; 
+  }
+  
+  .header h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .footer {
+    margin-top: 20px;
+  }
+  
+  .footer p {
+    font-size: 14px;
+    margin: 0;
+    text-align: right;
+  }
+  
+  .ant-table-thead > tr > th {
+    background-color: #198dc3; 
+  }
+  
+  .ant-table-tbody > tr > td {
+    font-size: 14px;
+  }
+   */
+
+
+   .time-report-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .time-report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .time-report-header h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .time-report-header-info {
+    text-align: right;
+  }
+  
+  .time-report-header-info p {
+    margin: 5px 0;
+    font-size: 18px;
+  }
+  
+  .time-report-filters {
+    margin-bottom: 20px;
+  }
+  
+  .time-report-filters input,
+  .time-report-filters select {
+    padding: 8px;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  
+  .time-report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .time-report-table th,
+  .time-report-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .time-report-table th {
+    background-color: #e6f7ff;
+  }
+  
+  .time-report-table td {
+    font-size: 14px;
+  }
+  
+  .time-report-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .time-report-footer p {
+    font-size: 14px;
+    margin: 0;
+  }
+  
