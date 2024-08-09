@@ -1017,7 +1017,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Input, Select, DatePicker, Radio, Steps, Button, Modal,Checkbox } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
- 
+import { toast,ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import CostCenterForm from '../Addemployee/CostCenter/CostCenterForm';
 import LocationForm from '../Addemployee/Location/LocationForm';
 import DepartmentForm from '../Addemployee/Department/DepartmentForm';
@@ -1178,14 +1179,7 @@ const AddEmployee = () => {
               >
                 <Input />
               </Form.Item>
-              <Form.Item
-                label="Role"
-                className="form-item"
-                name="role"
-                rules={[{  message: 'Please input employee role' }]}
-              >
-                <Input />
-              </Form.Item>
+  
               <Form.Item
                 label="Confirmation Date"
                 className="form-item"
@@ -1316,7 +1310,6 @@ const AddEmployee = () => {
                 label="Date Of Joining"
                 className="form-item"
                 name="dateOfJoining"
-                rules={[{ message: 'Please select date of joining' }]}
               >
                 <DatePicker style={{ width: '100%' }} />
               </Form.Item>
@@ -1332,6 +1325,16 @@ const AddEmployee = () => {
                 </Select>
               </Form.Item>
             </div>
+            <div className="form-row">
+            <Form.Item
+                label="Role"
+                className="form-item"
+                name="role"
+                rules={[{  message: 'Please input employee role' }]}
+              >
+                <Input />
+              </Form.Item>
+              </div>
               </>
             )}
             {currentStep === 1 && (
@@ -1709,6 +1712,7 @@ const AddEmployee = () => {
       >
         <CompanyForm onFinish={handleCompanyFormFinish} />
       </Modal>
+      <ToastContainer/>
     </div>
   );
 };

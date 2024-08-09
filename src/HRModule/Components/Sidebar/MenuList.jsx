@@ -4,21 +4,21 @@ import {
 } from 'react-icons/fa';
 import { BsFillPersonPlusFill, BsPeopleFill, BsFileEarmarkText, BsInfoCircle, BsCashStack, BsPersonBoundingBox, BsCheckCircle, BsXCircle, BsEnvelopeOpenFill, BsPersonCheckFill, BsArrowRightCircle, BsGearFill } from "react-icons/bs";
 import { SlCalender } from "react-icons/sl";
-import {fetchEmployees} from './../../Redux/Slices/SalarySlice'
+// import {fetchEmployees1} from './../../Redux/Slices/SalarySlice'
 import { useDispatch } from 'react-redux';
  
 const iconStyle = { fontSize: '20px' };
  
  
-const handleClick = async () => {
-  const dispatch = useDispatch()
-  const result = await dispatch(fetchEmployees()).unwrap();
-  if (result) {
+// const handleClick = async () => {
+//   const dispatch = useDispatch()
+//   const result = await dispatch(fetchEmployees1()).unwrap();
+//   if (result) {
    
-    // dispatch(resetSuccess());
-  }
-  console.log(user.avatar)
-};
+//     // dispatch(resetSuccess());
+//   }
+//   console.log(user.avatar)
+// };
  
 const MenuList = [
   {

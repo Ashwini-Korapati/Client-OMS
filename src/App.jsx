@@ -80,26 +80,26 @@ const App = () => {
           <Route path="/password/reset/:token" element={<ResetPassword />} />
 
           {/* HR Module */}
-          <Route path="/hr-dashboard/*" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
-            <Route path="hr-home" element={<ProtectedRoute><HRHome /></ProtectedRoute> }/>
-            <Route path="payroll" element={<ProtectedRoute><Payroll /></ProtectedRoute>} />
-            <Route path="attendance" element={<ProtectedRoute><Attendance /></ProtectedRoute>} />
-            <Route path="performance" element={<ProtectedRoute><PerfarmanceMatrics /></ProtectedRoute>} />
-            <Route path="leave-report" element={<ProtectedRoute><LeaveReport /></ProtectedRoute>} />
-            <Route path="apply-leave" element={<ProtectedRoute><LeaveMetrics /></ProtectedRoute>} />
-            <Route path="leave-calender" element={<ProtectedRoute><LeaveCalender /></ProtectedRoute>} />
-            <Route path="settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
-            <Route path="profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-            <Route path="add-employee" element={<ProtectedRoute><Addemployee /></ProtectedRoute>} />
-            <Route path="view-employee" element={<ProtectedRoute><Viewemployee /></ProtectedRoute>} />
-            <Route path='loan' element={<ProtectedRoute><Loan/></ProtectedRoute>}/>
-            <Route path="salary" element={<ProtectedRoute><Salary /></ProtectedRoute>} />
-            <Route path="emp-lopdays" element={<ProtectedRoute><EmpLopDays/></ProtectedRoute>}/>
-            <Route path='changepassword' element={<ProtectedRoute><ChangePassword/></ProtectedRoute>}/>
-            <Route path='updatesalary' element={<ProtectedRoute><Updatesalary/></ProtectedRoute>}/>
-            <Route path='time-sheet' element={<ProtectedRoute><TimeSheet/></ProtectedRoute>}/>
-            <Route path='time-report/:dateRange' element={<ProtectedRoute><TimeReport/></ProtectedRoute>}/>
-            <Route path='myapprovers' element={<ProtectedRoute><MyApprovers/></ProtectedRoute>}/>
+          <Route path="/hr-dashboard/*" element={<Dashboard />}>
+            <Route path="hr-home" element={<HRHome /> }/>
+            <Route path="payroll" element={<Payroll />} />
+            <Route path="attendance" element={<Attendance />} />
+            <Route path="performance" element={<PerfarmanceMatrics />} />
+            <Route path="leave-report" element={<LeaveReport />} />
+            <Route path="apply-leave" element={<LeaveMetrics />} />
+            <Route path="leave-calender" element={<LeaveCalender />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="add-employee" element={<Addemployee />} />
+            <Route path="view-employee" element={<Viewemployee />} />
+            <Route path='loan' element={<Loan/>}/>
+            <Route path="salary" element={<Salary />} />
+            <Route path="emp-lopdays" element={<EmpLopDays/>}/>
+            <Route path='changepassword' element={<ChangePassword/>}/>
+            <Route path='updatesalary' element={<Updatesalary/>}/>
+            <Route path='time-sheet' element={<TimeSheet/>}/>
+            <Route path='time-report' element={<TimeReport/>}/>
+            <Route path='myapprovers' element={<MyApprovers/>}/>
 
             {/* <Route path='updatesalary' element={<ProtectedRoute><Updatesalary/></ProtectedRoute>}/> */}
 

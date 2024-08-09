@@ -14,9 +14,7 @@ const holidays = [
 const HolidayList = () => {
   const navigate = useNavigate();
 
-  const navigateToCalendar = () => {
-    navigate('/hr-dashboard/leave-calender');
-  };
+
 
   return (
     <div className="holiday-list-container">

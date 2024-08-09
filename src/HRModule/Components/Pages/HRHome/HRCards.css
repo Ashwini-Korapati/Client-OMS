@@ -44,37 +44,37 @@
    .card-layout {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px; /* Reduced gap */
-    padding: 10px; /* Reduced padding */
+    gap: 40px; 
+    padding: 10px; 
   }
   
   .hr-home-card {
     background-color: #f0f0f0;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px; /* Reduced padding */
+    padding: 10px; 
     text-align: center;
     transition: transform 0.2s;
-    min-width: 80px; /* Minimal width */
-    min-height: 300px; /* Adjusted height */
+    min-width: 70px; 
+    min-height: 250px; 
     cursor: pointer;
   }
   
   .hr-home-card:hover {
-    transform: translateY(-5px); /* Slightly reduced transform effect */
+    transform: translateY(-5px); 
   }
   
   .hr-home-card h3 {
-    font-size: 22px; /* Adjusted font size */
-    margin-bottom: 60px; /* Adjusted margin */
+    font-size: 22px; 
+    margin-bottom: 60px; 
   }
   
   .hr-home-icon {
-    width: 130px; /* Set width */
-    height: 130px; /* Set height */
+    width: 90px; 
+    height: 90px; 
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto; /* Center the icon */
+    margin: 0 auto; 
   }
   

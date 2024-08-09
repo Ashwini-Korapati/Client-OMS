@@ -91,7 +91,7 @@ const TimeSheet = () => {
   ];
 
   const handleWeekClick = (week) => {
-    navigate(`/hr-dashboard/time-report/${week.dateRange}`, { state: { week } });
+    navigate(`/hr-dashboard/time-report`);
   };
 
   const filteredWeeks = weeks.filter(week =>

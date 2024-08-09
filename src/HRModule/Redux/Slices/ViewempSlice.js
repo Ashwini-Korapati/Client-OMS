@@ -139,7 +139,7 @@ export const deleteEmployee = (id) => async dispatch => {
   if (window.confirm('Are you sure you want to delete this employee?')) {
     dispatch(deleteEmployeeStart());
     try {
-      const token = localStorage.getItem('authToken');
+      const token = localStorage.getItem('authToken')
       await axios.delete(`http://localhost:8000/api/v1/hr/deleteEmployee/${id}`, {
         headers: {
           'Authorization': `Bearer ${token}`

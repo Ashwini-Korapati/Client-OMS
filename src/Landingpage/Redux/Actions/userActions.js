@@ -286,7 +286,9 @@ export const login = (email, password) => async (dispatch) => {
 export const emplogin = (emp_id, password) => async (dispatch) => {
     try {
         dispatch(emploginRequest());
-        const { data } = await axios.post("http://localhost:8000/api/v1/employee/login", { emp_id, password });
+        console.log(emp_id , password)
+        const {data} = await axios.post("http://localhost:8000/api/v1/employee/login", { emp_id, password });
+        console.log(data)
         dispatch(emploginSuccess(data));
     } catch (error) {
         dispatch(emploginFail(error.response.data.message));
@@ -371,7 +373,7 @@ export const loadUser = () => async (dispatch) => {
         dispatch(loadUserSuccess(data));
     } catch (error) {
         dispatch(loadUserFail(error.response.data.message));
-    }s
+    }
 };
 
 export const emplogout = () => async (dispatch) => {

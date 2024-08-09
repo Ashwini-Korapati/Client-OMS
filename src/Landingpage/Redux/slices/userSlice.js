@@ -1,9 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
+
+
 const userSlice = createSlice({
     name: 'user',
     initialState: {
+
         loading: false,
         user: {},
         users: [],
@@ -11,6 +14,12 @@ const userSlice = createSlice({
         isUserDeleted: false
     },
     reducers: {
+        setToken(state, action) {
+            state.token = action.payload;
+          },
+          clearToken(state) {
+            state.token = null;
+          },
         usersRequest(state, action){
             return {
                 ...state,
@@ -131,7 +140,9 @@ export const {
     updateUserFail,
     clearUserDeleted,
     clearUserUpdated,
-    clearError
+    clearError,
+    setToken,
+    clearToken,
 
 } = actions;
 

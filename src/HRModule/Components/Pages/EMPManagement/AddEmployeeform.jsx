@@ -1,6 +1,5 @@
-
 import React from 'react';
-import './Tasks/NotifyMsg.css'
+import '../Tasks/NotifyMsg.css'
 import { FaTasks } from 'react-icons/fa';
 
 const NotifyMsg = () => {

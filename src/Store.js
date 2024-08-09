@@ -22,7 +22,10 @@ import LeaveFormSlice from "./HRModule/Redux/Slices/LeaveFormSlice";
 import leaveCalendarReducer from './HRModule/Redux/Slices/leaveCalendarSlice'
 import empleaveCalendarSlice from './EmployeeModule/Redux/EmpholidaycalenderSlice'
 import changepasswordReducer from './HRModule/Redux/Reducers/changepasswordReducer'
-import salaryReducer from './HRModule/Redux/Slices/SalarySlice'
+// import salaryReducer from './HRModule/Redux/Slices/SalarySlice'
+// import getSalary  from "./Landingpage/Redux/Actions/salaryActions";
+import getSalary from "./HRModule/Redux/Slices/SalarySlice"
+import salaryUpdateSlice from './HRModule/Redux/Slices/salaryUpdateSlice'
 // import jobReducer from './Landingpage/Redux/Reducers'
 // import hrCardsReducer from './HRModule/Redux/Reducers/hrCardsSlice'
 
@@ -70,7 +73,8 @@ const reducer = combineReducers({
   leaveCalendar: leaveCalendarReducer,
   leaveCalendaremp: empleaveCalendarSlice,
   changepasswordState: changepasswordReducer,
-  salary: salaryReducer,
+  salary: getSalary,
+  salaryUpdate: salaryUpdateSlice,
 });
 
 const initialState = {};
