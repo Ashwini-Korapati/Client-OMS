@@ -1330,7 +1330,15 @@ const AddEmployee = () => {
                 label="Role"
                 className="form-item"
                 name="role"
-                rules={[{  message: 'Please input employee role' }]}
+                rules={[{  message: 'Please enter employee role' }]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                label="Designation"
+                className="form-item"
+                name="designation"
+                rules={[{  message: 'Please enter employee designation' }]}
               >
                 <Input />
               </Form.Item>

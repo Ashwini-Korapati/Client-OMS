@@ -1,5 +1,270 @@
 
 
+// // import React, { useEffect, useState } from 'react';
+// // import { FaSearch, FaTimes } from 'react-icons/fa';
+// // import { Layout, Input, Button, Card, Row, Col, Typography, Space, Collapse, Dropdown, Menu } from 'antd';
+// // import { DownOutlined } from '@ant-design/icons';
+// // import { useNavigate } from 'react-router-dom';
+// // import { useSelector, useDispatch } from 'react-redux';
+// // import './Salary.css';
+// // import { fetchEmployees1, getSalary } from '../../../../../Redux/Slices/SalarySlice';
+// // import components from './componentsData';
+// // import Payslip from '../Salary/Payslip/Payslip'
+
+// // const { Header, Content } = Layout;
+// // const { Text } = Typography;
+// // const { Panel } = Collapse;
+
+// // const Salary = () => {
+// //   const dispatch = useDispatch();
+// //   const navigate = useNavigate();
+
+// //   // State mappings
+// //   const employees = useSelector((state) => state.employees.employees.employees);
+// //   const employeesStatus = useSelector((state) => state.employees.employees.status);
+// //   const salary = useSelector((state) => state.salary.salaryDetails);
+
+// //   // Local state
+// //   const [selectedEmployee, setSelectedEmployee] = useState(null)
+// //   const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
+// //   const [expandedKeys, setExpandedKeys] = useState([]);
+// //   const [searchTerm, setSearchTerm] = useState('');
+// //   const [salaryData, setSalaryData] = useState(null);
+// //   const [addSalaryDisabled, setAddSalaryDisabled] = useState(true);
+// //   const [updateSalaryDisabled, setUpdateSalaryDisabled] = useState(true);
+// //   const [isPayslipVisible, setIsPayslipVisible] = useState(false);
+
+// //   // Fetch employees on initial load
+// //   useEffect(() => {
+// //     if (employeesStatus === 'idle') {
+// //       dispatch(fetchEmployees1());
+// //     }
+// //   }, [employeesStatus, dispatch]);
+
+// //   const mapSalaryToComponents = (salary) => {
+// //     const updatedComponents = JSON.parse(JSON.stringify(components));
+  
+// //     const updateComponentAmount = (name, amount) => {
+// //       for (const component of updatedComponents) {
+// //         for (const child of component.children) {
+// //           const target = child.children?.find((subchild) => subchild.name.toUpperCase() === name.toUpperCase());
+// //           if (target) {
+// //             target.amount = amount;
+// //             break;
+// //           }
+// //         }
+// //       }
+// //     };
+    
+  
+// //     updateComponentAmount('BASIC', salary.revised_full_basic || '0.00');
+// //     updateComponentAmount('HRA', salary.revised_full_hra || '0.00');
+// //     updateComponentAmount('SPECIAL ALLOWANCE', salary.revised_full_special_allowance || '0.00');
+// //     updateComponentAmount('OTHER ALLOWANCE', salary.revised_full_other_allowance || '0.00');
+// //     updateComponentAmount('PF', salary.revised_full_employer_pf || '0.00');
+// //     updateComponentAmount('TRAVELLING ALLOWANCE', salary.revised_full_travel_allowance || '0.00');
+  
+// //     console.log('Mapped Salary Components:', updatedComponents);
+// //     return updatedComponents;
+// //   };
+
+// //   const filterComponents = (components) => {
+// //     return components.reduce((acc, component) => {
+// //       const children = component.children ? filterComponents(component.children) : [];
+// //       const isMatch = component.name.toLowerCase().includes(searchTerm.toLowerCase());
+
+// //       if (isMatch || children.length > 0) {
+// //         acc.push({
+// //           ...component,
+// //           children,
+// //         });
+// //       }
+
+// //       return acc;
+// //     }, []);
+// //   };
+
+// //   const filteredComponents = filterComponents(salaryData || components);
+
+// //   const handleEmployeeSelect = async ({ key }) => {
+// //     console.log('Employee Select Event Key:', key);
+
+// //     const employee = employees.find((emp) => String(emp.emp_id) === key);
+// //     setSelectedEmployee(employee);
+
+// //     console.log('Selected Employee Data:', employee);
+
+// //     if (employee) {
+// //       try {
+// //         await dispatch(getSalary(employee.emp_id));
+// //       } catch (error) {
+// //         console.error('Failed to fetch salary:', error);
+// //       }
+// //     }
+// //   };
+
+
+
+
+// //   useEffect(() => {
+// //     if (salary && salary.length > 0) {
+// //       const salaryData = salary[0];
+// //       console.log('Fetched Salary Data:', salaryData);
+  
+// //       const totalSalaryAmount = parseFloat(salaryData.total_amt) || 0;
+// //       console.log('Total Salary Amount:', totalSalaryAmount);
+  
+// //       setSalaryData(mapSalaryToComponents(salaryData));
+// //       setAddSalaryDisabled(totalSalaryAmount > 0); // Disable if totalSalaryAmount is greater than 0
+// //       setUpdateSalaryDisabled(totalSalaryAmount <= 0); // Disable if totalSalaryAmount is 0 or less
+// //     }
+// //   }, [salary]);
+  
+
+// //   const handleAddSalary = () => {
+// //     if (selectedEmployee) {
+// //       console.log('Add Salary button clicked');
+// //       navigate('/hr-dashboard/updatesalary', { state: { emp_id: selectedEmployee.emp_id } });
+// //     }
+// //   };
+
+// //   const handleUpdateSalary = () => {
+// //     if (selectedEmployee) {
+// //       console.log('Update Salary button clicked');
+// //       navigate('/hr-dashboard/updatesalary', { state: { emp_id: selectedEmployee.emp_id } });
+// //     }
+// //   };
+
+// //   const handleDeselectEmployee = () => {
+// //     console.log('Employee deselected');
+// //     setSelectedEmployee(null);
+// //   };
+
+// //   const employeeMenu = (
+// //     <Menu onClick={handleEmployeeSelect}>
+// //       {employees.map((emp) => (
+// //         <Menu.Item key={emp.emp_id}>
+// //           {emp.firstName} {emp.lastName} - EMP_ID({emp.emp_id})
+// //         </Menu.Item>
+// //       ))}
+// //     </Menu>
+// //   );
+
+// //   const handlePreviewPayslip = (employeeId) => {
+// //     setSelectedEmployeeId(employeeId);
+// //     setIsPayslipVisible(true);
+// //   };
+ 
+// //   const handleClosePayslip = () => {
+// //     setIsPayslipVisible(false);
+// //   };
+ 
+
+// //   return (
+// //     <Layout className='salary-dashboard'>
+// //       <Header className="salary-header">
+// //         <Space align="center">
+// //           <Dropdown
+// //             overlay={employeeMenu}
+// //             trigger={['click']}
+// //             className='employee-workdays-container'
+// //           >
+// //             <Button>
+// //               {selectedEmployee ? (
+// //                 <>
+// //                   {selectedEmployee.firstName} {selectedEmployee.lastName} - {selectedEmployee.emp_id}
+// //                   <FaTimes className='deselect-icon' onClick={handleDeselectEmployee} />
+// //                 </>
+// //               ) : (
+// //                 <>
+// //                   Select Employee <DownOutlined />
+// //                 </>
+// //               )}
+// //             </Button>
+// //           </Dropdown>
+// //         </Space>
+// //       </Header>
+              
+// //       <Content style={{ padding: '20px' }}>
+// //         <Card>
+// //           <Row gutter={[16, 16]}>
+// //             <Col span={12} className='button-row'>
+// //               <Button
+// //                 type="primary"
+// //                 className='primary-button'
+// //                 onClick={handleAddSalary}
+// //                 disabled={addSalaryDisabled}
+// //               >
+// //                 Add Salary
+// //               </Button>
+// //               <Button
+// //                 type="primary"
+// //                 className='primary-button'
+// //                 onClick={handleUpdateSalary}
+// //                 disabled={updateSalaryDisabled}
+// //               >
+// //                 Update Salary
+// //               </Button>
+// //             </Col>
+// //             <Col span={12}>
+// //               <Button
+// //               onClick={() => handlePreviewPayslip('123')}
+// //                 className='primary-button'
+// //                 type="primary"
+// //               >
+// //                 Preview Payslip
+// //               </Button>
+// //             </Col>
+// //             <Input
+// //               className='searchbar'
+// //               prefix={<FaSearch />}
+// //               placeholder="Search components"
+// //               value={searchTerm}
+// //               onChange={(e) => setSearchTerm(e.target.value)}
+// //             />
+// //             <Col span={24}>
+// //               <Collapse
+// //                 accordion
+// //                 activeKey={expandedKeys}
+// //                 onChange={(keys) => setExpandedKeys(keys)}
+// //               >
+// //                 {filteredComponents.map((component, index) => (
+// //                   <Panel header={component.name} key={index}>
+// //                     {component.children.map((child, idx) => (
+// //                       <Collapse key={idx}>
+// //                         <Panel header={child.name} key={`${index}-${idx}`}>
+// //                           {child.children.map((subchild, subIdx) => (
+// //                             <Row key={subIdx}>
+// //                               <Col span={18}>
+// //                                 <Text>{subchild.name}</Text>
+// //                               </Col>
+// //                               <Col span={6}>
+// //                                 <Text>{subchild.amount}</Text>
+// //                               </Col>
+// //                             </Row>
+// //                           ))}
+// //                         </Panel>
+// //                       </Collapse>
+// //                     ))}
+// //                   </Panel>
+// //                 ))}
+// //               </Collapse>
+// //             </Col>
+// //           </Row>
+// //         </Card>
+// //       </Content>
+// //       {isPayslipVisible && (
+// //         <Payslip
+// //           onClose={handleClosePayslip}
+// //           employeeId={selectedEmployeeId}
+// //         />
+// //       )}
+// //     </Layout>
+// //   );
+// // };
+
+// // export default Salary;
+
 // import React, { useEffect, useState } from 'react';
 // import { FaSearch, FaTimes } from 'react-icons/fa';
 // import { Layout, Input, Button, Card, Row, Col, Typography, Space, Collapse, Dropdown, Menu } from 'antd';
@@ -26,6 +291,7 @@
 
 //   // Local state
 //   const [selectedEmployee, setSelectedEmployee] = useState(null);
+//   const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
 //   const [expandedKeys, setExpandedKeys] = useState([]);
 //   const [searchTerm, setSearchTerm] = useState('');
 //   const [salaryData, setSalaryData] = useState(null);
@@ -105,13 +371,13 @@
 //     if (salary && salary.length > 0) {
 //       const salaryData = salary[0];
 //       console.log('Fetched Salary Data:', salaryData);
-
+  
 //       const totalSalaryAmount = parseFloat(salaryData.total_amt) || 0;
 //       console.log('Total Salary Amount:', totalSalaryAmount);
-
+  
 //       setSalaryData(mapSalaryToComponents(salaryData));
-//       setAddSalaryDisabled(totalSalaryAmount > 0);
-//       setUpdateSalaryDisabled(totalSalaryAmount === 0);
+//       setAddSalaryDisabled(totalSalaryAmount > 0); // Disable if totalSalaryAmount is greater than 0
+//       setUpdateSalaryDisabled(totalSalaryAmount <= 0); // Disable if totalSalaryAmount is 0 or less
 //     }
 //   }, [salary]);
 
@@ -132,6 +398,7 @@
 //   const handleDeselectEmployee = () => {
 //     console.log('Employee deselected');
 //     setSelectedEmployee(null);
+//     setSelectedEmployeeId(null); // Clear selectedEmployeeId when deselecting
 //   };
 
 //   const employeeMenu = (
@@ -144,15 +411,27 @@
 //     </Menu>
 //   );
 
-//   const handlePreviewPayslip = (employeeId) => {
-//     setSelectedEmployeeId(employeeId);
-//     setIsPayslipVisible(true);
+//   // const handlePreviewPayslip = () => {
+//   //   if (selectedEmployee) {
+//   //     setSelectedEmployeeId(selectedEmployee.emp_id);
+//   //     setIsPayslipVisible(true);
+//   //   }
+//   // };
+
+
+//   const handlePreviewPayslip = () => {
+//     if (selectedEmployee) {
+//       console.log('Selected Employee ID:', selectedEmployee.emp_id); // Check if this logs correctly
+//       setSelectedEmployeeId(selectedEmployee.emp_id);
+//       setIsPayslipVisible(true);
+//     } else {
+//       console.log('No employee selected'); // Check if this logs
+//     }
 //   };
- 
+  
 //   const handleClosePayslip = () => {
 //     setIsPayslipVisible(false);
 //   };
- 
 
 //   return (
 //     <Layout className='salary-dashboard'>
@@ -178,6 +457,7 @@
 //           </Dropdown>
 //         </Space>
 //       </Header>
+              
 //       <Content style={{ padding: '20px' }}>
 //         <Card>
 //           <Row gutter={[16, 16]}>
@@ -201,7 +481,7 @@
 //             </Col>
 //             <Col span={12}>
 //               <Button
-//               onClick={() => handlePreviewPayslip('123')}
+//                 onMouseDown={handlePreviewPayslip} // Alternative event handler
 //                 className='primary-button'
 //                 type="primary"
 //               >
@@ -261,14 +541,15 @@
 
 import React, { useEffect, useState } from 'react';
 import { FaSearch, FaTimes } from 'react-icons/fa';
-import { Layout, Input, Button, Card, Row, Col, Typography, Space, Collapse, Dropdown, Menu } from 'antd';
+import { Layout, Input, Button, Card, Row, Col, Typography, Space, Collapse, Dropdown, Menu, Modal } from 'antd';
+
 import { DownOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './Salary.css';
 import { fetchEmployees1, getSalary } from '../../../../../Redux/Slices/SalarySlice';
-import components from './componentsData';
-import Payslip from '../Salary/Payslip/Payslip'
+import Payslip from '../Salary/Payslip/Payslip';
+import components from '../Salary/componentsData'
 
 const { Header, Content } = Layout;
 const { Text } = Typography;
@@ -285,13 +566,14 @@ const Salary = () => {
 
   // Local state
   const [selectedEmployee, setSelectedEmployee] = useState(null);
-  const [selectedEmployeeId, setSelectedEmployeeId] = useState(null); // Add this line
+  const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
   const [expandedKeys, setExpandedKeys] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [salaryData, setSalaryData] = useState(null);
   const [addSalaryDisabled, setAddSalaryDisabled] = useState(true);
   const [updateSalaryDisabled, setUpdateSalaryDisabled] = useState(true);
-  const [isPayslipVisible, setIsPayslipVisible] = useState(false);
+  const [isPayslipModalVisible, setIsPayslipModalVisible] = useState(false);
+
 
   // Fetch employees on initial load
   useEffect(() => {
@@ -302,7 +584,7 @@ const Salary = () => {
 
   const mapSalaryToComponents = (salary) => {
     const updatedComponents = JSON.parse(JSON.stringify(components));
-  
+
     const updateComponentAmount = (name, amount) => {
       for (const component of updatedComponents) {
         for (const child of component.children) {
@@ -314,14 +596,14 @@ const Salary = () => {
         }
       }
     };
-  
+
     updateComponentAmount('BASIC', salary.revised_full_basic || '0.00');
     updateComponentAmount('HRA', salary.revised_full_hra || '0.00');
     updateComponentAmount('SPECIAL ALLOWANCE', salary.revised_full_special_allowance || '0.00');
     updateComponentAmount('OTHER ALLOWANCE', salary.revised_full_other_allowance || '0.00');
     updateComponentAmount('PF', salary.revised_full_employer_pf || '0.00');
     updateComponentAmount('TRAVELLING ALLOWANCE', salary.revised_full_travel_allowance || '0.00');
-  
+
     console.log('Mapped Salary Components:', updatedComponents);
     return updatedComponents;
   };
@@ -370,8 +652,8 @@ const Salary = () => {
       console.log('Total Salary Amount:', totalSalaryAmount);
 
       setSalaryData(mapSalaryToComponents(salaryData));
-      setAddSalaryDisabled(totalSalaryAmount > 0);
-      setUpdateSalaryDisabled(totalSalaryAmount === 0);
+      setAddSalaryDisabled(totalSalaryAmount > 0); // Disable if totalSalaryAmount is greater than 0
+      setUpdateSalaryDisabled(totalSalaryAmount <= 0); // Disable if totalSalaryAmount is 0 or less
     }
   }, [salary]);
 
@@ -398,20 +680,26 @@ const Salary = () => {
     <Menu onClick={handleEmployeeSelect}>
       {employees.map((emp) => (
         <Menu.Item key={emp.emp_id}>
-          {emp.firstName} {emp.lastName} - EMP_ID({emp.emp_id} {emp.dateOfJoining})
+          {emp.firstName} {emp.lastName} - EMP_ID({emp.emp_id})
         </Menu.Item>
       ))}
     </Menu>
   );
 
-  const handlePreviewPayslip = (employeeId) => {
-    setSelectedEmployeeId(employeeId); // Ensure this line is present
-    setIsPayslipVisible(true);
+  const showPayslipModal = () => {
+    if (selectedEmployee) {
+      setSelectedEmployeeId(selectedEmployee.emp_id);
+      setIsPayslipModalVisible(true);
+    } else {
+      console.log('No employee selected');
+    }
   };
+  
+  const handleCancel = () => {
+    setIsPayslipModalVisible(false);
+  };
+  
 
-  const handleClosePayslip = () => {
-    setIsPayslipVisible(false);
-  };
 
   return (
     <Layout className='salary-dashboard'>
@@ -437,6 +725,7 @@ const Salary = () => {
           </Dropdown>
         </Space>
       </Header>
+
       <Content style={{ padding: '20px' }}>
         <Card>
           <Row gutter={[16, 16]}>
@@ -460,8 +749,8 @@ const Salary = () => {
             </Col>
             <Col span={12}>
               <Button
-                onClick={() => handlePreviewPayslip('123')}
-                className='primary-button'
+  onClick={showPayslipModal}
+  className='primary-button'
                 type="primary"
               >
                 Preview Payslip
@@ -505,12 +794,16 @@ const Salary = () => {
           </Row>
         </Card>
       </Content>
-      {isPayslipVisible && (
-        <Payslip
-          onClose={handleClosePayslip}
-          employeeId={selectedEmployeeId} // Pass selectedEmployeeId here
-        />
-      )}
+
+      <Modal
+  title="Payslip"
+  visible={isPayslipModalVisible}
+  onCancel={handleCancel}
+  footer={null} // If you don't need any footer buttons
+>
+  <Payslip employeeId={selectedEmployeeId} onClose={handleCancel} />
+</Modal>
+
     </Layout>
   );
 };

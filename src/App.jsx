@@ -31,7 +31,7 @@ import Updatesalary from './HRModule/Components/Pages/Payroll/PayrollInputs/Sala
 import TimeSheet from './HRModule/Components/Pages/TimeManagement/TimeSheet/TimeSheet'
 import TimeReport from './HRModule/Components/Pages/TimeManagement/TimeReport/TimeReport'
 // import Updatesalary from './HRModule/Components/Pages/Payroll/PayrollInputs/Salary/Updatesalary'
-
+import React from 'react';
 //employee routes->
 import EmpHome from './EmployeeModule/Components/Pages/EmpHome/EmpHome'
 import EmpProfile from './EmployeeModule/Components/Pages/EmpProfile/EmpProfile'

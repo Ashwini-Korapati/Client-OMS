@@ -1,7 +1,8 @@
-// // import { createSlice,createAsyncThunk  } from '@reduxjs/toolkit';
+
+// // import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 // // import axios from 'axios';
 
-
+// // // Thunks
 // // export const fetchEmployees1 = createAsyncThunk(
 // //   'employees/fetchEmployees',
 // //   async () => {
@@ -10,183 +11,279 @@
 // //   }
 // // );
 
-
-// // export const getSalary = (emp_id) => async (dispatch) => {
-// //     try {
-// //       dispatch(getsalaryRequest());
-// //       const response = await axios.get(`http://localhost:8000/api/v1/hr/getSalarybyEmployee/${emp_id}`);
-// //       console.log('API Response:', response); // Log entire response
-// //       dispatch(getsalarySuccess(response.data));
-// //     } catch (error) {
-// //       console.error('Error fetching salary:', error); // Log the error object
-// //       dispatch(getsalaryReject(error.message));
-// //     }
-// //   };
-  
-// //   const SalarySlice = createSlice({
-// //     name: 'salary',
-// //     initialState: {
-// //       salaryDetails: null,
-// //       loading: true,
-// //       error: null,
-// //     },
-// //     reducers: {
-// //       getsalaryRequest(state) {
-// //         state.loading = true;
-// //       },
-// //       getsalarySuccess(state, action) {
-// //         state.loading = false;
-// //         state.salaryDetails = action.payload; // Ensure this is the correct structure
-// //       },
-// //       getsalaryReject(state, action) {
-// //         state.loading = false;
-// //         state.error = action.payload;
-// //       },
-// //     },
-// //   });
-
- 
-
-  
-// //   export default SalarySlice.reducer;
-  
-
-// import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// import axios from 'axios';
-
-// // Thunks
-// export const fetchEmployees1 = createAsyncThunk(
-//   'employees/fetchEmployees',
-//   async () => {
-//     const response = await fetch('/api/employees'); // Adjust the URL to your API endpoint
-//     return response.json();
-//   }
-// );
-
 // // export const getSalary = (emp_id) => async (dispatch) => {
 // //   try {
 // //     dispatch(getsalaryRequest());
-// //     const { data } = await axios.get(`http://localhost:8000/api/v1/hr/getSalarybyEmployee/${emp_id}`);
-// //     dispatch(getsalarySuccess(data));
+// //     const response = await axios.get(`http://localhost:8000/api/v1/hr/getSalarybyEmployee/${emp_id}`);
+    
+// //     if (response.data.salaryDetails) {
+// //       dispatch(getsalarySuccess(response.data));
+// //     } else {
+// //       dispatch(getsalaryReject('No salary details found for this employee'));
+// //     }
 // //   } catch (error) {
 // //     console.error('Error fetching salary:', error);
 // //     dispatch(getsalaryReject(error.response ? error.response.data.message : 'An unknown error occurred'));
 // //   }
 // // };
 
-// export const getSalary = (emp_id) => async (dispatch) => {
-//     try {
-//       dispatch(getsalaryRequest());
-//       const response = await axios.get(`http://localhost:8000/api/v1/hr/getSalarybyEmployee/${emp_id}`);
-//       console.log('API Response:', response); // Log entire response
-//       dispatch(getsalarySuccess(response.data));
-//     } catch (error) {
-//       console.error('Error fetching salary:', error); // Log the error object
-//       dispatch(getsalaryReject(error.message));
-//     }
-//   };
+// // export const saveSalary = (salaryData) => async (dispatch) => {
+// //   try {
+// //     const response = await axios.post('http://localhost:8000/api/v1/hr/postSalary', salaryData);
+// //     console.log('Save Response:', response.data); // Log the response
+// //   } catch (error) {
+// //     console.error('Error saving salary:', error.response);
+// //     throw error;
+// //   }
+// // };
 
-// // Slice
-// const SalarySlice = createSlice({
+// // const salarySlice = createSlice({
+// //   name: 'salary',
+// //   initialState: {
+// //     salaryDetails: [],
+// //     loading: false,
+// //     error: null,
+// //   },
+// //   reducers: {
+// //     getsalaryRequest: (state) => {
+// //       state.loading = true;
+// //       state.error = null;
+// //     },
+// //     getsalarySuccess: (state, action) => {
+// //       state.salaryDetails = action.payload.salaryDetails || [];
+      
+// //               state.salaryDetails = [action.payload]; // Update with the latest salary details
+
+// //       state.loading = false;
+// //     },
+// //     getsalaryReject: (state, action) => {
+// //       state.loading = false;
+// //       state.error = action.payload;
+// //     },
+// //   },
+// //   extraReducers: (builder) => {
+// //     builder
+// //       .addCase(fetchEmployees1.pending, (state) => {
+// //         state.loading = true;
+// //       })
+// //       .addCase(fetchEmployees1.fulfilled, (state, action) => {
+// //         state.loading = false;
+// //         state.employees = action.payload;
+// //       })
+// //       .addCase(fetchEmployees1.rejected, (state, action) => {
+// //         state.loading = false;
+// //         state.error = action.error.message;
+// //       });
+// //   },
+// // });
+
+// // export const { getsalaryRequest, getsalarySuccess, getsalaryReject } = salarySlice.actions;
+
+// // export default salarySlice.reducer;
+
+
+
+// import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+// import axios from 'axios';
+
+// // Define the async thunk for saving salary
+// export const saveSalary = createAsyncThunk(
+//   'salary/saveSalary',
+//   async (salaryData) => {
+//     const response = await axios.post('http://localhost:8000/api/v1/hr/postSalary', salaryData);
+//     return response.data;
+//   }
+// );
+
+// export const fetchEmployees1 = createAsyncThunk(
+//   'employees/fetchEmployees1',
+//   async () => {
+//     const response = await axios.get('/api/employees');
+//     return response.data;
+//   }
+// );
+
+// export const getSalary = createAsyncThunk(
+//   'salary/getSalary',
+//   async (emp_id) => {
+//     const response = await axios.get(`http://localhost:8000/api/v1/hr/getSalarybyEmployee/${emp_id}`);
+//     return response.data;
+//   }
+// );
+
+// const salarySlice = createSlice({
 //   name: 'salary',
 //   initialState: {
-//     loading: false,
-//     isAuthenticatedAdmin: false,
-//     salaryDetails: null,
+//     salaryDetails: [],
+//     status: 'idle',
 //     error: null,
 //   },
-//   reducers: {
-//     getsalaryRequest(state) {
-//       state.loading = true;
-//       state.error = null;
-//     },
-//     getsalarySuccess(state, action) {
-//       state.loading = false;
-//       state.isAuthenticatedAdmin = true;
-//       state.salaryDetails = action.payload.salaryDetails;
-//     },
-    
-//     getsalaryReject(state, action) {
-//       state.loading = false;
-//       state.error = action.payload;
-//     },
+//   reducers: {},
+//   extraReducers: (builder) => {
+//     builder
+//       .addCase(getSalary.pending, (state) => {
+//         state.status = 'loading';
+//       })
+//       .addCase(getSalary.fulfilled, (state, action) => {
+//         state.status = 'succeeded';
+//         state.salaryDetails = action.payload.salaryDetails;
+//       })
+//       .addCase(getSalary.rejected, (state, action) => {
+//         state.status = 'failed';
+//         state.error = action.error.message;
+//       })
+//       .addCase(saveSalary.pending, (state) => {
+//         state.status = 'loading';
+//       })
+//       .addCase(saveSalary.fulfilled, (state, action) => {
+//         state.status = 'succeeded';
+//         // Handle success case
+//       })
+//       .addCase(saveSalary.rejected, (state, action) => {
+//         state.status = 'failed';
+//         state.error = action.error.message;
+//       });
 //   },
 // });
 
-// const { actions, reducer } = SalarySlice;
-// export const { getsalaryRequest, getsalarySuccess, getsalaryReject } = actions;
-// export default reducer;
+// export default salarySlice.reducer;
 
+// import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+// import axios from 'axios';
+
+// // Define the async thunk for saving salary
+// export const saveSalary = createAsyncThunk(
+//   'salary/saveSalary',
+//   async (salaryData) => {
+//     const response = await axios.post('http://localhost:8000/api/v1//hr/postSalary', salaryData);
+//     return response.data;
+//   }
+// );
+
+// export const fetchEmployees1 = createAsyncThunk(
+//   'employees/fetchEmployees1',
+//   async () => {
+//     const response = await axios.get('/api/employees');
+//     return response.data;
+//   }
+// );
+
+// export const getSalary = createAsyncThunk(
+//   'salary/getSalary',
+//   async (emp_id) => {
+//     const response = await axios.get(`http://localhost:8000/api/v1/hr/getSalarybyEmployee/${emp_id}`);
+//     return response.data;
+//   }
+// );
+
+// const salarySlice = createSlice({
+//   name: 'salary',
+//   initialState: {
+//     salaryDetails: [],
+//     status: 'idle',
+//     error: null,
+//   },
+//   reducers: {},
+//   extraReducers: (builder) => {
+//     builder
+//       .addCase(getSalary.pending, (state) => {
+//         state.status = 'loading';
+//       })
+//       .addCase(getSalary.fulfilled, (state, action) => {
+//         state.status = 'succeeded';
+//         state.salaryDetails = action.payload.salaryDetails;
+//       })
+//       .addCase(getSalary.rejected, (state, action) => {
+//         state.status = 'failed';
+//         state.error = action.error.message;
+//       })
+//       .addCase(saveSalary.pending, (state) => {
+//         state.status = 'loading';
+//       })
+//       .addCase(saveSalary.fulfilled, (state, action) => {
+//         state.status = 'succeeded';
+//         state.salaryDetails = action.payload; // Update salaryDetails with the response
+//       })
+//       .addCase(saveSalary.rejected, (state, action) => {
+//         state.status = 'failed';
+//         state.error = action.error.message;
+//       });
+//   },
+// });
+
+// export default salarySlice.reducer;
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Thunks
-export const fetchEmployees1 = createAsyncThunk(
-  'employees/fetchEmployees',
-  async () => {
-    const response = await fetch('/api/employees'); // Adjust the URL to your API endpoint
-    return response.json();
+// Define the async thunk for saving salary
+export const saveSalary = createAsyncThunk(
+  'salary/saveSalary',
+  async (salaryData) => {
+    const response = await axios.post('http://localhost:8000/api/v1/hr/postSalary', salaryData);
+    return response.data;
   }
 );
 
-export const getSalary = (emp_id) => async (dispatch) => {
-  try {
-    dispatch(getsalaryRequest());
+export const getSalary = createAsyncThunk(
+  'salary/getSalary',
+  async (emp_id) => {
     const response = await axios.get(`http://localhost:8000/api/v1/hr/getSalarybyEmployee/${emp_id}`);
-    
-    if (response.data.salaryDetails) {
-      dispatch(getsalarySuccess(response.data));
-    } else {
-      dispatch(getsalaryReject('No salary details found for this employee'));
-    }
-  } catch (error) {
-    console.error('Error fetching salary:', error);
-    dispatch(getsalaryReject(error.response ? error.response.data.message : 'An unknown error occurred'));
+    return response.data;
   }
-};
+);
 
-export const saveSalary = (salaryData) => async (dispatch) => {
-  try {
-    const response = await axios.post('http://localhost:8000/api/v1/hr/postSalary', salaryData);
-    console.log('Save Response:', response);
-    // Optionally dispatch a success action here
-  } catch (error) {
-    console.error('Error saving salary:', error);
-    // Optionally dispatch an error action here
+export const fetchEmployees1 = createAsyncThunk(
+  'employees/fetchEmployees1',
+  async () => {
+    const response = await axios.get('/api/employees');
+    return response.data;
   }
-};
+);
 
-// Slice
-const SalarySlice = createSlice({
+const salarySlice = createSlice({
   name: 'salary',
   initialState: {
-    loading: false,
-    isAuthenticatedAdmin: false,
-    salaryDetails: null,
+    salaryDetails: [],
+    status: 'idle',
     error: null,
   },
-  reducers: {
-    getsalaryRequest(state) {
-      state.loading = true;
-      state.error = null;
-    },
-    getsalarySuccess(state, action) {
-      state.loading = false;
-      state.isAuthenticatedAdmin = true;
-      state.salaryDetails = action.payload.salaryDetails;
-    },
-    getsalaryReject(state, action) {
-      state.loading = false;
-      state.error = action.payload;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getSalary.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getSalary.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.salaryDetails = action.payload.salaryDetails;
+      })
+      .addCase(getSalary.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(saveSalary.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(saveSalary.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        const { AnnualCTC, MonthyCTC, BASIC, HRA, SPECIAL, OTHER, PF } = action.payload;
+        state.salaryDetails = [{
+          ...state.salaryDetails[0],
+          previous_annual_ctc: AnnualCTC,
+          previous_monthly_ctc: MonthyCTC,
+          previous_full_basic: BASIC,
+          previous_full_hra: HRA,
+          previous_full_special_allowance: SPECIAL,
+          previous_full_other_allowance: OTHER,
+          previous_full_employer_pf: PF,
+        }];
+      })
+      .addCase(saveSalary.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      });
   },
 });
 
-const { actions, reducer } = SalarySlice;
-export const { getsalaryRequest, getsalarySuccess, getsalaryReject } = actions;
-export default reducer;
-
- 
-
-
+export default salarySlice.reducer;

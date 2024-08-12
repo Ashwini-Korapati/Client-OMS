@@ -9,7 +9,7 @@ import {
   } from '@ant-design/icons';
   import { BsGraphUpArrow } from "react-icons/bs";
   import '../AdminSidebar/AdminMenu.css'
-   
+   import React from 'react';
   const iconStyle = { fontSize: '20px' };
    
   const MenuList = [
