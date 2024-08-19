@@ -26,6 +26,7 @@ import changepasswordReducer from './HRModule/Redux/Reducers/changepasswordReduc
 // import getSalary  from "./Landingpage/Redux/Actions/salaryActions";
 import getSalary from "./HRModule/Redux/Slices/SalarySlice"
 import salaryUpdateSlice from './HRModule/Redux/Slices/salaryUpdateSlice'
+import notificationReducer from './HRModule/Redux/Slices/notificationSlice'
 // import jobReducer from './Landingpage/Redux/Reducers'
 // import hrCardsReducer from './HRModule/Redux/Reducers/hrCardsSlice'
 
@@ -75,6 +76,8 @@ const reducer = combineReducers({
   changepasswordState: changepasswordReducer,
   salary: getSalary,
   salaryUpdate: salaryUpdateSlice,
+  notifications: notificationReducer,
+
 });
 
 const initialState = {};
