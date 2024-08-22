@@ -1,147 +1,65 @@
-.task-main-conatiner {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden;
-    font-family: 'Arial', sans-serif;
-    background-color: #fff;
-    height: 50vh;
-    width: 46vw;
-    margin-top: 45px;
-
+/* NotifyMsg.css */
+.notification-list {
+  padding: 90px;
+  max-width: 600px;
+  background-color: rgba(128, 128, 128, 0.336);
+  border: 1px solid #ddd;
+  margin: auto;
 }
 
-
-
-
-
-.my-tasks-container {
-    display: flex;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden;
-    font-family: 'Arial', sans-serif;
-    background-color: #fff;
-    height: 50vh;
-    width: 46vw;
-  }
-  
-  .task-sidebar {
-    background-color: #fdf2e9;
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .task-sidebar-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .task-icon {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 10px;
-  }
-  
-
-  .task-sidebar-text {
-    /* margin-top: 140px; */
-    margin-bottom: 50px;
-  }
-  .mytask{
-    margin-right: 800px;
-    top: 60px;
-  }
-
-  .task-sidebar h3 {
-    margin: 0;
-    font-size: 24px;
-    color: #ff6347;
-  }
-  
-  .task-sidebar p {
-    margin: 0;
-    font-size: 16px;
-    color: #888;
-  }
-  
-  .main-content {
-    width: 75%;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .task-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .task-info h2 {
-    margin: 0;
-    font-size: 24px;
-  }
-  
-  .task-info p {
-    margin: 5px 0 0;
-    font-size: 16px;
-    color: #888;
-  }
-  
-  .monitor-link {
-    color: #007bff;
-    font-size: 16px;
-    text-decoration: none;
-  }
-  
-  .task-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90px;
-    border-top: 1px solid #e0e0e0;
-    padding-top: 20px;
-  }
-  .task-image1{
-    transform: rotate(-20deg); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 150px;
-    padding-top: -20px;
-
-  }
-  
-
-  /* NotifyMsg.css */
-
-.notification-list {
-  padding: 20px;
-  background-color: #f9f9f9;
+.notification-list h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 30px;
+  color: #333;
 }
 
 .notification-item {
-  background-color: white;
+  background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  position: relative;
 }
 
 .notification-item:hover {
-  background-color: #f0f0f0;
+  transform: scale(1.03);
+}
+
+.notification-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
 }
 
 .notification-item p {
   margin: 0;
-  font-size: 1em;
-  color: #333;
+  font-size: 16px;
+  color: #555;
+}
+
+.notification-item::before {
+  content: '';
+  background-image: url('/path-to-your-image.png'); /* Add the correct image path */
+  background-size: cover;
+  background-position: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  right: 10px; /* or 'left: 10px' for left side */
+}
+
+.notification-list p {
+  text-align: center;
+  color: #777;
 }

@@ -96,6 +96,16 @@ const MenuList = [
             path:'/hr-dashboard/income-tax',
             label: <span className="menu-item-text">Income-Tax</span>,
           },
+          {
+            key: '33',
+            path:'/hr-dashboard/lop',
+            label: <span className="menu-item-text">Employee LOP</span>,
+          },
+          {
+            key: '34',
+            path:'/hr-dashboard/finalsettlementmain',
+            label: <span className="menu-item-text">Final Settlement</span>,
+          },
          
         ]
       },
@@ -168,12 +178,12 @@ const MenuList = [
       },
     ]
   },
-  // {
-  //   key: '19',
-  //   path:'/hr-dashboard/performance',
-  //   icon: <FaChartLine style={iconStyle} />,
-  //   label: <span className="menu-item-text">Performance Metrics</span>,
-  // },
+  {
+    key: '19',
+    path:'/hr-dashboard/performance',
+    icon: <FaChartLine style={iconStyle} />,
+    label: <span className="menu-item-text">Performance Management</span>,
+  },
   {
     key: '20',
     label: <span className="menu-item-text">Leave</span>,

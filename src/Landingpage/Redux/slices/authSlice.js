@@ -183,6 +183,7 @@ const authSlice = createSlice({
                 message: null
             }
         },
+        
         forgotPasswordSuccess(state, action){
             return {
                 ...state,

@@ -56,6 +56,9 @@ import Otherincome from './HRModule/Components/Pages/Payroll/PayrollInputs/Incom
 import Houseproperty from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Houseproperty/Houseproperty';
 import Regime from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Regime/Regime';
 import Result from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Result/Result';
+import LOP from './HRModule/Components/Pages/Payroll/PayrollInputs/Lossofpay/LOP/LOP';
+import Finalsettlement from './HRModule/Components/Pages/Payroll/PayrollInputs/Finalsettlement/Settlementtabs';
+import Finalsettlementmain from './HRModule/Components/Pages/Payroll/PayrollInputs/Finalsettlement/Finalsettlementmain/Finalsettlementmain'
 
 
 // const result = await dispatch(getProfile())
@@ -113,6 +116,9 @@ const App = () => {
             <Route path='houseproperty' element={<ProtectedRoute><Houseproperty/></ProtectedRoute>}/>
             <Route path='regime' element={<ProtectedRoute><Regime/></ProtectedRoute>}/>
             <Route path='result' element={<ProtectedRoute><Result/></ProtectedRoute>}/>
+            <Route path='lop' element={<ProtectedRoute><LOP/></ProtectedRoute>}/>
+            <Route path='finalsettlementtabs' element={<ProtectedRoute><Finalsettlement/></ProtectedRoute>}/>
+            <Route path='finalsettlementmain' element={<ProtectedRoute><Finalsettlementmain/></ProtectedRoute>}/>
           </Route>
 
           {/* Admin Module */}

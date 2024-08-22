@@ -1,0 +1,72 @@
+.final-settlement2 {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .header h3 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .filters2 {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .filters2 label {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .filters2 select {
+    padding: 5px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .settlement-table2 {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+  }
+  
+  .settlement-table2 th,
+  .settlement-table2 td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .settlement-table2 th {
+    background-color: #f7f7f7;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .settle-employee-btn2 {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .settle-employee-btn2:hover {
+    background-color: #0056b3;
+  }
+  

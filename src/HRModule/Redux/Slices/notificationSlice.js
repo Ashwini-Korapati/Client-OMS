@@ -92,13 +92,13 @@ import axios from 'axios';
 
 // Async thunk to fetch unread notifications
 export const fetchUnreadNotifications = createAsyncThunk('notifications/fetchUnreadNotifications', async () => {
-  const response = await axios.get('http://localhost:8000/api/v1/hr/notifications?status=unread'); 
+  const response = await axios.get('http://localhost:8000/api/v1/hr/notifications'); 
   return response.data;
 });
 
 // Async thunk to mark notification as read
 export const markNotificationAsRead = createAsyncThunk('notifications/markNotificationAsRead', async (id) => {
-  await axios.post(`http://localhost:8000/api/v1/hr/notifications/${id}/mark-read`);
+  await axios.put(`http://localhost:8000/api/v1/hr/notifications/${id}/mark-read`);
   return id;
 });
 

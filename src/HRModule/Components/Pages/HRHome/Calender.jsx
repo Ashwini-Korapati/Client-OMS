@@ -1,20 +1,22 @@
-
-import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { IoIosArrowForward } from "react-icons/io";
-import '../HRHome/Calender.css'
-
-const holidays = [
-  { date: '15 Aug', day: 'Thursday', name: 'Independence Day' },
-  { date: '07 Sep', day: 'Saturday', name: 'Ganesh Chaturthi' },
-  { date: '02 Oct', day: 'Wednesday', name: 'Gandhi Jayanthi' },
-  { date: '11 Oct', day: 'Friday', name: 'Ayudha Puja/Mahanavami', applyLink: '#' }
-];
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchHolidays1, selectHolidays } from '../../../Redux/Slices/homeholidayleaveSlice'
+import '../HRHome/Calender.css';
 
 const HolidayList = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const holidays = useSelector(selectHolidays);
+  const loading = useSelector(state => state.leaveCalendar.loading);
+  const error = useSelector(state => state.leaveCalendar.error);
 
+  useEffect(() => {
+    dispatch(fetchHolidays1());
+  }, [dispatch]);
 
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="holiday-list-container">
@@ -23,7 +25,6 @@ const HolidayList = () => {
         <NavLink to="/hr-dashboard/leave-calender" className="arrow-icon" activeClassName="active">
           <IoIosArrowForward />
         </NavLink>
-        {/* <IoIosArrowForward className="arrow-icon" onClick={navigateToCalendar} /> */}
       </div>
       <div className="holiday-list">
         {holidays.map((holiday, index) => (

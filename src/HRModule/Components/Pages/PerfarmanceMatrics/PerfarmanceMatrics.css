@@ -1,47 +1,76 @@
-body {
-    background-color: #f0f2f5;
-  }
- 
-  .ant-layout-content {
-    background: #fff;
-    padding: 24px;
-    margin: 0;
-    min-height: 280px;
-  }
- 
-  .ant-card {
-    border-radius: 8px;
-    margin-bottom: 24px;
-  }
- 
-  .ant-card-head {
-    background-color: #fafafa;
-    border-bottom: 1px solid #f0f0f0;
-  }
- 
-  .ant-card-body {
-    padding: 16px;
-  }
- 
-  .ant-select {
-    margin-bottom: 16px;
-  }
- 
+.scorecard-container {
+  max-width: 1200px; /* Increased the max-width to allow more space */
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
 
-  .Second-container{
-    margin-top: 50px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding: 20px;
-    width: max-content;
-    /* margin-top: 20px; */
-    background-color: whitesmoke;
-  }
+.scorecard-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-  .Row-c{
-    margin-top: 60px;
-  }
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
 
-  .Emp-table{
-    
-  }
+.form-group {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.form-group input {
+  width: 100%; /* Maintains input width relative to its container */
+  padding: 10px; /* Increased padding for larger input fields */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group:last-child {
+  margin-right: 0;
+}
+
+.goals-table {
+  width: 100%; /* Set the table to take the full width of the container */
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.goals-table th,
+.goals-table td {
+  padding: 12px; /* Slightly increased padding for a better layout */
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+.goals-table th {
+  background-color: #f0f0f0;
+}
+
+.goals-table input {
+  width: 95%; 
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.perfomance-btn {
+  margin-top: 20px;
+  padding: 10px 20px; 
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.perfomance-btn[type="button"] {
+  margin-right: 10px;
+}
+
+.perfomance-btn:hover {
+  background-color: #0056b3;
+}

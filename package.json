@@ -30,7 +30,10 @@
     "@reduxjs/toolkit": "^2.2.5",
     "antd": "^5.18.0",
     "axios": "^1.7.2",
+    "axios-rate-limit": "^1.4.0",
+    "axios-retry": "^4.5.0",
     "bootstrap": "^5.3.3",
+    "dayjs": "^1.11.13",
     "debounce": "^2.1.0",
     "lodash": "^4.17.21",
     "primeflex": "^3.3.1",
@@ -64,5 +67,5 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "vite": "^5.2.0"
   },
-  "proxy": "http://127.0.0.1:8000"
+  "proxy": "http://localhost:8000"
 }

@@ -70,9 +70,9 @@ const MyTasks = () => {
   const navigate = useNavigate();
   const { unreadNotifications, status, error } = useSelector((state) => state.notifications);
 
-  // useEffect(() => {
-  //   dispatch(fetchUnreadNotifications());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchUnreadNotifications());
+  }, [dispatch]);
 
   // Handle notification click and mark as read
   const handleNotificationClick = (notification) => {
@@ -95,21 +95,24 @@ const MyTasks = () => {
   }
 
   return (
-    <div className='notification-list'>
-      <h3>Unread Notifications</h3>
-      {unreadNotifications.length > 0 ? (
-        unreadNotifications.map((notification) => (
-          <div
-            key={notification.id}
-            className='notification-item'
-            onClick={() => handleNotificationClick(notification)}
-          >
-            <p>{notification.id}: {notification.notification}</p>
-          </div>
-        ))
-      ) : (
-        <p>No unread notifications</p>
-      )}
+    // <div className='notification-list'>
+    //   <h3>Unread Notifications</h3>
+    //   {unreadNotifications.length > 0 ? (
+    //     unreadNotifications.map((notification) => (
+    //       <div
+    //         key={notification.id}
+    //         className='notification-item'
+    //         onClick={() => handleNotificationClick(notification)}
+    //       >
+    //         <p>{notification.id}: {notification.notification}</p>
+    //       </div>
+    //     ))
+    //   ) : (
+    //     <p>No unread notifications</p>
+    //   )}
+    // </div>
+    <div>
+      dfghj
     </div>
   );
 };
