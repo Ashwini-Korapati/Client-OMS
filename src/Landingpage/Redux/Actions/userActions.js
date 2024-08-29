@@ -516,6 +516,9 @@
 //         dispatch(updateUserFail(error.response.data.message));
 //     }
 // };
+
+
+
 import axios from 'axios';
 import { environment } from '../../../../environment'
 
@@ -577,15 +580,6 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
-// export const emplogin = (emp_id, password) => async (dispatch) => {
-//   try {
-//     dispatch(emploginRequest());
-//     const { data } = await axios.post(`${environment.APIURL}/employee/login`, { emp_id, password });
-//     dispatch(emploginSuccess(data));
-//   } catch (error) {
-//     dispatch(emploginFail(error.response.data.message));
-//   }
-// };
 
 
 
@@ -767,3 +761,12 @@ export const updateUser = (id, formData) => async (dispatch) => {
     dispatch(updateUserFail(error.response.data.message));
   }
 };
+// export const emplogin = (emp_id, password) => async (dispatch) => {
+//   try {
+//     dispatch(emploginRequest());
+//     const { data } = await axios.post(`${environment.APIURL}/employee/login`, { emp_id, password });
+//     dispatch(emploginSuccess(data));
+//   } catch (error) {
+//     dispatch(emploginFail(error.response.data.message));
+//   }
+// };

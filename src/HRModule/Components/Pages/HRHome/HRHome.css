@@ -1,6 +1,7 @@
 
   
   .HRHome-blog-cards {
+    margin-top: -26px;
     height: max-content;
     padding: 20px;
     border-radius: 20px;
@@ -27,6 +28,7 @@
   }
   
   .HRHome-graph-calender {
+    
     height: max-content;
     justify-items: center;
     justify-content: space-between;

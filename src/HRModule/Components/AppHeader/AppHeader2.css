@@ -1,0 +1,97 @@
+/* Main navigation container */
+.ashwini-nav {
+  width: 100%;
+  color: black;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  background-color: #F7DED0;
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1000; /* Ensures the nav has a high stacking context */
+}
+
+.ashwini-nav-menu {
+  margin-left: 400px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.ashwini-menu-item {
+  position: relative;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.ashwini-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.ashwini-submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 250px;
+  background-color: #F7DED0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 9999; /* Ensures submenu is above everything else */
+  flex-direction: column;
+}
+
+.ashwini-menu-item:hover > .ashwini-submenu {
+  display: block;
+}
+
+.ashwini-submenu .ashwini-menu-item {
+  padding: 10px;
+  white-space: nowrap;
+}
+
+.ashwini-submenu .ashwini-submenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 200px;
+  background-color: #F7DED0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+}
+
+.ashwini-menu-item:hover > .ashwini-submenu .ashwini-menu-item:hover > .ashwini-submenu {
+  display: block;
+}
+
+.ashwini-menu-item:hover {
+  background-color: white;
+}
+
+.ashwini-menu-item .icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.ashwini-menu-item .ashwini-label {
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.ashwini-arrow {
+  margin-left: auto;
+  transition: transform 0.3s;
+}
+
+.ashwini-arrow.open {
+  transform: rotate(90deg);
+}
+
+.toggle-btn {
+  display: none;
+}

@@ -1,0 +1,125 @@
+
+   .payslip-container {
+    width: 100%;
+    /* max-width: 1200px; */
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.tabs {
+    display: flex;
+    gap: 90px;
+    justify-content: end;
+    margin-bottom: 10px;
+}
+
+
+.tabs button {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    cursor: pointer;
+}
+
+.tabs button.active-tab {
+    background-color: #e6f7ff;
+    border-bottom: 2px solid #1890ff;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 70px;
+}
+
+.payslip-details {
+    display: flex;
+    width: 70%;
+}
+
+.earnings {
+    width: 50%;
+    margin-right: 20px;
+}
+.deductions{
+  width: 50%;
+  margin-right: 20px;
+}
+.earnings table, .deductions table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.earnings th, .deductions th, .earnings td, .deductions td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+
+.employee-details {
+    width: 40%;
+    background-color: #fffbe6;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+.details {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 20px; 
+}
+
+.details p {
+  margin: 0; 
+  flex: 1; 
+  min-width: 200px; 
+}
+
+.employee-details .hide-button {
+    float: right;
+    background: none;
+    border: none;
+    color: #1890ff;
+    cursor: pointer;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.download-button {
+    padding: 10px 20px;
+    background-color: #1890ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.download-button1{
+  padding: 10px 20px;
+  background-color: #1890ff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  justify-content: start;
+  margin-right: 1000px;
+}
+.month-select {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+
+.total-salary{
+  color: green;
+  font-weight: 200;
+  font-size: x-large;
+  margin-top: 180px;
+}
+
+.total{
+  margin-top: 200px;
+}

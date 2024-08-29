@@ -88,8 +88,8 @@ const Perfcards = () => {
 
       <div className="emp-p-card">
         <div className="emp-p-content">
-          <h4>20</h4>
           <p>Total Leave Balance</p>
+          <h4>20</h4>
         </div>
         <div className="emp-p-icon">
           <img src={holiday} alt="Leave balence" />

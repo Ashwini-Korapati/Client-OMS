@@ -1,6 +1,6 @@
 
   .leave-report-container {
-    background-color: white;
+    /* background-color: white; */
     padding: 20px;
   }
   
@@ -11,9 +11,9 @@
   .leave-report-filters select,
   .status--select {
     height: 36px;
-    font-size: 14px;
+    font-weight: 500;
     padding: 0 20px;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     border-radius: 4px;
   }
   
@@ -25,17 +25,24 @@
   
   .leave-report-table th,
   .leave-report-table td {
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    background-color: rgba(128,128,128,0.5);
+    transition: background-color 0.3s;
+
+    border-top-right-radius: 0;
     padding: 10px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    /* border-bottom: 1px solid #ddd; */
     position: relative; 
   }
   
   .leave-report-table th,
   .leave-report-table td {
-    background-color: #f2f2f2;
-    border-color: #d5bdaf;
-    border-width: 2px;
+
+    /* background-color: #f2f2f2; */
+    /* border-color: #d5bdaf; */
+    /* border-width: 2px; */
   }
   
   .leave-report-table th::after,
@@ -49,11 +56,13 @@
   }
   
   .leave-report-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+    /* background-color: rgba(128,128,128,1); */
+
   }
   
   .leave-report-table tbody tr:hover {
-    background-color: #e0f0ff;
+    background-color: rgba(128,128,128,1);
+    
   }
   
   .error-message {

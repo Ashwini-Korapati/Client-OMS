@@ -28,9 +28,9 @@ import {
    
     {
       key: '2',
-      path:'/emp-dashboard/payroll',
+      path:'/emp-dashboard/emp-payslip',
       icon: <FaDollarSign style={iconStyle} />,
-      label: <span className="menu-item-text">Payrol</span>,
+      label: <span className="menu-item-text">Payroll</span>,
     },
    
     // {

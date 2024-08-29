@@ -1,5 +1,4 @@
-/* NotifyMsg.css */
-.notification-list {
+/* .notification-list {
   padding: 90px;
   max-width: 600px;
   background-color: rgba(128, 128, 128, 0.336);
@@ -48,7 +47,7 @@
 
 .notification-item::before {
   content: '';
-  background-image: url('/path-to-your-image.png'); /* Add the correct image path */
+  background-image: url('/path-to-your-image.png'); 
   background-size: cover;
   background-position: center;
   width: 50px;
@@ -56,10 +55,79 @@
   border-radius: 50%;
   position: absolute;
   top: 10px;
-  right: 10px; /* or 'left: 10px' for left side */
+  right: 10px; 
 }
 
 .notification-list p {
   text-align: center;
   color: #777;
+} */
+
+.task-notification-container {
+  padding: 20px;
+  max-width: 400px;
+  margin: 20px auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 90px;
+  max-width: 600px;
+  background-color: rgba(128, 128, 128, 0.336);
+  border: 1px solid #ddd;
+  margin: auto;
+}
+
+.task-card {
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.task-card:hover {
+  transform: scale(1.02);
+}
+
+.task-icon {
+  margin-right: 15px;
+}
+
+.notification-bell-icon {
+  font-size: 30px;
+  color: #007bff;
+}
+
+.task-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.task-message {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.notification-type {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.monitor-button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.monitor-button:hover {
+  background-color: #0056b3;
 }

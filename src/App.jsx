@@ -43,10 +43,10 @@ import Loan from './HRModule/Components/Pages/Payroll/PayrollInputs/Loan/Loan';
 import Income from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Income/Income';
 import Incometabs from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Incometabs/Incometabs'
 import MyApprovers from './HRModule/Components/Pages/TimeManagement/MyApprovers/MyApprovers'
+import EmpPayslip from './EmployeeModule/Components/Pages/EmpPayslip/EmpPayslip'
 // import { getProfile } from './Landingpage/'
 import { getProfile } from './HRModule/Redux/Reducers/ProfileSlice';
 
-import store from "./Store"
 import { useDispatch } from 'react-redux';
 import EmpLopDays from './HRModule/Components/Pages/Payroll/PayrollInputs/EmpLopDays/EmpLopDays';
 import Exemptions from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Exemptions/Exemptions';
@@ -59,6 +59,9 @@ import Result from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/
 import LOP from './HRModule/Components/Pages/Payroll/PayrollInputs/Lossofpay/LOP/LOP';
 import Finalsettlement from './HRModule/Components/Pages/Payroll/PayrollInputs/Finalsettlement/Settlementtabs';
 import Finalsettlementmain from './HRModule/Components/Pages/Payroll/PayrollInputs/Finalsettlement/Finalsettlementmain/Finalsettlementmain'
+import { fetchHolidays } from './EmployeeModule/Redux/EmpholidaycalenderSlice';
+import AddemployeeHome from './HRModule/Components/Pages/Addemployee/AddemployeeHome/AddemployeeHome';
+// import { fetchHolidays } from './HRModule/Redux/Slices/leaveCalendarSlice'
 
 
 // const result = await dispatch(getProfile())
@@ -71,6 +74,13 @@ const App = () => {
   useEffect(()=>{
     dispatch(getProfile())
   },[])
+
+  useEffect(()=>{
+    dispatch(fetchHolidays())
+    dispatch(fetchHolidays())
+  },[])
+
+  
   return (
     <div>
       <BrowserRouter>
@@ -93,7 +103,7 @@ const App = () => {
             <Route path="leave-calender" element={<LeaveCalender />} />
             <Route path="settings" element={<Settings />} />
             <Route path="profile" element={<Profile />} />
-            <Route path="add-employee" element={<Addemployee />} />
+            <Route path="add-employee" element={<AddemployeeHome />} />
             <Route path="view-employee" element={<Viewemployee />} />
             <Route path='loan' element={<Loan/>}/>
             <Route path="salary" element={<Salary />} />
@@ -128,11 +138,13 @@ const App = () => {
           </Route>
 
           {/* Employee Module */}
-          <Route path="/emp-dashboard/*" element={<ProtectedRoute><EmployeeDashboard /></ProtectedRoute>}>
-            <Route path="emphome" element={<ProtectedRoute><EmpHome /></ProtectedRoute>} />
-            <Route path="profile" element={<ProtectedRoute><EmpProfile /></ProtectedRoute>} />
-            <Route path="leave-calender" element={<ProtectedRoute><Empholidaycalendar/></ProtectedRoute>}/>
-            <Route path='leave-apply' element={<ProtectedRoute><EmpApplyLeave/></ProtectedRoute>}/>
+          <Route path="/emp-dashboard/*" element={<EmployeeDashboard />}>
+            <Route path="emphome" element={<EmpHome />} />
+            <Route path="profile" element={<EmpProfile />} />
+            <Route path="leave-calender" element={<Empholidaycalendar/>}/>
+            <Route path='leave-apply' element={<EmpApplyLeave/>}/>
+            <Route path='emp-payslip' element={<EmpPayslip/>}/>
+
 
 
           </Route>

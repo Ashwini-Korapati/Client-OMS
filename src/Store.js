@@ -18,7 +18,7 @@ import adminReducer from "./Landingpage/Redux/slices/adminSlice";
 // import addEmployeeReducer from "./HRModule/Redux/Reducers/Addemployeereducers"
 import employeeReducer from './HRModule/Redux/Slices/NewAddemployee'
 import employeesReducer from './HRModule/Redux/Slices/ViewempSlice'
-import LeaveFormSlice from "./HRModule/Redux/Slices/LeaveFormSlice";
+// import LeaveFormSlice from "./HRModule/Redux/Slices/LeaveFormSlice";
 import leaveCalendarReducer from './HRModule/Redux/Slices/leaveCalendarSlice'
 import empleaveCalendarSlice from './EmployeeModule/Redux/EmpholidaycalenderSlice'
 import changepasswordReducer from './HRModule/Redux/Reducers/changepasswordReducer'
@@ -29,6 +29,8 @@ import salaryUpdateSlice from './HRModule/Redux/Slices/salaryUpdateSlice'
 import notificationReducer from './HRModule/Redux/Slices/notificationSlice'
 import SettlementSlice from "./HRModule/Redux/Slices/SettlementSlice";
 import homeleaveCalendarReducer from './HRModule/Redux/Slices/homeholidayleaveSlice'
+import payslipReducer from './HRModule/Redux/Slices/emppayslip'
+import AddemployeeHomeSlice from './HRModule/Redux/Slices/AddemployeeHomeSlice'
 // import jobReducer from './Landingpage/Redux/Reducers'
 // import hrCardsReducer from './HRModule/Redux/Reducers/hrCardsSlice'
 
@@ -72,17 +74,18 @@ const reducer = combineReducers({
   // addemployee: addEmployeeReducer,
   addemployee: employeeReducer,
   employees: employeesReducer,
-  leaveform: LeaveFormSlice,
+  // leaveform: LeaveFormSlice,
   leaveCalendar: leaveCalendarReducer,
   homeleaveCalendar: homeleaveCalendarReducer,
 
-  // leaveCalendaremp: empleaveCalendarSlice,
+  leaveCalendaremp: empleaveCalendarSlice,
   changepasswordState: changepasswordReducer,
   salary: getSalary,
   salaryUpdate: salaryUpdateSlice,
   notifications: notificationReducer,
   settlement:SettlementSlice,
-  
+  payslip: payslipReducer,
+  addEmployeeHome: AddemployeeHomeSlice,
 
 });
 
@@ -90,11 +93,6 @@ const initialState = {};
 const middleware = [thunk];
 
 
-// const store = configureStore({
-//     reducer,
-//     // middleware:[thunk]
-//     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
-// })
 
 const store = createStore(
     reducer,
@@ -106,13 +104,3 @@ export default store;
 
 
 
-// import { configureStore } from '@reduxjs/toolkit';
-// import thunk from 'redux-thunk';
-// import rootReducer from '../../OMS-client/src/Landingpage/Redux/slices/userSlice';
-
-// const store = configureStore({
-//   reducer: rootReducer,
-//   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
-// });
-
-// export default store;

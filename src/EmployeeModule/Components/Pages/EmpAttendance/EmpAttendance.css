@@ -1,8 +1,9 @@
 .emp-attendance-form-container {
     position: relative;
-    margin-top: 50px;
+    margin-top: 90px;
     height: 60vh;
-    width: 80%;
+    margin-left: 80px;
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -18,7 +19,7 @@
     border-radius: 40px;
 
     /* background-color: #d5bdafb7; */
-    width: 100%;
+    width: 70%;
     /* padding: 60px; */
     height: 80vh;
     /* background: rgba(0, 0, 0, 0.5); */

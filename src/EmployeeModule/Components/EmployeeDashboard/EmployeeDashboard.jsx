@@ -8,8 +8,9 @@ import EmpHeader from '../../EmpAppHeader/EmpAppHeader'
 
 
 import { Outlet } from 'react-router-dom';
+import EmpHeader2 from '../../EmpAppHeader/EmpHeader2'
 
-import EmpSidebar from '../../EmpSidebar/EmpSidebar'
+// import EmpSidebar from '../../EmpSidebar/EmpSidebar'
  
 const Dashboard = () => {
 
@@ -18,10 +19,11 @@ const Dashboard = () => {
     <div className="dashboard">
 
       <EmpHeader />
+      <EmpHeader2 />
 
       <div className="dashboard-body">
 
-        <EmpSidebar />
+        {/* <EmpSidebar /> */}
 
         <div className="dashboard-content">
 

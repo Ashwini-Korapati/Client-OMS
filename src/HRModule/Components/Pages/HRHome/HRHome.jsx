@@ -48,6 +48,7 @@ import HRCards from './HRCards';
 import Graph from './Graph';
 import Calender from './Calender';
 import MyTasks from './Tasks/NotifyMsg'
+import Birthday from '../HRHome/Birthday/Birthday'
 
 // import logo from '../../../Assets/documentation_12650218.png'; 
 
@@ -82,6 +83,7 @@ const HRHome = () => {
       <div className='HRHome-graph-calender'>
         {/* <Graph /> */}
         <MyTasks />
+        <Birthday />
         <Calender />
       </div>
     </div>

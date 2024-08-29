@@ -30,6 +30,7 @@ const HRHome = () => {
         {/* <Graph /> */}
         <EmpAttendance/>
         <EmpCalendar />
+    
       </div>
    
     </div>
