@@ -31,38 +31,14 @@ import SettlementSlice from "./HRModule/Redux/Slices/SettlementSlice";
 import homeleaveCalendarReducer from './HRModule/Redux/Slices/homeholidayleaveSlice'
 import payslipReducer from './HRModule/Redux/Slices/emppayslip'
 import AddemployeeHomeSlice from './HRModule/Redux/Slices/AddemployeeHomeSlice'
-// import jobReducer from './Landingpage/Redux/Reducers'
-// import hrCardsReducer from './HRModule/Redux/Reducers/hrCardsSlice'
+import todayattendanceSlice from "./HRModule/Redux/Slices/todayattendanceSlice";
+import monthlyattendanceReducer from './HRModule/Redux/Slices/monthlyattendanceSlice'
+import lopReducer from './HRModule/Redux/Slices/lopSlice'
+import lopEmpReducer from './HRModule/Redux/Slices/lopEmpSlice'
+import LeaveHistorySlice from './HRModule/Redux/Slices/leaveHistorySlice'
+import LeavePendingSlice from './HRModule/Redux/Slices/leavePendingSlice'
 
 
-
-// const reducer = combineReducers({
-//     // productsState: productsReducer,
-//     // productState: productReducer ,
-    
-//     authState: authReducer,
-//     profile: profileReducer,
-//     admin:adminReducer,
-//     // jobs:jobReducer,
-    
-//     // cartState: cartReducer,
-//     // orderState: orderReducer,
-//     userState: userReducer,
-//     // employeeAdd: employeeAddReducer,
-//     attendance: attendanceReducer,
-//     leavereport:LeaveReportslice,
-//     addemployee: addEmployeeReducer,
-//     employees: employeesReducer,
-//     leaveform: LeaveFormSlice,
-//     leaveCalendar: leaveCalendarReducer,
-//     leaveCalendaremp: empleaveCalendarSlice
-
-
-//     // hrCards: hrCardsReducer,
-
-
-
-// })
 
 const reducer = combineReducers({
   authState: authReducer,
@@ -71,10 +47,8 @@ const reducer = combineReducers({
   userState: userReducer,
   attendance: attendanceReducer,
   leavereport: LeaveReportslice,
-  // addemployee: addEmployeeReducer,
   addemployee: employeeReducer,
   employees: employeesReducer,
-  // leaveform: LeaveFormSlice,
   leaveCalendar: leaveCalendarReducer,
   homeleaveCalendar: homeleaveCalendarReducer,
 
@@ -86,6 +60,12 @@ const reducer = combineReducers({
   settlement:SettlementSlice,
   payslip: payslipReducer,
   addEmployeeHome: AddemployeeHomeSlice,
+  todayattendance:todayattendanceSlice,
+  monthlyattendance:monthlyattendanceReducer,
+  lop:lopReducer,
+  lopEmp:lopEmpReducer,
+  leaveHistory: LeaveHistorySlice,
+  leavePending: LeavePendingSlice,
 
 });
 

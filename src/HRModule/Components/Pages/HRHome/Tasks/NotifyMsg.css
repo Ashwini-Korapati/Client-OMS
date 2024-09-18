@@ -1,71 +1,6 @@
-/* .notification-list {
-  padding: 90px;
-  max-width: 600px;
-  background-color: rgba(128, 128, 128, 0.336);
-  border: 1px solid #ddd;
-  margin: auto;
-}
-
-.notification-list h3 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 30px;
-  color: #333;
-}
-
-.notification-item {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
-  position: relative;
-}
-
-.notification-item:hover {
-  transform: scale(1.03);
-}
-
-.notification-item img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 15px;
-}
-
-.notification-item p {
-  margin: 0;
-  font-size: 16px;
-  color: #555;
-}
-
-.notification-item::before {
-  content: '';
-  background-image: url('/path-to-your-image.png'); 
-  background-size: cover;
-  background-position: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  position: absolute;
-  top: 10px;
-  right: 10px; 
-}
-
-.notification-list p {
-  text-align: center;
-  color: #777;
-} */
 
 .task-notification-container {
   padding: 20px;
-  max-width: 400px;
   margin: 20px auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 90px;
@@ -73,11 +8,16 @@
   background-color: rgba(128, 128, 128, 0.336);
   border: 1px solid #ddd;
   margin: auto;
+  align-items: start;
+  justify-content: start;
+  margin-left: -5px;
+  height: 50vh;
+  margin-top: 80px;
 }
 
 .task-card {
   display: flex;
-  align-items: center;
+  align-items: start;
   background-color: #f9f9f9;
   padding: 15px;
   border-radius: 8px;

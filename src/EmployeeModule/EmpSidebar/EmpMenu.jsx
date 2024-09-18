@@ -9,6 +9,7 @@ import {
   } from '@ant-design/icons';
   import { SlCalender } from "react-icons/sl";
   import React from 'react';
+  import { FaPeopleRoof } from "react-icons/fa6";
 
   import {
    FaDollarSign,FaCalendarAlt
@@ -33,19 +34,19 @@ import {
       label: <span className="menu-item-text">Payroll</span>,
     },
    
-    // {
-    //     key: '3',
-    //     path:'/emp-dashboard/leave-apply',
-    //     icon: <CalendarOutlined style={iconStyle} />,
-    //     label: <span className="menu-item-text">Leave</span>,
-    //   },
- 
+   
     // {
     //   key: '4',
     //   path:'/emp-dashboard/checkout',
     //   label: <span className="menu-item-text">Checkout</span>,
     //   icon: <SettingOutlined style={iconStyle} />,
     // },
+    {
+      key: '6',
+      path:'/emp-dashboard/onboarding',
+      icon: <FaPeopleRoof style={iconStyle} />,
+      label: <span className="menu-item-text">Onboarding </span>,
+    },
 
     {
       key: '3',
@@ -58,12 +59,14 @@ import {
           icon: <BsArrowRightCircle style={iconStyle} />,
           label: <span className="menu-item-text">Apply Leave</span>,
         },
+
         {
           key: '5',
           path:'/emp-dashboard/leave-calender',
           icon: <SlCalender  style={iconStyle} />,
           label: <span className="menu-item-text">Leave Calender</span>,
         },
+      
       ]}
   ];
    

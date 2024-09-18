@@ -1,19 +1,18 @@
-
-   .payslip-container {
+/* src/components/Payslip.css */
+.payslip-container {
     width: 100%;
-    /* max-width: 1200px; */
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
+    
 }
 
 .tabs {
     display: flex;
     gap: 90px;
-    justify-content: end;
+    /* justify-content: end; */
     margin-bottom: 10px;
 }
-
 
 .tabs button {
     padding: 10px 20px;
@@ -35,17 +34,14 @@
 
 .payslip-details {
     display: flex;
-    width: 70%;
+    /* width: 70%; */
 }
 
-.earnings {
+.earnings, .deductions {
     width: 50%;
     margin-right: 20px;
 }
-.deductions{
-  width: 50%;
-  margin-right: 20px;
-}
+
 .earnings table, .deductions table {
     width: 100%;
     border-collapse: collapse;
@@ -57,23 +53,24 @@
     border: 1px solid #ddd;
 }
 
-
 .employee-details {
-    width: 40%;
+    /* margin-left: 200px; */
+    width: 50%;
     background-color: #fffbe6;
     padding: 20px;
     border: 1px solid #ddd;
 }
+
 .details {
-  display: flex;
-  flex-wrap: wrap; 
-  gap: 20px; 
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .details p {
-  margin: 0; 
-  flex: 1; 
-  min-width: 200px; 
+    flex: 1 1 calc(50% - 20px);
+    min-width: calc(50% - 20px);
+    margin: 0;
 }
 
 .employee-details .hide-button {
@@ -98,28 +95,29 @@
     border: none;
     cursor: pointer;
 }
-.download-button1{
-  padding: 10px 20px;
-  background-color: #1890ff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  justify-content: start;
-  margin-right: 1000px;
+
+.download-button1 {
+    padding: 10px 20px;
+    background-color: #1890ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    justify-content: start;
+    margin-right: 1000px;
 }
+
 .month-select {
     padding: 10px;
     border: 1px solid #ddd;
 }
 
-
-.total-salary{
-  color: green;
-  font-weight: 200;
-  font-size: x-large;
-  margin-top: 180px;
+.total-salary {
+    color: green;
+    font-weight: 200;
+    font-size: x-large;
+    margin-top: 180px;
 }
 
-.total{
-  margin-top: 200px;
+.total {
+    margin-top: 200px;
 }

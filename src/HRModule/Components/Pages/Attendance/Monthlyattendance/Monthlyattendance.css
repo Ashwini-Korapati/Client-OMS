@@ -1,0 +1,51 @@
+/* Existing CSS */
+.attendance-input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.attendance-input {
+    flex: 1;
+    max-width: 350px; /* Adjust the maximum width as needed */
+    width: 100%; /* Ensure it fills the available space up to max-width */
+}
+
+.custom-button {
+    background-color: #223a23; /* Updated button background color (Green) */
+    color: #fff; /* White text for contrast */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-button:hover {
+    background-color: #388e3c; /* Darker green on hover */
+}
+
+.custom-button:focus {
+    outline: none;
+}
+
+.custom-button:disabled {
+    background-color: #bdbdbd; /* Gray background for disabled state */
+    cursor: not-allowed;
+}
+
+/* For buttons inside tables or forms */
+.table-btn12 {
+    background-color: #6a1b9a; /* Purple button for table actions */
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 3px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.table-btn12:hover {
+    background-color: #8e24aa; /* Lighter purple on hover */
+}

@@ -27,8 +27,13 @@ const changepasswordSlice = createSlice({
   reducers: {
     clearPasswordError: (state) => {
       state.error = null;
-      state.message = null;
     },
+    resetPasswordState: (state) => {
+      state.loading = false;
+      state.success = false;
+      state.error = null;
+      state.message = null;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -51,5 +56,6 @@ const changepasswordSlice = createSlice({
   },
 });
  
-export const { clearPasswordError } = changepasswordSlice.actions;
+export const { clearPasswordError, resetPasswordState } = changepasswordSlice.actions;
 export default changepasswordSlice.reducer;
+ 

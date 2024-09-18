@@ -136,7 +136,6 @@ const LeaveCalendar = () => {
         >
           <Option value={2025}>2025</Option>
           <Option value={2024}>2024</Option>
-          <Option value={2023}>2023</Option>
         </Select>
       </div>
       {loading ? (

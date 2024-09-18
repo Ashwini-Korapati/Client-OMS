@@ -1,69 +1,93 @@
+/* EmpHome-first container */
+.EmpHome-first {
+  position: relative;
+  margin: 20px;
+}
 
-  
+/* Responsive Heading */
+.emp-h1 {
+  font-size: 28px;
+  margin-left: 10px;
+}
 
-   
-  .EmpHome-blog-cards{
-    display: flex;
-    margin-top: 40px;
-   
-  }
-   
-  .image-container-emp{
-
-    display: flex;
-  }
-   .EmpHome-first{
-    position: relative; 
-    /* background-image: url('../../../Assets/homeimg.png'); 
-    background-size: 200px 200px;
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-position: top right 90px; */
-    
-
-    /* transform: rotate(75deg);  */
-
-   }
-  .emp-home-logo {
-    position: fixed; /* Position the logo absolutely */
-    margin-left: 40px;
-    top: 35px;
-  width: 200px; /* Adjust the width as needed */
-  height: 200px; /* Adjust the height as needed */
-          transform: rotate(25deg); 
-          
-
-  }
-  
-  /* .HRHome-blog-cards h1 {
-    margin-left: 60px;
-    display: flex;
-    align-items: center;
-  } */
-  
-  .emp-name {
-    margin-left: 5px; /* Add some space between "Welcome" and the name if needed */
-  }
-  .emp-h1{
+@media (min-width: 768px) {
+  .emp-h1 {
     font-size: 30px;
-    margin-left: 20px; /* Add some space between "Welcome" and the name if needed */
-
+    margin-left: 20px;
   }
-  
-  /* .HRHome-graph-calender {
-    height: max-content;
-    justify-items: center;
-    justify-content: space-between;
-    display: flex;
-    flex-direction: row;
-    border-radius: 20px;
-  } */
+}
 
-  .emp-attendance-calender{
-    display: flex;
+/* EmpHome-blog-cards - adjust layout for smaller screens */
+.EmpHome-blog-cards {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .EmpHome-blog-cards {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+}
+
+/* Image container */
+.image-container-emp {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .image-container-emp {
+    justify-content: flex-start;
+    margin-top: 0;
+  }
+}
+
+/* Responsive logo */
+.emp-home-logo {
+  margin-left: 20px;
+  top: 35px;
+  width: 150px;
+  height: 150px;
+  transform: rotate(25deg);
+}
+
+@media (min-width: 768px) {
+  .emp-home-logo {
+    width: 200px;
+    height: 200px;
+    margin-left: 40px;
+  }
+}
+
+/* Responsive Attendance and Calendar section */
+.emp-attendance-calender {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .emp-attendance-calender {
     flex-direction: row;
     justify-content: start;
-    gap: 10px;
   }
-  
-  
+}
+
+/* Name styling */
+.emp-name {
+  margin-left: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* For smaller devices, reduce the margin */
+@media (max-width: 768px) {
+  .emp-h1 {
+    text-align: center;
+    margin-left: 0;
+  }
+}

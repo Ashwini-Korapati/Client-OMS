@@ -1,7 +1,8 @@
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
  
- 
+// Async thunk for check-in
 export const checkIn = createAsyncThunk(
   'attendance/checkIn',
   async (formData, { rejectWithValue }) => {
@@ -35,10 +36,10 @@ const attendanceSlice = createSlice({
     checkInTime: null,
     checkOutTime: null,
     totalHours: 0,
-    selfie: '',
-    status: 'idle',
-    error: null,
+    selfie: null,
     success: false,
+    error: null,
+    date: ''
   },
   reducers: {
     setShiftTime: (state, action) => {
@@ -55,11 +56,12 @@ const attendanceSlice = createSlice({
     builder
       .addCase(checkIn.fulfilled, (state, action) => {
         state.checkInTime = action.payload.check_in;
+        state.date = action.payload.date;
         state.success = true;
       })
       .addCase(checkOut.fulfilled, (state, action) => {
         state.checkOutTime = action.payload.check_out;
-        state.totalHours = action.payload.total_hours; 
+        state.totalHours = action.payload.total_hours;
         state.success = true;
       })
       .addCase(checkIn.rejected, (state, action) => {
@@ -70,8 +72,7 @@ const attendanceSlice = createSlice({
         state.error = action.payload;
         state.success = false;
       });
-  }
-  
+  },
 });
  
 export const { setShiftTime, setWorkType, setSelfie } = attendanceSlice.actions;

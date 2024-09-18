@@ -1,0 +1,29 @@
+.attendance-container {
+    margin-top: 20px;
+  }
+  
+  .attendance-tabs {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .attendance-content {
+    margin-top: 50px;
+  }
+  
+  .attendance-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+  }
+  
+  .attendance-table-container {
+    padding: 20px;
+  }
+  
+  .attendance-input {
+    margin-bottom: 10px;
+    width: 300px;
+  }
+  

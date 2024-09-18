@@ -32,7 +32,6 @@ import TimeSheet from './HRModule/Components/Pages/TimeManagement/TimeSheet/Time
 import TimeReport from './HRModule/Components/Pages/TimeManagement/TimeReport/TimeReport'
 // import Updatesalary from './HRModule/Components/Pages/Payroll/PayrollInputs/Salary/Updatesalary'
 import React from 'react';
-//employee routes->
 import EmpHome from './EmployeeModule/Components/Pages/EmpHome/EmpHome'
 import EmpProfile from './EmployeeModule/Components/Pages/EmpProfile/EmpProfile'
 // import EmpAttendance from './EmployeeModule/Components/Pages/EmpAttendance/EmpAttendance'
@@ -61,6 +60,13 @@ import Finalsettlement from './HRModule/Components/Pages/Payroll/PayrollInputs/F
 import Finalsettlementmain from './HRModule/Components/Pages/Payroll/PayrollInputs/Finalsettlement/Finalsettlementmain/Finalsettlementmain'
 import { fetchHolidays } from './EmployeeModule/Redux/EmpholidaycalenderSlice';
 import AddemployeeHome from './HRModule/Components/Pages/Addemployee/AddemployeeHome/AddemployeeHome';
+import EmpChangePassword from './EmployeeModule/Components/Pages/EmpChangePassword'
+import CardLayout from './HRModule/Components/Pages/HRHome/CardLayout';
+import AddEmployee from './HRModule/Components/Pages/Addemployee/Addemployee';
+import AttendanceTabs from './HRModule/Components/Pages/Attendance/Attendancetabs/Attendancetabs'
+import LeaveHome from './EmployeeModule/Components/Pages/EmpLeave/LeaveHome/LeaveHome'
+import Onboarding from  './EmployeeModule/Components/Pages/Onboarding/Onboarding'
+import Qpforms from './EmployeeModule/Components/Pages/Onboarding/Qpforms';
 // import { fetchHolidays } from './HRModule/Redux/Slices/leaveCalendarSlice'
 
 
@@ -103,7 +109,7 @@ const App = () => {
             <Route path="leave-calender" element={<LeaveCalender />} />
             <Route path="settings" element={<Settings />} />
             <Route path="profile" element={<Profile />} />
-            <Route path="add-employee" element={<AddemployeeHome />} />
+            <Route path="add-employee" element={<AddEmployee />} />
             <Route path="view-employee" element={<Viewemployee />} />
             <Route path='loan' element={<Loan/>}/>
             <Route path="salary" element={<Salary />} />
@@ -113,6 +119,9 @@ const App = () => {
             <Route path='time-sheet' element={<TimeSheet/>}/>
             <Route path='time-report' element={<TimeReport/>}/>
             <Route path='myapprovers' element={<MyApprovers/>}/>
+            <Route path='leave-report-detail' element={<CardLayout/>}/>
+            <Route path='attendancetabs' element={<AttendanceTabs/>}/>
+
 
             {/* <Route path='updatesalary' element={<ProtectedRoute><Updatesalary/></ProtectedRoute>}/> */}
 
@@ -129,6 +138,7 @@ const App = () => {
             <Route path='lop' element={<ProtectedRoute><LOP/></ProtectedRoute>}/>
             <Route path='finalsettlementtabs' element={<ProtectedRoute><Finalsettlement/></ProtectedRoute>}/>
             <Route path='finalsettlementmain' element={<ProtectedRoute><Finalsettlementmain/></ProtectedRoute>}/>
+
           </Route>
 
           {/* Admin Module */}
@@ -137,16 +147,17 @@ const App = () => {
 
           </Route>
 
-          {/* Employee Module */}
-          <Route path="/emp-dashboard/*" element={<EmployeeDashboard />}>
+
+
+<Route path="/emp-dashboard/*" element={<EmployeeDashboard />}>
             <Route path="emphome" element={<EmpHome />} />
             <Route path="profile" element={<EmpProfile />} />
             <Route path="leave-calender" element={<Empholidaycalendar/>}/>
-            <Route path='leave-apply' element={<EmpApplyLeave/>}/>
+            <Route path='leave-apply' element={<LeaveHome/>}/>
             <Route path='emp-payslip' element={<EmpPayslip/>}/>
-
-
-
+            <Route path='onboarding' element={<Onboarding/>}/>
+            <Route path='onboarding/forms' element={<Qpforms/>}/>
+ 
           </Route>
 
           {/* User Module */}

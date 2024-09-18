@@ -1,24 +1,29 @@
+
 .emp-card-perfamnce-dashboard {
   display: flex;
-  /* flex-wrap: wrap; */
   gap: 40px;
   justify-content: start;
   padding: 20px;
-  /* background-color: #f4f4f4; */
+  flex-wrap: wrap; /* Ensure wrapping happens on smaller screens */
+}
 
+@media (max-width: 768px) {
+  .emp-card-perfamnce-dashboard {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .emp-p-card {
   display: flex;
-  justify-content: start;
-  align-items: start;
+  justify-content: space-between;
   align-items: center;
   width: 400px;
   height: 140px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  padding: 40px;
+  padding: 20px;
   background-color: white;
   border: 1px solid rgba(128, 128, 128, 0.438);
 }
@@ -29,7 +34,7 @@
 }
 
 .emp-p-icon {
-  margin-left: 120px;
+  margin-left: 20px;
 }
 
 .emp-p-icon img {
@@ -44,18 +49,24 @@
 
 .emp-p-content p {
   font-size: medium;
-  font: bold;
+  font-weight: bold;
   margin-top: 10px;
-  /* margin: 0; */
   color: black;
 }
 
-
-.apply-leave{
+.apply-leave {
   background-color: #007bff;
   color: white;
   width: 60px;
   height: 30px;
   padding: 2px;
   margin-top: 10px;
+}
+
+/* Media queries for larger screens to avoid stacking */
+@media (min-width: 768px) {
+  .emp-card-perfamnce-dashboard {
+    flex-direction: row;
+    justify-content: start;
+  }
 }

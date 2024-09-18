@@ -1,30 +1,45 @@
-import React, { useState } from "react";
-import "./AddLOP.css";
-import { CiCirclePlus } from "react-icons/ci";
-import { Form, Input, Select } from "antd";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addLopData } from '../../../../../../Redux/Slices/lopSlice';
+import './AddLOP.css';
 
+import { CiCirclePlus } from 'react-icons/ci';
+import { Form, Select } from 'antd';
+ 
 const AddLOP = ({ onClose }) => {
-  const [employee, setEmployee] = useState("");
-  const [lopDays, setLopDays] = useState("");
-  const [remarks, setRemarks] = useState("");
+  const dispatch = useDispatch();
+ 
+  const employees1 = useSelector(state => state.employees.employees.employees);
+  console.log(employees1)
+
+  const [emp_id, setEmployee] = useState('');
+  const [lop_days, setLopDays] = useState('');
+  const [revised_monthly_ctc, setMonthlyCTC] = useState('');
+  const [remarks, setRemarks] = useState('');
+  const [showSearchCC, setShowSearchCC] = useState(false);
+ 
 
   const handleSave = () => {
-    console.log("Employee:", employee);
-    console.log("LOP Days:", lopDays);
-    console.log("Remarks:", remarks);
-    onClose();
+    if (!emp_id) {
+      alert("Please select an employee before saving.");
+      return;
+    }
+ 
+    dispatch(addLopData({ emp_id, lop_days, revised_monthly_ctc, remarks }))
+      .unwrap()
+      .then(() => {
+        onClose(); 
+      })
+      .catch((error) => {
+        console.error('Failed to save LOP data:', error);
+      });
   };
-
-  const [showSearchApplyingTo, setShowSearchApplyingTo] = useState(false);
-  const toggleSearchApplyingTo = () => {
-    setShowSearchApplyingTo(!showSearchApplyingTo);
-  };
-
-  const [showSearchCC, setShowSearchCC] = useState(false);
+ 
+ 
   const toggleSearchCC = () => {
     setShowSearchCC(!showSearchCC);
   };
-
+ 
   return (
     <div className="add-lop-popup">
       <div className="form">
@@ -34,32 +49,42 @@ const AddLOP = ({ onClose }) => {
         </div>
         {showSearchCC && (
           <Form.Item
-            name="hrEmail"
-            rules={[
-              { required: true, message: "Please select the persons to CC!" },
-            ]}
+            name="employee"
+            rules={[{ required: true, message: "Please select an employee!" }]}
           >
             <Select
-              mode="multiple"
-              allowClear
-              style={{ width: 300 }}
-              onChange={(value) =>
-                dispatch(setLeaveField({ field: "hrEmail", value }))
-              }
-            >
-              <Option value="Ashwini">Ashwini</Option>
-              <Option value="lahari">Lahari</Option>
-              <Option value="Salman">Narasimha</Option>
-            </Select>
+  value={emp_id}
+  onChange={(value) => setEmployee(value)}
+  style={{ width: 300 }}
+>
+  {employees1.length > 0 ? (
+    employees1.map((employee) => (
+      <Select.Option key={employee.emp_id} value={employee.emp_id}>
+        {employee.firstName} {employee.lastName}
+      </Select.Option>
+    ))
+  ) : (
+    <Select.Option disabled>No employees found</Select.Option>
+  )}
+</Select>
+ 
           </Form.Item>
         )}
-
+ 
         <div className="form-group">
           <label>LOP Days</label>
           <input
             type="number"
-            value={lopDays}
+            value={lop_days}
             onChange={(e) => setLopDays(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label>MONTHLY CTC</label>
+          <input
+            type="number"
+            value={revised_monthly_ctc}
+            onChange={(e) => setMonthlyCTC(e.target.value)}
           />
         </div>
         <div className="form-group">
@@ -81,5 +106,5 @@ const AddLOP = ({ onClose }) => {
     </div>
   );
 };
-
+ 
 export default AddLOP;

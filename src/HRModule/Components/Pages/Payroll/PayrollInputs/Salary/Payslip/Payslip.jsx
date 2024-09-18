@@ -8,12 +8,20 @@ import imagelogo from '../../../../../../Assets/nmitlogo.png';
 
 const Payslip = ({ onClose, employeeId }) => {
   const employeeSalaryData = useSelector((state) => state.salary.salaryDetails);
+  const employees = useSelector(state => state.employees.employees.employees);
 
+  console.log("employee salary data",employeeSalaryData)
+
+console.log(employees)
   if (!employeeSalaryData) {
     return <Spin size="large" />; // Show a loading spinner
   }
 
   const payslipData = employeeSalaryData.find(emp => emp.emp_id === employeeId);
+  const payslipPersonalData = employees.find(emp => emp.emp_id === employeeId);
+  console.log("payslipdata salary",payslipData)
+  console.log("payslipdata personal",payslipPersonalData)
+
 
   if (!payslipData) {
     return <div>No data available for this employee.</div>;
@@ -34,15 +42,9 @@ const Payslip = ({ onClose, employeeId }) => {
     revised_full_other_allowance,
     revised_full_employer_pf,
     revised_full_travel_allowance,
-    joiningDate,
-    department,
+   lop,
     effectiveWorkDays,
-    lop,
-    bankName,
-    bankAccountNo,
-    panNumber,
-    pfNumber,
-    pfUAN
+    
   } = payslipData;
 
   return (
@@ -64,27 +66,27 @@ const Payslip = ({ onClose, employeeId }) => {
                 <td><strong>Employee No:</strong> {emp_id}</td>
               </tr>
               <tr>
-                <td><strong>Joining Date:</strong> {joiningDate}</td>
-                <td><strong>Bank Name:</strong> {bankName || '-'}</td>
+                <td><strong>Joining Date:</strong> {payslipData.dateOfJoining}</td>
+                <td><strong>Bank Name:</strong> {payslipData.bankName || '-'}</td>
               </tr>
               <tr>
                 <td><strong>Designation:</strong> {designation}</td>
-                <td><strong>Bank Account No:</strong> {bankAccountNo || '-'}</td>
+                <td><strong>Bank Account No:</strong> {payslipData.accountNo || '-'}</td>
               </tr>
               <tr>
-                <td><strong>Department:</strong> {department || '-'}</td>
-                <td><strong>PAN Number:</strong> {panNumber || '-'}</td>
+                <td><strong>Department:</strong> {payslipPersonalData.department || '-'}</td>
+                <td><strong>PAN Number:</strong> {payslipData.panNo || '-'}</td>
               </tr>
               <tr>
-                <td><strong>Location:</strong> {location || '-'}</td>
-                <td><strong>PF No:</strong> {pfNumber || '-'}</td>
+                <td><strong>Location:</strong> {payslipPersonalData.location || '-'}</td>
+                <td><strong>PF No:</strong> {payslipData.pfNumber || '-'}</td>
               </tr>
               <tr>
                 <td><strong>Effective Work Days:</strong> {effectiveWorkDays}</td>
-                <td><strong>PF UAN:</strong> {pfUAN || '-'}</td>
+                <td><strong>PF UAN:</strong> {payslipData.uanNumber || '-'}</td>
               </tr>
               <tr>
-                <td><strong>LOP:</strong> {lop}</td>
+                <td><strong>LOP:</strong> {lop ? payslipData.lop: 0}</td>
                 <td></td>
               </tr>
             </tbody>
@@ -118,14 +120,12 @@ const Payslip = ({ onClose, employeeId }) => {
                 <td>Travelling Allowance</td>
                 <td>{revised_full_travel_allowance}</td>
               </tr>
+             
               <tr>
                 <td><strong>Total Earnings</strong></td>
-                <td><strong>{revised_monthly_ctc}</strong></td>
+                <td><strong>{total_amt}</strong></td>
               </tr>
-              <tr>
-                <td><strong>Annual CTC</strong></td>
-                <td><strong>{revised_annual_ctc}</strong></td>
-              </tr>
+             
             </tbody>
           </table>
 
@@ -141,6 +141,10 @@ const Payslip = ({ onClose, employeeId }) => {
                 <td>Employer PF</td>
                 <td>{revised_full_employer_pf}</td>
               </tr>
+              {/* <tr>
+                <td>LOP</td>
+                <td>{lop}</td>
+              </tr> */}
               <tr>
                 <td><strong>Total Deductions</strong></td>
                 <td><strong>{revised_full_employer_pf}</strong></td>

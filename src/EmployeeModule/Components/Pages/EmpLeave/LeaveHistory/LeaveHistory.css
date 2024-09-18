@@ -1,0 +1,168 @@
+.leave-history-container-custom {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px; /* Add padding for better spacing */
+}
+
+.leave-card-custom {
+  border: 3px solid rgb(125, 189, 184);
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 15px;
+  width: 100%;
+  min-height: 110px;
+  transition: all 0.3s ease;
+}
+
+.leave-summary-custom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #f7fafc;
+}
+
+.leave-category-type {
+  font-weight: bold;
+  font-size: 16px;
+  color: #2d3748;
+}
+
+.leave-type-custom {
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.leave-summary-right-custom {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.days-custom {
+  font-weight: bold;
+}
+
+.status-custom {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.status-custom.approved {
+  color: green;
+}
+
+.status-custom.rejected {
+  color: red;
+}
+
+.expand-icon-custom {
+  font-size: 18px;
+  color: #4a5568;
+}
+
+.leave-details-custom {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.leave-detail-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail-label {
+  font-weight: bold;
+  color: #2d3748;
+}
+
+.detail-value {
+  color: #4a5568;
+}
+
+.view-details-custom {
+  margin-top: 10px;
+  color: #3182ce;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .leave-card-custom {
+    padding: 10px;
+  }
+
+  .leave-summary-custom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .leave-summary-right-custom {
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .expand-icon-custom {
+    font-size: 16px;
+  }
+
+  .leave-details-custom {
+    padding-top: 8px;
+  }
+
+  .view-details-custom {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .leave-card-custom {
+    padding: 8px;
+  }
+
+  .leave-summary-custom {
+    padding: 8px;
+  }
+
+  .leave-category-type,
+  .leave-type-custom {
+    font-size: 14px;
+  }
+
+  .leave-summary-right-custom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .status-custom {
+    font-size: 12px;
+  }
+
+  .expand-icon-custom {
+    font-size: 14px;
+  }
+
+  .leave-detail-row {
+    flex-direction: column;
+  }
+
+  .detail-label {
+    font-size: 12px;
+  }
+
+  .detail-value {
+    font-size: 12px;
+  }
+
+  .view-details-custom {
+    font-size: 12px;
+  }
+}

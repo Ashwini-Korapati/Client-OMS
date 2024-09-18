@@ -10,11 +10,9 @@ import './EmpAppHeader.css'
 import hrmlogo from '../../HRModule/Assets/hrmimage.png'
 import avatar from '../../HRModule/Assets/avatar.png'
 import { getProfile } from '../../HRModule/Redux/Reducers/ProfileSlice'
-
 const EmpAppHeader = () => {
-  const { emp }  = useSelector(state => state.authState);
-  console.log(emp)
-  console.log(emp.avatar)
+  const { emp } = useSelector(state => state.authState);
+  console.log(emp);
 
   const [isSettingsModalVisible, setIsSettingsModalVisible] = useState(false);
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
@@ -54,13 +52,13 @@ const EmpAppHeader = () => {
       navigate("/emp-dashboard/profile");
       dispatch(resetSuccess());
     }
-    console.log(user.avatar)
+    console.log(user?.avatar); // Check if user.avatar exists
   };
 
   const menu = (
     <Menu>
       <Menu.Item key="1">
-        <button  onClick={handleClick}>
+        <button onClick={handleClick}>
           Profile
         </button>
       </Menu.Item>
@@ -83,7 +81,8 @@ const EmpAppHeader = () => {
       <div className="header-right">
         <IoNotificationsSharp className="header-icon" onClick={showDrawer} />
         <Dropdown overlay={menu} trigger={['click']}>
-          <img className='header-profile-logo' src={ emp.avatar??avatar} alt="Profile" />
+          {/* Ensure emp and emp.avatar are valid */}
+          <img className='header-profile-logo' src={emp?.avatar || avatar} alt="Profile" />
         </Dropdown>
       </div>
 

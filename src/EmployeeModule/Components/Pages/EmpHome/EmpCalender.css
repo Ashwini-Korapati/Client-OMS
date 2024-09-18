@@ -1,13 +1,11 @@
 .holiday2-list-container {
-  width: 550px;
+  width: 100%;
+  max-width: 550px; /* Limits the maximum width */
   margin: 20px auto;
   padding: 20px;
-  /* background-color: #ffffff; */
   background-color: #f0f0f0;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-top: 100px;
-  margin-right: 180px;
 }
 
 .holiday-list-header {
@@ -15,6 +13,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  flex-wrap: wrap; /* Allows wrapping for smaller screens */
 }
 
 .holiday-list-title {
@@ -42,8 +41,7 @@
 
 .holiday-card {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column; /* Stack items vertically */
   padding: 15px;
   background-color: #f8f9fa;
   border-left: 4px solid #007bff;
@@ -75,8 +73,9 @@
 .holiday-details {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
+  align-items: flex-start; /* Align to the start for better mobile view */
+  text-align: left; /* Align text to the left */
+  margin-top: 10px;
 }
 
 .holiday-name {
@@ -99,4 +98,47 @@
 
 .holiday-apply:hover {
   background-color: #0056b3;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .holiday-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .arrow-icon {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .holiday2-list-container {
+    padding: 15px;
+  }
+
+  .holiday-list-title {
+    font-size: 1.25rem;
+  }
+
+  .arrow-icon {
+    font-size: 1.25rem;
+  }
+
+  .holiday-day {
+    font-size: 1rem;
+  }
+
+  .holiday-weekday {
+    font-size: 0.875rem;
+  }
+
+  .holiday-name {
+    font-size: 1rem;
+  }
+
+  .holiday-apply {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
 }

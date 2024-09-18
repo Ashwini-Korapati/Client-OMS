@@ -1,5 +1,8 @@
 
-  
+  .HRHome-first{
+    height: 100vh;
+    width: 100vw;
+  }
   .HRHome-blog-cards {
     margin-top: -26px;
     height: max-content;
@@ -29,9 +32,10 @@
   
   .HRHome-graph-calender {
     
-    height: max-content;
-    justify-items: center;
-    justify-content: space-between;
+    height: 100vh;
+    margin-top: 90px;
+    /* justify-items: center; */
+    /* justify-content: space-between; */
     display: flex;
     flex-direction: row;
     border-radius: 20px;

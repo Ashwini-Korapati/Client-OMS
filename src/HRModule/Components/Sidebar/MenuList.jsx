@@ -335,10 +335,22 @@ const MenuList = [
   },
   {
     key: '18',
-    path: '/hr-dashboard/attendance',
-    icon: <FaClipboardList style={iconStyle} />,
     label: "Attendance",
-  },
+    icon: <FaClipboardList style={iconStyle} />,
+    children: [
+      {
+        key: '26',
+        label: "View Attendance",
+        path: '/hr-dashboard/attendancetabs',
+       
+      },
+      {
+        key: '27',
+        label: "Apply Attendance",
+        path: '/hr-dashboard/attendance',
+      },
+    ]
+    },
   {
     key: '19',
     label: "Time Management",

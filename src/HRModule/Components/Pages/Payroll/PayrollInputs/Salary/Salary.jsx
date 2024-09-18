@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaSearch, FaTimes } from 'react-icons/fa';
 import { Layout, Input, Button, Card, Row, Col, Typography, Space, Collapse, Dropdown, Menu, Modal } from 'antd';
-
 import { DownOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -21,7 +20,7 @@ const Salary = () => {
   const navigate = useNavigate();
 
   // State mappings
-  const employees = useSelector((state) => state.employees.employees.employees);
+  const employees = useSelector((state) => state.employees.employees.employees) || [];
   const employeesStatus = useSelector((state) => state.employees.employees.status);
   const salary = useSelector((state) => state.salary.salaryDetails);
 
@@ -34,7 +33,6 @@ const Salary = () => {
   const [addSalaryDisabled, setAddSalaryDisabled] = useState(true);
   const [updateSalaryDisabled, setUpdateSalaryDisabled] = useState(true);
   const [isPayslipModalVisible, setIsPayslipModalVisible] = useState(false);
-
 
   // Fetch employees on initial load
   useEffect(() => {
@@ -65,7 +63,6 @@ const Salary = () => {
     updateComponentAmount('PF', salary.revised_full_employer_pf || '0.00');
     updateComponentAmount('TRAVELLING ALLOWANCE', salary.revised_full_travel_allowance || '0.00');
 
-    console.log('Mapped Salary Components:', updatedComponents);
     return updatedComponents;
   };
 
@@ -87,13 +84,8 @@ const Salary = () => {
 
   const filteredComponents = filterComponents(salaryData || components);
 
-  const handleEmployeeSelect = async ({ key }) => {
-    console.log('Employee Select Event Key:', key);
-
-    const employee = employees.find((emp) => String(emp.emp_id) === key);
+  const handleEmployeeSelect = async (employee) => {
     setSelectedEmployee(employee);
-
-    console.log('Selected Employee Data:', employee);
 
     if (employee) {
       try {
@@ -107,45 +99,39 @@ const Salary = () => {
   useEffect(() => {
     if (salary && salary.length > 0) {
       const salaryData = salary[0];
-      console.log('Fetched Salary Data:', salaryData);
-
       const totalSalaryAmount = parseFloat(salaryData.total_amt) || 0;
-      console.log('Total Salary Amount:', totalSalaryAmount);
-
+  
       setSalaryData(mapSalaryToComponents(salaryData));
-      setAddSalaryDisabled(totalSalaryAmount > 0); // Disable if totalSalaryAmount is greater than 0
-      setUpdateSalaryDisabled(totalSalaryAmount <= 0); // Disable if totalSalaryAmount is 0 or less
+      setAddSalaryDisabled(totalSalaryAmount > 0); 
+      setUpdateSalaryDisabled(totalSalaryAmount <= 0); 
+    } else if (salary && salary.length === 0) {
+      setAddSalaryDisabled(false);
+      setUpdateSalaryDisabled(true);
     }
   }, [salary]);
 
   const handleAddSalary = () => {
     if (selectedEmployee) {
-      console.log('Add Salary button clicked');
       navigate('/hr-dashboard/updatesalary', { state: { emp_id: selectedEmployee.emp_id } });
     }
   };
 
   const handleUpdateSalary = () => {
     if (selectedEmployee) {
-      console.log('Update Salary button clicked');
       navigate('/hr-dashboard/updatesalary', { state: { emp_id: selectedEmployee.emp_id } });
     }
   };
 
-  const handleDeselectEmployee = () => {
-    console.log('Employee deselected');
+  const handleDeselectEmployee = (e) => {
+    e.stopPropagation();
     setSelectedEmployee(null);
   };
 
-  const employeeMenu = (
-    <Menu onClick={handleEmployeeSelect}>
-      {employees.map((emp) => (
-        <Menu.Item key={emp.emp_id}>
-          {emp.firstName} {emp.lastName} - EMP_ID({emp.emp_id})
-        </Menu.Item>
-      ))}
-    </Menu>
-  );
+  const employeeMenuItems = employees.map((emp) => ({
+    key: emp.emp_id,
+    label: `${emp.firstName} ${emp.lastName} - EMP_ID(${emp.emp_id})`,
+    onClick: () => handleEmployeeSelect(emp)
+  }));
 
   const showPayslipModal = () => {
     if (selectedEmployee) {
@@ -159,19 +145,17 @@ const Salary = () => {
   const handleCancel = () => {
     setIsPayslipModalVisible(false);
   };
-  
-
 
   return (
     <Layout className='salary-dashboard'>
       <Header className="salary-header">
         <Space align="center">
           <Dropdown
-            overlay={employeeMenu}
+            menu={{ items: employeeMenuItems }}
             trigger={['click']}
             className='employee-workdays-container'
           >
-            <Button>
+            <Button onClick={(e) => e.preventDefault()}>
               {selectedEmployee ? (
                 <>
                   {selectedEmployee.firstName} {selectedEmployee.lastName} - {selectedEmployee.emp_id}
@@ -210,8 +194,8 @@ const Salary = () => {
             </Col>
             <Col span={12}>
               <Button
-  onClick={showPayslipModal}
-  className='primary-button'
+                onClick={showPayslipModal}
+                className='primary-button'
                 type="primary"
               >
                 Preview Payslip
@@ -257,14 +241,13 @@ const Salary = () => {
       </Content>
 
       <Modal
-  title="Payslip"
-  visible={isPayslipModalVisible}
-  onCancel={handleCancel}
-  footer={null} // If you don't need any footer buttons
->
-  <Payslip employeeId={selectedEmployeeId} onClose={handleCancel} />
-</Modal>
-
+        title="Payslip"
+        visible={isPayslipModalVisible}
+        onCancel={handleCancel}
+        footer={null}
+      >
+        <Payslip employeeId={selectedEmployeeId} onClose={handleCancel} />
+      </Modal>
     </Layout>
   );
 };

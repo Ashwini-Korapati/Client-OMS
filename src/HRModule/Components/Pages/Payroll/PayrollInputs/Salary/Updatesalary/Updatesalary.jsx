@@ -1,6 +1,5 @@
 
 
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,7 +12,6 @@ const Updatesalary = () => {
   const { emp_id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const salaryDetails = useSelector(state => state.salary.salaryDetails);
   const loading = useSelector(state => state.salary.loading);
   const error = useSelector(state => state.salary.error);
@@ -21,11 +19,15 @@ const Updatesalary = () => {
   const [salaryData, setSalaryData] = useState([]);
   const [isEditable, setIsEditable] = useState(false);
   const [isUpdated, setIsUpdated] = useState(false);
+  const [employeeInfo, setEmployeeInfo] = useState({
+    firstName: '',
+    designation: '',
+    created_date: ''
+  });
 
   useEffect(() => {
     if (salaryDetails && salaryDetails.length > 0) {
       const details = salaryDetails[0];
-
       setSalaryData([
         { item: 'FULL BASIC', previous: details.previous_full_basic || 'Rs 0.00', revised: details.revised_full_basic || 'Rs 0.00' },
         { item: 'FULL HRA', previous: details.previous_full_hra || 'Rs 0.00', revised: details.revised_full_hra || 'Rs 0.00' },
@@ -41,15 +43,25 @@ const Updatesalary = () => {
         { item: 'PF BASE LIMIT', previous: details.previous_pf_base_limit || 'Rs 0.00', revised: details.revised_pf_base_limit || 'Rs 0.00' },
         { item: 'ELIGIBLE FOR PF', previous: details.previous_eligible_for_pf || 'Rs 0.00', revised: details.revised_eligible_for_pf || 'Rs 0.00' },
         { item: 'MASTER PF BASIC', previous: details.previous_master_pf_basic || 'Rs 0.00', revised: details.revised_master_pf_basic || 'Rs 0.00' },
+        { item: 'FULL TRAVEL ALLOWANCE', previous: details.previous_full_travel_allowance || 'Rs 0.00', revised: details.revised_full_travel_allowance || 'Rs 0.00' },
+        { item: 'LOP', previous: details.lop || 'Rs 0.00', revised: details.revised_lop || 'Rs 0.00' },
+        { item: 'LOP DAYS', previous: details.lop_days || '0', revised: details.revised_lop_days || '0' },
+        { item: 'SUB TOTAL', previous: details.sub_total || 'Rs 0.00', revised: details.revised_sub_total || 'Rs 0.00' },
+        { item: 'TOTAL AMOUNT', previous: details.total_amt || 'Rs 0.00', revised: details.revised_total_amt || 'Rs 0.00' },
+        { item: 'TOTAL DEDUCTIONS', previous: details.total_deductions || 'Rs 0.00', revised: details.revised_total_deductions || 'Rs 0.00' },
       ]);
-    } else {
-      console.log("Salary Details is not available or empty");
+
+      setEmployeeInfo({
+        firstName: details.firstName || '',
+        designation: details.designation || '',
+        created_date: details.created_date || ''
+      });
     }
   }, [salaryDetails]);
 
-  const handleChange = (index, field, value) => {
+  const handleChange = (index, value) => {
     const newData = [...salaryData];
-    newData[index][field] = value;
+    newData[index].revised = value;
     setSalaryData(newData);
   };
 
@@ -70,36 +82,65 @@ const Updatesalary = () => {
       revised_pf_base_limit: salaryData.find(item => item.item === 'PF BASE LIMIT')?.revised || 'Rs 0.00',
       revised_eligible_for_pf: salaryData.find(item => item.item === 'ELIGIBLE FOR PF')?.revised || 'Rs 0.00',
       revised_master_pf_basic: salaryData.find(item => item.item === 'MASTER PF BASIC')?.revised || 'Rs 0.00',
+      revised_full_travel_allowance: salaryData.find(item => item.item === 'FULL TRAVEL ALLOWANCE')?.revised || 'Rs 0.00',
+      revised_lop: salaryData.find(item => item.item === 'LOP')?.revised || 'Rs 0.00',
+      revised_lop_days: salaryData.find(item => item.item === 'LOP DAYS')?.revised || '0',
+      revised_sub_total: salaryData.find(item => item.item === 'SUB TOTAL')?.revised || 'Rs 0.00',
+      revised_total_amt: salaryData.find(item => item.item === 'TOTAL AMOUNT')?.revised || 'Rs 0.00',
+      revised_total_deductions: salaryData.find(item => item.item === 'TOTAL DEDUCTIONS')?.revised || 'Rs 0.00',
     };
-  
+    
     dispatch(saveSalary(updatedSalaryData))
-      .then(() => {
-        toast.success('Salary updated successfully!');
-        setIsEditable(false);
-        setIsUpdated(true);
+      .then(response => {
+        if (response && response.payload) {
+          const { success, message, updatedSalary } = response.payload;
+
+          if (success) {
+            const updatedSalaryDetailsfromBackend = updatedSalary;
+            
+            setSalaryData(prevData => prevData.map(item => ({
+              ...item,
+              previous: updatedSalaryDetailsfromBackend[`previous_${item.item.toLowerCase().replace(/ /g, '_')}`] || item.previous,
+              revised: updatedSalaryDetailsfromBackend[`revised_${item.item.toLowerCase().replace(/ /g, '_')}`] || item.revised
+            })));
+
+            setEmployeeInfo({
+              firstName: updatedSalaryDetailsfromBackend.firstName || employeeInfo.firstName,
+              designation: updatedSalaryDetailsfromBackend.designation || employeeInfo.designation,
+              created_date: updatedSalaryDetailsfromBackend.created_date || employeeInfo.created_date
+            });
+
+            toast.success(message || 'Salary details updated successfully!');
+            setIsEditable(false);
+            setIsUpdated(true);
+          } else {
+            toast.error('Failed to update salary details!');
+          }
+        } else {
+          toast.error('Failed to update salary details: No response payload!');
+        }
       })
-      .catch((err) => {
-        toast.error('Failed to update salary!');
+      .catch(err => {
         console.error(err);
+        toast.error('Failed to update salary details!');
       });
   };
   
-
   if (loading) return <div>Loading...</div>;
-  // if (error) return <div>Error: {error}</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="container">
       <ToastContainer />
       <div className="profile-header">
         <div className="profile-info">
-          <div className="profile-name">Name: {salaryDetails[0]?.firstName}</div>
+          <div className="profile-name">Name: {employeeInfo.firstName}</div>
         </div>
       </div>
       <div className="info-grid">
         <div>
-          <div className="info-title">Create Date: {salaryDetails[0]?.created_date}</div>
-          <div className="info-title">Designation: {salaryDetails[0]?.designation}</div>
+          <div className="info-title">Create Date: {new Date(employeeInfo.created_date).toLocaleDateString()}</div>
+          <div className="info-title">Designation: {employeeInfo.designation}</div>
         </div>
       </div>
   
@@ -116,20 +157,19 @@ const Updatesalary = () => {
             <th>Salary Item</th>
             <th>Previous Salary</th>
             <th>Revised Salary</th>
-
           </tr>
         </thead>
         <tbody>
           {salaryData.map((row, index) => (
             <tr key={index}>
               <td>{row.item}</td>
-              <td>{row.revised}</td>
+              <td>{row.previous}</td>
               <td>
                 {row.item === 'MONTHLY CTC' && isEditable ? (
                   <input
                     type="text"
                     value={row.revised}
-                    onChange={(e) => handleChange(index, 'revised', e.target.value)}
+                    onChange={(e) => handleChange(index, e.target.value)}
                   />
                 ) : (
                   row.revised
@@ -144,4 +184,3 @@ const Updatesalary = () => {
 };
 
 export default Updatesalary;
-

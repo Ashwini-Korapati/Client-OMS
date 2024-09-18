@@ -14,7 +14,7 @@ export const uploadFile = createAsyncThunk(
     formData.append('upload', file);
  
     try {
-      const response = await fetch('http://localhost:8000/api/v1/hr/addBulkEmployee', {
+      const response = await fetch('http://localhost:9000/api/v1/hr/addBulkEmployee', {
         method: 'POST',
         body: formData,
         headers: {

@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
-import { changePassword, clearPasswordError } from '../../../Redux/Reducers/changepasswordReducer'
-import '../ChangePassword/ChangePassword.css'
-// import change from '../../../Assets/changpsd.jpg';
+import { changePassword, clearPasswordError, resetPasswordState } from '../../../Redux/Reducers/changepasswordReducer';
+import '../ChangePassword/ChangePassword.css';
  
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,16 +15,18 @@ const Changepassword = () => {
   const [showPassword, setShowPassword] = useState(false);
  
   const dispatch = useDispatch();
-  const { isAuthenticated, error } = useSelector(state => state.authState);
   const { loading, success, error: passwordError, message } = useSelector(state => state.changepasswordState);
   const navigate = useNavigate();
  
   useEffect(() => {
     if (success) {
-      console.log('password changed successfully')
       toast.success(message || 'Password changed successfully');
-    //   navigate('/login');
+      setTimeout(() => {
+        dispatch(resetPasswordState());
+        navigate('/hr-dashboard/hr-home');
+      }, 1000);
     }
+ 
     if (passwordError) {
       toast.error(passwordError);
       dispatch(clearPasswordError());
@@ -60,9 +61,6 @@ const Changepassword = () => {
   return (
     <div className="forget-container">
       <div className="forget-card">
-        <div className="forget-image-container">
-          {/* <img src={change} alt="Forget Image" /> */}
-        </div>
         <div className="form1-container">
           <div className="formcont1">
             <h2>Change Password</h2>
@@ -82,7 +80,7 @@ const Changepassword = () => {
                     className="password-toggle"
                     onClick={togglePassword}
                   >
-                    {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
+                    {showPassword ? <IoMdEyeOff style={{ color: 'black' }} /> : <IoMdEye style={{ color: 'black' }} />}
                   </button>
                 </div>
               </div>
@@ -101,7 +99,7 @@ const Changepassword = () => {
                     className="password-toggle"
                     onClick={togglePassword}
                   >
-                    {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
+                    {showPassword ? <IoMdEyeOff style={{ color: 'black' }} /> : <IoMdEye style={{ color: 'black' }} />}
                   </button>
                 </div>
                 <small className={`password-strength ${passwordStrength.toLowerCase()}`}>
