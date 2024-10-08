@@ -5,7 +5,7 @@ import { IoNotificationsSharp } from "react-icons/io5";
 import { Menu, Dropdown, Modal, Drawer } from 'antd';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../Landingpage/Redux/Actions/userActions'
+import { emplogout } from '../../Landingpage/Redux/Actions/userActions'
 import './EmpAppHeader.css'
 import hrmlogo from '../../HRModule/Assets/hrmimage.png'
 import avatar from '../../HRModule/Assets/avatar.png'
@@ -41,10 +41,21 @@ const EmpAppHeader = () => {
     setIsDrawerVisible(false);
   };
 
+  // const logoutHandler = () => {
+  //   dispatch(emplogout());
+  //   navigate('/');
+  // };
+
   const logoutHandler = () => {
-    dispatch(logout());
+    console.log("Before dispatching logout, token:", localStorage.getItem('token')); // Check token before logout
+    dispatch(emplogout());
+
+    // Clear the token from localStorage
+    localStorage.removeItem('token'); 
+    console.log("After removing token, token:", localStorage.getItem('token')); // Check if token is removed
+
     navigate('/');
-  };
+};
 
   const handleClick = async () => {
     const result = await dispatch(getProfile()).unwrap();

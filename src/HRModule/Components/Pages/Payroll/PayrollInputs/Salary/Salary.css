@@ -132,3 +132,11 @@
   cursor: pointer;
   color: grey;
 }
+
+
+.edit-icon {
+  cursor: pointer;
+  margin-left: 10px; /* Add spacing if required */
+  color: #1890ff; /* Add a visible color */
+  font-size: 16px; /* Adjust the size if necessary */
+}

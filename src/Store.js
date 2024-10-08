@@ -37,6 +37,7 @@ import lopReducer from './HRModule/Redux/Slices/lopSlice'
 import lopEmpReducer from './HRModule/Redux/Slices/lopEmpSlice'
 import LeaveHistorySlice from './HRModule/Redux/Slices/leaveHistorySlice'
 import LeavePendingSlice from './HRModule/Redux/Slices/leavePendingSlice'
+import reportSliceReducer from './HRModule/Redux/Slices/SalaryReport'
 
 
 
@@ -66,6 +67,8 @@ const reducer = combineReducers({
   lopEmp:lopEmpReducer,
   leaveHistory: LeaveHistorySlice,
   leavePending: LeavePendingSlice,
+  reportSlice: reportSliceReducer, // Add the salary slice to your store
+
 
 });
 

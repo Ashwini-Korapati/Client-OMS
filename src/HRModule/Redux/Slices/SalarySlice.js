@@ -147,3 +147,7 @@ const salarySlice = createSlice({
 
 export const { clearAuthError } = salarySlice.actions;
 export default salarySlice.reducer;
+
+
+
+

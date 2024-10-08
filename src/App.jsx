@@ -42,7 +42,7 @@ import Loan from './HRModule/Components/Pages/Payroll/PayrollInputs/Loan/Loan';
 import Income from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Income/Income';
 import Incometabs from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Incometabs/Incometabs'
 import MyApprovers from './HRModule/Components/Pages/TimeManagement/MyApprovers/MyApprovers'
-import EmpPayslip from './EmployeeModule/Components/Pages/EmpPayslip/EmpPayslip'
+import EmpPayslip from './EmployeeModule/Components/Pages/EmpSalary/EmpPayslip/EmpPayslip'
 // import { getProfile } from './Landingpage/'
 import { getProfile } from './HRModule/Redux/Reducers/ProfileSlice';
 
@@ -67,6 +67,9 @@ import AttendanceTabs from './HRModule/Components/Pages/Attendance/Attendancetab
 import LeaveHome from './EmployeeModule/Components/Pages/EmpLeave/LeaveHome/LeaveHome'
 import Onboarding from  './EmployeeModule/Components/Pages/Onboarding/Onboarding'
 import Qpforms from './EmployeeModule/Components/Pages/Onboarding/Qpforms';
+import Empitstatement from './EmployeeModule/Components/Pages/EmpSalary/Empitstatement/Empitstatement';
+import Verify from './HRModule/Components/Pages/Verify/Verify';
+// import  Verify  from './HRModule/Components/Pages/Verify/Verify'
 // import { fetchHolidays } from './HRModule/Redux/Slices/leaveCalendarSlice'
 
 
@@ -109,7 +112,7 @@ const App = () => {
             <Route path="leave-calender" element={<LeaveCalender />} />
             <Route path="settings" element={<Settings />} />
             <Route path="profile" element={<Profile />} />
-            <Route path="add-employee" element={<AddEmployee />} />
+            <Route path="add-employee" element={<AddemployeeHome />} />
             <Route path="view-employee" element={<Viewemployee />} />
             <Route path='loan' element={<Loan/>}/>
             <Route path="salary" element={<Salary />} />
@@ -121,6 +124,8 @@ const App = () => {
             <Route path='myapprovers' element={<MyApprovers/>}/>
             <Route path='leave-report-detail' element={<CardLayout/>}/>
             <Route path='attendancetabs' element={<AttendanceTabs/>}/>
+            <Route path='verify' element={<Verify/>}/>
+            {/* <Route path='verify' element={<Verify/>}/> */}
 
 
             {/* <Route path='updatesalary' element={<ProtectedRoute><Updatesalary/></ProtectedRoute>}/> */}
@@ -157,6 +162,7 @@ const App = () => {
             <Route path='emp-payslip' element={<EmpPayslip/>}/>
             <Route path='onboarding' element={<Onboarding/>}/>
             <Route path='onboarding/forms' element={<Qpforms/>}/>
+            <Route path='emp-ITstatement' element={<Empitstatement/>}/>
  
           </Route>
 

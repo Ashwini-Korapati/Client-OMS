@@ -1,0 +1,29 @@
+/* salaryReport.css */
+.sal-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .sal-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .salary-report-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .div-dropdown{
+    background-color: gray;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 16px;
+  }

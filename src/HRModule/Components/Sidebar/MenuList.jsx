@@ -259,11 +259,11 @@ const MenuList = [
           },
         ],
       },
-      {
-        key: '7',
-        path: '/hr-dashboard/information',
-        label: "Information",
-      },
+      // {
+      //   key: '7',
+      //   path: '/hr-dashboard/information',
+      //   label: "Information",
+      // },
       {
         key: '8',
         label: "Payroll Inputs",
@@ -344,11 +344,11 @@ const MenuList = [
         path: '/hr-dashboard/attendancetabs',
        
       },
-      {
-        key: '27',
-        label: "Apply Attendance",
-        path: '/hr-dashboard/attendance',
-      },
+      // {
+      //   key: '27',
+      //   label: "Apply Attendance",
+      //   path: '/hr-dashboard/attendance',
+      // },
     ]
     },
   {

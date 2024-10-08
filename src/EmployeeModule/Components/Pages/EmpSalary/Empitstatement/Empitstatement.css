@@ -1,0 +1,179 @@
+/* TaxCalculationForm.css */
+
+.tax-calculation-form {
+    max-width: 1400px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    padding: 40px;
+    background-color: #f0f0f0;
+  }
+  
+  .form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .tax-regime {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .new-regime {
+    color: #22c55e;
+    
+    font-weight: bold;
+  }
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .download-btn {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .month-select {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .summary-boxes {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .summary-box {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    
+  }
+  
+  .summary-label {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 20px;
+  }
+  
+  .summary-value {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .collapse-all {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #3b82f6;
+    cursor: pointer;
+  }
+  
+  .value-label {
+    font-size: 12px;
+    color: #6b7280;
+  }
+  
+  .form-section {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .section-value {
+    color: #3b82f6;
+  }
+  
+  .toggle-icon {
+    display: inline-block;
+    width: 89px;
+    text-align: center;
+  }
+  
+  .section-content {
+    padding: 10px;
+  }
+  
+  .total-section {
+    background-color: #e5e7eb;
+  }
+  
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .data-table th,
+  .data-table td {
+    border: 1px solid #e5e7eb;
+    padding: 8px;
+    text-align: right;
+  }
+  
+  .data-table th {
+    background-color: #f3f4f6;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  .data-table th:first-child,
+  .data-table td:first-child {
+    text-align: left;
+  }
+  
+  .sub-header {
+    background-color: #f3f4f6;
+    font-weight: bold;
+  }
+  
+  .total-row {
+    font-weight: bold;
+    background-color: #f3f4f6;
+  }
+  
+  .no-data {
+    text-align: center;
+    color: #6b7280;
+    padding: 20px;
+  }
+  
+  .link-btn {
+    background: none;
+    border: none;
+    color: #3b82f6;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .sub-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .sub-section:last-child {
+    border-bottom: none;
+  }

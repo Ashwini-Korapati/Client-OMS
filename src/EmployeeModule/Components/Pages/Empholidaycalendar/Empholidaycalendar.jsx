@@ -27,15 +27,15 @@ const LeaveCalendar = () => {
   };
 
   return (
-    <div className="calendar-container">
-      <div className="holiday-calendar-image"></div>
+    <div className="emp-calendar-container">
+      <div className="emp-holiday-calendar-image"></div>
       <h2 className="holiday-h2">Holiday Calendar</h2>
       {/* <NavLink to={'/hr-dashboard/hr-home'}>
       <button>Back</button>
       </NavLink> */}
-      <div className="holiday-year">
+      <div className="emp-holiday-year">
         <Select
-          className="holiday-year-select"
+          className="emp-holiday-year-select"
           value={year}
           onChange={handleYearChange}
         >
@@ -49,26 +49,26 @@ const LeaveCalendar = () => {
       ) : error ? (
         <Alert message="Error" description={error} type="error" showIcon />
       ) : (
-        <div className="h-card-grid">
+        <div className="emp-card-grid">
           {holidaysByMonth.map((monthData) => (
-            <div key={monthData.month} className="h-card">
+            <div key={monthData.month} className="emp-card">
               <h3>{monthData.month} {year}</h3>
               {Array.isArray(monthData.holidays) && monthData.holidays.length > 0 ? (
                 monthData.holidays.map((holiday) => (
                   <div key={holiday.id} className="emp-holiday">
-                    <div className="hr-holiday-date">
+                    <div className="emp-holiday-date">
                       {new Date(holiday.date).getDate()}
                     </div>
-                    <div className="hr-holiday-day">
+                    <div className="emp-holiday-day">
                       {holiday.day}
                     </div>
-                    <div className="hr-holiday-name">
+                    <div className="emp-holiday-name">
                       {holiday.name} ({holiday.status})
                     </div>
                   </div>
                 ))
               ) : (
-                <div className="hr-no-holidays">No Holidays for {monthData.month}</div>
+                <div className="emp-no-holidays">No Holidays for {monthData.month}</div>
               )}
             </div>
           ))}
