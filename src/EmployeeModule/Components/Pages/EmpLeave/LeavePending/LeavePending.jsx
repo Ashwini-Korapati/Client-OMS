@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPendingLeave } from '../../../../Redux/LeavePendingSlice';
+import { fetchPendingLeave } from '../../../../../HRModule/Redux/Slices/leavePendingSlice'
 import './LeavePending.css';
 
 const LeavePending = () => {

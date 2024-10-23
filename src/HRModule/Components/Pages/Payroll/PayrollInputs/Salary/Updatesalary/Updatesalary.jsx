@@ -978,8 +978,8 @@ const SalaryUpdateForm = ({ emp_id, onSave, isEditable }) => {
 
   return (
     <form className="salary-update-form" onSubmit={handleSubmit}>
-      <div className="form-row">
-        <div className="form-group">
+      {/* <div className="form-row"> */}
+        {/* <div className="form-group">
           <label htmlFor="effectiveFrom">Effective From</label>
           <input
             type="date"
@@ -1004,11 +1004,10 @@ const SalaryUpdateForm = ({ emp_id, onSave, isEditable }) => {
             <option value="">Select month</option>
             <option value="Jan 2025">Jan 2025</option>
             <option value="Feb 2025">Feb 2025</option>
-            {/* Add more options as needed */}
           </select>
         </div>
-      </div>
-      <div className="form-row">
+      </div> */}
+      {/* <div className="form-row">
         <div className="form-group">
           <label htmlFor="employeeRemarks">Employee Remarks</label>
           <textarea
@@ -1031,7 +1030,7 @@ const SalaryUpdateForm = ({ emp_id, onSave, isEditable }) => {
             disabled={!isEditable}
           ></textarea>
         </div>
-      </div>
+      </div> */}
       {isEditable && <button type="submit" className="save-button">Save Changes</button>}
     </form>
   );

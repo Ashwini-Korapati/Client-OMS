@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
-import { changePassword, clearPasswordError, resetPasswordState } from '../../../HRModule/Redux/Reducers/changepasswordReducer';
+import { changePassword, clearPasswordError, resetPasswordState } from '../../../HRModule/Redux/Slices/changepasswordReducer'
 import '../../../HRModule/Components/Pages/ChangePassword/ChangePassword.css'
  
 import { ToastContainer, toast } from 'react-toastify';

@@ -329,3 +329,224 @@ const components = [
   
   export default components;
   
+// const components = [
+//   {
+//     name: 'NET PAY',
+//     amount: '0.00',
+//     children: [
+//       { 
+//         name: 'GROSS', 
+//         amount: '0.00',
+//         children: [
+//           {
+//             name: 'BASIC',
+//             amount: '0.00',
+//             children: [
+//               { name: 'BASIC', amount: '0.00' },
+//               { name: 'BASIC ARREARS', amount: '0.00' },
+//               { name: 'BASIC REVERSAL', amount: '0.00', editable: true },
+//             ]
+//           },
+//           {
+//             name: 'DA',
+//             amount: '0.00',
+//             children: [
+//               { name: 'DA', amount: '0.00' },
+//               { name: 'DA ARREARS', amount: '0.00' },
+//               { name: 'DA REVERSAL', amount: '0.00', editable: true },
+//             ]
+//           },
+//           {
+//             name: 'HRA',
+//             amount: '0.00',
+//             children: [
+//               { name: 'HRA', amount: '0.00' },
+//               { name: 'HRA ARREARS', amount: '0.00' },
+//               { name: 'HRA REVERSAL', amount: '0.00', editable: true },
+//             ]
+//           },
+//           {
+//             name: 'CONVEYANCE',
+//             amount: '0.00',
+//             children: [
+//               { name: 'CONVEYANCE', amount: '0.00' },
+//               { name: 'CONVEYANCE ARREARS', amount: '0.00' },
+//               { name: 'CONVEYANCE REVERSAL', amount: '0.00', editable: true },
+//             ]
+//           },
+//           {
+//             name: 'MEDICAL ALLOWANCE',
+//             amount: '0.00',
+//             children: [
+//               { name: 'MEDICAL ALLOWANCE', amount: '0.00' },
+//               { name: 'MEDICAL ALLOWANCE ARREARS', amount: '0.00' },
+//               { name: 'MEDICAL ALLOWANCE REVERSAL', amount: '0.00', editable: true },
+//             ]
+//           },
+//           {
+//             name: 'SPECIAL ALLOWANCE',
+//             amount: '0.00',
+//             children: [
+//               { name: 'SPECIAL ALLOWANCE', amount: '0.00' },
+//               { name: 'SPECIAL ALLOWANCE ARREARS', amount: '0.00' },
+//               { name: 'SPECIAL ALLOWANCE REVERSAL', amount: '0.00', editable: true },
+//             ]
+//           },
+//           {
+//             name: 'OTHER ALLOWANCE',
+//             amount: '0.00',
+//             children: [
+//               { name: 'OTHER ALLOWANCE', amount: '0.00' },
+//               { name: 'OTHER ALLOWANCE ARREARS', amount: '0.00' },
+//               { name: 'OTHER ALLOWANCE REVERSAL', amount: '0.00', editable: true },
+//             ]
+//           },
+//           {
+//             name: 'BONUS & INCENTIVES',
+//             amount: '0.00',
+//             children: [
+//               { name: 'BONUS', amount: '0.00', editable: true },
+//               { name: 'INCENTIVE', amount: '0.00', editable: true },
+//               { name: 'PERFORMANCE BONUS', amount: '0.00', editable: true },
+//               { name: 'PERFORMANCE INCENTIVE', amount: '0.00', editable: true },
+//               { name: 'RELOCATION BONUS', amount: '0.00', editable: true },
+//               { name: 'REFERRAL BONUS', amount: '0.00', editable: true },
+//               { name: 'JOINING BONUS', amount: '0.00', editable: true },
+//               { name: 'VARIABLE BONUS', amount: '0.00', editable: true },
+//             ]
+//           },
+//           { name: 'CONSULTANCY FEES', amount: '0.00' },
+//           { name: 'CONSULTANCY FEES REVERSAL', amount: '0.00', editable: true },
+//           { name: 'OTHER EARNINGS', amount: '0.00', editable: true },
+//           { name: 'NOTICE PERIOD', amount: '0.00', editable: true },
+//           { name: 'GRATUITY', amount: '0.00' },
+//           { name: 'HOLD SALARY', amount: '0.00' },
+//           { name: 'LEAVE ENCASHMENT', amount: '0.00' },
+//           { name: 'OVERTIME', amount: '0.00', editable: true },
+//           { name: 'TRAVELLING ALLOWANCE', amount: '0.00', editable: true },
+//           { name: 'MEAL ALLOWANCE', amount: '0.00' },
+//           { name: 'CONVEYANCE ALLOWANCE', amount: '0.00' },
+//           { name: 'EDUCATION ALLOWANCE', amount: '0.00' },
+//           { name: 'LTA', amount: '0.00' },
+//         ]
+//       },
+//       { 
+//         name: 'TOTAL DEDUCTIONS',
+//         amount: '0.00',
+//         children: [
+//           { name: 'PF', amount: '0.00' },
+//           { name: 'PF ARREARS', amount: '0.00' },
+//           { name: 'VPF', amount: '0.00', editable: true },
+//           { name: 'ESI', amount: '0.00' },
+//           { name: 'PROF TAX', amount: '0.00' },
+//           { name: 'INCOME TAX', amount: '0.00', editable: true },
+//           { name: 'LOAN', amount: '0.00', editable: true },
+//           { name: 'OTHER LOAN', amount: '0.00', editable: true },
+//           { name: 'SALARY ADVANCE', amount: '0.00', editable: true },
+//           { name: 'OTHER DEDUCTION', amount: '0.00', editable: true },
+//           { name: 'LABOUR WELFARE FUND', amount: '0.00' },
+//           { name: 'NOTICE PERIOD RECOVERY', amount: '0.00' },
+//         ] 
+//       },
+//     ]
+//   },
+//   {
+//     name: 'SALARY MASTER',
+//     amount: '0.00',
+//     children: [
+//       { name: 'FULL BASIC', amount: '0.00' },
+//       { name: 'FULL HRA', amount: '0.00' },
+//       { name: 'FULL SPECIAL ALLOWANCE', amount: '0.00' },
+//       { name: 'FULL OTHER ALLOWANCE', amount: '0.00' },
+//       { name: 'FULL MEAL ALLOWANCE', amount: '0.00' },
+//       { name: 'FULL CONVEYANCE ALLOWANCE', amount: '0.00' },
+//       { name: 'FULL EDUCATION ALLOWANCE', amount: '0.00' },
+//       { name: 'FULL LTA', amount: '0.00' },
+//     ]
+//   },
+//   {
+//     name: 'CALCULATION FIELDS',
+//     amount: '0.00',
+//     children: [
+//       {
+//         name: 'CTC ITEMS',
+//         amount: '0.00',
+//         children: [
+//           { name: 'ANNUAL CTC', amount: '0.00' },
+//           { name: 'MONTHLY CTC', amount: '0.00', editable: true },
+//         ]
+//       },
+//       {
+//         name: 'PF RELATED ITEMS',
+//         amount: '0.00',
+//         children: [
+//           { name: 'INTERNATIONAL EMPLOYEE', amount: '0.00' },
+//           { name: 'EPS EXCESS CONTIBUTION', amount: '0.00' },
+//           { name: 'EPF EXCESS CONTRIBUTION', amount: '0.00' },
+//           { name: 'AGE', amount: '0.00' },
+//           { name: 'PF BASE LIMIT', amount: '0.00' },
+//         ]
+//       },
+//       {
+//         name: 'ESI RELATED ITEMS',
+//         amount: '0.00',
+//         children: [
+//           { name: 'ESI BASIC', amount: '0.00' },
+//           { name: 'EMPLOYERS ESI', amount: '0.00' },
+//           { name: 'ESI GROSS', amount: '0.00' },
+//         ]
+//       },
+//       {
+//         name: 'PROF TAX RELATED ITEMS',
+//         amount: '0.00',
+//         children: [
+//           { name: 'PROF TAX BASIC', amount: '0.00' },
+//           { name: 'PRORATED PT TAMILNADU', amount: '0.00' },
+//           { name: 'PRORATED PT KERALA', amount: '0.00' },
+//         ]
+//       },
+//       {
+//         name: 'INCOME TAX RELATED ITEMS',
+//         amount: '0.00',
+//         children: [
+//           { name: 'TAXABLE AMOUNT WITH PREV EMP', amount: '0.00' },
+//           { name: 'TAXABLE AMOUNT', amount: '0.00' },
+//         ]
+//       },
+//       {
+//         name: 'PREQUISITE ITEMS',
+//         amount: '0.00',
+//         children: [
+//           { name: 'VEHICLE PERQ MONTHLY VALUE', amount: '0.00', editable: true },
+//           { name: 'VEHICLE PERQUISITE', amount: '0.00' },
+//           { name: 'HOUSE PERQUISITE', amount: '0.00', editable: true },
+//           { name: 'ASSET IN RESIDENCE', amount: '0.00', editable: true },
+//           { name: 'LOAN PERQUISITE', amount: '0.00', editable: true },
+//           { name: 'EMPLOYER PF PERQUISITE', amount: '0.00', editable: true },
+//         ]
+//       },
+//       {
+//         name: 'EXEMPTION ITEMS',
+//         amount: '0.00',
+//         children: [
+//           { name: 'EDUCATION EXEMPT', amount: '0.00', editable: true },
+//           { name: 'MEDICAL EXEMPT', amount: '0.00' },
+//           { name: 'LTA EXEMPT', amount: '0.00', editable: true },
+//           { name: 'CONVEYANCE EXEMPT', amount: '0.00' },
+//           { name: 'LEAVE ENCASHMENT EXEMPTION', amount: '0.00', editable: true },
+//         ]
+//       },
+//       {
+//         name: 'OTHER PAYMENT ITEMS',
+//         amount: '0.00',
+//         children: [
+//           { name: 'MISC PEIMBURSEMENT', amount: '0.00', editable: true },
+//           { name: 'COMAPNY LOOK UP', amount: '0.00' },
+//         ]
+//       },
+//     ]
+//   },
+//   // ... (other main categories like SETTLEMENT RELATED ITEMS, PROJECTION ITEMS, etc. follow the same pattern)
+// ];
+
+// export default components;

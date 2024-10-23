@@ -6,7 +6,7 @@ import { FaTrash, FaUpload } from "react-icons/fa";
 import avatar from "../../../Assets/avatar.png";
 import "./Profile.css";
 import { useSelector, useDispatch } from "react-redux";
-import { getProfile, updateProfile } from "../../../Redux/Reducers/ProfileSlice";
+import { getProfile, updateProfile } from '../../../Redux/Slices/ProfileSlice'
 
 const EmployeeProfile = () => {
   // const dispatch = useDispatch();

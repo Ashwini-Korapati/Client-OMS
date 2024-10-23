@@ -6,7 +6,7 @@ import {
   setSelfie,
   checkIn,
   checkOut,
-} from '../../../../HRModule/Redux/Reducers/AttendanceReducers'
+} from '../../../../HRModule/Redux/Slices/AttendanceReducers'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PropTypes from "prop-types";

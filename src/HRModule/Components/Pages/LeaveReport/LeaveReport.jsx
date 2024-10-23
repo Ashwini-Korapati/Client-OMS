@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchLeaveData, setMonth, setEmployee, updateLeaveStatus } from '../../../Redux/Reducers/LeaveReportSlice';
+import { fetchLeaveData, setMonth, setEmployee, updateLeaveStatus } from '../../../Redux/Slices/LeaveReportSlice'
 import './LeaveReport.css';
 
 const LeaveReport = () => {

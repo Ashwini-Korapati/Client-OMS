@@ -323,6 +323,7 @@ const Payslip = () => {
     const pastThreeMonths = getPastThreeMonths();
 
     const [selectedMonth, setSelectedMonth] = useState(pastThreeMonths[2].value);
+    console.log(selectedMonth)
 
     useEffect(() => {
         const [month, year] = selectedMonth.split('-').map(Number);
@@ -432,6 +433,7 @@ const Payslip = () => {
             console.error("Error generating PDF:", error);
         }
     };
+
 
     const handleHide = () => {
         setIsTotalSalaryVisible(!isTotalSalaryVisible);

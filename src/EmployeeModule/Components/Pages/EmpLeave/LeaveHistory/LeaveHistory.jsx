@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchLeaveStatus, updateLeaveStatus, clearUpdateStatus } from '../../../../Redux/LeaveHistorySlice';
+import { fetchLeaveStatus, updateLeaveStatus, clearUpdateStatus } from '../../../../../HRModule/Redux/Slices/leaveHistorySlice'
 import './LeaveHistory.css';
 
 const LeaveHistory = () => {

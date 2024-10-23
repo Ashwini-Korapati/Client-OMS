@@ -11,17 +11,17 @@ import { createStore,  applyMiddleware } from 'redux';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 // import { employeeAddReducer } from './Landingpage/Redux/reducers/employeeReducer';
-import attendanceReducer from './HRModule/Redux/Reducers/AttendanceReducers'
-import LeaveReportslice from './HRModule/Redux/Reducers/LeaveReportSlice'
-import profileReducer from './HRModule/Redux/Reducers/ProfileSlice'
+import attendanceReducer from './HRModule/Redux/Slices/AttendanceReducers'
+import LeaveReportslice from './HRModule/Redux/Slices/LeaveReportSlice'
+import profileReducer from './HRModule/Redux/Slices/ProfileSlice'
 import adminReducer from "./Landingpage/Redux/slices/adminSlice";
 // import addEmployeeReducer from "./HRModule/Redux/Reducers/Addemployeereducers"
 import employeeReducer from './HRModule/Redux/Slices/NewAddemployee'
 import employeesReducer from './HRModule/Redux/Slices/ViewempSlice'
 // import LeaveFormSlice from "./HRModule/Redux/Slices/LeaveFormSlice";
 import leaveCalendarReducer from './HRModule/Redux/Slices/leaveCalendarSlice'
-import empleaveCalendarSlice from './EmployeeModule/Redux/EmpholidaycalenderSlice'
-import changepasswordReducer from './HRModule/Redux/Reducers/changepasswordReducer'
+import empleaveCalendarSlice from './HRModule/Redux/Slices/EmpholidaycalenderSlice'
+import changepasswordReducer from './HRModule/Redux/Slices/changepasswordReducer'
 // import salaryReducer from './HRModule/Redux/Slices/SalarySlice'
 // import getSalary  from "./Landingpage/Redux/Actions/salaryActions";
 import getSalary from "./HRModule/Redux/Slices/SalarySlice"

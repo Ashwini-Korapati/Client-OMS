@@ -4,7 +4,7 @@ import { Form, Input, DatePicker, Select, Button, Upload, message } from "antd";
 import { UploadOutlined, DownOutlined, UpOutlined } from "@ant-design/icons";
 import { CgProfile } from "react-icons/cg";
 import { CiCirclePlus } from "react-icons/ci";
-import { setLeaveField, setFile, resetForm, submitLeaveForm } from '../../../Redux/EmpApplyLeaveSlice'
+import { setLeaveField, setFile, resetForm, submitLeaveForm } from '../../../../HRModule/Redux/Slices/EmpApplyLeaveSlice'
 import '../EmpLeave/EmpApplyLeave.css'
 
 const { Option } = Select;

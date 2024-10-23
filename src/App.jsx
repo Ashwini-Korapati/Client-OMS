@@ -36,7 +36,7 @@ import EmpHome from './EmployeeModule/Components/Pages/EmpHome/EmpHome'
 import EmpProfile from './EmployeeModule/Components/Pages/EmpProfile/EmpProfile'
 // import EmpAttendance from './EmployeeModule/Components/Pages/EmpAttendance/EmpAttendance'
 import EmpApplyLeave from './EmployeeModule/Components/Pages/EmpLeave/EmpApplyLeave';
-import Empholidaycalendar from './EmployeeModule/Components/Pages/Empholidaycalendar/Empholidaycalendar'
+import Empholidaycalendar from './HRModule/Redux/Slices/EmpholidaycalenderSlice'
 import ChangePassword from './HRModule/Components/Pages/ChangePassword/ChangePassword'
 import Loan from './HRModule/Components/Pages/Payroll/PayrollInputs/Loan/Loan';
 import Income from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/Income/Income';
@@ -44,7 +44,7 @@ import Incometabs from './HRModule/Components/Pages/Payroll/PayrollInputs/Income
 import MyApprovers from './HRModule/Components/Pages/TimeManagement/MyApprovers/MyApprovers'
 import EmpPayslip from './EmployeeModule/Components/Pages/EmpSalary/EmpPayslip/EmpPayslip'
 // import { getProfile } from './Landingpage/'
-import { getProfile } from './HRModule/Redux/Reducers/ProfileSlice';
+import { getProfile } from './HRModule/Redux/Slices/ProfileSlice'
 
 import { useDispatch } from 'react-redux';
 import EmpLopDays from './HRModule/Components/Pages/Payroll/PayrollInputs/EmpLopDays/EmpLopDays';
@@ -58,7 +58,7 @@ import Result from './HRModule/Components/Pages/Payroll/PayrollInputs/Incometax/
 import LOP from './HRModule/Components/Pages/Payroll/PayrollInputs/Lossofpay/LOP/LOP';
 import Finalsettlement from './HRModule/Components/Pages/Payroll/PayrollInputs/Finalsettlement/Settlementtabs';
 import Finalsettlementmain from './HRModule/Components/Pages/Payroll/PayrollInputs/Finalsettlement/Finalsettlementmain/Finalsettlementmain'
-import { fetchHolidays } from './EmployeeModule/Redux/EmpholidaycalenderSlice';
+import { fetchHolidays } from './HRModule/Redux/Slices/EmpholidaycalenderSlice'
 import AddemployeeHome from './HRModule/Components/Pages/Addemployee/AddemployeeHome/AddemployeeHome';
 import EmpChangePassword from './EmployeeModule/Components/Pages/EmpChangePassword'
 import CardLayout from './HRModule/Components/Pages/HRHome/CardLayout';
@@ -69,6 +69,8 @@ import Onboarding from  './EmployeeModule/Components/Pages/Onboarding/Onboarding
 import Qpforms from './EmployeeModule/Components/Pages/Onboarding/Qpforms';
 import Empitstatement from './EmployeeModule/Components/Pages/EmpSalary/Empitstatement/Empitstatement';
 import Verify from './HRModule/Components/Pages/Verify/Verify';
+import Process from './HRModule/Components/Pages/Payroll/Process/Process';
+import HrPayslipsRelease from './HRModule/Components/Pages/Payroll/Payout/Payslips/HrPayslipsRelease';
 // import  Verify  from './HRModule/Components/Pages/Verify/Verify'
 // import { fetchHolidays } from './HRModule/Redux/Slices/leaveCalendarSlice'
 
@@ -125,6 +127,8 @@ const App = () => {
             <Route path='leave-report-detail' element={<CardLayout/>}/>
             <Route path='attendancetabs' element={<AttendanceTabs/>}/>
             <Route path='verify' element={<Verify/>}/>
+            <Route path='payroll-process' element={<Process/>}/>
+            <Route path='release-payslips' element={<HrPayslipsRelease/>}/>
             {/* <Route path='verify' element={<Verify/>}/> */}
 
 

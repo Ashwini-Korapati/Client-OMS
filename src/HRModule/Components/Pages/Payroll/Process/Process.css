@@ -1,0 +1,202 @@
+.payroll-container {
+    max-width: 90vw;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+.payroll-container1{
+  background-color: #F7F7F7;
+}
+
+  .payroll-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .payroll-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .payroll-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .search-bar {
+    position: relative;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+  }
+  
+  .search-input {
+    padding-left: 2.5rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.375rem;
+  }
+  
+  .chat-button,
+  .dropdown-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #ebf8ff;
+    color: #3b82f6;
+    border-radius: 0.375rem;
+  }
+  
+  .dropdown-icon {
+    margin-left: 0.5rem;
+  }
+  
+  .help-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+  }
+  
+  .help-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .help-text {
+    color: #4b5563;
+  }
+  
+  .help-links {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .help-link {
+    color: #3b82f6;
+    cursor: pointer;
+  }
+  
+  .hide-help-button {
+    color: #3b82f6;
+  }
+  
+  .process-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .process-button,
+  .quick-process-button {
+    padding: 0.5rem 1rem;
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .process-log {
+    margin-bottom: 2rem;
+  }
+  
+  .log-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  
+  .log-table {
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .log-header {
+    background-color: #f9fafb;
+  }
+  
+  .process-info {
+    color: #6b7280;
+  }
+  
+  .completed-status {
+    color: #16a34a;
+    display: flex;
+    align-items: center;
+  }
+  
+  .checklist-section {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .checklist-title,
+  .completed-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  
+  .checklist-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .form-checkbox {
+    transform: scale(1.25);
+  }
+  
+  .completed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .empty-message {
+    color: #6b7280;
+  }
+  
+  .completed-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .completed-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .completed-check {
+    color: #16a34a;
+  }
+  
+  .reset-button {
+    color: #ef4444;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,63 @@
+.payslip-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .tabs {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .tabs button {
+    padding: 10px;
+    margin-right: 10px;
+    background-color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .tabs button.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+.buttons{
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .filters div {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .employee-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .employee-table th, .employee-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .employee-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .download-options {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  

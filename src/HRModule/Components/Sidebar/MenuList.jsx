@@ -305,16 +305,38 @@ const MenuList = [
         key: '41',
         path: '/hr-dashboard/process',
         label: "Process",
+        children:[
+          {
+            key: '40',
+            path: '/hr-dashboard/payroll-process',
+            label: "Payroll Process",
+          },
+        ]
       },
       {
         key: '13',
-        path: '/hr-dashboard/verify',
         label: "Verify",
+        children: [
+          {
+            key: '9',
+            path: '/hr-dashboard/verify',
+            label: "Payroll Statement",
+          },
+        ]
+        
       },
       {
         key: '14',
         path: '/hr-dashboard/payout',
         label: "Payout",
+        children: [
+          {
+            key: '9',
+            path: '/hr-dashboard/release-payslips',
+            label: "Payslips",
+          },
+        ]
+
       },
       {
         key: '15',

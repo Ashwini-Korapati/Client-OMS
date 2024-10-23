@@ -9,7 +9,7 @@ import { emplogout } from '../../Landingpage/Redux/Actions/userActions'
 import './EmpAppHeader.css'
 import hrmlogo from '../../HRModule/Assets/hrmimage.png'
 import avatar from '../../HRModule/Assets/avatar.png'
-import { getProfile } from '../../HRModule/Redux/Reducers/ProfileSlice'
+import { getProfile } from '../../HRModule/Redux/Slices/ProfileSlice'
 const EmpAppHeader = () => {
   const { emp } = useSelector(state => state.authState);
   console.log(emp);
