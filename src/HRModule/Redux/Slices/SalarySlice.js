@@ -1,5 +1,6 @@
 
 
+
 // import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 // import axios from 'axios';
 
@@ -11,7 +12,6 @@
 //     return response.data; // Ensure this includes employee details if necessary
 //   }
 // );
-
 
 // export const fetchEmployees1 = createAsyncThunk(
 //   'employees/fetchEmployees1',
@@ -38,7 +38,11 @@
 //     loading: false,
 //     error: null,
 //   },
-//   reducers: {},
+//   reducers: {
+//     clearAuthError: (state) => {
+//       state.error = null;
+//     },
+//   },
 //   extraReducers: (builder) => {
 //     builder
 //       .addCase(getSalary.pending, (state) => {
@@ -68,15 +72,21 @@
 //   },
 // });
 
+// export const { clearAuthError } = salarySlice.actions;
 // export default salarySlice.reducer;
 
 
-
-
-
+ 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
+ 
+const initialState = {
+  employees: [],
+  salaryDetails: [],
+  loading: false,
+  error: null,
+};
+ 
 // Async thunk to save updated salary
 export const saveSalary = createAsyncThunk(
   'salary/saveSalary',
@@ -85,7 +95,7 @@ export const saveSalary = createAsyncThunk(
     return response.data; // Ensure this includes employee details if necessary
   }
 );
-
+ 
 export const fetchEmployees1 = createAsyncThunk(
   'employees/fetchEmployees1',
   async () => {
@@ -93,7 +103,7 @@ export const fetchEmployees1 = createAsyncThunk(
     return response.data;
   }
 );
-
+ 
 // Async thunk to fetch salary details by employee ID
 export const getSalary = createAsyncThunk(
   'salary/getSalary',
@@ -102,15 +112,20 @@ export const getSalary = createAsyncThunk(
     return response.data;
   }
 );
-
+ 
+// Async thunk to process salary for a selected employee
+export const processSalary = createAsyncThunk(
+  'salary/processSalary',
+  async ({ emp_id, month, year }) => {
+    const response = await axios.post('http://localhost:8000/api/v1/hr/postSalaryProcess', { emp_id, month, year });
+    return response.data; // Ensure this includes any necessary information
+  }
+);
+ 
 // Salary slice
 const salarySlice = createSlice({
   name: 'salary',
-  initialState: {
-    salaryDetails: [],
-    loading: false,
-    error: null,
-  },
+  initialState,
   reducers: {
     clearAuthError: (state) => {
       state.error = null;
@@ -141,13 +156,22 @@ const salarySlice = createSlice({
       .addCase(saveSalary.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(processSalary.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(processSalary.fulfilled, (state, action) => {
+        state.loading = false;
+        // Optionally update state based on processed salary
+      })
+      .addCase(processSalary.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });
-
+ 
 export const { clearAuthError } = salarySlice.actions;
 export default salarySlice.reducer;
-
-
-
 
