@@ -1,0 +1,49 @@
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it appears above other content */
+  border: 1px solid #ccc; /* Add a border to the popup */
+  border-radius: 8px; /* Rounded corners */
+  width: 800px; /* Set a width for the popup */
+}
+
+.popup h3 {
+  margin: 0 0 10px;
+}
+
+.popup button {
+  margin-top: 10px;
+  background-color: blue;
+  color: white;
+  padding: 8px;
+  border: none; /* Remove default border */
+  border-radius: 4px; /* Rounded corners for the button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.Calc-referal {
+  font-weight: bold; /* Correct font property */
+  font-size: medium;
+}
+
+.table {
+  width: 100%; /* Full width of the popup */
+  border-collapse: collapse; /* Collapse borders */
+  margin-top: 10px; /* Space between title and table */
+}
+
+.table th,
+.table td {
+  border: 1px solid #585555; /* Light gray border */
+  padding: 8px; /* Padding for table cells */
+  text-align: left; /* Align text to the left */
+}
+
+.table th {
+  background-color: #a7a5a5cc; /* Light gray background for header */
+}

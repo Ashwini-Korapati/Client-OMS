@@ -2197,3 +2197,306 @@ const TaxCalculationForm = () => {
 };
 
 export default TaxCalculationForm;
+
+
+
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { saveSalary } from '../../../../../../Redux/Slices/SalarySlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '../Updatesalary/Updatesalary.css';
+
+const SalaryUpdateForm = ({ emp_id, onSave, isEditable }) => {
+  const [formData, setFormData] = useState({
+    effectiveFrom: '',
+    payoutMonth: '',
+    employeeRemarks: '',
+    notes: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSave(formData);
+  };
+
+  return (
+    <form className="salary-update-form" onSubmit={handleSubmit}>
+      {isEditable && <button type="submit" className="save-button">Save Changes</button>}
+    </form>
+  );
+};
+
+const Updatesalary = () => {
+  const { emp_id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const salaryDetails = useSelector((state) => state.salary.salaryDetails);
+  const loading = useSelector((state) => state.salary.loading);
+  const error = useSelector((state) => state.salary.error);
+
+  const [salaryData, setSalaryData] = useState([]);
+  const [isEditable, setIsEditable] = useState(false);
+  const [isUpdated, setIsUpdated] = useState(false);
+  const [employeeInfo, setEmployeeInfo] = useState({
+    firstName: '',
+    designation: '',
+    created_date: ''
+  });
+
+  const [lopPopupOpen, setLopPopupOpen] = useState(false);
+  const [travelPopupOpen, setTravelPopupOpen] = useState(false);
+  const [lopData, setLopData] = useState({ days: '', amountPerDay: '', totalAmount: 0 });
+  const [travelData, setTravelData] = useState({ days: '', amountPerDay: '', totalAmount: 0 });
+
+  const salaryItems = [
+    'FULL BASIC', 'FULL HRA', 'FULL SPECIAL ALLOWANCE', 'FULL OTHER ALLOWANCE',
+    'ANNUAL CTC', 'MONTHLY CTC', 'FULL EMPLOYER PF',
+    'FULL TRAVEL ALLOWANCE', 'LOP', 'SUB TOTAL', 'TOTAL AMOUNT', 'TOTAL DEDUCTIONS'
+  ];
+
+  useEffect(() => {
+    if (salaryDetails && salaryDetails.length > 0) {
+      const details = salaryDetails[0];
+      const newSalaryData = salaryItems.map((item) => {
+        const lowercaseItem = item.toLowerCase().replace(/ /g, '_');
+        return {
+          item,
+          current: details[`revised_${lowercaseItem}`] || details[lowercaseItem] || '0.00'
+        };
+      });
+      setSalaryData(newSalaryData);
+      setEmployeeInfo({
+        firstName: details.firstName || '',
+        designation: details.designation || '',
+        created_date: details.created_date || ''
+      });
+    }
+  }, [salaryDetails]);
+
+  const handleChange = (index, value) => {
+    const newData = [...salaryData];
+    newData[index].current = value;
+    setSalaryData(newData);
+  };
+
+  const handleSave = (formData) => {
+    // Logic to save salary data
+  };
+
+  const handleBack = () => {
+    navigate(-1);
+  };
+
+  const getDisplayName = (item) => {
+    switch (item) {
+      case 'TOTAL DEDUCTIONS':
+        return 'Total Deductions';
+      case 'SUB TOTAL':
+        return 'Sub Total';
+      case 'TOTAL AMOUNT':
+        return 'Total Amt';
+      case 'REMARKS':
+        return 'Remarks';
+      default:
+        return item;
+    }
+  };
+
+  const calculateTotalAmount = (data) => {
+    return data.days && data.amountPerDay
+      ? parseFloat(data.days) * parseFloat(data.amountPerDay)
+      : 0;
+  };
+
+  const handleLopChange = (e) => {
+    const { name, value } = e.target;
+    setLopData((prevData) => ({
+      ...prevData,
+      [name]: value,
+      totalAmount: calculateTotalAmount({ ...prevData, [name]: value })
+    }));
+  };
+
+  const handleTravelChange = (e) => {
+    const { name, value } = e.target;
+    setTravelData((prevData) => ({
+      ...prevData,
+      [name]: value,
+      totalAmount: calculateTotalAmount({ ...prevData, [name]: value })
+    }));
+  };
+
+  const handleLopSave = () => {
+    const newData = [...salaryData];
+    const lopIndex = newData.findIndex((item) => item.item === 'LOP');
+    if (lopIndex !== -1) {
+      newData[lopIndex].current = lopData.totalAmount.toFixed(2);
+      setSalaryData(newData);
+    }
+    setLopPopupOpen(false);
+  };
+
+  const handleTravelSave = () => {
+    const newData = [...salaryData];
+    const travelIndex = newData.findIndex((item) => item.item === 'FULL TRAVEL ALLOWANCE');
+    if (travelIndex !== -1) {
+      newData[travelIndex].current = travelData.totalAmount.toFixed(2);
+      setSalaryData(newData);
+    }
+    setTravelPopupOpen(false);
+  };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div className="container">
+      <ToastContainer />
+      <div className="profile-header">
+        <div className="profile-info">
+          <div className="profile-name">Name: {employeeInfo.firstName}</div>
+        </div>
+      </div>
+      <div className="info-grid">
+        <div>
+          <div className="info-title">Create Date: {new Date(employeeInfo.created_date).toLocaleDateString()}</div>
+          <div className="info-title">Designation: {employeeInfo.designation}</div>
+        </div>
+      </div>
+
+      <div className="header">
+        {!isUpdated && (
+          <button className="btn" onClick={() => setIsEditable(true)}>Edit Salary</button>
+        )}
+        {isUpdated && (
+          <button className="btn back-button" onClick={handleBack}>Back</button>
+        )}
+      </div>
+      <table className="salary-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Current Salary</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+    
+
+<tbody>
+  {salaryData.map((row, index) => (
+    <tr key={row.item}>
+      <td>{getDisplayName(row.item)}</td>
+      <td>
+        {isEditable && row.item !== 'SUB TOTAL' && row.item !== 'TOTAL AMOUNT' ? (
+          <input
+            type="text"
+            value={row.current}
+            onChange={(e) => handleChange(index, e.target.value)}
+          />
+        ) : (
+          row.current
+        )}
+      </td>
+      <td>
+        {isEditable && (row.item === 'LOP' || row.item === 'FULL TRAVEL ALLOWANCE') ? (
+          <span className='pencil-icon' onClick={() => row.item === 'LOP' ? setLopPopupOpen(true) : setTravelPopupOpen(true)}>
+            ✏️
+          </span>
+        ) : null}
+      </td>
+    </tr>
+  ))}
+</tbody>
+
+      </table>
+
+      {lopPopupOpen && (
+        <div className="popup">
+          <h3>LOP Details</h3>
+          <table>
+            <tbody>
+              <tr>
+                <td>Days:</td>
+                <td>
+                  <input
+                    type="number"
+                    name="days"
+                    value={lopData.days}
+                    onChange={handleLopChange}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Amount per Day:</td>
+                <td>
+                  <input
+                    type="number"
+                    name="amountPerDay"
+                    value={lopData.amountPerDay}
+                    onChange={handleLopChange}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Total Deduction:</td>
+                <td>{lopData.totalAmount.toFixed(2)}</td>
+              </tr>
+            </tbody>
+          </table>
+          <button className="btn back-button"  onClick={handleLopSave}>Save</button>
+          <button className="btn back-button"  onClick={() => setLopPopupOpen(false)}>Close</button>
+        </div>
+      )}
+
+      {travelPopupOpen && (
+        <div className="popup">
+          <h3>Travel Allowance Details</h3>
+          <table>
+            <tbody>
+              <tr>
+                <td>Days:</td>
+                <td>
+                  <input
+                    type="number"
+                    name="days"
+                    value={travelData.days}
+                    onChange={handleTravelChange}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Amount per Day:</td>
+                <td>
+                  <input
+                    type="number"
+                    name="amountPerDay"
+                    value={travelData.amountPerDay}
+                    onChange={handleTravelChange}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Total Allowance:</td>
+                <td>{travelData.totalAmount.toFixed(2)}</td>
+              </tr>
+            </tbody>
+          </table>
+          <button className="btn back-button"  onClick={handleTravelSave}>Save</button>
+          <button className="btn back-button"  onClick={() => setTravelPopupOpen(false)}>Close</button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Updatesalary;

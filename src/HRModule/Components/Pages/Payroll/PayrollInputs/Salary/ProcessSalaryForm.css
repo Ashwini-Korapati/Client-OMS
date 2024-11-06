@@ -1,0 +1,78 @@
+/* ProcessSalaryForm.css */
+
+.container-salary-process {
+    /* You can add styles here if needed */
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* ensure it’s above other elements */
+}
+
+.modal {
+    background-color: #fff;
+    padding: 60px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 1000px; /* Increased width */
+    width: 90%;
+    text-align: center;
+}
+
+.modal h2 {
+    margin-top: 0;
+}
+
+.modal table {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modal input[type="number"] {
+    width: 100%;
+}
+
+.modal button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.modal button + button {
+    margin-left: 10px;
+}
+
+.progress-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.progress-bar {
+    height: 10px;
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.progress {
+    width: 50%; /* Adjust this width dynamically if needed */
+    height: 100%;
+    background-color: #4caf50;
+}

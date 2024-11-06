@@ -6,7 +6,7 @@ import { thunk } from "redux-thunk";
 import authReducer from './Landingpage/Redux/slices/authSlice'
 // import cartReducer from './slices/cartSlice';
 // import orderReducer from './slices/orderSlice';
-import userReducer from '../../OMS-client/src/Landingpage/Redux/slices/userSlice'
+import userReducer from './Landingpage/Redux/slices/userSlice'
 import { createStore,  applyMiddleware } from 'redux';
 
 import { composeWithDevTools } from 'redux-devtools-extension';

@@ -88,13 +88,28 @@ const initialState = {
 };
  
 // Async thunk to save updated salary
+// export const saveSalary = createAsyncThunk(
+//   'salary/saveSalary',
+//   async (salaryData) => {
+//     const response = await axios.post('http://localhost:8000/api/v1/hr/postSalary', salaryData);
+    
+//     return response.data; // Ensure this includes employee details if necessary
+//   }
+// );
+
+
 export const saveSalary = createAsyncThunk(
   'salary/saveSalary',
-  async (salaryData) => {
-    const response = await axios.post('http://localhost:8000/api/v1/hr/postSalary', salaryData);
-    return response.data; // Ensure this includes employee details if necessary
+  async (salaryData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post('http://localhost:8000/api/v1/hr/postCalcSalary', salaryData);
+      return response.data; // Ensure this includes employee details if necessary
+    } catch (error) {
+      return rejectWithValue(error.response.data); // Pass the error message to the slice
+    }
   }
 );
+
  
 export const fetchEmployees1 = createAsyncThunk(
   'employees/fetchEmployees1',
