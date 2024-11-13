@@ -8,10 +8,7 @@ export const processSalaryForAllEmployees = createAsyncThunk(
     'payroll/processSalaryForAllEmployees',
     async ({ month, year }, { rejectWithValue }) => {
       try {
-        const response = await axios.post('http://localhost:8000/api/v1/hr/postSalaryProcessForAllEmployee', {
-          month,
-          year,
-        });
+        const response = await axios.get('http://localhost:8000/api/v1/hr/getSalary')
         return response.data;
       } catch (error) {
         // Log the error for debugging
