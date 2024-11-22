@@ -21,8 +21,10 @@
     cursor: pointer;
 }
 
+
 .tabs button.active-tab {
-    background-color: #e6f7ff;
+    /* background-color: #e6f7ff; */
+        background-color: #1890ff;
     border-bottom: 2px solid #1890ff;
 }
 
@@ -96,7 +98,7 @@
     cursor: pointer;
 }
 
-.download-button1 {
+.download-button {
     padding: 10px 20px;
     background-color: #1890ff;
     color: white;

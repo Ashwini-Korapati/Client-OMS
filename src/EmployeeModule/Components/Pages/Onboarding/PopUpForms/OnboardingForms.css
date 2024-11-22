@@ -1,0 +1,151 @@
+.onboarding-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.onboarding-sidebar {
+  width: 300px;
+  background-color: #ffffff;
+  padding: 2rem;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.onboarding-step-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.onboarding-step-item:hover {
+  background-color: #f0f0f0;
+}
+
+.onboarding-step-item.active {
+  background-color: #e6f7ff;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
+}
+
+.onboarding-step-item.completed {
+  color: #28a745;
+}
+
+.onboarding-step-icon {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  color: #007bff;
+}
+
+.onboarding-step-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.onboarding-step-number {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: #6c757d;
+}
+
+.onboarding-step-title {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.onboarding-main-content {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.onboarding-form-wrapper {
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 100%;
+
+}
+
+@media (max-width: 768px) {
+  .onboarding-container {
+    flex-direction: column;
+  }
+
+  .onboarding-sidebar {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .onboarding-step-item {
+    padding: 0.75rem;
+  }
+
+  .onboarding-main-content {
+    padding: 1rem;
+  }
+
+  .onboarding-form-wrapper {
+    padding: 1rem;
+  }
+}
+
+/* Add these keyframes for the progress bar animation */
+@keyframes progress {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Add a progress bar to the active step */
+.onboarding-step-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background-color: #007bff;
+  animation: progress 0.5s ease-out forwards;
+}
+
+/* Add a subtle hover effect to form inputs */
+input, select, textarea {
+  transition: all 0.3s ease;
+}
+
+input:hover, select:hover, textarea:hover {
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Add a pulsing effect to the next button */
+button[type="submit"], button.next-button {
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover, button.next-button:hover {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+

@@ -1,0 +1,122 @@
+.edu-qual-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    /* background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .edu-qual-title {
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .edu-qual-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .edu-qual-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .edu-qual-form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .edu-qual-label {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+  }
+  
+  .edu-qual-icon {
+    margin-right: 0.5rem;
+    color: #007bff;
+  }
+  
+  .edu-qual-input {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .edu-qual-input:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .edu-qual-radio-group {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .edu-qual-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .edu-qual-radio {
+    margin: 0;
+  }
+  
+  .edu-qual-button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+  }
+  
+  .edu-qual-next-button {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+  }
+  
+  .edu-qual-next-button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .edu-qual-container {
+      padding: 1.5rem;
+    }
+  
+    .edu-qual-title {
+      font-size: 1.25rem;
+    }
+  
+    .edu-qual-label {
+      font-size: 0.9rem;
+    }
+  
+    .edu-qual-input,
+    .edu-qual-next-button {
+      font-size: 0.9rem;
+      padding: 0.6rem;
+    }
+  
+    .edu-qual-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  

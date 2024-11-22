@@ -1,0 +1,143 @@
+.experience-info-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    /* background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .experience-info-title {
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .experience-info-subtitle {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 1rem;
+  }
+  
+  .experience-info-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .experience-info-section {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .experience-info-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .experience-info-form-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* flex-direction: column; */
+  }
+  
+  .experience-info-label {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+  }
+  
+  .experience-info-icon {
+    margin-right: 0.5rem;
+    color: #007bff;
+  }
+  
+  .experience-info-input,
+  .experience-info-file-input {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .experience-info-input:focus,
+  .experience-info-file-input:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .experience-info-radio-group {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .experience-info-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .experience-info-radio {
+    margin: 0;
+  }
+  
+  .experience-info-button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+  }
+  
+  .experience-info-next-button {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+  }
+  
+  .experience-info-next-button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .experience-info-container {
+      padding: 1.5rem;
+    }
+  
+    .experience-info-title {
+      font-size: 1.25rem;
+    }
+  
+    .experience-info-subtitle {
+      font-size: 1.1rem;
+    }
+  
+    .experience-info-label {
+      font-size: 0.9rem;
+    }
+  
+    .experience-info-input,
+    .experience-info-file-input,
+    .experience-info-next-button {
+      font-size: 0.9rem;
+      padding: 0.6rem;
+    }
+  
+    .experience-info-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  

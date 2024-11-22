@@ -71,6 +71,7 @@ import Empitstatement from './EmployeeModule/Components/Pages/EmpSalary/Empitsta
 import Verify from './HRModule/Components/Pages/Verify/Verify';
 import Process from './HRModule/Components/Pages/Payroll/Process/Process';
 import HrPayslipsRelease from './HRModule/Components/Pages/Payroll/Payout/Payslips/HrPayslipsRelease';
+import OnboardingForms from './EmployeeModule/Components/Pages/Onboarding/PopUpForms/OnboardingForms';
 // import  Verify  from './HRModule/Components/Pages/Verify/Verify'
 // import { fetchHolidays } from './HRModule/Redux/Slices/leaveCalendarSlice'
 
@@ -164,7 +165,7 @@ const App = () => {
             <Route path="leave-calender" element={<Empholidaycalendar/>}/>
             <Route path='leave-apply' element={<LeaveHome/>}/>
             <Route path='emp-payslip' element={<EmpPayslip/>}/>
-            <Route path='onboarding' element={<Onboarding/>}/>
+            <Route path='onboarding' element={<OnboardingForms/>}/>
             <Route path='onboarding/forms' element={<Qpforms/>}/>
             <Route path='emp-ITstatement' element={<Empitstatement/>}/>
  

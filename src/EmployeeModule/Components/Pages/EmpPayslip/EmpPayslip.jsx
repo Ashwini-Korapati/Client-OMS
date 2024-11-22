@@ -488,7 +488,7 @@ const Payslip = () => {
     return (
         <div className="payslip-container">
             <div className="tabs">
-                <button className="download-button1">Payslip</button>
+                <button className="download-button">Payslip</button>
                 <button className="download-button" onClick={handleDownload}>Download  <FaDownload /></button>
                 <select
                     className="month-select"

@@ -1,105 +1,128 @@
-
-import React, { useState } from 'react';
-import { FaUser, FaBuilding, FaIdCard, FaFileAlt, FaCheck, FaMapMarkerAlt, FaCalendarAlt, FaVenusMars, FaRing, FaFlag, FaPhone, FaEnvelope, FaTint, FaUniversity, FaMoneyCheckAlt, FaPassport, FaGraduationCap, FaBriefcase } from 'react-icons/fa';
-import '../Onboarding/Onboarding.css'
+import React, { useState } from "react";
+import {
+  FaUser,
+  FaBuilding,
+  FaIdCard,
+  FaFileAlt,
+  FaCheck,
+  FaMapMarkerAlt,
+  FaCalendarAlt,
+  FaVenusMars,
+  FaRing,
+  FaFlag,
+  FaPhone,
+  FaEnvelope,
+  FaTint,
+  FaUniversity,
+  FaMoneyCheckAlt,
+  FaPassport,
+  FaGraduationCap,
+  FaBriefcase,
+} from "react-icons/fa";
+// import "../Onboarding/Onboarding.css";
 const EmployeeOnboardingForm = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    fullName: '',
-    fatherName: '',
-    motherName: '',
-    placeOfBirth: '',
-    presentAddress: '',
-    permanentAddress: '',
-    dob: '',
-    gender: '',
-    maritalStatus: '',
-    nationality: '',
-    contactNumber: '',
-    alternateContactNumber: '',
-    email: '',
-    bloodGroup: '',
-    bankName: '',
-    bankAccountNumber: '',
-    ifscCode: '',
-    branchName: '',
-    aadharNo: '',
-    panCardNo: '',
-    hasPfUan: '',
-    pfUanNumber: '',
-    hasPassport: '',
-    emergencyContactNumber: '',
-    emergencyContactName: '',
-    emergencyContactRelation: '',
-    emergencyContactAddress: '',
-    hasPostGraduation: '',
-    pgCollege: '',
-    pgBranch: '',
-    pgYearOfPassing: '',
-    pgGrade: '',
-    pgCourseName: '',
-    ugCollege: '',
-    ugBranch: '',
-    ugYearOfPassing: '',
-    ugGrade: '',
-    ugCourseName: '',
-    hscCollegeName: '',
-    hscStream: '',
-    hscYearOfPassing: '',
-    hscGrade: '',
-    sscSchoolName: '',
-    sscYearOfPassing: '',
-    sscGrade: '',
-    hasExperience: '',
-    consent: false
+    fullName: "",
+    fatherName: "",
+    motherName: "",
+    placeOfBirth: "",
+    presentAddress: "",
+    permanentAddress: "",
+    dob: "",
+    gender: "",
+    maritalStatus: "",
+    nationality: "",
+    contactNumber: "",
+    alternateContactNumber: "",
+    email: "",
+    bloodGroup: "",
+    bankName: "",
+    bankAccountNumber: "",
+    ifscCode: "",
+    branchName: "",
+    aadharNo: "",
+    panCardNo: "",
+    hasPfUan: "",
+    pfUanNumber: "",
+    hasPassport: "",
+    emergencyContactNumber: "",
+    emergencyContactName: "",
+    emergencyContactRelation: "",
+    emergencyContactAddress: "",
+    hasPostGraduation: "",
+    pgCollege: "",
+    pgBranch: "",
+    pgYearOfPassing: "",
+    pgGrade: "",
+    pgCourseName: "",
+    ugCollege: "",
+    ugBranch: "",
+    ugYearOfPassing: "",
+    ugGrade: "",
+    ugCourseName: "",
+    hscCollegeName: "",
+    hscStream: "",
+    hscYearOfPassing: "",
+    hscGrade: "",
+    sscSchoolName: "",
+    sscYearOfPassing: "",
+    sscGrade: "",
+    hasExperience: "",
+    consent: false,
   });
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
+  };
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    console.log("Selected file:", file);
+    // Additional file handling logic
   };
 
   const handleNext = () => {
-    setStep(prevStep => prevStep + 1);
+    setStep((prevStep) => prevStep + 1);
   };
 
   const handleBack = () => {
-    setStep(prevStep => prevStep - 1);
+    setStep((prevStep) => prevStep - 1);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
-      const response = await fetch('/api/employee-onboarding', {
-        method: 'POST',
+      const response = await fetch("/api/employee-onboarding", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-  
+
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
-  
+
       const result = await response.json();
-      console.log('Form submitted successfully:', result);
+      console.log("Form submitted successfully:", result);
       // Handle successful submission (e.g., show success message, redirect)
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error("Error submitting form:", error);
       // Handle error (e.g., show error message to user)
     }
   };
 
   const renderStep = () => {
-    switch(step) {
+    switch (step) {
       case 1:
         return (
           <>
-           <h2>PERSONAL INFORMATION</h2>
+            <h2>PERSONAL INFORMATION</h2>
             <div className="form-group">
               <label htmlFor="fullName">
                 <FaUser /> Full Name (As per Aadhar)
@@ -385,22 +408,24 @@ const EmployeeOnboardingForm = () => {
                     type="radio"
                     name="hasPfUan"
                     value="yes"
-                    checked={formData.hasPfUan === 'yes'}
+                    checked={formData.hasPfUan === "yes"}
                     onChange={handleInputChange}
-                  /> Yes
+                  />{" "}
+                  Yes
                 </label>
                 <label>
                   <input
                     type="radio"
                     name="hasPfUan"
                     value="no"
-                    checked={formData.hasPfUan === 'no'}
+                    checked={formData.hasPfUan === "no"}
                     onChange={handleInputChange}
-                  /> No
+                  />{" "}
+                  No
                 </label>
               </div>
             </div>
-            {formData.hasPfUan === 'yes' && (
+            {formData.hasPfUan === "yes" && (
               <div className="form-group">
                 <label htmlFor="pfUanNumber">
                   <FaIdCard /> PF/UAN Number
@@ -417,10 +442,11 @@ const EmployeeOnboardingForm = () => {
             )}
           </>
         );
+
       case 2:
         return (
           <>
-            <h1>Passport details</h1>
+            <h1>Passport Details</h1>
             <div className="form-group">
               <label>
                 <FaPassport /> Do you have passport?
@@ -431,21 +457,83 @@ const EmployeeOnboardingForm = () => {
                     type="radio"
                     name="hasPassport"
                     value="yes"
-                    checked={formData.hasPassport === 'yes'}
+                    checked={formData.hasPassport === "yes"}
                     onChange={handleInputChange}
-                  /> Yes
+                  />{" "}
+                  Yes
                 </label>
                 <label>
                   <input
                     type="radio"
                     name="hasPassport"
                     value="no"
-                    checked={formData.hasPassport === 'no'}
+                    checked={formData.hasPassport === "no"}
                     onChange={handleInputChange}
-                  /> No
+                  />{" "}
+                  No
                 </label>
               </div>
             </div>
+
+            {formData.hasPassport === "yes" && (
+              <>
+                <div className="form-group">
+                  <label htmlFor="passportNo">
+                    <FaIdCard /> Passport No:
+                  </label>
+                  <input
+                    type="text"
+                    id="passportNo"
+                    name="passportNo"
+                    value={formData.passportNo}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="placeOfIssue">
+                    <FaIdCard /> Place of Issue:
+                  </label>
+                  <input
+                    type="text"
+                    id="placeOfIssue"
+                    name="placeOfIssue"
+                    value={formData.placeOfIssue}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="issuedDate">
+                    <FaCalendarAlt /> Issued On:
+                  </label>
+                  <input
+                    type="date"
+                    id="issuedDate"
+                    name="issuedDate"
+                    value={formData.issuedDate}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="validUpto">
+                    <FaCalendarAlt /> Valid Upto:
+                  </label>
+                  <input
+                    type="date"
+                    id="validUpto"
+                    name="validUpto"
+                    value={formData.validUpto}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+              </>
+            )}
           </>
         );
       case 3:
@@ -519,22 +607,24 @@ const EmployeeOnboardingForm = () => {
                     type="radio"
                     name="hasPostGraduation"
                     value="yes"
-                    checked={formData.hasPostGraduation === 'yes'}
+                    checked={formData.hasPostGraduation === "yes"}
                     onChange={handleInputChange}
-                  /> Yes
+                  />{" "}
+                  Yes
                 </label>
                 <label>
                   <input
                     type="radio"
                     name="hasPostGraduation"
                     value="no"
-                    checked={formData.hasPostGraduation === 'no'}
+                    checked={formData.hasPostGraduation === "no"}
                     onChange={handleInputChange}
-                  /> No
+                  />{" "}
+                  No
                 </label>
               </div>
             </div>
-            {formData.hasPostGraduation === 'yes' && (
+            {formData.hasPostGraduation === "yes" && (
               <>
                 <div className="form-group">
                   <label htmlFor="pgCollege">
@@ -691,27 +781,30 @@ const EmployeeOnboardingForm = () => {
                     type="radio"
                     name="hscStream"
                     value="Science"
-                    checked={formData.hscStream === 'Science'}
+                    checked={formData.hscStream === "Science"}
                     onChange={handleInputChange}
-                  /> Science
+                  />{" "}
+                  Science
                 </label>
                 <label>
                   <input
                     type="radio"
                     name="hscStream"
                     value="Commerce"
-                    checked={formData.hscStream === 'Commerce'}
+                    checked={formData.hscStream === "Commerce"}
                     onChange={handleInputChange}
-                  /> Commerce
+                  />{" "}
+                  Commerce
                 </label>
                 <label>
                   <input
                     type="radio"
                     name="hscStream"
                     value="Arts"
-                    checked={formData.hscStream === 'Arts'}
+                    checked={formData.hscStream === "Arts"}
                     onChange={handleInputChange}
-                  /> Arts
+                  />{" "}
+                  Arts
                 </label>
               </div>
             </div>
@@ -785,7 +878,7 @@ const EmployeeOnboardingForm = () => {
       case 5:
         return (
           <>
-            <h1>EXPERIENCE INFORMATION</h1>
+            <h1>Experience Information</h1>
             <div className="form-group">
               <label>
                 <FaBriefcase /> Do You Have Any Experience?
@@ -796,45 +889,444 @@ const EmployeeOnboardingForm = () => {
                     type="radio"
                     name="hasExperience"
                     value="yes"
-                    checked={formData.hasExperience === 'yes'}
+                    checked={formData.hasExperience === "yes"}
                     onChange={handleInputChange}
-                  /> Yes
+                  />{" "}
+                  Yes
                 </label>
                 <label>
                   <input
                     type="radio"
                     name="hasExperience"
                     value="no"
-                    checked={formData.hasExperience === 'no'}
+                    checked={formData.hasExperience === "no"}
                     onChange={handleInputChange}
-                  /> No
+                  />{" "}
+                  No
                 </label>
               </div>
             </div>
+
+            {formData.hasExperience === "yes" && (
+              <>
+                <div className="organization-details">
+                  <h3>Organization Details</h3>
+                  <div className="form-group">
+                    <label htmlFor="organizationName">
+                      <FaBuilding /> Organization Name:
+                    </label>
+                    <input
+                      type="text"
+                      id="organizationName"
+                      name="organizationName"
+                      value={formData.organizationName}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="fromDate">
+                      <FaCalendarAlt /> From Date:
+                    </label>
+                    <input
+                      type="date"
+                      id="fromDate"
+                      name="fromDate"
+                      value={formData.fromDate}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="toDate">
+                      <FaCalendarAlt /> To Date:
+                    </label>
+                    <input
+                      type="date"
+                      id="toDate"
+                      name="toDate"
+                      value={formData.toDate}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="positionHeld">
+                      <FaBriefcase /> Position Held:
+                    </label>
+                    <input
+                      type="text"
+                      id="positionHeld"
+                      name="positionHeld"
+                      value={formData.positionHeld}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="supervisorName">
+                      <FaUser /> Immediate Supervisor Name:
+                    </label>
+                    <input
+                      type="text"
+                      id="supervisorName"
+                      name="supervisorName"
+                      value={formData.supervisorName}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="supervisorDesignation">
+                      <FaIdCard /> Immediate Supervisor Designation:
+                    </label>
+                    <input
+                      type="text"
+                      id="supervisorDesignation"
+                      name="supervisorDesignation"
+                      value={formData.supervisorDesignation}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="supervisorEmail">
+                      <FaEnvelope /> Immediate Supervisor Email Address:
+                    </label>
+                    <input
+                      type="email"
+                      id="supervisorEmail"
+                      name="supervisorEmail"
+                      value={formData.supervisorEmail}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="supervisorContact">
+                      <FaPhone /> Immediate Supervisor Contact Number:
+                    </label>
+                    <input
+                      type="tel"
+                      id="supervisorContact"
+                      name="supervisorContact"
+                      value={formData.supervisorContact}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Additional Organization Toggle */}
+                <div className="form-group">
+                  <label>
+                    <FaBriefcase /> Add Other Organization Details
+                  </label>
+                  <div className="radio-group">
+                    <label>
+                      <input
+                        type="radio"
+                        name="hasAdditionalOrganization"
+                        value="yes"
+                        checked={formData.hasAdditionalOrganization === "yes"}
+                        onChange={handleInputChange}
+                      />{" "}
+                      Yes
+                    </label>
+                    <label>
+                      <input
+                        type="radio"
+                        name="hasAdditionalOrganization"
+                        value="no"
+                        checked={formData.hasAdditionalOrganization === "no"}
+                        onChange={handleInputChange}
+                      />{" "}
+                      No
+                    </label>
+                  </div>
+                </div>
+
+                {/* Additional Organization Details */}
+                {formData.hasAdditionalOrganization === "yes" && (
+                  <div className="additional-organization">
+                    <h3>Additional Organization Details</h3>
+                    <div className="form-group">
+                      <label htmlFor="additionalOrgName">
+                        <FaBuilding /> Organization Name:
+                      </label>
+                      <input
+                        type="text"
+                        id="additionalOrgName"
+                        name="additionalOrgName"
+                        value={formData.additionalOrgName}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="additionalFromDate">
+                        <FaCalendarAlt /> From Date:
+                      </label>
+                      <input
+                        type="date"
+                        id="additionalFromDate"
+                        name="additionalFromDate"
+                        value={formData.additionalFromDate}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="additionalToDate">
+                        <FaCalendarAlt /> To Date:
+                      </label>
+                      <input
+                        type="date"
+                        id="additionalToDate"
+                        name="additionalToDate"
+                        value={formData.additionalToDate}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* Documents Section */}
+                <div className="documents-section">
+                  <h3>Documents</h3>
+
+                  {/* Form 16 */}
+                  <div className="form-group">
+                    <label>
+                      <FaFileAlt /> Form 16
+                    </label>
+                    <div className="radio-group">
+                      <label>
+                        <input
+                          type="radio"
+                          name="hasForm16"
+                          value="yes"
+                          checked={formData.hasForm16 === "yes"}
+                          onChange={handleInputChange}
+                        />{" "}
+                        Yes
+                      </label>
+                      <label>
+                        <input
+                          type="radio"
+                          name="hasForm16"
+                          value="no"
+                          checked={formData.hasForm16 === "no"}
+                          onChange={handleInputChange}
+                        />{" "}
+                        No
+                      </label>
+                    </div>
+                    {formData.hasForm16 === "yes" && (
+                      <input
+                        type="file"
+                        name="form16File"
+                        onChange={handleFileChange}
+                        accept=".pdf,.doc,.docx"
+                      />
+                    )}
+                  </div>
+
+                  {/* Offer Letter */}
+                  <div className="form-group">
+                    <label>
+                      <FaFileAlt /> Offer Letter
+                    </label>
+                    <div className="radio-group">
+                      <label>
+                        <input
+                          type="radio"
+                          name="hasOfferLetter"
+                          value="yes"
+                          checked={formData.hasOfferLetter === "yes"}
+                          onChange={handleInputChange}
+                        />{" "}
+                        Yes
+                      </label>
+                      <label>
+                        <input
+                          type="radio"
+                          name="hasOfferLetter"
+                          value="no"
+                          checked={formData.hasOfferLetter === "no"}
+                          onChange={handleInputChange}
+                        />{" "}
+                        No
+                      </label>
+                    </div>
+                    {formData.hasOfferLetter === "yes" && (
+                      <input
+                        type="file"
+                        name="offerLetterFile"
+                        onChange={handleFileChange}
+                        accept=".pdf,.doc,.docx"
+                      />
+                    )}
+                  </div>
+
+                  {/* Relieving Letter */}
+                  <div className="form-group">
+                    <label>
+                      <FaFileAlt /> Relieving Letter
+                    </label>
+                    <div className="radio-group">
+                      <label>
+                        <input
+                          type="radio"
+                          name="hasRelievingLetter"
+                          value="yes"
+                          checked={formData.hasRelievingLetter === "yes"}
+                          onChange={handleInputChange}
+                        />{" "}
+                        Yes
+                      </label>
+                      <label>
+                        <input
+                          type="radio"
+                          name="hasRelievingLetter"
+                          value="no"
+                          checked={formData.hasRelievingLetter === "no"}
+                          onChange={handleInputChange}
+                        />{" "}
+                        No
+                      </label>
+                    </div>
+                    {formData.hasRelievingLetter === "yes" && (
+                      <input
+                        type="file"
+                        name="relievingLetterFile"
+                        onChange={handleFileChange}
+                        accept=".pdf,.doc,.docx"
+                      />
+                    )}
+                  </div>
+
+                  {/* Experience Letter */}
+                  <div className="form-group">
+                    <label>
+                      <FaFileAlt /> Experience Letter
+                    </label>
+                    <div className="radio-group">
+                      <label>
+                        <input
+                          type="radio"
+                          name="hasExperienceLetter"
+                          value="yes"
+                          checked={formData.hasExperienceLetter === "yes"}
+                          onChange={handleInputChange}
+                        />{" "}
+                        Yes
+                      </label>
+                      <label>
+                        <input
+                          type="radio"
+                          name="hasExperienceLetter"
+                          value="no"
+                          checked={formData.hasExperienceLetter === "no"}
+                          onChange={handleInputChange}
+                        />{" "}
+                        No
+                      </label>
+                    </div>
+                    {formData.hasExperienceLetter === "yes" && (
+                      <input
+                        type="file"
+                        name="experienceLetterFile"
+                        onChange={handleFileChange}
+                        accept=".pdf,.doc,.docx"
+                      />
+                    )}
+                  </div>
+
+                  {/* Salary Slip */}
+                  <div className="form-group">
+                    <label>
+                      <FaFileAlt /> Salary Slip
+                    </label>
+                    <div className="radio-group">
+                      <label>
+                        <input
+                          type="radio"
+                          name="hasSalarySlip"
+                          value="yes"
+                          checked={formData.hasSalarySlip === "yes"}
+                          onChange={handleInputChange}
+                        />{" "}
+                        Yes
+                      </label>
+                      <label>
+                        <input
+                          type="radio"
+                          name="hasSalarySlip"
+                          value="no"
+                          checked={formData.hasSalarySlip === "no"}
+                          onChange={handleInputChange}
+                        />{" "}
+                        No
+                      </label>
+                    </div>
+                    {formData.hasSalarySlip === "yes" && (
+                      <input
+                        type="file"
+                        name="salarySlipFile"
+                        onChange={handleFileChange}
+                        accept=".pdf,.doc,.docx"
+                      />
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
           </>
         );
       case 6:
         return (
           <div className="form-group consent-group">
-          <label htmlFor="consent">
-            <FaFileAlt /> Employee Consent
-          </label>
-          <p>
-            I hereby authorize NM IT Solutions Pt Ltd to verify all the information which I have submitted to obtain and disclose all personal and professional information to conduct all necessary enquiries as per the company policy for employment with NM IT. This verification process can be conducted in any mode as determined by the company from time to time but not limited to only verbal or written, before personal information agents, former employers, associations, current employers, public agencies or any other source provided as reference. I also authorize NM IT Solutions Pt Ltd to verify my criminal record, as required. This verification can be conducted either by the company itself or by company authorized representatives.
-          </p>
-          <div className="checkbox-group">
-            <label>
-              <input
-                type="checkbox"
-                name="consent"
-                checked={formData.consent}
-                onChange={handleInputChange}
-                required
-              />
-             I Agree
+            <label htmlFor="consent">
+              <FaFileAlt /> Employee Consent
             </label>
+            <p>
+              I hereby authorize NM IT Solutions Pt Ltd to verify all the
+              information which I have submitted to obtain and disclose all
+              personal and professional information to conduct all necessary
+              enquiries as per the company policy for employment with NM IT.
+              This verification process can be conducted in any mode as
+              determined by the company from time to time but not limited to
+              only verbal or written, before personal information agents, former
+              employers, associations, current employers, public agencies or any
+              other source provided as reference. I also authorize NM IT
+              Solutions Pt Ltd to verify my criminal record, as required. This
+              verification can be conducted either by the company itself or by
+              company authorized representatives.
+            </p>
+            <div className="checkbox-group">
+              <label>
+                <input
+                  type="checkbox"
+                  name="consent"
+                  checked={formData.consent}
+                  onChange={handleInputChange}
+                  required
+                />
+                I Agree
+              </label>
+            </div>
           </div>
-        </div>
         );
       default:
         return null;
@@ -845,9 +1337,7 @@ const EmployeeOnboardingForm = () => {
     <div className="onboarding-form-container">
       <h1>ONBOARDING FORMS</h1>
       <form onSubmit={handleSubmit}>
-        <div className="form-content">
-          {renderStep()}
-        </div>
+        <div className="form-content">{renderStep()}</div>
         <div className="form-actions">
           {step > 1 && (
             <button type="button" onClick={handleBack} className="back-btn">
@@ -870,7 +1360,3 @@ const EmployeeOnboardingForm = () => {
 };
 
 export default EmployeeOnboardingForm;
-
-
-
-

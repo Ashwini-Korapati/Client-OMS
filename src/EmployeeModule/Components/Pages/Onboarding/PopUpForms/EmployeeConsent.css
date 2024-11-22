@@ -1,0 +1,127 @@
+.employee-consent-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    /* background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .employee-consent-title {
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .employee-consent-icon {
+    margin-right: 0.5rem;
+    color: #007bff;
+  }
+  
+  .employee-consent-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .employee-consent-section {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .employee-consent-text {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .employee-consent-checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  .employee-consent-checkbox-label {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .employee-consent-checkbox {
+    margin-right: 0.5rem;
+  }
+  
+  .employee-consent-checkbox-icon {
+    margin-right: 0.5rem;
+    color: #007bff;
+  }
+  
+  .employee-consent-button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+  }
+  
+  .employee-consent-back-button,
+  .employee-consent-submit-button {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+  }
+  
+  .employee-consent-back-button {
+    background-color: #6c757d;
+    color: #fff;
+  }
+  
+  .employee-consent-back-button:hover {
+    background-color: #5a6268;
+  }
+  
+  .employee-consent-submit-button {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .employee-consent-submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .employee-consent-container {
+      padding: 1.5rem;
+    }
+  
+    .employee-consent-title {
+      font-size: 1.25rem;
+    }
+  
+    .employee-consent-text {
+      font-size: 0.9rem;
+    }
+  
+    .employee-consent-checkbox-label {
+      font-size: 0.9rem;
+    }
+  
+    .employee-consent-back-button,
+    .employee-consent-submit-button {
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+    }
+  }
+  
+
+  

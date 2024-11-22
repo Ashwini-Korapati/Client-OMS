@@ -1,0 +1,132 @@
+.personal-info-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  /* background-color: #888888; */
+  border-radius: 8px;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+}
+
+.personal-info-title {
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.personal-info-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.personal-info-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.personal-info-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.personal-info-label {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.personal-info-icon {
+  margin-right: 0.5rem;
+  color: #007bff;
+}
+
+.personal-info-input,
+.personal-info-select,
+.personal-info-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.personal-info-input:focus,
+.personal-info-select:focus,
+.personal-info-textarea:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.personal-info-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.personal-info-radio-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.personal-info-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.personal-info-radio {
+  margin: 0;
+}
+
+.personal-info-button-group {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.personal-info-next-button {
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.personal-info-next-button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .personal-info-container {
+    padding: 1.5rem;
+  }
+
+  .personal-info-title {
+    font-size: 1.25rem;
+  }
+
+  .personal-info-label {
+    font-size: 0.9rem;
+  }
+
+  .personal-info-input,
+  .personal-info-select,
+  .personal-info-textarea,
+  .personal-info-next-button {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .personal-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
