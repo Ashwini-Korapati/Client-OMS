@@ -2,15 +2,50 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
  
-// Async thunk for check-in
+// // Async thunk for check-in
+// export const checkIn = createAsyncThunk(
+//   'attendance/checkIn',
+//   async (formData, { rejectWithValue }) => {
+//     try {
+//       const response = await axios.post('http://localhost:8000/api/v1/employee/attendence/check_in', formData);
+
+//       console.log(formData);
+//       console.log(response.data);
+//       return response.data;
+//     } catch (error) {
+//       return rejectWithValue(error.response.data);
+//     }
+//   }
+// );
+
 export const checkIn = createAsyncThunk(
   'attendance/checkIn',
   async (formData, { rejectWithValue }) => {
     try {
+      // Debug: Log FormData contents
+      console.log('FormData being sent:');
+      if (formData instanceof FormData) {
+        for (let [key, value] of formData.entries()) {
+          console.log(`${key}:`, value);
+        }
+      } else {
+        console.log('FormData object:', formData);
+      }
+
       const response = await axios.post('http://localhost:8000/api/v1/employee/attendence/check_in', formData);
+      console.log('Response is:', response.data);
       return response.data;
+      
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      // Better error logging
+      console.error('Error details is:', {
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        data: error.response?.data,
+        headers: error.response?.headers,
+        config: error.config
+      });
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );

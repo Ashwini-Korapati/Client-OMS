@@ -1,9 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  setShiftTime,
-  setWorkType,
-  setSelfie,
+  // setSelfie,
   checkIn,
   checkOut,
 } from '../../../../HRModule/Redux/Slices/AttendanceReducers'
@@ -15,56 +13,56 @@ import touchscreen from '../../../Assets/identification.png'
  
 const AttendanceForm = ({ className = "" }) => {
   const dispatch = useDispatch();
-  const { checkInTime, checkOutTime, totalHours, selfie, success, date } =
+  const { checkInTime, checkOutTime, totalHours, success, date } =
     useSelector((state) => state.attendance);
   const [shiftTime, setShiftTimeState] = useState("");
   const [location, setLocation] = useState("");
   const [isCheckedIn, setIsCheckedIn] = useState(false);
   const [isCheckedOut, setIsCheckedOut] = useState(false);
-  const videoRef = useRef(null);
-  const canvasRef = useRef(null);
+  // const videoRef = useRef(null);
+  // const canvasRef = useRef(null);
  
-  const startCamera = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      videoRef.current.srcObject = stream;
-    } catch (err) {
-      console.error("Error accessing the camera", err);
-    }
-  };
+  // const startCamera = async () => {
+  //   try {
+  //     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+  //     videoRef.current.srcObject = stream;
+  //   } catch (err) {
+  //     console.error("Error accessing the camera", err);
+  //   }
+  // };
  
-  const stopCamera = () => {
-    const stream = videoRef.current?.srcObject;
-    if (stream) {
-      const tracks = stream.getTracks();
-      tracks.forEach((track) => track.stop());
-      videoRef.current.srcObject = null;
-    }
-  };
+  // const stopCamera = () => {
+  //   const stream = videoRef.current?.srcObject;
+  //   if (stream) {
+  //     const tracks = stream.getTracks();
+  //     tracks.forEach((track) => track.stop());
+  //     videoRef.current.srcObject = null;
+  //   }
+  // };
  
-  const capturePhoto = () => {
-    const context = canvasRef.current.getContext("2d");
-    context.drawImage(
-      videoRef.current,
-      0,
-      0,
-      canvasRef.current.width,
-      canvasRef.current.height
-    );
-    const imageData = canvasRef.current.toDataURL("image/jpeg");
-    dispatch(setSelfie(imageData));
-    stopCamera();
-  };
+  // const capturePhoto = () => {
+  //   const context = canvasRef.current.getContext("2d");
+  //   context.drawImage(
+  //     videoRef.current,
+  //     0,
+  //     0,
+  //     canvasRef.current.width,
+  //     canvasRef.current.height
+  //   );
+  //   const imageData = canvasRef.current.toDataURL("image/jpeg");
+  //   dispatch(setSelfie(imageData));
+  //   stopCamera();
+  // };
  
   const handleCheckIn = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("shift_time", shiftTime);
     formData.append("location", location);
-    if (location === "workFromHome" && selfie) {
-      const blob = dataURItoBlob(selfie, "image/jpeg");
-      formData.append("wfhAvatar", blob, "selfie.jpg");
-    }
+    // if (location === "workFromHome" && selfie) {
+    //   const blob = dataURItoBlob(selfie, "image/jpeg");
+    //   formData.append("wfhAvatar", blob, "selfie.jpg");
+    // }
     dispatch(checkIn(formData));
     toast.success("Check-in successful!");
   };
@@ -74,13 +72,13 @@ const AttendanceForm = ({ className = "" }) => {
     toast.success("Check-out successful!");
   };
  
-  useEffect(() => {
-    if (location === "workFromHome") {
-      startCamera();
-    } else {
-      stopCamera();
-    }
-  }, [location]);
+  // useEffect(() => {
+  //   if (location === "workFromHome") {
+  //     startCamera();
+  //   } else {
+  //     stopCamera();
+  //   }
+  // }, [location]);
  
   useEffect(() => {
     if (success && checkInTime) {
@@ -156,7 +154,7 @@ const AttendanceForm = ({ className = "" }) => {
                     </select>
                   </div>
                 </div>
-                {location === "workFromHome" && (
+                {/* {location === "workFromHome" && (
                   <div className="emp-video-container">
                     {!selfie ? (
                       <video ref={videoRef} width="150" height="150" autoPlay />
@@ -177,7 +175,7 @@ const AttendanceForm = ({ className = "" }) => {
                       style={{ display: "none" }}
                     ></canvas>
                   </div>
-                )}
+                )} */}
                 <div className="emp-submit">
                   <button type="submit" className="emp-group-button" disabled={isCheckedIn}>
                     Check In
@@ -225,13 +223,13 @@ AttendanceForm.propTypes = {
  
 export default AttendanceForm;
  
-function dataURItoBlob(dataURI, format = "image/png") {
-  const byteString = atob(dataURI.split(',')[1]);
-  const mimeString = format;
-  const buffer = new ArrayBuffer(byteString.length);
-  const view = new Uint8Array(buffer);
-  for (let i = 0; byteString.length; i++) {
-    view[i] = byteString.charCodeAt(i);
-  }
-  return new Blob([buffer], { type: mimeString });
-}
+// function dataURItoBlob(dataURI, format = "image/png") {
+//   const byteString = atob(dataURI.split(',')[1]);
+//   const mimeString = format;
+//   const buffer = new ArrayBuffer(byteString.length);
+//   const view = new Uint8Array(buffer);
+//   for (let i = 0; byteString.length; i++) {
+//     view[i] = byteString.charCodeAt(i);
+//   }
+//   return new Blob([buffer], { type: mimeString });
+// }
