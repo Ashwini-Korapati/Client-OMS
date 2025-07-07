@@ -19,66 +19,68 @@ const AttendanceForm = ({ className = "" }) => {
   const [location, setLocation] = useState("");
   const [isCheckedIn, setIsCheckedIn] = useState(false);
   const [isCheckedOut, setIsCheckedOut] = useState(false);
-  // const videoRef = useRef(null);
-  // const canvasRef = useRef(null);
+
  
-  // const startCamera = async () => {
-  //   try {
-  //     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-  //     videoRef.current.srcObject = stream;
-  //   } catch (err) {
-  //     console.error("Error accessing the camera", err);
-  //   }
+  // const handleCheckIn = (e) => {
+  //   e.preventDefault();
+  //   const formData = new FormData();
+  //   formData.append("shift_time", shiftTime);
+  //   formData.append("location", location);
+  //   // if (location === "workFromHome" && selfie) {
+  //   //   const blob = dataURItoBlob(selfie, "image/jpeg");
+  //   //   formData.append("wfhAvatar", blob, "selfie.jpg");
+  //   // }
+  //   dispatch(checkIn(formData));
+  //   toast.success("Check-in successful!");
   // };
- 
-  // const stopCamera = () => {
-  //   const stream = videoRef.current?.srcObject;
-  //   if (stream) {
-  //     const tracks = stream.getTracks();
-  //     tracks.forEach((track) => track.stop());
-  //     videoRef.current.srcObject = null;
-  //   }
-  // };
- 
-  // const capturePhoto = () => {
-  //   const context = canvasRef.current.getContext("2d");
-  //   context.drawImage(
-  //     videoRef.current,
-  //     0,
-  //     0,
-  //     canvasRef.current.width,
-  //     canvasRef.current.height
-  //   );
-  //   const imageData = canvasRef.current.toDataURL("image/jpeg");
-  //   dispatch(setSelfie(imageData));
-  //   stopCamera();
-  // };
- 
-  const handleCheckIn = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("shift_time", shiftTime);
-    formData.append("location", location);
-    // if (location === "workFromHome" && selfie) {
-    //   const blob = dataURItoBlob(selfie, "image/jpeg");
-    //   formData.append("wfhAvatar", blob, "selfie.jpg");
-    // }
-    dispatch(checkIn(formData));
-    toast.success("Check-in successful!");
-  };
+const handleCheckIn = (e) => {
+  e.preventDefault();
+
+  console.log("✅ Check-In button clicked");
+  console.log("Shift Time:", shiftTime);
+  console.log("Work Location:", location);
+
+  if (!navigator.geolocation) {
+    console.error("❌ Geolocation is not supported by this browser.");
+    toast.error("Geolocation is not supported by your browser");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+
+      console.log("📍 Latitude:", latitude);
+      console.log("📍 Longitude:", longitude);
+
+      const formData = new FormData();
+      formData.append("shift_time", shiftTime);
+      formData.append("location", location);
+      formData.append("latitude", latitude);
+      formData.append("longitude", longitude);
+
+      // for (let [key, value] of formData.entries()) {
+      //   console.log(`📝 ${key}: ${value}`);
+      // }
+
+      dispatch(checkIn(formData));
+
+      toast.success("Check-in submitted!");
+    },
+    (error) => {
+      console.error("❌ Geolocation error:", error.message);
+      toast.error("Please allow location access to check in.");
+    }
+  );
+};
+
  
   const handleCheckOut = () => {
     dispatch(checkOut());
     toast.success("Check-out successful!");
   };
  
-  // useEffect(() => {
-  //   if (location === "workFromHome") {
-  //     startCamera();
-  //   } else {
-  //     stopCamera();
-  //   }
-  // }, [location]);
  
   useEffect(() => {
     if (success && checkInTime) {

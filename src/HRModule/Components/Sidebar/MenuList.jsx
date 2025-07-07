@@ -225,7 +225,7 @@ const MenuList = [
   },
   {
     key: '2',
-    label: "Employee Management",
+    label: "Employee Mgmt",
     icon: <FaUser style={iconStyle} />,
     children: [
       {
@@ -241,8 +241,7 @@ const MenuList = [
         label: "View Employee",
       },
     ],
-  },
-  {
+  },{
     key: '5',
     label: "Payroll",
     icon: <FaDollarSign style={iconStyle} />,
@@ -375,7 +374,7 @@ const MenuList = [
     },
   {
     key: '19',
-    label: "Time Management",
+    label: "Time Mgmt",
     icon: <FaClipboardList style={iconStyle} />,
     children: [
       {
@@ -399,7 +398,7 @@ const MenuList = [
     key: '20',
     path: '/hr-dashboard/performance',
     icon: <FaChartLine style={iconStyle} />,
-    label: "Performance Management",
+    label: "Performance Mgmt",
   },
   {
     key: '21',
