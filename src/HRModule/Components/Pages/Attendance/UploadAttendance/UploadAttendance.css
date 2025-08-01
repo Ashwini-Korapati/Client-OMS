@@ -1,0 +1,135 @@
+/* Upload Attendance Styles */
+.upload-attendance-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  padding: 20px;
+}
+
+.upload-attendance-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 600px;
+  margin-top: -260px;
+}
+
+.upload-title {
+  color: #2c3e50;
+  margin-bottom: 25px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.upload-form {
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.file-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #34495e;
+}
+
+.file-input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.file-input:hover {
+  border-color: #3498db;
+}
+
+.file-info {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+.file-name {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.upload-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.upload-button:hover {
+  background-color: #2980b9;
+}
+
+.upload-button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.divider {
+  height: 1px;
+  background-color: #ecf0f1;
+  margin: 25px 0;
+}
+
+.template-section {
+  text-align: center;
+}
+
+.template-title {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.template-description {
+  color: #7f8c8d;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.download-button {
+  display: inline-block;
+  background-color: #27ae60;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.download-button:hover {
+  background-color: #219653;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .upload-attendance-card {
+    padding: 20px;
+  }
+  
+  .upload-title {
+    font-size: 20px;
+  }
+}

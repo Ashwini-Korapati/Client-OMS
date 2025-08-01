@@ -1,55 +1,131 @@
-import React, { useState } from 'react';
-import axios from 'axios';
 
-const UploadAttandence = () => {
-  const [file, setFile] = useState(null);
+import { useState, useRef } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import './UploadAttendance.css';
+
+const UploadAttendance = () => {
+  const [upload, setUpload] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef(null);
+
+  const resetForm = () => {
+    setUpload(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    const file = e.target.files[0];
+    if (file) {
+      // Validate file type
+      const validTypes = [
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'application/vnd.ms-excel'
+      ];
+      if (!validTypes.includes(file.type)) {
+        toast.error('Please upload only Excel files (.xlsx or .xls)');
+        resetForm();
+        return;
+      }
+      setUpload(file);
+    }
   };
 
   const handleUpload = async () => {
-    if (!file) return alert("Please select a file");
+    if (!upload) {
+      toast.warning('Please select a file to upload');
+      return;
+    }
 
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('upload', upload);
+    setIsUploading(true);
 
     try {
-      const res = await axios.post('http://localhost:8000/api/v1/hr/updateAttendanceExel', formData);
-      alert(res.data.message);
+      const res = await axios.post('http://localhost:8000/api/v1/hr/updateAttendanceExel', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+
+      if (res.data && res.data.success) {
+        toast.success(res.data.message || 'Attendance data uploaded successfully', {
+          onClose: () => {
+            resetForm();
+          }
+        });
+        // Reset form immediately after toast appears
+        resetForm();
+      } else {
+        throw new Error(res.data.message || 'Upload failed');
+      }
     } catch (err) {
-      console.error(err);
-      alert("Error uploading file");
+      console.error('Upload Error:', err);
+      toast.error(
+        err.response?.data?.message || 
+        err.message || 
+        'Failed to upload attendance data. Please try again.'
+      );
+    } finally {
+      setIsUploading(false);
     }
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h3>Upload Attendance Excel</h3>
+    <div className="upload-attendance-container">
+      <div className="upload-attendance-card">
+        <h2 className="upload-title">Upload Attendance Excel</h2>
+        
+        <div className="upload-form">
+          <div className="form-group">
+            <label htmlFor="fileInput" className="file-label">
+              Choose Excel File
+            </label>
+            <input
+              ref={fileInputRef}
+              id="fileInput"
+              type="file"
+              accept=".xlsx, .xls"
+              onChange={handleFileChange}
+              className="file-input"
+            />
+            {upload && (
+              <div className="file-info">
+                Selected file: <span className="file-name">{upload.name}</span>
+              </div>
+            )}
+          </div>
 
-      <input type="file" accept=".xlsx, .xls" onChange={handleFileChange} />
-      <button onClick={handleUpload} style={{ marginLeft: '10px' }}>Upload</button>
+          <button
+            onClick={handleUpload}
+            className="upload-button"
+            disabled={isUploading || !upload}
+          >
+            {isUploading ? 'Uploading...' : 'Upload'}
+          </button>
+        </div>
 
-      <hr style={{ margin: '20px 0' }} />
+        <div className="divider"></div>
 
-      <h4>Need a sample template?</h4>
-      <a
-        href="/Templates/punchData.xlsx"
-        download="PunchSample.xlsx"
-        style={{
-          display: 'inline-block',
-          marginTop: '10px',
-          padding: '8px 12px',
-          backgroundColor: '#007bff',
-          color: 'white',
-          textDecoration: 'none',
-          borderRadius: '4px'
-        }}
-      >
-        Download Sample Template
-      </a>
+        <div className="template-section">
+          <h3 className="template-title">Need a sample template?</h3>
+          <p className="template-description">
+            Download our sample Excel template to ensure proper formatting
+          </p>
+          <a
+            href="/Templates/punchData.xlsx"
+            download="PunchSample.xlsx"
+            className="download-button"
+          >
+            Download Sample Template
+          </a>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default UploadAttandence;
+export default UploadAttendance;

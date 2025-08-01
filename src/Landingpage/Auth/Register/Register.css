@@ -1,5 +1,3 @@
-/* Register.css */
-
 .register-container {
   display: flex;
   justify-content: center;
@@ -7,26 +5,27 @@
   height: 100vh;
   background: #f5f5f5;
   margin-top: 10px;
+  padding: 20px 0;
 }
 
 .register-form-container {
   background-color: #d5bdaf60;
-  padding: 40px;
+  padding: 30px; /* Reduced padding for smaller screens */
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 500px;
+  max-width: 400px; /* Reduced max-width for better mobile fit */
   text-align: center;
 }
 
 .register-form-container h1 {
   margin-bottom: 20px;
-  font-size: 24px;
+  font-size: 1.5rem; /* Use rem for scalability */
   color: #333;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Reduced margin */
   text-align: left;
 }
 
@@ -34,11 +33,12 @@
 .register-form-container input[type="email"],
 .register-form-container input[type="password"] {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 8px; /* Reduced padding */
+  margin-bottom: 5px;
   border: 1px solid #ddd;
   border-radius: 5px;
   outline: none;
+  font-size: 0.9rem; /* Adjusted font size */
   transition: border-color 0.3s;
 }
 
@@ -54,8 +54,8 @@
   border-radius: 5px;
   background-color: rgb(15, 15, 54);
   color: #fff;
-  font-size: 16px;
-  padding: 10px;
+  font-size: 0.9rem; /* Adjusted font size */
+  padding: 8px; /* Reduced padding */
   cursor: pointer;
   transition: background 0.3s;
 }
@@ -64,17 +64,22 @@
   background: #005bb5;
 }
 
+.register-form-container button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
 .upload-icon {
   display: flex;
   align-items: center;
   justify-content: center;
   width: fit-content;
   cursor: pointer;
-  margin: 20px auto;
+  margin: 15px auto; /* Reduced margin */
 }
 
 .upload-icon svg {
-  font-size: 40px;
+  font-size: 1.5rem; /* Adjusted for better scaling */
   color: #007bff;
   transition: color 0.3s;
 }
@@ -84,9 +89,9 @@
 }
 
 .avatar {
-  margin: 20px auto;
-  width: 100px;
-  height: 100px;
+  margin: 15px auto; /* Reduced margin */
+  width: 80px; /* Reduced size */
+  height: 80px; /* Reduced size */
   border-radius: 50%;
   overflow: hidden;
   display: flex;
@@ -105,26 +110,75 @@
 }
 
 .password-strength {
-  margin-top: 10px;
-  font-size: 14px;
+  margin-top: 5px;
+  font-size: 0.8rem; /* Adjusted font size */
   font-weight: bold;
 }
 
 .password-strength.weak {
-  color: #ff4d4d; /* Red */
+  color: #ff4d4d;
 }
 
 .password-strength.medium {
-  color: #ffa500; /* Orange */
+  color: #ffa500;
 }
 
 .password-strength.strong {
-  color: #00cc66; /* Green */
+  color: #00cc66;
 }
 
 .href-register {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 16px;
+  margin-top: 10px; /* Reduced margin */
+}
+
+.href-register a {
+  color: #0073e6;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.href-register a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: #ff4d4d;
+  font-size: 0.75rem; /* Adjusted font size */
+  margin-top: 5px;
+  display: block;
+}
+
+@media (max-width: 576px) {
+  .register-form-container {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  .register-form-container h1 {
+    font-size: 1.2rem;
+  }
+
+  .register-form-container input[type="text"],
+  .register-form-container input[type="email"],
+  .register-form-container input[type="password"] {
+    font-size: 0.85rem;
+    padding: 6px;
+  }
+
+  .register-form-container button {
+    font-size: 0.85rem;
+    padding: 6px;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .upload-icon svg {
+    font-size: 1.2rem;
+  }
 }

@@ -1,30 +1,41 @@
+.custom-menu {
+  width: 260px;
+  max-width: 100vw;
+  min-width: 180px;
+  background: #fff;
+  border-right: 1px solid #eee;
+  height: 100vh;
+  overflow-y: auto;
+  transition: width 0.3s;
+}
+
 .custom-menu .ant-menu-item,
 .custom-menu .ant-menu-submenu-title {
-  font-size: 16px; /* Reduced font size for better readability */
-  padding: 10px 20px; /* Balanced padding for consistent spacing */
-  color: #333; /* Improved contrast for better visibility */
+  font-size: 16px;
+  padding: 10px 20px;
+  color: #333;
 }
 
 .custom-menu .ant-menu-item-selected {
-  background-color: #1890ff; /* Highlight color for selected menu items */
+  background-color: #1890ff;
   color: #fff;
 }
 
 .menu-item-text {
-  font-size: 15px; /* Retaining your text size preference */
-  padding-left: 10px; /* Added left padding for better alignment */
+  font-size: 15px;
+  padding-left: 10px;
 }
 
 .menu-item {
-  margin-bottom: 5px; /* Reduced margin for tighter spacing */
+  margin-bottom: 5px;
 }
 
 .checkout-menu-item {
-  background-color: white; /* Retained your background color */
-  color: #333; /* Changed the text color for better contrast */
+  background-color: white;
+  color: #333;
 }
 
-/* New Submenu Styles */
+/* Submenu Styles */
 .custom-menu .ant-menu-submenu {
   position: relative;
   z-index: 1000;
@@ -32,27 +43,80 @@
 
 .custom-menu .ant-menu-submenu > .ant-menu {
   position: absolute;
-  top: 100%; /* Positioning submenu directly under parent */
+  top: 100%;
   left: 0;
-  background-color: #f8f9fa; /* Consistent background color for submenus */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  padding: 10px; /* Padding for submenu items */
-  min-width: 200px; /* Ensuring submenu width is consistent */
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  min-width: 200px;
 }
 
-/* Hover Effect for Submenu */
 .custom-menu .ant-menu-submenu:hover > .ant-menu-submenu-title {
   background-color: #f0f0f0;
   color: #000;
 }
 
-/* Adjusting Font and Alignment */
 .custom-menu .ant-menu-submenu-title .menu-item-text {
   font-size: 15px;
   padding-left: 5px;
 }
 
-/* Dropdown Arrow Alignment */
 .custom-menu .ant-menu-submenu-title::after {
-  right: 20px; /* Position the dropdown arrow consistently */
+  right: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .custom-menu {
+    width: 210px;
+  }
+  .custom-menu .ant-menu-item,
+  .custom-menu .ant-menu-submenu-title {
+    font-size: 15px;
+    padding: 8px 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .custom-menu {
+    width: 170px;
+  }
+  .custom-menu .ant-menu-item,
+  .custom-menu .ant-menu-submenu-title {
+    font-size: 14px;
+    padding: 7px 10px;
+  }
+  .menu-item-text {
+    font-size: 13px;
+    padding-left: 6px;
+  }
+}
+
+@media (max-width: 600px) {
+  .custom-menu {
+    width: 100vw;
+    min-width: 0;
+    max-width: 100vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    height: auto;
+    border-radius: 0;
+    border-right: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .custom-menu .ant-menu-item,
+  .custom-menu .ant-menu-submenu-title {
+    font-size: 13px;
+    padding: 10px 8px;
+  }
+  .menu-item-text {
+    font-size: 12px;
+    padding-left: 4px;
+  }
+  .custom-menu .ant-menu-submenu > .ant-menu {
+    min-width: 120px;
+    padding: 4px;
+  }
 }

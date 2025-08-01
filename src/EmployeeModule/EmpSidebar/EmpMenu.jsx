@@ -1,12 +1,4 @@
-import {
-    SettingOutlined,
-    UserOutlined,
-    DollarOutlined,
-    CalendarOutlined,
-    HomeOutlined,
-    
-    FormOutlined,
-  } from '@ant-design/icons';
+import { HomeOutlined,} from '@ant-design/icons';
   import { FcMoneyTransfer } from "react-icons/fc";
   import { SlCalender } from "react-icons/sl";
   import React from 'react';
@@ -15,7 +7,7 @@ import {
   import {
    FaDollarSign,FaCalendarAlt
   } from 'react-icons/fa';
-  import { BsGraphUpArrow,BsArrowRightCircle } from "react-icons/bs";
+  import {BsArrowRightCircle } from "react-icons/bs";
   import '../EmpSidebar/EmpMenu.css'
    
   const iconStyle = { fontSize: '20px' };
@@ -48,7 +40,6 @@ import {
 
         {
           key: '4',
-          
           path:'/emp-dashboard/emp-ITstatement',
           icon: <FcMoneyTransfer style={iconStyle} />,
           label: <span className="menu-item-text">IT Statement</span>,
