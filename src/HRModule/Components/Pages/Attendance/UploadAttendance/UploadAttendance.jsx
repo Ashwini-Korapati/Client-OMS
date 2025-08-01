@@ -1,7 +1,7 @@
-
 import { useState, useRef } from 'react';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './UploadAttendance.css';
 
 const UploadAttendance = () => {
@@ -19,7 +19,6 @@ const UploadAttendance = () => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Validate file type
       const validTypes = [
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         'application/vnd.ms-excel'
@@ -44,20 +43,26 @@ const UploadAttendance = () => {
     setIsUploading(true);
 
     try {
-      const res = await axios.post('http://localhost:8000/api/v1/hr/updateAttendanceExel', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+      const res = await axios.post(
+        'http://localhost:8000/api/v1/hr/updateAttendanceExel',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
         }
-      });
+      );
 
       if (res.data && res.data.success) {
-        toast.success(res.data.message || 'Attendance data uploaded successfully', {
-          onClose: () => {
-            resetForm();
-          }
+        toast.success(res.data.message || 'File uploaded successfully!', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
         });
-        // Reset form immediately after toast appears
         resetForm();
       } else {
         throw new Error(res.data.message || 'Upload failed');
@@ -65,9 +70,11 @@ const UploadAttendance = () => {
     } catch (err) {
       console.error('Upload Error:', err);
       toast.error(
-        err.response?.data?.message || 
-        err.message || 
-        'Failed to upload attendance data. Please try again.'
+        err.response?.data?.message || err.message || 'Failed to upload attendance data',
+        {
+          position: 'top-right',
+          autoClose: 5000,
+        }
       );
     } finally {
       setIsUploading(false);
@@ -78,7 +85,7 @@ const UploadAttendance = () => {
     <div className="upload-attendance-container">
       <div className="upload-attendance-card">
         <h2 className="upload-title">Upload Attendance Excel</h2>
-        
+
         <div className="upload-form">
           <div className="form-group">
             <label htmlFor="fileInput" className="file-label">
@@ -124,6 +131,9 @@ const UploadAttendance = () => {
           </a>
         </div>
       </div>
+
+      {/* ✅ Toast Container to render toasts */}
+      <ToastContainer />
     </div>
   );
 };
