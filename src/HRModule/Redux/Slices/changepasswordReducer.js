@@ -1,12 +1,18 @@
+// src/redux/slices/changepasswordSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
- 
+import { httpPut } from '../../../Httphandler'
+import { API } from '../../../../config'
+
 export const changePassword = createAsyncThunk(
   'changepassword/changePassword',
   async ({ oldPassword, newPassword }, { rejectWithValue }) => {
     try {
-      const response = await axios.put('http://localhost:8000/api/v1/employee/password/change', { old_password: oldPassword, new_password: newPassword });
-      return response.data;
+      const payload = {
+        old_password: oldPassword,
+        new_password: newPassword,
+      };
+      const response = await httpPut(API.CHANGE_PASSWORD, payload);
+      return response;
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
@@ -15,7 +21,7 @@ export const changePassword = createAsyncThunk(
     }
   }
 );
- 
+
 const changepasswordSlice = createSlice({
   name: 'changepassword',
   initialState: {
@@ -33,7 +39,7 @@ const changepasswordSlice = createSlice({
       state.success = false;
       state.error = null;
       state.message = null;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -55,7 +61,6 @@ const changepasswordSlice = createSlice({
       });
   },
 });
- 
+
 export const { clearPasswordError, resetPasswordState } = changepasswordSlice.actions;
 export default changepasswordSlice.reducer;
- 

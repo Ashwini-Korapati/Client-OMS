@@ -1,28 +1,20 @@
+// Import httpPost from your httpHandler
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { httpPost } from '../../../Httphandler'; // adjust path as needed
 
 export const addEmployeeAsync = createAsyncThunk(
   'employees/addEmployee',
   async (employeeData, thunkAPI) => {
     try {
-      const response = await fetch("http://localhost:8000/api/v1/hr/addEmployee", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(employeeData),
-        credentials: 'include'
+      const response = await httpPost("/api/v1/hr/addEmployee", employeeData, {
+        withCredentials: true,
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to submit form");
-      }
-
-      const data = await response.json();
-      return data;
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data || error.message);
+      return thunkAPI.rejectWithValue(
+        error.response?.data || error.message || "Unknown error"
+      );
     }
   }
 );

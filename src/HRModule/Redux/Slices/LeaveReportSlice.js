@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { httpGet, httpPut } from '../../../Httphandler' // Adjust the path as needed
 
 const initialState = {
   leaveData: [],
@@ -9,37 +9,31 @@ const initialState = {
   error: null,
 };
 
-export const fetchLeaveData = createAsyncThunk('leave/fetchLeaveData', async (_, { rejectWithValue }) => {
-  try {
-    const response = await axios.get('http://localhost:8000/api/v1/hr/getLeaveStatus', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    });
-    console.log('API Response:', response.data);
-    return response.data.leaveRequests;
-  } catch (error) {
-    console.error('Error fetching leave data:', error.response || error.message);
-    return rejectWithValue(error.response ? error.response.data : error.message);
+// Fetch leave data
+export const fetchLeaveData = createAsyncThunk(
+  'leave/fetchLeaveData',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await httpGet('/api/v1/hr/getLeaveStatus');
+      console.log('API Response:', response.data);
+      return response.data.leaveRequests;
+    } catch (error) {
+      console.error('Error fetching leave data:', error);
+      return rejectWithValue(error?.response?.data || error.message);
+    }
   }
-});
+);
 
+// Update leave status
 export const updateLeaveStatus = createAsyncThunk(
   'leave/updateLeaveStatus',
   async ({ leaveId, status }, { rejectWithValue }) => {
     try {
-      const response = await axios.put(`http://localhost:8000/api/v1/hr/updateLeaveStatus/${leaveId}`, { status }, {
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-      });
-      console.log('Updated leave status:', response.data);
+      await httpPut(`/api/v1/hr/updateLeaveStatus/${leaveId}`, { status });
       return { leaveId, status };
     } catch (error) {
-      console.error('Error updating leave status:', error.response || error.message);
-      return rejectWithValue(error.response ? error.response.data : error.message);
+      console.error('Error updating leave status:', error);
+      return rejectWithValue(error?.response?.data || error.message);
     }
   }
 );
@@ -75,16 +69,18 @@ const leaveReportSlice = createSlice({
       })
       .addCase(fetchLeaveData.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload?.message || action.payload || 'An unknown error occurred';
+        state.error = action.payload || 'An unknown error occurred';
       })
       .addCase(updateLeaveStatus.fulfilled, (state, action) => {
-        console.log('Updated leave status:', action.payload);
+        const { leaveId, status } = action.payload;
+        const item = state.leaveData.find(item => item.id === leaveId);
+        if (item) item.status = status;
         state.loading = false;
       })
       .addCase(updateLeaveStatus.rejected, (state, action) => {
         console.error('Error updating leave status:', action.payload);
         state.loading = false;
-        state.error = action.payload?.message || action.payload || 'An unknown error occurred';
+        state.error = action.payload || 'An unknown error occurred';
       });
   },
 });

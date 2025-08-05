@@ -1,18 +1,19 @@
+// todayattendanceSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
- 
+import http from '../../../Httphandler'; // adjust path as per your structure
+
 export const fetchTodayAttendance = createAsyncThunk(
   'todayattendance/fetchTodayAttendance',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://localhost:8000/api/v1/hr/TodayAttendence');
+      const response = await http.get('/api/v1/hr/TodayAttendence');
       return response.data.attendanceSummary;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response?.data?.message || 'Failed to fetch attendance');
     }
   }
 );
- 
+
 const todayattendanceSlice = createSlice({
   name: 'todayattendance',
   initialState: {
@@ -33,19 +34,28 @@ const todayattendanceSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchTodayAttendance.fulfilled, (state, action) => {
-        state.office = action.payload.office;
-        state.workFromHome = action.payload.workFromHome;
-        state.leave = action.payload.leave;
-        state.sickLeave = action.payload.sickLeave;
-        state.absent = action.payload.absent;
-        state.totalPresent = action.payload.totalPresent;
+        const {
+          office,
+          workFromHome,
+          leave,
+          sickLeave,
+          absent,
+          totalPresent,
+        } = action.payload;
+
+        state.office = office;
+        state.workFromHome = workFromHome;
+        state.leave = leave;
+        state.sickLeave = sickLeave;
+        state.absent = absent;
+        state.totalPresent = totalPresent;
         state.loading = false;
       })
       .addCase(fetchTodayAttendance.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload.message;
+        state.error = action.payload;
       });
   },
 });
- 
+
 export default todayattendanceSlice.reducer;

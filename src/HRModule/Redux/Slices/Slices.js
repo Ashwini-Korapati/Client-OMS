@@ -1,4 +1,6 @@
+// leaveFormSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import http from '../../../Httphandler'; // Adjust path based on your project
 
 const initialState = {
   leave_type: '',
@@ -15,23 +17,10 @@ export const submitLeaveForm = createAsyncThunk(
   'leaveForm/submitLeaveForm',
   async (formData, { rejectWithValue }) => {
     try {
-      const response = await fetch("http://localhost:8000/api/v1/employee/submitLeave", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-        credentials: 'include'
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to submit form");
-      }
-
-      const data = await response.json();
-      return data;
+      const response = await http.post('/api/v1/employee/submitLeave', formData);
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response?.data?.message || 'Failed to submit form');
     }
   }
 );
@@ -47,13 +36,13 @@ const leaveFormSlice = createSlice({
     setFile(state, action) {
       state.file = action.payload;
     },
-    resetForm(state) {
+    resetForm() {
       return initialState;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(submitLeaveForm.fulfilled, (state) => {
+      .addCase(submitLeaveForm.fulfilled, () => {
         return initialState;
       })
       .addCase(submitLeaveForm.rejected, (state, action) => {

@@ -1,63 +1,86 @@
+// // // import { useSelector } from 'react-redux';
+// // // import { Navigate } from 'react-router-dom';
+
+// // // export default function ProtectedRoute({ children }) {
+// // //   const { isAuthenticatedemployee, isAuthenticateduser } = useSelector(state => state.authState);
+
+// // //   if (!isAuthenticatedemployee && !isAuthenticateduser) {
+// // //     return <Navigate to="/login" />
+// // //   }
+
+// // //   if (isAuthenticateduser && isAuthenticateduser) {
+// // //     return <Navigate to="/" />;
+// // //   }
+
+// // //   return children;
+// // // }
+
 // // import { useSelector } from 'react-redux';
-// // import { Navigate } from 'react-router-dom';
+// // import {Navigate} from 'react-router-dom';
+// // // import Loader from '../layouts/Loader';
+// // // import { useNavigate, Link } from 'react-router-dom';
 
-// // export default function ProtectedRoute({ children }) {
-// //   const { isAuthenticatedemployee, isAuthenticateduser } = useSelector(state => state.authState);
+// // export default function ProtectedRoute ({children, isAdmin ,isHR , isEmployee}) {
+// //     const { isAuthenticated , isAuthenticatedemployee , isAuthenticateduser ,emp , loading} = useSelector(state => state.authState)
+// //     // const navigate = useNavigate();
+// //     if(!isAuthenticated && !loading) {
+// //         // return navigate("/")
+// //         return <Navigate to='/'></Navigate>
+// //     }
 
-// //   if (!isAuthenticatedemployee && !isAuthenticateduser) {
-// //     return <Navigate to="/login" />
-// //   }
-
-// //   if (isAuthenticateduser && isAuthenticateduser) {
-// //     return <Navigate to="/" />;
-// //   }
-
-// //   return children;
-// // }
-
-// import { useSelector } from 'react-redux';
-// import {Navigate} from 'react-router-dom';
-// // import Loader from '../layouts/Loader';
-// // import { useNavigate, Link } from 'react-router-dom';
-
-// export default function ProtectedRoute ({children, isAdmin ,isHR , isEmployee}) {
-//     const { isAuthenticated , isAuthenticatedemployee , isAuthenticateduser ,emp , loading} = useSelector(state => state.authState)
-//     // const navigate = useNavigate();
-//     if(!isAuthenticated && !loading) {
-//         // return navigate("/")
-//         return <Navigate to='/'></Navigate>
-//     }
-
-//     if(isAuthenticatedemployee) {
-//         if(isHR === true  && emp.role !== 'admin') {
-//             // return navigate("/")
-//             return <Navigate to='/'></Navigate>
-//         }
-//         return children;
-//     }
+// //     if(isAuthenticatedemployee) {
+// //         if(isHR === true  && emp.role !== 'admin') {
+// //             // return navigate("/")
+// //             return <Navigate to='/'></Navigate>
+// //         }
+// //         return children;
+// //     }
 
 
 
    
-// }
+// // }
 
 
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+// import React from 'react';
+// import { Navigate } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
+
+// const ProtectedRoute = ({ children, role }) => {
+//   const { isAuthenticatedemployee, user } = useSelector((state) => state.authState);
+
+//   if (!isAuthenticatedemployee) {
+//     return <Navigate to="/login" />;
+//   }
+
+//   if (role && user.role !== role) {
+//     return <Navigate to="/login" />;
+//   }
+
+//   return children;
+// };
+
+// export default ProtectedRoute;
+
+
+// ProtectedRoute.js
 import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router-dom';
 
-const ProtectedRoute = ({ children, role }) => {
-  const { isAuthenticatedemployee, user } = useSelector((state) => state.authState);
-
-  if (!isAuthenticatedemployee) {
-    return <Navigate to="/login" />;
+const ProtectedRoute = ({ allowedRoles }) => {
+  const { isAuthenticateduser, isAuthenticatedemployee, user, emp } = useSelector(state => state.authState);
+  
+  const currentRole = isAuthenticateduser ? user?.role : emp?.role;
+  
+  if (!isAuthenticateduser && !isAuthenticatedemployee) {
+    return <Navigate to="/login" replace />;
   }
-
-  if (role && user.role !== role) {
-    return <Navigate to="/login" />;
+  
+  if (allowedRoles && !allowedRoles.includes(currentRole)) {
+    return <Navigate to="/unauthorized" replace />;
   }
-
-  return children;
+  
+  return <Outlet />;
 };
 
 export default ProtectedRoute;

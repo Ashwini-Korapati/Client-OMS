@@ -1,17 +1,22 @@
+// src/redux/slices/lopEmpSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
- 
+import http from '../../../Httphandler' // Adjust path as needed
+
 const initialState = {
   employees: [],
   status: 'idle',
   error: null,
 };
- 
-export const fetchEmployees = createAsyncThunk('lopEmp/fetchEmployees', async () => {
-  const response = await axios.get('http://localhost:8000/api/v1/hr/AllEmployee');
-  return response.data.employees; 
+
+export const fetchEmployees = createAsyncThunk('lopEmp/fetchEmployees', async (_, { rejectWithValue }) => {
+  try {
+    const response = await http.get('/api/v1/hr/AllEmployee');
+    return response.data.employees;
+  } catch (error) {
+    return rejectWithValue(error.response?.data || error.message);
+  }
 });
- 
+
 const lopEmpSlice = createSlice({
   name: 'lopEmp',
   initialState,
@@ -23,13 +28,13 @@ const lopEmpSlice = createSlice({
       })
       .addCase(fetchEmployees.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.employees = action.payload; 
+        state.employees = action.payload;
       })
       .addCase(fetchEmployees.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.error.message;
+        state.error = action.payload;
       });
   },
 });
- 
+
 export default lopEmpSlice.reducer;

@@ -1,22 +1,31 @@
+// src/redux/slices/lopSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
- 
+import http from '../../../Httphandler';
+
 export const fetchLopData = createAsyncThunk(
   'lop/fetchLopData',
-  async () => {
-    const response = await axios.get('http://localhost:8000/api/v1/hr/AllEmployee');
-    return response.data;
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await http.get('/api/v1/hr/AllEmployee');
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
   }
 );
- 
+
 export const addLopData = createAsyncThunk(
   'lop/addLopData',
-  async (lopData) => {
-    const response = await axios.post('http://localhost:8000/api/v1/hr/lopByAdmin', lopData);
-    return response.data;
+  async (lopData, { rejectWithValue }) => {
+    try {
+      const response = await http.post('/api/v1hr/lopByAdmin', lopData);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
   }
 );
- 
+
 const lopSlice = createSlice({
   name: 'lop',
   initialState: {
@@ -36,18 +45,22 @@ const lopSlice = createSlice({
       })
       .addCase(fetchLopData.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.error.message;
+        state.error = action.payload;
       })
       .addCase(addLopData.fulfilled, (state, action) => {
         if (action.payload && typeof action.payload === 'object') {
           state.lopData.push({
             ...action.payload,
-            name: `${action.payload.firstName} ${action.payload.lastName}`, 
+            name: `${action.payload.firstName} ${action.payload.lastName}`,
           });
         }
         state.status = 'succeeded';
+      })
+      .addCase(addLopData.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
       });
   },
 });
- 
+
 export default lopSlice.reducer;

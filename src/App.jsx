@@ -74,7 +74,7 @@ import HrPayslipsRelease from './HRModule/Components/Pages/Payroll/Payout/Paysli
 import OnboardingForms from './EmployeeModule/Components/Pages/Onboarding/PopUpForms/OnboardingForms';
 // import  Verify  from './HRModule/Components/Pages/Verify/Verify'
 // import { fetchHolidays } from './HRModule/Redux/Slices/leaveCalendarSlice'
-
+import ErrorBoundary from './Landingpage/Auth/ErrorBoundary'
 
 // const result = await dispatch(getProfile())
 
@@ -95,6 +95,7 @@ const App = () => {
   
   return (
     <div>
+       <ErrorBoundary>
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -173,7 +174,7 @@ const App = () => {
 <Route path="/emp-dashboard/*" element={<EmployeeDashboard />}>
             <Route path="emphome" element={<EmpHome />} />
             <Route path="profile" element={<EmpProfile />} />
-            <Route path="leave-calender" element={<Empholidaycalendar/>}/>
+            <Route path="leave-calender" element={<LeaveCalender/>}/>
             <Route path='leave-apply' element={<LeaveHome/>}/>
             <Route path='emp-payslip' element={<EmpPayslip/>}/>
             <Route path='onboarding' element={<OnboardingForms/>}/>
@@ -181,11 +182,14 @@ const App = () => {
             <Route path='emp-ITstatement' element={<Empitstatement/>}/>
  
           </Route>
-
+   <Route element={<ProtectedRoute allowedRoles={['user']} />}>
+          <Route path="/user-dashboard" element={<UserDashboard />} />
+        </Route>
           {/* User Module */}
-          <Route path="/user-dashboard" element={<ProtectedRoute><UserDashboard /></ProtectedRoute>} />
+          {/* <Route path="/user-dashboard" element={<ProtectedRoute><UserDashboard /></ProtectedRoute>} /> */}
         </Routes>
       </BrowserRouter>
+      </ErrorBoundary>
     </div>
   );
 };

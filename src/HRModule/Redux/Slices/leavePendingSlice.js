@@ -1,17 +1,24 @@
- 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
- 
-// Async thunk to fetch pending leave data from the backend
-export const fetchPendingLeave = createAsyncThunk('leavePending/fetchPendingLeave', async () => {
-  const response = await axios.get('http://localhost:8000/api/v1/employee/getLeaveStatus');
-  return response.data;
-});
- 
+import { httpGet } from '../../../Httphandler'
+
+// Async thunk to fetch pending leave data using httpHandler
+export const fetchPendingLeave = createAsyncThunk(
+  'leavePending/fetchPendingLeave',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await httpGet('/api/v1/employee/getLeaveStatus'); // ✅ baseURL already included in httpHandler
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching pending leave:', error);
+      return rejectWithValue(error.response?.data?.message || 'Failed to fetch pending leave');
+    }
+  }
+);
+
 const leavePendingSlice = createSlice({
   name: 'leavePending',
   initialState: {
-    pendingLeaveData: [], // Ensure the initial state is an empty array
+    pendingLeaveData: [],
     loading: false,
     error: null,
   },
@@ -23,15 +30,15 @@ const leavePendingSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchPendingLeave.fulfilled, (state, action) => {
-        console.log('Fetched pending leave data:', action.payload); // Log the data
-        state.pendingLeaveData = action.payload; // Ensure the data is an array, if not adjust accordingly
+        console.log('Fetched pending leave data:', action.payload);
+        state.pendingLeaveData = action.payload;
         state.loading = false;
       })
       .addCase(fetchPendingLeave.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.payload || action.error.message;
       });
   },
 });
- 
+
 export default leavePendingSlice.reducer;

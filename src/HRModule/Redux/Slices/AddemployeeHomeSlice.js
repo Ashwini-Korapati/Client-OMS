@@ -1,41 +1,30 @@
+
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
- 
+import { httpUpload } from '../../../Httphandler' // update path as per your folder structure
+
 const initialState = {
   selectedOption: '',
   file: null,
   status: 'idle',
   error: null,
 };
- 
+
 export const uploadFile = createAsyncThunk(
   'addEmployeeHome/uploadFile',
   async ({ file }, { rejectWithValue }) => {
     const formData = new FormData();
     formData.append('upload', file);
- 
+
     try {
-      const response = await fetch('http://localhost:8000/api/v1/hr/addBulkEmployee', {
-        method: 'POST',
-        body: formData,
-        headers: {
-         
-        },
-        credentials: 'include',
-      });
-   
-      const responseData = await response.json();
- 
-      if (!response.ok) {
-        throw new Error(responseData.message || 'File upload failed.');
-      }
- 
-      return responseData;
+      const response = await httpUpload('api/v1/hr/addBulkEmployee', formData);
+      return response;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.message || 'File upload failed');
     }
   }
 );
- 
+
 const AddemployeeHomeSlice = createSlice({
   name: 'addEmployeeHome',
   initialState,
@@ -43,10 +32,10 @@ const AddemployeeHomeSlice = createSlice({
     setSelectedOption(state, action) {
       state.selectedOption = action.payload;
     },
-    setFile: (state, action) => {
+    setFile(state, action) {
       state.file = action.payload;
     },
-    clearFile: (state) => {
+    clearFile(state) {
       state.file = null;
       state.status = 'idle';
       state.error = null;
@@ -67,7 +56,7 @@ const AddemployeeHomeSlice = createSlice({
       });
   },
 });
- 
+
 export const { setSelectedOption, setFile, clearFile } = AddemployeeHomeSlice.actions;
- 
+
 export default AddemployeeHomeSlice.reducer;

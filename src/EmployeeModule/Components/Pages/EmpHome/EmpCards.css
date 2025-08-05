@@ -1,72 +1,68 @@
-
 .emp-card-perfamnce-dashboard {
-  display: flex;
-  gap: 40px;
-  justify-content: start;
-  padding: 20px;
-  flex-wrap: wrap; /* Ensure wrapping happens on smaller screens */
-}
-
-@media (max-width: 768px) {
-  .emp-card-perfamnce-dashboard {
-    flex-direction: column;
-    align-items: center;
-  }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px; /* Increased space between cards */
+    padding: 0 15px;
+    justify-content: start;
 }
 
 .emp-p-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 400px;
-  height: 140px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  padding: 20px;
-  background-color: white;
-  border: 1px solid rgba(128, 128, 128, 0.438);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 150px; /* Increased card height */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px; /* Adjusted padding to match new height */
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
 }
 
 .emp-p-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px #913a3a;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .emp-p-icon {
-  margin-left: 20px;
+    margin-left: 10px;
 }
 
 .emp-p-icon img {
-  width: 50px;
-  height: 40px;
+    width: 45px;
+    height: 35px;
 }
 
 .emp-p-content h4 {
-  margin: 0;
-  font-size: 20px;
+    margin: 0;
+    font-size: 18px;
 }
 
 .emp-p-content p {
-  font-size: medium;
-  font-weight: bold;
-  margin-top: 10px;
-  color: black;
+    font-size: small;
+    font-weight: bold;
+    margin-top: 8px;
+    color: #555;
 }
 
 .apply-leave {
-  background-color: #007bff;
-  color: white;
-  width: 60px;
-  height: 30px;
-  padding: 2px;
-  margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    width: 90px;
+    height: 30px;
+    padding: 2px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-/* Media queries for larger screens to avoid stacking */
+.apply-leave:hover {
+    background-color: #0056b3;
+}
+
 @media (min-width: 768px) {
-  .emp-card-perfamnce-dashboard {
-    flex-direction: row;
-    justify-content: start;
-  }
+    .emp-card-perfamnce-dashboard {
+        justify-content: start;
+    }
 }
