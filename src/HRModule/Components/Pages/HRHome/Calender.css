@@ -1,104 +1,122 @@
-.holiday1-list-container {
-  width: 600px;
-  margin: 20px auto;
-  padding: 40px;
-  /* background-color: #ffffff; */
-  background-color: #f0f0f0;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-top: 80px;
-  margin-right: 80px;
-  height: min-content;
+/* Container for the holiday list */
+.holiday-list-container {
+    padding: 20px;
+    box-sizing: border-box;
 }
 
+/* Header section */
 .holiday-list-header {
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
 }
 
 .holiday-list-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #333333;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333333;
 }
 
 .arrow-icon {
-  font-size: 1.5rem;
-  color: #007bff;
-  text-decoration: none;
-  transition: color 0.3s;
+    font-size: 1.5rem;
+    color: #007bff;
+    transition: color 0.3s;
 }
 
 .arrow-icon:hover {
-  color: #0056b3;
+    color: #0056b3;
 }
 
-.holiday-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+/* --- New, Visually Appealing Grid Layout --- */
+.holiday-list-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between the "cards" */
 }
 
-.holiday-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  background-color: #f8f9fa;
-  border-left: 4px solid #007bff;
-  border-radius: 6px;
-  transition: background-color 0.3s;
+.holiday-grid-row {
+    display: grid;
+    grid-template-columns: 140px 1fr; /* Smaller first column */
+    background-color: #f8f9fa; /* Light background for the card */
+    border-radius: 8px;
+    border-left: 5px solid #007bff; /* Color accent on the left */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
 }
 
-.holiday-card:hover {
-  background-color: #e9ecef;
+/* Hover animation for the entire card */
+.holiday-grid-row:hover {
+    transform: translateY(-3px); /* Lifts the card slightly */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Increases shadow for a "pop" effect */
 }
 
-.holiday-date {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+/* Cell styling */
+.holiday-date-cell, .holiday-name-cell {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.holiday-date-cell {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 10px;
+    border-right: 1px solid #e0e0e0;
 }
 
 .holiday-day {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #333333;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #007bff; /* A nice highlight color for the date */
 }
 
 .holiday-weekday {
-  font-size: 1rem;
-  color: #666666;
+    font-size: 0.85rem;
+    color: #6c757d;
 }
 
-.holiday-details {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
+.holiday-name-cell {
+    padding-left: 20px; /* More padding to separate from the date */
 }
 
 .holiday-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333333;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333333;
 }
 
-.holiday-apply {
-  margin-top: 8px;
-  padding: 5px 10px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #ffffff;
-  background-color: #007bff;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: background-color 0.3s;
+/* Fallback for the "No holidays" message */
+.no-holidays-message {
+    text-align: center;
+    color: #6c757d;
+    padding: 20px;
+    font-style: italic;
+    grid-column: 1 / span 2;
 }
 
-.holiday-apply:hover {
-  background-color: #0056b3;
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .holiday-list-table {
+        gap: 8px;
+    }
+    .holiday-grid-row {
+        grid-template-columns: 1fr; /* Stack the columns vertically */
+        padding: 10px;
+    }
+    .holiday-date-cell {
+        flex-direction: row;
+        gap: 10px;
+        padding-bottom: 5px;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .holiday-name-cell {
+        padding-top: 10px;
+        padding-left: 0;
+    }
 }

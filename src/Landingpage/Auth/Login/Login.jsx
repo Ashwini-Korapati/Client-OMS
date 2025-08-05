@@ -5,14 +5,11 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineGooglePlus, AiOutlineFacebook, AiOutlineGithub, AiOutlineLinkedin } from 'react-icons/ai';
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
-import { toast,ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
-import axios from 'axios';
-import { clearAuthError, login, emplogin } from '../../Redux/Actions/userActions';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { login, emplogin, clearAuthError } from '../../Redux/Actions/userActions';
 import png1 from '../../images/form.png';
 import png2 from '../../images/secure.png';
-
-axios.defaults.withCredentials = true;
 
 const Login = () => {
   const [isGuestLogin, setIsGuestLogin] = useState(false);
@@ -23,15 +20,21 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { loading, error, isAuthenticateduser, isAuthenticatedemployee, emp } = useSelector(state => state.authState);
+  const { 
+    error, 
+    isAuthenticateduser, 
+    isAuthenticatedemployee, 
+    emp 
+  } = useSelector(state => state.authState);
 
+  // Handle navigation based on authentication status
   useEffect(() => {
     if (isAuthenticatedemployee) {
-      if (emp.role === 'admin') {
+      if (emp?.role === 'admin') {
         navigate("/admin-dashboard/adminhome");
-      } else if (emp.role === 'hr') {
+      } else if (emp?.role === 'hr') {
         navigate("/hr-dashboard/hr-home");
-      } else if (emp.role === 'employee') {
+      } else if (emp?.role === 'employee') {
         navigate("/emp-dashboard/emphome");
       }
     } else if (isAuthenticateduser) {
@@ -42,18 +45,26 @@ const Login = () => {
       toast.error(error);
       dispatch(clearAuthError());
     }
-  }, [error, isAuthenticateduser, isAuthenticatedemployee, emp, dispatch, navigate]);
+  }, [error, isAuthenticateduser, isAuthenticatedemployee, emp, navigate, dispatch]);
 
   const toggleForm = () => setIsGuestLogin(!isGuestLogin);
   const togglePassword = () => setShowPassword(!showPassword);
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
+    if (!email || !password) {
+      toast.error('Please fill all fields');
+      return;
+    }
     dispatch(login(email, password));
   };
 
   const employeeLoginSubmit = (e) => {
     e.preventDefault();
+    if (!emp_id || !password) {
+      toast.error('Please fill all fields');
+      return;
+    }
     dispatch(emplogin(emp_id, password));
   };
 
@@ -69,7 +80,13 @@ const Login = () => {
             <a href="#" className="login-icon"><AiOutlineLinkedin /></a>
           </div>
           <span>or use your email for guest login</span>
-          <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+          <input 
+            type="email" 
+            placeholder="Email" 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+            required
+          />
           <div className="input-group">
             <label htmlFor="password">Password</label>
             <div className="password-input">
@@ -78,7 +95,8 @@ const Login = () => {
                 id="password"
                 name="password"
                 value={password}
-                onChange={e => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
+                required
               />
               <span onClick={togglePassword} className="login-toggle-icon">
                 {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
@@ -91,30 +109,38 @@ const Login = () => {
       </div>
       <div className="login-form-container login-sign-in">
         <form onSubmit={employeeLoginSubmit}>
-          <h1>Login</h1>
+          <h1>Employee Login</h1>
           <div className="login-social-icons">
             <a href="#" className="login-icon"><AiOutlineGooglePlus /></a>
             <a href="#" className="login-icon"><AiOutlineFacebook /></a>
             <a href="#" className="login-icon"><AiOutlineGithub /></a>
             <a href="#" className="login-icon"><AiOutlineLinkedin /></a>
           </div>
-          <span>or use your email password</span>
-          <input type="text" value={emp_id} placeholder="EMP ID" onChange={e => setEmp_id(e.target.value)} />
+          <span>or use your employee credentials</span>
+          <input 
+            type="text" 
+            value={emp_id} 
+            placeholder="EMP ID" 
+            onChange={(e) => setEmp_id(e.target.value)} 
+            required
+          />
           <div className="input-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="empPassword">Password</label>
             <div className="password-input">
               <input
                 type={showPassword ? 'text' : 'password'}
+                id="empPassword"
                 name="password"
                 value={password}
-                onChange={e => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
+                required
               />
               <span onClick={togglePassword} className="login-toggle-icon">
                 {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
               </span>
             </div>
           </div>
-          <Link to="/forget" className='forget'>Forget Password?</Link>
+          <Link to="/forget" className='forget'>Forgot Password?</Link>
           <button type='submit'>Sign In</button>
         </form>
       </div>
@@ -135,6 +161,6 @@ const Login = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Login;

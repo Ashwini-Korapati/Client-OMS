@@ -1,73 +1,85 @@
-
 .task-notification-container {
-  padding: 20px;
-  margin: 20px auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 90px;
-  max-width: 600px;
-  background-color: rgba(128, 128, 128, 0.336);
-  border: 1px solid #ddd;
-  margin: auto;
-  align-items: start;
-  justify-content: start;
-  margin-left: -5px;
-  height: 50vh;
-  margin-top: 80px;
+    padding: 20px;
+}
+
+.task-notification-container h3 {
+    font-size: 1.5rem;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .task-card {
-  display: flex;
-  align-items: start;
-  background-color: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
 .task-card:hover {
-  transform: scale(1.02);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .task-icon {
-  margin-right: 15px;
+    margin-right: 15px;
 }
 
 .notification-bell-icon {
-  font-size: 30px;
-  color: #007bff;
+    font-size: 28px;
+    color: #007bff;
 }
 
 .task-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 .task-message {
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+    flex-grow: 1;
 }
 
 .notification-type {
-  font-weight: bold;
-  color: #007bff;
+    font-weight: bold;
+    color: #0056b3;
 }
 
 .monitor-button {
-  background-color: #007bff;
-  color: white;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
 }
 
 .monitor-button:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
+}
+
+.no-tasks-message, .loading-message {
+    text-align: center;
+    color: #6c757d;
+    padding: 20px;
+    font-style: italic;
 }

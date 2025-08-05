@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import http from '../../../Httphandler'
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const initialState = {
   employees: [],
@@ -41,14 +40,12 @@ const employeesSlice = createSlice({
     },
     fetchEmployeesSuccess(state, action) {
       state.loading = false;
-      state.error = null;
       state.employees = action.payload;
     },
     fetchEmployeesFailure(state, action) {
       state.loading = false;
       state.error = action.payload;
     },
-    
     setEditModeId(state, action) {
       state.editModeId = action.payload;
     },
@@ -62,19 +59,19 @@ const employeesSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-  
     deleteEmployeeFailure(state, action) {
       state.loading = false;
       state.error = action.payload;
     },
-
+    deleteEmployeeSuccess(state, action) {
+      state.loading = false;
+      state.employees = state.employees.filter(emp => emp.emp_id !== action.payload);
+    },
     saveEmployeeStart(state) {
       state.loading = true;
-      state.error = null;
     },
     saveEmployeeSuccess(state, action) {
       state.loading = false;
-      state.error = null;
       state.employees = state.employees.map(emp =>
         emp.emp_id === action.payload.emp_id ? action.payload : emp
       );
@@ -103,74 +100,41 @@ export const {
   saveEmployeeFailure
 } = employeesSlice.actions;
 
-// Thunk action to fetch employees
+// ✅ Fetch employees using httpHandler
 export const fetchEmployees = () => async dispatch => {
   dispatch(fetchEmployeesStart());
   try {
-    const response = await axios.get('http://localhost:8000/api/v1/hr/AllEmployee');
+    const response = await http.get('/api/v1/hr/AllEmployee');
     dispatch(fetchEmployeesSuccess(response.data));
   } catch (error) {
     dispatch(fetchEmployeesFailure(error.message));
-    // toast.error('Failed to fetch employees.');
   }
 };
 
-// export const deleteEmployee = (id) => async dispatch => {
-//   if (window.confirm('Are you sure you want to delete this employee?')) {
-//     dispatch(deleteEmployeeStart());
-//     try {
-//       const token = localStorage.getItem('authToken');
-//       await axios.delete(`http://localhost:8000/api/v1/hr/deleteEmployee/${id}`, {
-//         headers: {
-//           'Authorization': `Bearer ${token}`
-//         }
-//       });
-//       dispatch(deleteEmployeeSuccess(id));
-//       toast.success('Employee deleted successfully.');
-//     } catch (error) {
-//       dispatch(deleteEmployeeFailure(error.message));
-//       toast.error('Failed to delete employee.');
-//     }
-//   }
-// };
-
-
+// ✅ Delete employee using httpHandler
 export const deleteEmployee = (id) => async dispatch => {
   if (window.confirm('Are you sure you want to delete this employee?')) {
     dispatch(deleteEmployeeStart());
     try {
-      const token = localStorage.getItem('authToken')
-      await axios.delete(`http://localhost:8000/api/v1/hr/deleteEmployee/${id}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      await http.delete(`/api/v1/hr/deleteEmployee/${id}`);
       dispatch(deleteEmployeeSuccess(id));
       toast.success('Employee deleted successfully.');
     } catch (error) {
       dispatch(deleteEmployeeFailure(error.message));
-      // toast.error('Failed to delete employee.');
     }
   }
 };
 
+// ✅ Save employee using httpHandler
 export const saveEmployee = (editedEmployee) => async dispatch => {
   dispatch(saveEmployeeStart());
   try {
-    const token = localStorage.getItem('authToken');
-    const response = await axios.put(`http://localhost:8000/api/v1/hr/updateEmployee/${editedEmployee.emp_id}`, editedEmployee, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    });
+    const response = await http.put(`/api/v1/hr/updateEmployee/${editedEmployee.emp_id}`, editedEmployee);
     dispatch(saveEmployeeSuccess(response.data));
     toast.success('Employee saved successfully.');
   } catch (error) {
     dispatch(saveEmployeeFailure(error.message));
-    // toast.error('Failed to save employee.');
   }
 };
-
 
 export default employeesSlice.reducer;

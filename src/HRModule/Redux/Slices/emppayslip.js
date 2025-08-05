@@ -1,20 +1,19 @@
-
 // src/features/payslip/payslipSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { httpGet } from '../../../Httphandler'
 
 // Thunk for fetching payslip data
 export const fetchPayslip = createAsyncThunk(
   'payslip/fetchPayslip',
   async ({ month, year, emp_id }, thunkAPI) => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/v1/employee/getEmployeePaySlipByMonth`, {
+      const response = await httpGet('/api/v1/employee/getEmployeePaySlipByMonth', {
         params: { month, year, emp_id },
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
-      return response.data; // Return the full data, not just the first record
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to fetch payslip');
     }
   }
 );
@@ -37,7 +36,7 @@ const payslipSlice = createSlice({
       .addCase(fetchPayslip.fulfilled, (state, action) => {
         state.status = 'succeeded';
         const combinedRecords = action.payload.combinedRecords || [];
-        state.employeeDetails = (combinedRecords[0]?.employeeDetails[0]) || {};
+        state.employeeDetails = (combinedRecords[0]?.employeeDetails?.[0]) || {};
         state.payslipDetails = (combinedRecords[0]?.payslipDetails) || {};
       })
       .addCase(fetchPayslip.rejected, (state, action) => {

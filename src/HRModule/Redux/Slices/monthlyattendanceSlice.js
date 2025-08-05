@@ -1,20 +1,21 @@
+// src/redux/slices/monthlyattendanceSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
- 
+import http from '../../../Httphandler'
+
 export const fetchEmployeeAttendanceByMonth = createAsyncThunk(
   'monthlyattendance/fetchEmployeeAttendanceByMonth',
   async ({ emp_id, month, year }, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/v1/hr/employeeAttendence/bymonth`, {
+      const response = await http.get('/api/v1/hr/employeeAttendence/bymonth', {
         params: { emp_id, month, year },
       });
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
- 
+
 const monthlyattendanceSlice = createSlice({
   name: 'monthlyattendance',
   initialState: {
@@ -45,9 +46,9 @@ const monthlyattendanceSlice = createSlice({
       })
       .addCase(fetchEmployeeAttendanceByMonth.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload.message;
+        state.error = action.payload?.message || 'Something went wrong';
       });
   },
 });
- 
+
 export default monthlyattendanceSlice.reducer;

@@ -1,93 +1,75 @@
 /* EmpHome-first container */
 .EmpHome-first {
-  position: relative;
-  margin: 20px;
+    position: relative;
+    padding: 15px;
+    background-color: #f4f5f7;
+    min-height: 100vh;
 }
 
 /* Responsive Heading */
 .emp-h1 {
-  font-size: 28px;
-  margin-left: 10px;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
 }
 
-@media (min-width: 768px) {
-  .emp-h1 {
-    font-size: 30px;
-    margin-left: 20px;
-  }
+/* For smaller devices, center the heading */
+@media (max-width: 768px) {
+    .emp-h1 {
+        text-align: center;
+    }
 }
 
-/* EmpHome-blog-cards - adjust layout for smaller screens */
+/* EmpHome-blog-cards container for the top cards */
 .EmpHome-blog-cards {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-}
-
-@media (min-width: 768px) {
-  .EmpHome-blog-cards {
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 40px;
-  }
-}
-
-/* Image container */
-.image-container-emp {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-@media (min-width: 768px) {
-  .image-container-emp {
-    justify-content: flex-start;
-    margin-top: 0;
-  }
-}
-
-/* Responsive logo */
-.emp-home-logo {
-  margin-left: 20px;
-  top: 35px;
-  width: 150px;
-  height: 150px;
-  transform: rotate(25deg);
-}
-
-@media (min-width: 768px) {
-  .emp-home-logo {
-    width: 200px;
-    height: 200px;
-    margin-left: 40px;
-  }
+    margin-top: 15px;
+    margin-bottom: 30px; /* Added a clear gap after the cards section */
 }
 
 /* Responsive Attendance and Calendar section */
 .emp-attendance-calender {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Consistent gap between the attendance and calendar components */
+}
+
+/* For smaller devices, center the heading */
+@media (max-width: 768px) {
+.emp-h1 {
+text-align: center;
+}
+}
+
+/* EmpHome-blog-cards - now a flexible grid container */
+.EmpHome-blog-cards {
+margin-top: 20px;
+}
+
+/* Responsive Attendance and Calendar section */
+.emp-attendance-calender {
+display: flex;
+flex-direction: column;
+gap: 20px;
+margin-top: 20px;
 }
 
 @media (min-width: 768px) {
-  .emp-attendance-calender {
-    flex-direction: row;
-    justify-content: start;
-  }
+    .emp-attendance-calender {
+        flex-direction: row;
+        gap: 20px;
+        align-items: flex-start; /* Aligns items at the top of the container */
+    }
+    
+    /* FIX: This rule makes children of emp-attendance-calender take equal space */
+    .emp-attendance-calender > * {
+        flex: 1; 
+    }
 }
 
 /* Name styling */
 .emp-name {
-  margin-left: 5px;
-  font-weight: bold;
-  color: #333;
-}
-
-/* For smaller devices, reduce the margin */
-@media (max-width: 768px) {
-  .emp-h1 {
-    text-align: center;
-    margin-left: 0;
-  }
+    margin-left: 5px;
+    font-weight: bold;
+    color: #007bff;
 }

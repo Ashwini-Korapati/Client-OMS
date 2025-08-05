@@ -4,20 +4,18 @@ import { register, clearAuthError } from '../../Redux/Actions/userActions';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import "./Register.css";
-import { FiEdit } from "react-icons/fi";
-import { LuUpload } from 'react-icons/lu';
 
-export default function Register1() {
+export default function Register() {
     const [userData, setUserData] = useState({
         name: "",
         email: "",
         password: "",
         confirm_password: "",
-        avatar: null,
     });
-    const [isImageSelected, setIsImageSelected] = useState(false);
-    const [passwordStrength, setPasswordStrength] = useState('Weak'); 
+    const [passwordStrength, setPasswordStrength] = useState('Weak');
     const [errors, setErrors] = useState({});
+    const [submitAttempted, setSubmitAttempted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -30,49 +28,69 @@ export default function Register1() {
         if (name === 'password') {
             checkPasswordStrength(value);
         }
-    };
 
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        setUserData({ ...userData, avatar: file });
-        setIsImageSelected(!!file); // Update based on whether a file is selected
-    };
-
-    const handleUploadClick = () => {
-        document.getElementById('customFile').click();
+        if (errors[name]) {
+            setErrors({...errors, [name]: ''});
+        }
     };
 
     const validateForm = () => {
         const newErrors = {};
 
-        if (!userData.name) newErrors.name = "Name is required.";
-        if (!userData.email) newErrors.email = "Email is required.";
-        if (!userData.password) newErrors.password = "Password is required.";
-        if (userData.password !== userData.confirm_password) newErrors.confirm_password = "Passwords do not match.";
-        if (!userData.avatar) newErrors.avatar = "Avatar is required.";
+        if (!userData.name.trim()) newErrors.name = "Name is required";
+        if (!userData.email.trim()) {
+            newErrors.email = "Email is required";
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userData.email)) {
+            newErrors.email = "Please enter a valid email";
+        }
+        
+        if (!userData.password) {
+            newErrors.password = "Password is required";
+        } else if (userData.password.length < 6) {
+            newErrors.password = "Password must be at least 6 characters";
+        }
+        
+        if (userData.password !== userData.confirm_password) {
+            newErrors.confirm_password = "Passwords do not match";
+        }
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setSubmitAttempted(true);
+        setIsSubmitting(true);
 
         if (!validateForm()) {
+            toast.error("Please fix the errors in the form");
+            setIsSubmitting(false);
             return;
         }
 
-        const formData = new FormData();
-        formData.append('name', userData.name);
-        formData.append('email', userData.email);
-        formData.append('password', userData.password);
-        formData.append('confirm_password', userData.confirm_password);
-        formData.append('avatar', userData.avatar);
-
-        dispatch(register(formData));
+        try {
+            const result = await dispatch(register({
+                name: userData.name,
+                email: userData.email,
+                password: userData.password,
+                confirm_password: userData.confirm_password
+            }));
+            
+            if (register.fulfilled.match(result)) {
+                toast.success("Registration successful! Please login.");
+                navigate('/login');
+            } else if (register.rejected.match(result)) {
+                toast.error(result.payload || "Registration failed");
+            }
+        } catch (err) {
+            console.error("Registration error:", err);
+            toast.error("An unexpected error occurred. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
-    // Enhanced password strength check
     const checkPasswordStrength = (password) => {
         let strength = 'Weak';
         if (password.length >= 8) {
@@ -91,18 +109,23 @@ export default function Register1() {
         if (isAuthenticateduser) {
             navigate('/login');
         }
+        
         if (error) {
             toast.error(error, {
                 position: "top-center",
                 onOpen: () => { dispatch(clearAuthError()); }
             });
         }
+        
+        return () => {
+            dispatch(clearAuthError());
+        };
     }, [error, isAuthenticateduser, dispatch, navigate]);
 
     return (
         <div className="register-container">
             <div className="register-form-container">
-                <form onSubmit={handleSubmit} encType="multipart/form-data">
+                <form onSubmit={handleSubmit}>
                     <h1>Register</h1>
 
                     <div className="form-group">
@@ -112,9 +135,10 @@ export default function Register1() {
                             onChange={handleInputChange}
                             type="text"
                             id="name_field"
-                            className="form-control"
+                            className={`form-control ${errors.name ? 'is-invalid' : ''}`}
+                            value={userData.name}
                         />
-                        {errors.name && <small className="error-message">{errors.name}</small>}
+                        {errors.name && <div className="invalid-feedback">{errors.name}</div>}
                     </div>
 
                     <div className="form-group">
@@ -124,9 +148,10 @@ export default function Register1() {
                             id="email_field"
                             name="email"
                             onChange={handleInputChange}
-                            className="form-control"
+                            className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                            value={userData.email}
                         />
-                        {errors.email && <small className="error-message">{errors.email}</small>}
+                        {errors.email && <div className="invalid-feedback">{errors.email}</div>}
                     </div>
 
                     <div className="form-group">
@@ -136,12 +161,13 @@ export default function Register1() {
                             onChange={handleInputChange}
                             type="password"
                             id="password_field"
-                            className="form-control"
+                            className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                            value={userData.password}
                         />
-                        <small className={`password-strength ${passwordStrength.toLowerCase()}`}>
-                            {passwordStrength}
-                        </small>
-                        {errors.password && <small className="error-message">{errors.password}</small>}
+                        <div className={`password-strength ${passwordStrength.toLowerCase()}`}>
+                            Password Strength: {passwordStrength}
+                        </div>
+                        {errors.password && <div className="invalid-feedback">{errors.password}</div>}
                     </div>
 
                     <div className="form-group">
@@ -151,41 +177,28 @@ export default function Register1() {
                             onChange={handleInputChange}
                             type="password"
                             id="confirm_password_field"
-                            className="form-control"
+                            className={`form-control ${errors.confirm_password ? 'is-invalid' : ''}`}
+                            value={userData.confirm_password}
                         />
-                        {errors.confirm_password && <small className="error-message">{errors.confirm_password}</small>}
-                    </div>
-
-                    <div className="form-group">
-                        <div className="upload-icon" onClick={handleUploadClick}>
-                            {isImageSelected ? <FiEdit /> : <LuUpload />}
-                        </div>
-                        <input
-                            type="file"
-                            name="avatar"
-                            onChange={handleFileChange}
-                            className="custom-file-input"
-                            id="customFile"
-                        />
-                        {userData.avatar && (
-                            <div className="avatar">
-                                <img
-                                    src={URL.createObjectURL(userData.avatar)}
-                                    alt="Avatar Preview"
-                                />
-                            </div>
-                        )}
-                        {errors.avatar && <small className="error-message">{errors.avatar}</small>}
+                        {errors.confirm_password && <div className="invalid-feedback">{errors.confirm_password}</div>}
                     </div>
 
                     <button
                         id="register_button"
                         type="submit"
                         className="register-btn"
-                        disabled={loading}
+                        disabled={isSubmitting}
                     >
-                        {loading ? "Registering..." : "REGISTER"}
+                        {isSubmitting ? (
+                            <>
+                                <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                Registering...
+                            </>
+                        ) : (
+                            "REGISTER"
+                        )}
                     </button>
+                    
                     <div className="href-register">
                         <a href="/login">Already have an account? Log In Here</a>
                     </div>
@@ -193,4 +206,4 @@ export default function Register1() {
             </div>
         </div>
     );
-}
+}   

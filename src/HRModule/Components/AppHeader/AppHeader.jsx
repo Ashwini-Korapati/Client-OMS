@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../Landingpage/Redux/Actions/userActions';
 import './AppHeader.css';
-import hrmlogo from '../../Assets/hrmimage.png';
+import hrmlogo from '../../../EmployeeModule/Assets/nmit.png';
 import avatar from "../../Assets/avatar.png";
 
 const AppHeader = () => {

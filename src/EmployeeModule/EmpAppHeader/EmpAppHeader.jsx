@@ -7,7 +7,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { emplogout } from '../../Landingpage/Redux/Actions/userActions'
 import './EmpAppHeader.css'
-import hrmlogo from '../../HRModule/Assets/hrmimage.png'
+import hrmlogo from '../../EmployeeModule/Assets/nmit.png';
 import avatar from '../../HRModule/Assets/avatar.png'
 import { getProfile } from '../../HRModule/Redux/Slices/ProfileSlice'
 const EmpAppHeader = () => {

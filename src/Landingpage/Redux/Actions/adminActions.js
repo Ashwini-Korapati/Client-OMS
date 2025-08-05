@@ -1,19 +1,19 @@
+// src/actions/createNewEmployee.js
 import {
-    addEmployee,
-    addEmployeeFail,
-    addEmployeeSuccess
-} from "../slices/adminSlice"
-import axios from 'axios';
+  addEmployee,
+  addEmployeeFail,
+  addEmployeeSuccess
+} from "../slices/adminSlice";
 
-export const createNewEmployee  =  formData1 => async (dispatch) => {   
+import HttpHandler from '../../../Httphandler'
 
-    try {  
-        dispatch(addEmployee()) 
-        const { data }  =  await axios.post(`http://localhost:8000/api/v1//hr/addEmployee`, formData1);
-        dispatch(addEmployeeSuccess(data))
-    } catch (error) {
-        //handle error
-        dispatch(addEmployeeFail(error.response.data.message))
-    }
-    
-}
+export const createNewEmployee = (formData1) => async (dispatch) => {
+  try {
+    dispatch(addEmployee());
+    const { data } = await HttpHandler.post('/hr/addEmployee', formData1);
+    dispatch(addEmployeeSuccess(data));
+  } catch (error) {
+    const message = error?.response?.data?.message || 'Failed to add employee';
+    dispatch(addEmployeeFail(message));
+  }
+};

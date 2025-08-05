@@ -1,137 +1,65 @@
-@keyframes burstCrackers {
-  0% {
-    transform: scale(0);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1.5);
-    opacity: 0;
-  }
-}
- 
-.cracker {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background: radial-gradient(circle, #ff6347 50%, transparent 50%);
-  border-radius: 50%;
-  animation: burstCrackers 1s ease-out infinite;
-  z-index: 1;
-}
- 
-.cracker1 {
-  top: -20px;
-  left: 20px;
-}
- 
-.cracker2 {
-  top: -20px;
-  right: 20px;
-}
- 
-.card-container {
-  position: relative;
-}
- 
-.main5 {
-  position: relative;
-}
- 
-.card-container:hover .cracker {
-  animation-play-state: running;
-}
- 
-.cracker {
-  animation-play-state: paused;
+.birthday-widget-content {
+    /* Padding will be handled by the parent 'dashboard-widget' */
 }
 
- 
- 
-.main5 {
-  margin-top: 80px;
-  padding: 20px;
-  width: 33%;
-  height: 50vh;
-  margin-right: 20px;
-  background-color: rgba(128, 128, 128, 0.336);
-  border: 1px solid #ddd;
+.birthday-widget-content h3 {
+    font-size: 1.5rem;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
 }
- 
-.card {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  padding: 20px;
-  /* max-width: 80%; */
-  gap: 10px;
-  margin: 20px auto;
-  border: 1px solid #283c52;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
+
+.event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
- 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-}
- 
+
 .event-detail {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
 }
- 
-.event-text {
-  display: flex;
-  flex-direction: column;
-  margin-right: auto;
+
+.event-detail:hover {
+    transform: translateY(-3px);
 }
- 
-.event-text h3 {
-  font-size: 20px;
-  color: #004d40;
-  margin: 0 0 5px 0;
+
+.event-info h5 {
+    font-size: 1rem;
+    color: #004d40;
+    margin: 0;
 }
- 
-.event-text p {
-  font-size: 16px;
-  color: #555555;
-  margin: 0;
+
+.event-info p {
+    font-size: 0.85rem;
+    color: #555555;
+    margin: 5px 0 0 0;
 }
- 
-.card p.no-events {
-  font-size: 16px;
-  color: #b71c1c;
-  text-align: center;
-  width: 100%;
-}
- 
-.wish-button-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
- 
+
 .wish-button {
-  flex: 1;
-  margin: 0 5px;
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #283c52;
-  color: #283c52;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  width: 90px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
- 
+
 .wish-button:hover {
-  background-color: #3f4f61;
-  color: #fff;
+    background-color: #0056b3;
+}
+
+.no-events-message {
+    text-align: center;
+    color: #6c757d;
+    padding: 20px;
+    font-style: italic;
 }

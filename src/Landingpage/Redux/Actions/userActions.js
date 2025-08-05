@@ -1,273 +1,243 @@
-
-import axios from 'axios';
 import {
-    
-    emploginFail,
-    emploginRequest,
-    emploginSuccess,
-    loginFail,
-    loginRequest, 
-    loginSuccess, 
-    clearError,
-    registerFail,
-    registerRequest,
-    registerSuccess,
-    loadUserRequest,
-    loadUserSuccess,
-    loadUserFail,
-    logoutSuccess,
-    logoutFail,
-    updateProfileRequest,
-    updateProfileSuccess,
-    updateProfileFail,
-    updatePasswordRequest,
-    updatePasswordSuccess,
-    updatePasswordFail,
-    forgotPasswordRequest,
-    forgotPasswordSuccess,
-    forgotPasswordFail,
-    resetPasswordRequest,
-    resetPasswordSuccess,
-    resetPasswordFail
+  emploginFail,
+  emploginRequest,
+  emploginSuccess,
+  loginFail,
+  loginRequest,
+  loginSuccess,
+  clearError,
+  registerFail,
+  registerRequest,
+  registerSuccess,
+  loadUserRequest,
+  loadUserSuccess,
+  loadUserFail,
+  logoutSuccess,
+  logoutFail,
+  updateProfileRequest,
+  updateProfileSuccess,
+  updateProfileFail,
+  updatePasswordRequest,
+  updatePasswordSuccess,
+  updatePasswordFail,
+  forgotPasswordRequest,
+  forgotPasswordSuccess,
+  forgotPasswordFail,
+  resetPasswordRequest,
+  resetPasswordSuccess,
+  resetPasswordFail
 } from '../slices/authSlice';
 
 import {
-    usersRequest,
-    usersSuccess,
-    usersFail,
-    userRequest,
-    userSuccess,
-    userFail,
-    deleteUserRequest,
-    deleteUserSuccess,
-    deleteUserFail,
-    updateUserRequest,
-    updateUserSuccess,
-    updateUserFail
+  usersRequest,
+  usersSuccess,
+  usersFail,
+  userRequest,
+  userSuccess,
+  userFail,
+  deleteUserRequest,
+  deleteUserSuccess,
+  deleteUserFail,
+  updateUserRequest,
+  updateUserSuccess,
+  updateUserFail
 } from '../slices/userSlice';
 
+import { httpPost, httpGet, httpPut, httpDelete } from '../../../Httphandler'
 
-export const login = (email, password) => async (dispatch) => {
-    try {
-        dispatch(loginRequest());
-        const { data } = await axios.post("http://localhost:8000/api/v1/login", { email, password });
-        dispatch(loginSuccess(data));
-    } catch (error) {
-        dispatch(loginFail(error.response.data.message));
-    }
-};
-
-
-
-export const emplogin = (emp_id, password) => async (dispatch) => {
-    try {
-        dispatch(emploginRequest());
-        // console.log(emp_id , password)
-        const {data} = await axios.post("http://localhost:8000/api/v1/employee/login", { emp_id, password }
-            // { withCredentials: true }
-        );
-        console.log(data)
-        dispatch(emploginSuccess(data));
-    } catch (error) {
-        dispatch(emploginFail(error.response));
-    }
-};
-
-export const clearAuthError = () => (dispatch) => {
-    dispatch(clearError());
-};
-
-
-
-export const register = (userData) => async (dispatch) => {
-    try {
-        dispatch(registerRequest());
-        const config = {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        };
-
-        console.log('Sending request with data:', userData);
-        const { data } = await axios.post(`http://localhost:8000/api/v1/register`, userData, config);
-        console.log('Response data:', data);
-        dispatch(registerSuccess(data));
-    } catch (error) {
-        console.error('Error response:', error.response);
-        dispatch(registerFail(error.response.data.message));
-    }
-};
-
-
-export const loadUser = () => async (dispatch) => {
-    try {
-        dispatch(loadUserRequest());
-        const { data } = await axios.get(`/api/v1/myprofile`);
-        dispatch(loadUserSuccess(data));
-    } catch (error) {
-        dispatch(loadUserFail(error.response.data.message));
-    }
-};
-
-// export const emplogout = () => async (dispatch) => {
-//     try {
-//         await axios.get(`http://localhost:8000/api/v1/employee/logout/emp_id=${emp_id}`);
-//         dispatch(logoutSuccess());
-//     } catch (error) {
-//         dispatch(logoutFail(error.response.data.message));
-//     }
+// export const login = (email, password) => async (dispatch) => {
+//   try {
+//     dispatch(loginRequest());
+//     const { data } = await httpPost('/api/v1/login', { email, password });
+//     dispatch(loginSuccess(data));
+//   } catch (error) {
+//     dispatch(loginFail(error.response?.data?.message || error.message));
+//   }
 // };
 
-export const emplogout = () => async (dispatch, getState) => {
+// export const emplogin = (emp_id, password) => async (dispatch) => {
+//   try {
+//     dispatch(emploginRequest());
+//     const { data } = await httpPost('/api/v1/employee/login', { emp_id, password });
+//     dispatch(emploginSuccess(data));
+//   } catch (error) {
+//     dispatch(emploginFail(error.response?.data?.message || error.message));
+//   }
+// };
+
+export const login = (email, password) => async (dispatch) => {
   try {
-      const { auth } = getState(); // Fetching emp_id from the state
-      const emp_id = auth.emp_id;
+    dispatch(loginRequest());
+    const { data } = await httpPost('/api/v1/login', { email, password });
 
-      if (!emp_id) throw new Error("Employee ID is undefined");
+    // Save token and user data to localStorage
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('user', JSON.stringify(data.user));
 
-      await axios.get(`http://localhost:8000/api/v1/employee/logout/emp_id=${emp_id}`);
-
-      // Clear token from localStorage
-      localStorage.removeItem('token'); // Make sure 'token' matches the key used to store it
-      
-      dispatch(logoutSuccess());
+    dispatch(loginSuccess(data));
   } catch (error) {
-      dispatch(logoutFail(error.response?.data?.message || error.message));
+    dispatch(loginFail(error.response?.data?.message || error.message));
+  }
+};
+
+export const emplogin = (emp_id, password) => async (dispatch) => {
+  try {
+    dispatch(emploginRequest());
+    const { data } = await httpPost('/api/v1/employee/login', { emp_id, password });
+
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('user', JSON.stringify(data.user));
+
+    dispatch(emploginSuccess(data));
+  } catch (error) {
+    dispatch(emploginFail(error.response?.data?.message || error.message));
   }
 };
 
 
-
-
-export const logout = () => async (dispatch) => {
-    try {
-        await axios.get(`/api/v1/employee/logout`);
-        dispatch(logoutSuccess());
-    } catch (error) {
-        dispatch(logoutFail(error.response.data.message));
-    }
+export const clearAuthError = () => (dispatch) => {
+  dispatch(clearError());
 };
 
-export const updateProfile = (formData) => async (dispatch) => {    
-    try {
-        dispatch(updateProfileRequest());
-        const config = {
-            headers: {
-                'Content-type': 'multipart/form-data'
-            }
-        };
-        const { data } = await axios.put(`http://localhost:8000/api/v1/employee/update/myprofile`, formData, config);
-        dispatch(updateProfileSuccess(data));
-    } catch (error) {
-        dispatch(updateProfileFail(error.response.data.message));
-    }
+export const register = (userData) => async (dispatch) => {
+  try {
+    dispatch(registerRequest());
+    const config = {
+      headers: {'Content-Type': 'application/json' }
+    };
+    const { data } = await httpPost('/api/v1/register', userData, config);
+    dispatch(registerSuccess(data));
+  } catch (error) {
+    dispatch(registerFail(error.response?.data?.message || error.message));
+  }
+};
+
+export const loadUser = () => async (dispatch) => {
+  try {
+    dispatch(loadUserRequest());
+    const { data } = await httpGet('/api/v1/myprofile');
+    dispatch(loadUserSuccess(data));
+  } catch (error) {
+    dispatch(loadUserFail(error.response?.data?.message || error.message));
+  }
+};
+
+export const logout = () => async (dispatch) => {
+  try {
+    await httpGet('/api/v1/employee/logout');
+    localStorage.removeItem('token');
+    dispatch(logoutSuccess());
+  } catch (error) {
+    dispatch(logoutFail(error.response?.data?.message || error.message));
+  }
+};
+
+export const emplogout = () => async (dispatch, getState) => {
+  try {
+    const { auth } = getState();
+    const emp_id = auth.emp_id;
+
+    if (!emp_id) throw new Error("Employee ID is undefined");
+
+    await httpGet(`/api/v1/employee/logout/emp_id=${emp_id}`);
+    localStorage.removeItem('token');
+    dispatch(logoutSuccess());
+  } catch (error) {
+    dispatch(logoutFail(error.response?.data?.message || error.message));
+  }
+};
+
+export const updateProfile = (formData) => async (dispatch) => {
+  try {
+    dispatch(updateProfileRequest());
+    const config = {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    };
+    const { data } = await httpPut('/api/v1/employee/update/myprofile', formData, config);
+    dispatch(updateProfileSuccess(data));
+  } catch (error) {
+    dispatch(updateProfileFail(error.response?.data?.message || error.message));
+  }
 };
 
 export const updatePassword = (formData) => async (dispatch) => {
-    try {
-        dispatch(updatePasswordRequest());
-        const config = {
-            headers: {
-                'Content-type': 'application/json'
-            }
-        };
-        await axios.put(`/api/v1/password/change`, formData, config);
-        dispatch(updatePasswordSuccess());
-    } catch (error) {
-        dispatch(updatePasswordFail(error.response.data.message));
-    }
+  try {
+    dispatch(updatePasswordRequest());
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    };
+    await httpPut('/api/v1/password/change', formData, config);
+    dispatch(updatePasswordSuccess());
+  } catch (error) {
+    dispatch(updatePasswordFail(error.response?.data?.message || error.message));
+  }
 };
 
-// export const forgotPassword = (email) => async (dispatch) => {
-//     try {
-//         dispatch(forgotPasswordRequest());
-//         const config = {
-//             headers: {
-//                 'Content-type': 'application/json'
-//             }
-//         };
-//         const { data } = await axios.post(`/password/forget`, email, config);
-//         dispatch(forgotPasswordSuccess(data));
-//     } catch (error) {
-//         dispatch(forgotPasswordFail(error.response.data.message));
-//     }
-// };
-
 export const forgotPassword = (email) => async (dispatch) => {
-    try {
-        dispatch(forgotPasswordRequest());
-        const config = {
-            headers: {
-                'Content-type': 'application/json'
-            }
-        };
-        const { data } = await axios.post(`http://localhost:8000/api/v1/password/forget`, { email }, config);
-        dispatch(forgotPasswordSuccess(data));
-    } catch (error) {
-        dispatch(forgotPasswordFail(error.response.data.message));
-    }
+  try {
+    dispatch(forgotPasswordRequest());
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    };
+    const { data } = await httpPost('/api/v1/password/forget', { email }, config);
+    dispatch(forgotPasswordSuccess(data));
+  } catch (error) {
+    dispatch(forgotPasswordFail(error.response?.data?.message || error.message));
+  }
 };
 
 export const resetPassword = (formData, token) => async (dispatch) => {
-    try {
-        dispatch(resetPasswordRequest());
-        const config = {
-            headers: {
-                'Content-type': 'application/json'
-            }
-        };
-        const { data } = await axios.post(`http://localhost:8000/api/v1/password/reset/${token}`, formData, config);
-        dispatch(resetPasswordSuccess(data));
-    } catch (error) {
-        dispatch(resetPasswordFail(error.response.data.message));
-    }
+  try {
+    dispatch(resetPasswordRequest());
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    };
+    const { data } = await httpPost(`/api/v1/password/reset/${token}`, formData, config);
+    dispatch(resetPasswordSuccess(data));
+  } catch (error) {
+    dispatch(resetPasswordFail(error.response?.data?.message || error.message));
+  }
 };
 
 export const getUsers = () => async (dispatch) => {
-    try {
-        dispatch(usersRequest());
-        const { data } = await axios.get(`/api/v1/admin/users`);
-        dispatch(usersSuccess(data));
-    } catch (error) {
-        dispatch(usersFail(error.response.data.message));
-    }
+  try {
+    dispatch(usersRequest());
+    const { data } = await httpGet('/api/v1/admin/users');
+    dispatch(usersSuccess(data));
+  } catch (error) {
+    dispatch(usersFail(error.response?.data?.message || error.message));
+  }
 };
 
 export const getUser = (id) => async (dispatch) => {
-    try {
-        dispatch(userRequest());
-        const { data } = await axios.get(`/api/v1/admin/user/${id}`);
-        dispatch(userSuccess(data));
-    } catch (error) {
-        dispatch(userFail(error.response.data.message));
-    }
+  try {
+    dispatch(userRequest());
+    const { data } = await httpGet(`/api/v1/admin/user/${id}`);
+    dispatch(userSuccess(data));
+  } catch (error) {
+    dispatch(userFail(error.response?.data?.message || error.message));
+  }
 };
 
 export const deleteUser = (id) => async (dispatch) => {
-    try {
-        dispatch(deleteUserRequest());
-        await axios.delete(`/api/v1/admin/user/${id}`);
-        dispatch(deleteUserSuccess());
-    } catch (error) {
-        dispatch(deleteUserFail(error.response.data.message));
-    }
+  try {
+    dispatch(deleteUserRequest());
+    await httpDelete(`/api/v1/admin/user/${id}`);
+    dispatch(deleteUserSuccess());
+  } catch (error) {
+    dispatch(deleteUserFail(error.response?.data?.message || error.message));
+  }
 };
 
 export const updateUser = (id, formData) => async (dispatch) => {
-    try {
-        dispatch(updateUserRequest());
-        const config = {
-            headers: {
-                'Content-type': 'application/json'
-            }
-        };
-        await axios.put(`/api/v1/admin/user/${id}`, formData, config);
-        dispatch(updateUserSuccess());
-    } catch (error) {
-        dispatch(updateUserFail(error.response.data.message));
-    }
+  try {
+    dispatch(updateUserRequest());
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    };
+    await httpPut(`/api/v1/admin/user/${id}`, formData, config);
+    dispatch(updateUserSuccess());
+  } catch (error) {
+    dispatch(updateUserFail(error.response?.data?.message || error.message));
+  }
 };
-
-
-
-// 

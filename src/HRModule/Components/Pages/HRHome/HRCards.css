@@ -1,79 +1,57 @@
-/* 
-   .card-layout {
+/* Card Layout - CSS Grid for a robust, organized structure */
+.card-layout {
     display: grid;
+    /* Create three equal columns for desktop view */
     grid-template-columns: repeat(3, 1fr);
-    gap: 0px; 
-    padding: 10px; 
-  }
-  
-  .hr-home-card {
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px; 
-    text-align: center;
-    transition: transform 0.2s;
-    width: 500px; 
-    min-height: 200px; 
-    cursor: pointer;
-  }
-  
-  .hr-home-card:hover {
-    transform: translateY(-5px); 
-  }
-  
-  .hr-home-card h3 {
-    font-size: 22px; 
-    margin-bottom: 60px; 
-  }
-  
-  .hr-home-icon {
-    width: 90px; 
-    height: 90px; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto; 
-  }
-   */
-.main-card-layout{
-  /* height: 40vh; */
+    /* Use a single 'gap' property for both row and column spacing */
+    gap: 20px;
+    padding: 0;
+    margin-bottom: 20px;
+    min-height: 250px; /* Provides more height for the card container */
+    align-items: stretch; /* Ensures cards stretch to fill the available height */
 }
-   .card-layout {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px; /* Remove the gap between the cards */
-    padding: 10px;
-  }
-  
-  .hr-home-card {
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+
+/* Individual Card Styling */
+.hr-home-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 20px;
     text-align: center;
-    transition: transform 0.2s;
-    width: 90%; /* Make the cards fill the grid column */
-    min-height: 200px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-    box-sizing: border-box; /* Ensure padding does not affect card size */
-  }
-  
-  .hr-home-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .hr-home-card h3 {
-    font-size: 22px;
-    margin-bottom: 20px; /* Adjust margin to balance the layout */
-  }
-  
-  .hr-home-icon {
-    width: 90px;
-    height: 90px;
+    
+    /* Flexbox for proper vertical alignment */
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-  }
-  
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
+
+    min-height: 200px; /* Ensures a consistent height for each card */
+}
+
+.hr-home-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.hr-home-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    color: #4a4a4a;
+}
+
+.hr-home-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+/* Media queries for a stacked layout on smaller screens */
+@media (max-width: 768px) {
+    .card-layout {
+        /* Switch to a single column on tablets and mobile devices */
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}

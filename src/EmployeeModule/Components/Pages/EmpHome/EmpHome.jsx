@@ -5,53 +5,56 @@ import '../EmpHome/EmpHome.css';
 import EmpCards from '../EmpHome/EmpCards';
 import EmpCalendar from '../EmpHome/EmpCalender';
 import EmpAttendance from '../EmpAttendance/EmpAttendance';
-import logo from '../../../Assets/homeimg.png';
 
-const HRHome = () => {
-  const { emp } = useSelector(state => state.authState);
-  console.log("Employee Data:", emp);
-  const [employeeName, setEmployeeName] = useState('');
+const EmpHome = () => {
+  const { emp } = useSelector(state => state.authState);
+  const [employeeName, setEmployeeName] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    // Check if emp data exists in localStorage
-    const storedEmp = JSON.parse(localStorage.getItem('emp'));
-    console.log("Stored Employee Data:", storedEmp);
-    if (storedEmp?.name) {
-      setEmployeeName(emp.name);
-    } else if (emp?.name) {
-      setEmployeeName(emp.name);
-      // Store emp data in localStorage
-      localStorage.setItem('emp', JSON.stringify(emp));
-    } else {
-      toast.error('Unable to fetch employee details. Please login again.');
-    }
-  }, [emp]);
+  useEffect(() => {
+    setIsLoading(true);
+    
+    // Check if emp data exists in Redux store first
+    if (emp?.name) {
+      setEmployeeName(emp.name);
+      setIsLoading(false);
+    } else {
+      // If not in Redux, check localStorage
+      const storedEmp = JSON.parse(localStorage.getItem('emp'));
+      if (storedEmp?.name) {
+        setEmployeeName(storedEmp.name);
+        setIsLoading(false);
+      } else {
+        toast.error('Unable to fetch employee details. Please login again.');
+        setIsLoading(false);
+      }
+    }
+  }, [emp]);
 
-  if (!employeeName) {
-    return (
-      <div className='EmpHome-first loading'>
-        <h1 className='emp-h1'>Loading...</h1>
-      </div>
-    );
-  }
+  if (isLoading) {
+    return (
+      <div className='EmpHome-first loading'>
+        {/* Blank state while loading */}
+      </div>
+    );
+  }
 
-  return (
-    <div className='EmpHome-first'>
-      <h1 className='emp-h1'>
-        Welcome <span className="emp-name">{employeeName}..!</span>
-      </h1>
-      <div className='EmpHome-blog-cards'>
-        <EmpCards />
-        <div className='image-container-emp'>
-          {/* <img src={logo} alt="Logo" className="emp-home-logo" /> */}
-        </div>
-      </div>
-      <div className='emp-attendance-calender'>
-        <EmpAttendance />
-        <EmpCalendar />
-      </div>
-    </div>
-  );
+  return (
+    <div className='EmpHome-first'>
+      {employeeName && (
+        <h1 className='emp-h1'>
+          Welcome <span className="emp-name">{employeeName}..!</span>
+        </h1>
+      )}
+      <div className='EmpHome-blog-cards'>
+        <EmpCards />
+      </div>
+      <div className='emp-attendance-calender'>
+        <EmpAttendance />
+        <EmpCalendar />
+      </div>
+    </div>
+  );
 };
 
-export default HRHome;
+export default EmpHome;

@@ -1,32 +1,24 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import dayjs from 'dayjs';
+import { httpGet } from '../../../Httphandler'; // Adjust path if needed
 
-const token = localStorage.getItem('authToken');
+export const fetchHolidays1 = createAsyncThunk('leaveCalendar/fetchHolidays', async (_, { rejectWithValue }) => {
+  try {
+    const response = await httpGet('/hr/holidays'); // Path relative to base URL in httpHandler
+    const data = response.data;
 
-export const fetchHolidays1 = createAsyncThunk('leaveCalendar/fetchHolidays', async () => {
-  const response = await fetch('http://localhost:8000/api/v1/hr/holidays', {
-    method: 'GET',
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    credentials: 'include',
-  });
+    const currentDate = dayjs();
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch holidays');
+    const upcomingHolidays = data.holidaysByMonth
+      .filter(holiday => dayjs(holiday.date, 'DD MMM').isAfter(currentDate))
+      .sort((a, b) => dayjs(a.date, 'DD MMM') - dayjs(b.date, 'DD MMM'))
+      .slice(0, 4);
+
+    return upcomingHolidays;
+  } catch (error) {
+    console.error('Failed to fetch holidays:', error);
+    return rejectWithValue(error.response?.data?.message || 'Failed to fetch holidays');
   }
-
-  const data = await response.json();
-  const currentDate = dayjs(); // Current date
-
-  // Filter, sort, and select the next 4 upcoming holidays
-  const upcomingHolidays = data.holidaysByMonth
-    .filter(holiday => dayjs(holiday.date, 'DD MMM').isAfter(currentDate)) // Filter holidays that are in the future
-    .sort((a, b) => dayjs(a.date, 'DD MMM') - dayjs(b.date, 'DD MMM')) // Sort by date
-    .slice(0, 4); // Get the first 4 upcoming holidays
-
-  return upcomingHolidays;
 });
 
 const leaveCalendarSlice = createSlice({
@@ -41,6 +33,7 @@ const leaveCalendarSlice = createSlice({
     builder
       .addCase(fetchHolidays1.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(fetchHolidays1.fulfilled, (state, action) => {
         state.loading = false;
@@ -48,7 +41,7 @@ const leaveCalendarSlice = createSlice({
       })
       .addCase(fetchHolidays1.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.payload;
       });
   },
 });

@@ -8,7 +8,7 @@ import EmpHeader from '../../EmpAppHeader/EmpAppHeader'
 
 
 import { Outlet } from 'react-router-dom';
-import EmpHeader2 from '../Pages/Header2/EmpHeader2'
+import EmpHeader2 from '../../../HRModule/Components/AppHeader/AppHeader2'
 
 // import EmpSidebar from '../../EmpSidebar/EmpSidebar'
  
